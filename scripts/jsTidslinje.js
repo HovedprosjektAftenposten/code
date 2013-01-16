@@ -5,9 +5,9 @@ $(document).ready(function(){
 	
 	leggTilIndikatorer();
 	knappeKlargjøring();
-	
-	var $headerHeight = $(".header").height();
-	$('.headerWrapper').height($headerHeight);
+			var $headerHeight = $(".header").height();
+		$('.headerWrapper').height($headerHeight);
+
 	
 	$(window).scroll(function () {
 		
@@ -23,9 +23,9 @@ $(document).ready(function(){
 
 function knappeKlargjøring(){
 	$('.indikator').live("click",function(){
-		var $headerHeight = $(".header").height();
+
 		var $id = $(this).attr("id");
-		$(window).scrollTo("." + $id, 300, {offset: -$headerHeight});
+		$(window).scrollTo("." + $id, 300, {offset: -120});
 	});
 	
 
