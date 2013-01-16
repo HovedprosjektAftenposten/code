@@ -1,14 +1,34 @@
 // JavaScript Document
 $(document).ready(function(){
+	
+	
+	
 	leggTilIndikatorer();
 	knappeKlargjøring();
+	
+	var $headerHeight = $(".header").height();
+	$('.headerWrapper').height($headerHeight);
+	
+	$(window).scroll(function () {
+		
+			var $timelineTop = $('.header').position().top;
+			
+			if ($(this).scrollTop() > 50) {
+				$('#timelineIngress').slideUp();
+			} else {
+				$('#timelineIngress').slideDown();
+			}
+	});
 });
 
 function knappeKlargjøring(){
 	$('.indikator').live("click",function(){
+		var $headerHeight = $(".header").height();
 		var $id = $(this).attr("id");
-		$.scrollTo("." + $id, 500);
+		$(window).scrollTo("." + $id, 300, {offset: -$headerHeight});
 	});
+	
+
 }
 
 function leggTilIndikatorer(){
