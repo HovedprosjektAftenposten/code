@@ -40,6 +40,16 @@ function leggTilIndikatorer(){
 	var hendelse6 = new Date(2013,0,10);
 	
 	var array = [hendelse1, hendelse2, hendelse3, hendelse4, hendelse5, hendelse6];
+	/* Prøvde her å sortere datoene, uten hell. Kode fra stackoverflow
+	var array = [new Date(2013,0,5), new Date(2013,0,7), new Date(2013,0,1), new Date(2013,0,2), new Date(2013,0,16), new Date(2013,0,10)]
+	var test = array.sort(function(a,b){
+		  a = new Date(a.date);
+		  b = new Date(b.date);
+		  return a<b?-1:a>b?1:0;
+		});
+	
+	alert(test);
+	*/
 	
 	var prevTime = new Date(2013,0,1,0,0);  // Jan 1, 2013
 	var thisTime = new Date();              // I dag
@@ -57,11 +67,17 @@ function leggTilIndikatorer(){
 	var test;
 	
 	for (var i = 0; i < array.length; i++){
+		
 		var njeh = array[i].getTime() - prevTime.getTime();
 		var bleh = njeh / (1000*60*60*24);
 		var prosent = ((bleh / dager) * 100).toFixed(0);
-		$("#indikatorWrapper").append("<div id='" + i + "'class='indikator " + prosent + "'></div>");
+		
+		var datoFormatert = array[i].getDate().toString() + "-" + array[i].getMonth().toString() + "-" + array[i].getFullYear().toString();
+		
+			
+		$("#indikatorWrapper").append("<div id='" + datoFormatert + "'class='indikator " + prosent + "'></div>");
 		var cssProsent = prosent + "%";
 		$("." + prosent + "").css({left: cssProsent });
+		
 	};
 }
