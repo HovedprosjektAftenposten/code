@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+/* STILARK for Aftenpostens tidslinje */
+	
+.wrapper {
+ width:640px;
+ margin:0 auto;	
+}
+
+.content {
+ border:1px solid #cdcdcd;	
+ padding:10px;
+}
+.header {
+	width:100%;
+	position:relative;	
+}
+#indikatorWrapper {
+width:100%;
+background:grey;
+height:50px;	
+position:fixed;
+}
+.indikator {
+height:10px;
+width:10px;
+position:absolute;
+background:white;
+top:20px;
+
+-webkit-transition: all 200ms;
+		-moz-transition: all 200ms;
+        -ms-transition: all 200ms;
+        -o-transition: all 200ms;
+		transition: all 200ms;	
+
+cursor:pointer;
+
+}
+.indikator:hover {
+background-color:#333;	
+}
