@@ -1,4 +1,4 @@
-urlString = "jsonData.js"
+urlString = "test.json"
 
 // Document-ready
 $(function(){
@@ -17,16 +17,13 @@ function settEvents(){
 
 // Henter data fra json, omgjør det til en HTML-string og legger de til #sectData
 function hentData(){	
+
 	var htmlString = "";
 	$.getJSON(urlString, function(jsonData){
-		$.each(jsonData.articles, function(i, item){
-			var id = item.id;
-			var title = item.title;
-			var content = item.content;
-			
-			htmlString += wrapTxt(id, "h1");
-			htmlString += wrapTxt(title, "h2");
-			htmlString += wrapTxt(content, "p");
+		$.each(jsonData.members, function(i, item){
+			var id = item.content_id;
+			var title = item.content_title;
+			alert(id + " " + title);
 		})
 		$('#sectData').html(htmlString);
 	})
