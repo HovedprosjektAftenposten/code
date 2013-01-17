@@ -1,29 +1,35 @@
 // JavaScript Document
 $(document).ready(function(){
 	
-	
-	
 	leggTilIndikatorer();
 	knappeKlargjøring();
-			var $headerHeight = $(".header").height();
-		$('.headerWrapper').height($headerHeight);
-
+	scrolleLytter();
 	
-	$(window).scroll(function () {
-		
-			var $timelineTop = $('.header').position().top;
-			
-			if ($(this).scrollTop() > 50) {
-				$('#timelineIngress').slideUp();
-			} else {
-				$('#timelineIngress').slideDown();
-			}
-	});
+	//Sørger for at .headerWrapper får en fast høyde, 
+	//slik at contentdivisjoner under flyter under stickyheader.
+	var $headerHeight = $(".header").height();
+	$('.headerWrapper').height($headerHeight);
+
+
 });
+
+//Lytter til scrollehjulet, og tar vekk ingresstekst om man scroller nedover. + visa versa
+function scrolleLytter() {
+	$(window).scroll(function () {
+		var $timelineTop = $('.header').position().top;
+		
+		if ($(this).scrollTop() > 75) {
+			$('#timelineIngress').slideUp(300);
+		} else {
+			$('#timelineIngress').slideDown(300);
+		}
+	});
+}
 
 function knappeKlargjøring(){
 	$('.indikator').live("click",function(){
-
+		$(this).siblings().removeClass("indikatorSelected");
+		$(this).addClass("indikatorSelected");
 		var $id = $(this).attr("id");
 		$(window).scrollTo("." + $id, 300, {offset: -120});
 	});
@@ -74,10 +80,11 @@ function leggTilIndikatorer(){
 		
 		var datoFormatert = array[i].getDate().toString() + "-" + array[i].getMonth().toString() + "-" + array[i].getFullYear().toString();
 		
-			
 		$("#indikatorWrapper").append("<div id='" + datoFormatert + "'class='indikator " + prosent + "'></div>");
 		var cssProsent = prosent + "%";
 		$("." + prosent + "").css({left: cssProsent });
 		
 	};
+	
+	$('.indikator:first').addClass("indikatorSelected");
 }

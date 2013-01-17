@@ -49,9 +49,14 @@ cursor:pointer;
 
 }
 .indikator:hover {
-background-color:#333;	
+background-color:#999;	
 }
-
+.indikatorSelected {
+background-color:#666;
+}
+.indikatorSelected:hover {
+background-color:#666;	
+}
 .clearFix {
 clear:both;	
 }
