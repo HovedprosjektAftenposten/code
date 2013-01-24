@@ -12,7 +12,7 @@ overflow-y:scroll;
  
 }
 
-
+overflow:
 .hendelseWrapper {
 width:640px;
     
@@ -20,7 +20,7 @@ position:relative;
 }
 .hendelse {
  border:1px solid #cdcdcd;	
- padding:10px;
+ padding:10px 10px 30px 10px;
 width:618px; /*2px border*/
 float:left;
 background-color:#
@@ -66,9 +66,10 @@ height:200px;
 #timeline-next, #timeline-prev {
 	width:75px;
 	height:25px;	
-	background:red;
+    background:#efefef;
 	float:left;
 	margin: 0 10px 0 0;
+    cursor:pointer;
 }
 
 

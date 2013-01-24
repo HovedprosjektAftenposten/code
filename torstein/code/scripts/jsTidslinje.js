@@ -1,85 +1,56 @@
-// JavaScript Document
+// Variablene under brukes gjentatte ganger i scritpet.
 var fokusHendelse = 0;
+var $headerHeight = 0;
+
 
 $(document).ready(function (){
 	
 	hentData();
 	knappeKlargjøring();
 	scrolleLytter();
-	
+	sjekkNav();
 	//Sørger for at .headerWrapper får en fast høyde, 
 	//slik at contentdivisjoner under flyter under stickyheader.
-	var $headerHeight = $(".header").height();
+	$headerHeight = $(".header").height();
 	$('.headerWrapper').height($headerHeight);
-	
-	$('.hendelse:first').addClass("hendelse-in-focus");
-	
-	$('#txtTest').click(function () {
-       
+    
 
-    });
+	
 });
 
-//Lytter til scrollehjulet, og tar vekk ingresstekst om man scroller nedover. + visa versa
 function scrolleLytter() {
 	
-
-    
+    //Lytter til scrollehjulet, og tar vekk ingresstekst om man scroller nedover. + visa versa
+   
 	$(window).scroll(function () {
-		var $timelineTop = $('.header').position().top; // Brukes ikke?
-		
-        /*if ($('.hendelse:in-viewport').offset().top > 0){
-            alert("sad");
-                fokusHendelse = $(this).eq();
-                $('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
-        }*/
-    
-        
-      $('.hendelse').waypoint(function(direction) {
-          //$body.toggleClass(this.id + '-visible', direction === 'left');
-            fokusHendelse = $(".hendelse").index(this);    
-            $(".indikator").eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
-    }, {
-              offset: '120px',
-              horizontal: false
-        });    
-        
-       // fokusHendelse = $('.hendelse:in-viewport').index();
-        //$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
-        //$('#txtTest').html(hei);
-        
+        //var $timelineTop = $('.header').position().top; // Brukes ikke?
+       $headerHeight = $(".header").height();
+         //Med Waypoint(jquery plugin), ser koden hvilken hendelse som er i viewport og markerer tilsvarende indikator.    
+          $('.hendelse').waypoint(function(direction) {
+              
+                fokusHendelse = $(".hendelse").index(this);    
+                $(".indikator").eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
+          },{
+                offset: $headerHeight + 10,
+                horizontal: false
+          });    
+         sjekkNav();
 		if ($(this).scrollTop() > 75) {
 			$('#timelineIngress').slideUp(300);
 		} else {
-			$('#timelineIngress').slideDown(300);
+			$('#timelineIngress').slideDown(300,function() {
+                //funksjon etter slide inn her..
+          });
+                        
 		}
-		
-        
-     
-		//Dette skal jobbes videre på Torsdag...--_ Tenkte her å finne ut om hendelse var 120px fra toppen, og derfra bytte fokushendelse til neste hendelse.
-		//if ($('.hendelse').eq(fokusHendelse).position().top < 110){
-			//$('#txtTest').html($('.hendelse').eq(fokusHendelse).offset().top);
-			//$('.hendelse').eq(fokusHendelse).css("background","red");
-			//$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
-			//fokusHendelse++;
-			
-		//}
-		
+	
 	});
+   
 }
 
 function knappeKlargjøring(){
 	
-	//Denne variabelen brukes til å holde styr på hvilken hendelse som er i fokus. 
-	
-	
-       /* $(document).on("appear", ".hendelse", eq(fokusHendelse).appear(function () {
-            $('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
-        });*/
-    
-
-            
-        
+ 
 	//Bruker .on("click", ".ind... ) istedenfor live() som ble fjernet i jquery v1.9. 
 	$(document).on("click", ".indikator", function(){
 		//Setter en egen css-klasse på valgt indikator
@@ -95,22 +66,31 @@ function knappeKlargjøring(){
 	});
 	
 	$("#timeline-prev").click(function(){
-		
+      
+		if (fokusHendelse == 0){
+             return false;
+        }
+        
 		fokusHendelse--;
 		
 		//AAnimerer til forrige hendelse.. (Bruker animate istedenfor scrollTo pga .eq(), usikker på syntax med scrolLTo.)
 		$('html, body').animate({
-                    scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - 120
+                    scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight
                      }, 200);
 		//Setter css .indikatorSelected på riktig indikator.			 
 		$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");	
 	});
 	
 	$("#timeline-next").click(function(){
-		
+        
+		//Hvis fokushendelsen er siste hendelse, skal det ikke skje noe når man trykker next.
+        if (fokusHendelse == $('.hendelse').length - 1){
+            return false;   
+        }
+        
 		fokusHendelse++;
 		$('html, body').animate({
-                    scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - 120
+                    scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight
                      }, 200);
 					 
 		$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");			
@@ -163,6 +143,97 @@ function leggTilIndikatorer(datoArray){
 	$('.indikator:first').addClass("indikatorSelected");
 }
 
+
+
+function hentData(){
+	var url = 'http://www.svendsen-it.no/hovedprosjekt/htdocs/testJson.php?tidslinje=1';
+	
+	$.ajaxSetup({
+		async: false
+	});
+	
+	$.getJSON(url, function(jsonData){
+		
+		var htmlTxt = ""; //Gjør klar streng som skal inneholde HTML-text.
+		var datoArray = []; //Gjør klar array som skal samle på datoene.
+		
+		$.each(jsonData, function(i,item){
+			
+			var content_id = item.content_ID;
+			var table_id = item.tl_ID;
+			var title = item.content_title;
+			var time = item.content_time;
+			var date = item.content_date;
+			var content = item.content_content;
+			var category = item.content_category;
+			var mapLat = item.content_mapLat;
+			var mapLng = item.content_mapLng;
+			var zoomLvl = item.content_zoomLvl;
+			var picId = item.pic_ID;
+			var picPath = item.pic_path;
+			
+			var hendelseDato = new Date(date); //Lager Date-objekt av datoen.
+			
+			datoArray.push(hendelseDato); //Legger hver dato i en array
+			
+			//Lager en formatert dato som skal legges til som klassenavn til (this)div.hendelse. 
+			//Indikatorne vil få denne datoen som ID i LeggTilindikatorer().
+			// Klikker man på en indikator, vil siden scrolle til den div.hendelse som har samme klasse som indikator har som id.
+			var datoFormatert = hendelseDato.getDate().toString() + "-" + hendelseDato.getMonth().toString() + "-" + hendelseDato.getFullYear().toString();
+			
+			htmlTxt += "<div class='hendelse " + datoFormatert + "'>";
+			htmlTxt += 		"<div class='hendelseTid'";
+			htmlTxt += 			"<p>" + hendelseDato.toDateString() + "</p>";
+			htmlTxt += 		"</div>"
+			htmlTxt += 		"<div class='hendelseInnhold'>"
+			htmlTxt += 	    	"<h2>" + title + "</h2>";
+			htmlTxt +=			"<img src='" + picPath + "' />";
+            htmlTxt +=          wrapTxt(content, "p");
+			htmlTxt += "</div></div><div class='clearFix'></div>";
+			
+		});
+		
+		$('.hendelseWrapper').append(htmlTxt); //Skriver ut strengen htmlTxt.
+		leggTilIndikatorer(datoArray); //Funksjon med array som parameter.
+	})
+	.complete (function(jsonStatus){
+		//?
+	})
+	.error (function(jsonStatus){
+		alert(":(");
+	});
+	
+}
+
+// Henter data fra json, omgjør det til en lesbar string og legger den til #sectData
+function hentJSONTekst(){
+	$.getJSON(urlString, function(jsonData){
+		var jsonString = JSON.stringify(jsonData);
+					
+		$('.wrapper').html("<xmp>" + jsonString + "</xmp>");
+	})
+	.error(function(jsonStatus){
+		alert(JSON.stringify(jsonStatus));
+	});
+}
+    
+function sjekkNav(){
+     if(fokusHendelse == 0){
+        $('#timeline-prev').css("opacity","0.3");    
+         ('#timeline-next').css("opacity","1");    
+    }else if(fokusHendelse == $('.hendelse').length - 1){
+        $('#timeline-prev').css("opacity","1");
+        $('#timeline-next').css("opacity","0.3");
+    }else {
+         $('#timeline-prev, #timeline-next').css("opacity","1");
+      
+    }   
+}
+// Wrap-funksjon for å forenkle konstruksjon av HTML-string fra json
+function wrapTxt(text, tag){
+	return "<" + tag + ">" + text + "</" + tag + ">";	
+}
+	
 function hentData2(){ //BRUKES TIL TESTING AV SKUMLE KODESNUTTER
 	$.ajax({
 			url: 'http://www.svendsen-it.no/hovedprosjekt/htdocs/testJson.php?tidslinje=1',
@@ -226,80 +297,8 @@ function hentData2(){ //BRUKES TIL TESTING AV SKUMLE KODESNUTTER
 		});
 	
 }
-
-function hentData(){
-	var url = 'http://www.svendsen-it.no/hovedprosjekt/htdocs/testJson.php?tidslinje=1';
-	
-	$.ajaxSetup({
-		async: false
-	});
-	
-	$.getJSON(url, function(jsonData){
-		
-		var htmlTxt = ""; //Gjør klar streng som skal inneholde HTML-text.
-		var datoArray = []; //Gjør klar array som skal samle på datoene.
-		
-		$.each(jsonData, function(i,item){
-			
-			var content_id = item.content_ID;
-			var table_id = item.tl_ID;
-			var title = item.content_title;
-			var time = item.content_time;
-			var date = item.content_date;
-			var content = item.content_content;
-			var category = item.content_category;
-			var mapLat = item.content_mapLat;
-			var mapLng = item.content_mapLng;
-			var zoomLvl = item.content_zoomLvl;
-			var picId = item.pic_ID;
-			var picPath = item.pic_path;
-			
-			var hendelseDato = new Date(date); //Lager Date-objekt av datoen.
-			
-			datoArray.push(hendelseDato); //Legger hver dato i en array
-			
-			//Lager en formatert dato som skal legges til som klassenavn til (this)div.hendelse. 
-			//Indikatorne vil få denne datoen som ID i LeggTilindikatorer().
-			// Klikker man på en indikator, vil siden scrolle til den div.hendelse som har samme klasse som indikator har som id.
-			var datoFormatert = hendelseDato.getDate().toString() + "-" + hendelseDato.getMonth().toString() + "-" + hendelseDato.getFullYear().toString();
-			
-			htmlTxt += "<div class='hendelse " + datoFormatert + "'>";
-			htmlTxt += 		"<div class='hendelseTid'";
-			htmlTxt += 			"<p>" + hendelseDato.toDateString() + "</p>";
-			htmlTxt += 		"</div>"
-			htmlTxt += 		"<div class='hendelseInnhold'>"
-			htmlTxt += 	    	"<h2>" + title + "</h2>";
-			htmlTxt +=			"<img src='" + picPath + "' />";
-			htmlTxt += "</div></div><div class='clearFix'></div>";
-			
-		});
-		
-		$('.hendelseWrapper').append(htmlTxt); //Skriver ut strengen htmlTxt.
-		leggTilIndikatorer(datoArray); //Funksjon med array som parameter.
-	})
-	.complete (function(jsonStatus){
-		//?
-	})
-	.error (function(jsonStatus){
-		alert(":(");
-	});
-	
-}
-
-// Henter data fra json, omgjør det til en lesbar string og legger den til #sectData
-function hentJSONTekst(){
-	$.getJSON(urlString, function(jsonData){
-		var jsonString = JSON.stringify(jsonData);
-					
-		$('.wrapper').html("<xmp>" + jsonString + "</xmp>");
-	})
-	.error(function(jsonStatus){
-		alert(JSON.stringify(jsonStatus));
-	});
-}
-
-// Wrap-funksjon for å forenkle konstruksjon av HTML-string fra json
-function wrapTxt(text, tag){
-	return "<" + tag + ">" + text + "</" + tag + ">";	
-}
-	
+    
+ 
+    
+    
+    
