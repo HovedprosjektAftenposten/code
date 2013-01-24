@@ -1,0 +1,45 @@
+Notater til prototype av Tidslinje
+
+Forbedringer hvis man har tid:
+
+IE:
+	- støtte for IE når man hovrer indikatorer
+
+All:
+	- Sørge for at ingressteksten ikke animeres om igjen dersom man befinner seg lenger ned på tidslinjen og refresher siden.
+
+	- Forbedre document ready, når den får høyde på header blior det bugga hvis bruker refresher siden etter scrolling.
+
+
+
+
+
+
+Foreslåtte databaseendringer:
+
+ 	- I databasen bør dato og tid være samme entitet.
+
+
+Når det gjelder bilder:
+
+Vi ønsker kanskje en json-array med bilder, hensikten ville da vært at journalisten slapp å huske ID'en til bildet. 
+Da kunne vi laget et rutenett av bilder journalisten kunne klikke på for å velge. Men det er vel snakk om ganske mange bilder i databasen, isåfall må man helst kunne søke etter et bestemt bilde/tag/kategori,som også følger med json-arrayen. 
+
+Det kan hende det ville gått fortere for journalisten og bare skrive inn ID'en til bildet. Isåfall kunne vi i det minste programmert slik at journalisten får en preview av bildet til bildeID'en han skrev inn.
+
+Tror heller ikke det skal bli noe problem å legge til valg for størrelse og beskjæring av bilder i CMSet. tenkt utifra url'ene du la ved.
+
+Hva tenker du er best? 
+
+Når det gjelder video burde det holde at journalisten skriver inn video-ID. 
+
+Opprinnelig tenkte vi at journalisten skriver inn bredde og høyde.. da vil dere kunne endre størrelser i ettertid via CMSet. men det vil ikke være lurt med tanke på responsivt design. Det ønskelige er vel å få videoen 100%x100% og ha en wrapper-div rundt. 
+
+ Testet embedcoden med 100% i høyde og bredde, men fikk som forventet da 100px i høyde og bredde i nettleser. Så video-scriptet må muligens justeres/forbedres. 
+
+
+
+
+
+
+
