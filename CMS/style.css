@@ -1,0 +1,46 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+
+#wrapper{
+	height: 570px;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: black;
+}
+
+#top{
+	height: 70px;
+	width: 300px;
+	background-color: yellow;
+}
+
+#left{
+	height: 500px;
+	width: auto;
+	background-color: gray;
+	float: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#middle{
+	height: 500px;
+	width: 300px;
+	background-color: white;
+	float: left;
+}
+
+#right{
+	height: 500px;
+	width: 300px;
+	background-color: red;
+	float: left;
+}
+
+h1, h2{
+	padding: 0;
+	margin: 0;
+}
