@@ -1,0 +1,214 @@
+#wrapper{
+	height: 600px;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: gray;
+}
+
+#leftNav{
+	height: 600px;
+	width: 300px;
+	background-color: yellow;
+}
+
+#mainWrapper{
+	height: 1000px;
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+}
+
+#headerWrapper{
+	height: 200px;
+	width: 980px;
+	background-color: #fff;
+	
+}
+
+#logo{
+	height: 50px;
+	width: 500px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#home{
+	background-image: url(img/homeButton.png);
+	height: 50px;
+	width: 50px;
+	float: right;
+	margin-right: 10px;
+}
+
+#home:hover{
+	background-image: url(img/homeButtonHover.png);
+	cursor: pointer;
+}
+
+#loggUt{
+	height: 30px;
+	width: 50px;
+	color: black;
+	margin-top: 30px;
+	float: right;
+	font-size: 8pt;
+}
+
+#loggUt a{
+	color: black;
+	text-decoration: none;
+}
+
+#loggUt a:hover{
+	color: #666;
+}
+
+#bilde{
+	float: left;
+}
+
+#text{
+	float: left;
+	margin-top: -10px;
+	margin-left: 10px;
+}
+
+#search{
+	height: 30px;
+	width: 230px;
+	margin-left: 10px;
+	position: relative;
+	top: 100px;
+}
+
+#searchButton{
+	height: 18px;
+	width: 40px;
+	background-color: black;
+	border: 0px;
+	color: white;
+}
+
+#searchButton:hover{
+	background-color: #666;
+	cursor: pointer;
+}
+
+#result{
+	height: 300px;
+	width: 960px;
+	background-color: #fff;
+	margin-left: 10px;
+	margin-top: 30px;
+}
+
+table, th, tr, td{
+	border: 0px solid black;
+	border-collapse: collapse;
+	padding: 0;
+}
+
+th{
+	text-align: left;
+}
+
+.timelineLine:hover{
+	background-color: pink;
+	cursor: pointer;
+}
+
+tr:nth-child(2n+1){
+	background-color: #fff;
+}
+
+tr:nth-child(2n){
+	background-color: #e4e4e4;
+}
+
+td{
+	padding: 5px;
+	margin-top: 4px;
+}
+
+td.first{
+	width: 100px;
+}
+
+td.second{
+	width: 700px;
+}
+
+td.third{
+	width: 100px;
+}
+
+td.last{
+	width: 20px;
+	background-image: url(img/editButton.png);
+	background-repeat: no-repeat;
+}
+
+td.last:hover{
+	background-image: url(img/editButtonHover.png);
+}
+
+h2{
+	text-decoration: underline;
+}
+
+#tlInfo{
+	height: 30px;
+	width: 960px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	margin-left: 10px;
+}
+
+#hendelserTop{
+	height: 30px;
+	width: 960px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#vNav{
+	height: 700px;
+	width: 299px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	margin-left: 10px;
+	float: left;
+}
+
+#hNav{
+	height: 700px;
+	width: 659px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: right;
+	margin-right: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
