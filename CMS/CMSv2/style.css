@@ -13,7 +13,7 @@
 }
 
 #mainWrapper{
-	height: 1000px;
+	height: 900px;
 	width: 980px;
 	margin-left: auto;
 	margin-right: auto;
@@ -21,10 +21,16 @@
 }
 
 #headerWrapper{
-	height: 200px;
-	width: 980px;
+	height: 80px;
+	width: 960px;
 	background-color: #fff;
+	margin-left: 10px;
 	
+}
+
+#menuText a{
+	text-decoration: none;
+	color: black;
 }
 
 #logo{
@@ -32,7 +38,6 @@
 	width: 500px;
 	float: left;
 	margin-top: 10px;
-	margin-left: 10px;
 }
 
 #home{
@@ -79,9 +84,8 @@
 #search{
 	height: 30px;
 	width: 230px;
-	margin-left: 10px;
 	position: relative;
-	top: 100px;
+	top: 20px;
 }
 
 #searchButton{
@@ -102,7 +106,7 @@
 	width: 960px;
 	background-color: #fff;
 	margin-left: 10px;
-	margin-top: 30px;
+	margin-top: 50px;
 }
 
 table, th, tr, td{
@@ -115,16 +119,16 @@ th{
 	text-align: left;
 }
 
-.timelineLine:hover{
+#indexTable tr:hover{
 	background-color: pink;
 	cursor: pointer;
 }
 
-tr:nth-child(2n+1){
+#indexTable tr:nth-child(2n+1){
 	background-color: #fff;
 }
 
-tr:nth-child(2n){
+#indexTable tr:nth-child(2n){
 	background-color: #e4e4e4;
 }
 
@@ -159,12 +163,27 @@ h2{
 	text-decoration: underline;
 }
 
+#main{
+	height: 700px;
+	width: 980px;
+}
+
 #tlInfo{
 	height: 30px;
 	width: 960px;
 	background-color: #f8f8f8;
 	border: 1px solid #e4e4e4;
 	margin-left: 10px;
+}
+
+#tlInfo p{
+	padding: 5px;
+	margin: 0;
+}
+
+#hendelser{
+	height: 700px;
+	width: 980px;
 }
 
 #hendelserTop{
@@ -176,13 +195,50 @@ h2{
 	margin-top: 10px;
 }
 
+#hendelserTop p{
+	padding: 5px;
+	margin: 0;
+}
+
 #vNav{
 	height: 700px;
 	width: 299px;
 	background-color: #f8f8f8;
 	border: 1px solid #e4e4e4;
-	margin-left: 10px;
 	float: left;
+	margin-left: 10px;
+	overflow: scroll;
+
+}
+
+.article:nth-child(2n){
+	background-color: #e4e4e4;
+}
+
+.article:nth-child(2n+1){
+	background-color: #f8f8f8;
+}
+
+.article:hover{
+	background-color: gray;
+	color: white;
+}
+
+.article:active{
+	background-color: black;
+	color: white;
+}
+
+.articleTitle{
+	font-weight: bold;
+}
+
+.articleDate{
+	font-style: italic;
+}
+
+.articleContent, .articleTitle, .articleDate{
+	padding: 5px;
 }
 
 #hNav{
@@ -195,10 +251,89 @@ h2{
 }
 
 
+/* FORM I EDIT!! */
 
+.form{
+	margin: 0;
+	width: 500px;
+	height: 500px;
+	padding: 20px;
+/* 	background-color: yellow; */
+	
+}
 
+#inputFields label{
+	display: block;
+	font-weight: bold;
+	text-align: right;
+	width: 100px;
+	float: left;
+	margin-top: 5px;
+}
 
+#inputFields input{
+	float: left;
+	font-size: 12px;
+	padding: 4px 2px;
+	border: 1px solid #e4e4e4;
+	width: 300px;
+	margin: 2px 0 20px 10px;
+}
 
+#inputFields textarea{
+	float: left;
+	font-size: 12px;
+	border: solid 1px #e4e4e4;
+	width: 400px;
+	margin-left: 110px;
+	margin-top: -20px;
+}
+
+#picInput{
+	height: 100px;
+	width: 500px;
+	float: left;
+/* 	background-color: red; */
+}
+
+#fade{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+	background-color: gray;
+}
+
+#pop{
+	height: 30px;
+	width: 30px;
+	background-image: url(img/plus.png);
+	text-decoration: none;
+	margin-left: 10px;
+	float: left;
+}
+
+#pop:hover{
+	cursor: pointer;
+	background-image: url(img/plusHover.png);
+}
+
+#popWindow{
+	height: 400px; 
+	width: 600px; 
+	background-color: #f8f8f8; 
+	display: none;
+	border: 1px solid #e4e4e4;
+}
+
+#picInput label{
+	font-weight: bold;
+	text-align: left;
+	margin-left: 20px;
+	margin-top: 10px;
+	float: left;
+}
 
 
 

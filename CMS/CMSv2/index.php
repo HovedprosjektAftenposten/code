@@ -8,7 +8,6 @@
 		function hentTidslinje(id) {
 			window.location = "edit.php?id="+id;
 		}
-	
 	</script>
 <?php
 	include('func.php');
@@ -34,7 +33,7 @@
 			</div>
 		</div>
 		<div id="result">
-			<table>
+			<table id="indexTable">
 				<tr>
 					<th>id</th>
 					<th>tidslinjenavn</th>
