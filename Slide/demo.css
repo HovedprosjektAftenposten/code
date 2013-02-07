@@ -1,3 +1,5 @@
+/* Demo CSS - You do not need this css in your own slider */
+
 body{
 	font-family: arial;
 }
@@ -20,6 +22,7 @@ pre{
 	border-radius: 4px;
 }
 
+
 #container{
 	max-width:620px;
 	margin:0 auto;
@@ -30,7 +33,7 @@ pre{
 	margin-bottom: 60px;
 }
 
-ul.slider-controls.v-centered li a{
+ul.bjqs-controls.v-centered li a{
 	display:block;
 	padding:10px;
 	background:#fff;
@@ -38,12 +41,12 @@ ul.slider-controls.v-centered li a{
 	text-decoration: none;
 }
 
-ul.slider-controls.v-centered li a:hover{
+ul.bjqs-controls.v-centered li a:hover{
 	background:#000;
 	color:#fff;
 }
 
-ol.slider-markers li a{
+ol.bjqs-markers li a{
 	padding:5px 10px;
 	background:#000;
 	color:#fff;
@@ -51,11 +54,11 @@ ol.slider-markers li a{
 	text-decoration: none;
 }
 
-ol.slider-markers li.active-marker a,
-ol.slider-markers li a:hover{
+ol.bjqs-markers li.active-marker a,
+ol.bjqs-markers li a:hover{
 	background: #999;
 }
 
-p.slider-caption{
+p.bjqs-caption{
 	background: rgba(255,255,255,0.6);
 }
