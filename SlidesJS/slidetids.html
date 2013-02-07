@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+
+<head>
+<meta charset"=utf-8">
+
+
+<title>Slide tidslinje</title>
+
+<link rel"stilsett" type="text/css" href="slidetids.css">
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="js/slidetids-1.3.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="banner-slide">
+	<ul class ="slidetids">
+		<li><a href=""><img src="img/banner01.jpg" title="SUCKS MTF"></a></li>
+		<li><img src="img/banner02.jpg" title="hdhd"></li> 
+		</ul>
+		
+</div>
+<!--slutt på wrapper-->
+
+<script class="secret-source">
+jQuery(document).ready(function($) {
+    
+    $('#banner-slide').slidetids({
+      animtype      : 'slide',
+      height        : 320,
+      width         : 620,
+      responsive    : true,
+      randomstart   : true
+    });
+    
+  });
+</script>
+
+
+</body>
+</html>

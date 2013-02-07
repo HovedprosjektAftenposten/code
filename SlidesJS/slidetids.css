@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+/* STILARK for Aftenpostens tidslinje - slideshow */
+
+ul.slidetids{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
+li.slidetids-slide{position:absolute; display:none;}
+ul.slidetids-controls{list-style:none;margin:0;padding:0;z-index:9999;}
+ul.slidetids-controls.v-centered li a{position:absolute;}
+ul.slidetids-controls.v-centered li.slidetids-next a{right:0;}
+ul.slidetids-controls.v-centered li.slidetids-prev a{left:0;}
+ol.slidetids-markers{list-style: none; padding: 0; margin: 0; width:100%;}
+ol.slidetids-markers.h-centered{text-align: center;}
+ol.slidetids-markers li{display:inline;}
+ol.slidetids-markers li a{display:inline-block;}
+p.slidetids-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
