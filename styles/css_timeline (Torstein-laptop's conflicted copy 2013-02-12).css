@@ -1,75 +1,62 @@
 @charset "utf-8";
 
 /* STILARK for Aftenpostens tidslinje */
-
-.aftenpostenDummy {
- width:100%;
- height:auto;
- margin:0 auto;
-}
-
 body {
 margin:0;	
 background:#efefef;
 overflow-y:scroll;
 }
 .wrapper {
- width:100%;
+ width:640px;
  margin:0 auto;	
-position:relative;
  
 }
 
-
+overflow:
 .hendelseWrapper {
-width:100%;
-position:relative;
+    width:640px;
+    
+    position:relative;
 }
 .hendelse {
- border-bottom:1px solid #cdcdcd;	
+ border:1px solid #cdcdcd;	
  padding:10px 10px 30px 10px;
-/*width:618px; 2px border*/
-width:auto;
+width:618px; /*2px border*/
 float:left;
-
+background-color:#
 }
 .hendelseTid {
 width:150px;
-float:30%;	
+float:left;	
 }
 .hendelseInnhold {
 float:right;	
-width:70%;
+width:450px;
 }
 .hendelseInnhold img {
 width:350px;	
 clear:both;
 }
 .timeline-bottom-pusher {
-
-
+   display:block;
+    height:500px; 
+    width:640px;
+    background:grey;
 }
 
 
 
 .headerWrapper {
-	max-width:100%;
-	position:relative;
-	float:left;
+float:left;	
+height:200px;
+
 }
 .header {
-  
+    width:640px;
     background:#fff;
     position:fixed;
-	max-width:100%;
-
-
     z-index:99;
-	width:inherit;
-	
 }
-
-
 
 #timeline-navi {
 	position:absolute;
@@ -88,18 +75,11 @@ clear:both;
 
 
 #indikatorWrapper {
-    width:100%;
+    width:640px;
+    background:grey;
     height:50px;	
     position:relative;
     float:left;
-}
-.indikatorLine {
-height:1px;
-width:100%;
-background:#999;	
-top:25px;
-position:absolute;
-left:0;
 }
 .indikator {
     height:10px;
@@ -108,15 +88,14 @@ left:0;
     background:white;
     top:20px;
     margin-left:-5px;
-    border:1px solid #999;
-  /*  -webkit-transition: all 100ms;
-            -moz-transition: all 100ms;
-            -ms-transition: all 100ms;
-            -o-transition: all 100ms;
-            transition: all 100ms;	*/
+    
+    -webkit-transition: all 200ms;
+            -moz-transition: all 200ms;
+            -ms-transition: all 200ms;
+            -o-transition: all 200ms;
+            transition: all 200ms;	
     
     cursor:pointer;
-	border-radius:10px;
 
 }
 .indikator:hover {
@@ -124,7 +103,6 @@ background-color:#999;
 }
 .indikatorSelected {
 background-color:#666;
-border:1px solid #666;
 }
 .indikatorSelected:hover {
 background-color:#666;	
