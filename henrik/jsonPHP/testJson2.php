@@ -11,45 +11,54 @@ $connect = mysql_connect("localhost", "root", ""); //kobler til server (server, 
 	mysql_select_db("hovedprosjekt", $connect); //velger database/schema
 
 function fetchData() {
-
-	$timelineQuery = mysql_query("SELECT * FROM timeline_table") or die(mysql_error());
-	$contentQuery = mysql_query("SELECT * FROM content_table") or die(mysql_error());
-	$picQuery = mysql_query("SELECT * FROM pic_table") or die(mysql_error());
-
+	$get = 1;
+	
+	$results = mysql_query("
+	
+	SELECT timeline_table.*, content_table.*, pic_table.*
+	FROM timeline_table
+		JOIN content_table
+			ON content_table.tl_ID = timeline_table.tl_ID
+		JOIN pic_table
+			ON pic_table.content_ID = content_table.content_ID
+	WHERE timeline_table.tl_ID = $get	
+	
+	") or die(mysql_error());
+	
+	
 	$timeline = array();
 	
-	while($row = mysql_fetch_assoc($timelineQuery)){
-		$timeline['tl_ID'] = $row['tl_ID'];
-		$timeline['tl_name'] = $row['tl_name'];
-		$timeline['tl_date'] = $row['tl_date'];
-		$timeline['tl_desc'] = $row['tl_desc'];
-	
-		while($row2 = mysql_fetch_assoc($contentQuery)){
-			$timeline['content'] = array(
-				'content_ID' => $row2['content_ID'],
-				'tl_ID' => $row2['tl_ID'],
-				'content_time' => $row2['content_time'],
-				'content_date' => $row2['content_date'],
-				'content_title' => $row2['content_title'],
-				'content_content' => $row2['content_content'],
-				'content_category' => $row2['content_category'],
-				'content_mapLat' => $row2['content_mapLat'],
-				'content_mapLng' => $row2['content_mapLng'],
-				'content_zoomLvl' => $row2['content_zoomLvl']
-			);
-			
-			while($row3 = mysql_fetch_assoc($picQuery)){
-				$timeline['pictures'][] = array(
-					'pic_ID' => $row3['pic_ID'],
-					'content_ID' => $row3['content_ID'],
-					'pic_path' => $row3['pic_path'],
-					'pic_desc' => $row3['pic_desc'],
-					'pic_link' => $row3['pic_link']
-				);
-			}
-		}
+	while($row = mysql_fetch_assoc($results)){
+		
+		$timeline['timeline'][] = array(
+			'tl_ID' => $row['tl_ID'],
+			'tl_name' => $row['tl_name'],
+			'tl_date' => $row['tl_date'],
+			'tl_desc' => $row['tl_desc'],
+		
+			$timeline['timeline']['content'][] = array(
+				'content_ID' => $row['content_ID'],
+				'tl_ID' => $row['tl_ID'],
+				'content_time' => $row['content_time'],
+				'content_date' => $row['content_date'],
+				'content_title' => $row['content_title'],
+				'content_content' => $row['content_content'],
+				'content_category' => $row['content_category'],
+				'content_mapLat' => $row['content_mapLat'],
+				'content_mapLng' => $row['content_mapLng'],
+				'content_zoomLvl' => $row['content_zoomLvl'],
+				
+				$timeline['timeline']['content']['pictures'][] = array(
+					'pic_ID' => $row['pic_ID'],
+					'content_ID' => $row['content_ID'],
+					'pic_path' => $row['pic_path'],
+					'pic_desc' => $row['pic_desc'],
+					'pic_link' => $row['pic_link']
+				),
+			),
+		);
 	}
-	
+
 	echo stripslashes(json_encode($timeline));
 }
 fetchData();
