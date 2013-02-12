@@ -5,36 +5,16 @@ var $headerHeight = 0;
 
 $(document).ready(function (){
 	
-	$headerHeight = $(".timeline-header").height();
-	$('.timeline-headerWrapper').height($headerHeight);
-				//Foreløpig løsning for reponsivt design: Fixed-div 100%.
-	var $headerWidth = $(".wrapper").width();
-	$('.timeline-headerWrapper').width($headerWidth);
-	
-
-	//
-
-	$(window).resize(function (){
-			//Foreløpig løsning for reponsivt design: Fixed-div 100%.
-			var $headerWidth = $(".wrapper").width();
-			$('.timeline-headerWrapper').width($headerWidth);
-			$headerHeight = $(".timeline-header").height();
-			$('.timeline-headerWrapper').height($headerHeight);
-			//
-	});
-	scrolleLytter();
 	hentData();
 	knappeKlargjøring();
-
+	scrolleLytter();
 	sjekkNav();
 	//Sørger for at .headerWrapper får en fast høyde, 
 	//slik at contentdivisjoner under flyter under stickyheader.
-	
-    /*fikser footer, slik at man kan navigere seg til siste hendelse uanz str */
-	var $windowHeight = $(window).height();
-	var lastHendelse = $('.hendelse:last').height();
-	$('.timeline-bottom-pusher').height($windowHeight - lastHendelse);
-	//
+	$headerHeight = $(".header").height();
+	$('.headerWrapper').height($headerHeight);
+    
+
 	
 });
 
@@ -44,7 +24,7 @@ function scrolleLytter() {
    
 	$(window).scroll(function () {
         //var $timelineTop = $('.header').position().top; // Brukes ikke?
-       $headerHeight = $(".timeline-header").height();
+       $headerHeight = $(".header").height();
          //Med Waypoint(jquery plugin), ser koden hvilken hendelse som er i viewport og markerer tilsvarende indikator.    
           $('.hendelse').waypoint(function(direction) {
               
@@ -54,16 +34,12 @@ function scrolleLytter() {
                 offset: $headerHeight + 10,
                 horizontal: false
           });    
-          sjekkNav();
-		 
+         sjekkNav();
 		if ($(this).scrollTop() > 75) {
-			$('#timelineIngress').slideUp(260);
+			$('#timelineIngress').slideUp(300);
 		} else {
-			$('#timelineIngress').slideDown(260,function() {
-               //funksjon etter slide inn her..
-			   $headerHeight = $(".timeline-header").height();
-				$('.timeline-headerWrapper').height($headerHeight);
-			   
+			$('#timelineIngress').slideDown(300,function() {
+                //funksjon etter slide inn her..
           });
                         
 		}
@@ -78,14 +54,14 @@ function knappeKlargjøring(){
 	//Bruker .on("click", ".ind... ) istedenfor live() som ble fjernet i jquery v1.9. 
 	$(document).on("click", ".indikator", function(){
 		//Setter en egen css-klasse på valgt indikator
-		//$(this).addClass("indikatorSelected").siblings().removeClass("indikatorSelected"); BRUKER HELLER WAYPOINT TIL Å STYRE SELECTED INDIKATOR
+		$(this).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
 		
 		//finner ut hvilken kindikator som er trykket på, og scroller til tilsvarende hendelse
 		var $id = $(this).attr("id");
-		$(window).scrollTo("." + $id, 300, {offset: -$headerHeight});
+		$(window).scrollTo("." + $id, 300, {offset: -120});
 		
 		//Justerer på hvilken hendelse som er i fokus.
-		//fokusHendelse = ($(".indikator").index(this)); Må kanskje ha denne senere DONT DELETE
+		fokusHendelse = ($(".indikator").index(this));
 		
 	});
 	
@@ -96,28 +72,28 @@ function knappeKlargjøring(){
         }
         
 		fokusHendelse--;
-		$headerHeight = $(".timeline-header").height();
+		
 		//AAnimerer til forrige hendelse.. (Bruker animate istedenfor scrollTo pga .eq(), usikker på syntax med scrolLTo.)
 		$('html, body').animate({
                     scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight
                      }, 200);
 		//Setter css .indikatorSelected på riktig indikator.			 
-		//$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");	
+		$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");	
 	});
 	
 	$("#timeline-next").click(function(){
+        
 		//Hvis fokushendelsen er siste hendelse, skal det ikke skje noe når man trykker next.
         if (fokusHendelse == $('.hendelse').length - 1){
             return false;   
         }
-        $headerHeight = $(".timeline-header").height();
+        
 		fokusHendelse++;
 		$('html, body').animate({
-                   /* scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight*/
-				   scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight
+                    scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight
                      }, 200);
 					 
-		//$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");			
+		$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");			
 	});
 	
 	
@@ -172,9 +148,12 @@ function leggTilIndikatorer(datoArray){
 function hentData(){
 	var url = 'http://www.svendsen-it.no/hovedprosjekt/htdocs/testJson.php?tidslinje=1';
 	
-	$.ajaxSetup({
-		async: false
-	});
+	
+	jQuery.support.cors = true; 
+	
+	/*$.ajaxSetup({
+		async: false <---  Denne trengs nok før du vet ordet av det ;) husker bare ikke hvorfor...
+	});   */
 	
 	$.getJSON(url, function(jsonData){
 		
@@ -206,10 +185,10 @@ function hentData(){
 			var datoFormatert = hendelseDato.getDate().toString() + "-" + hendelseDato.getMonth().toString() + "-" + hendelseDato.getFullYear().toString();
 			
 			htmlTxt += "<div class='hendelse " + datoFormatert + "'>";
-			htmlTxt += 		"<div class='hendelseTid'>";
-			htmlTxt += 			"<h2>" + hendelseDato.toDateString() + "</h2>";
-			htmlTxt += 		"</div>"
-			htmlTxt += 		"<div class='hendelseInnhold'>"
+			htmlTxt += 		"<div class='hendelseTid'";
+			htmlTxt += 			"<p>" + hendelseDato.toDateString() + "</p>";
+			htmlTxt += 		"</div>";
+			htmlTxt += 		"<div class='hendelseInnhold'>";
 			htmlTxt += 	    	"<h2>" + title + "</h2>";
 			htmlTxt +=			"<img src='" + picPath + "' />";
             htmlTxt +=          wrapTxt(content, "p");
@@ -244,7 +223,7 @@ function hentJSONTekst(){
 function sjekkNav(){
      if(fokusHendelse == 0){
         $('#timeline-prev').css("opacity","0.3");    
-         $('#timeline-next').css("opacity","1");    
+         ('#timeline-next').css("opacity","1");    
     }else if(fokusHendelse == $('.hendelse').length - 1){
         $('#timeline-prev').css("opacity","1");
         $('#timeline-next').css("opacity","0.3");

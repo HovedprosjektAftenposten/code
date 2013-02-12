@@ -1,85 +1,129 @@
 @charset "utf-8";
 
+
 /* STILARK for Aftenpostens tidslinje */
+
+.aftenpostenDummy {
+ width:500px;
+ height:auto;
+ margin:0 auto;
+}
+
 body {
 margin:0;	
-background:#efefef;
 overflow-y:scroll;
+font-size:14px;
+line-height:1.4;
+}
+h1,h2,h3,h4,h5,h6,h7,h8 {
+	font-family: 'publicoHeadlineWeb',Cambria,Times,'Times New Roman',serif;	
+	font-weight:bold;
+}
+p {
+	font-family: Arial, sans-serif;
+}
+.testHeader {
+
+
 }
 .wrapper {
- width:640px;
+ width:100%;
  margin:0 auto;	
+position:relative;
  
 }
 
-overflow:
+/** Hendelse/Content/Artikkel **/
 .hendelseWrapper {
-width:640px;
-    
+width:100%;
+height:auto;
 position:relative;
+
 }
 .hendelse {
- border:1px solid #cdcdcd;	
+ border-bottom:1px solid #cdcdcd;	
  padding:10px 10px 30px 10px;
-width:618px; /*2px border*/
+/*width:618px; 2px border*/
+width:auto;
 float:left;
-background-color:#
+overflow:hidden;
+
 }
 .hendelseTid {
-width:150px;
-float:left;	
+width:30%;
+float:left;
+color:#666;
+font-size:12px;
+font-weight:normal;
 }
+
 .hendelseInnhold {
-float:right;	
-width:450px;
+float:left;	
+width:70%;
 }
 .hendelseInnhold img {
-width:350px;	
+max-width:350px;	
 clear:both;
 }
+.hendelseInnhold p { border-left:1px solid #cdcdcd; padding-left:10px; }
 .timeline-bottom-pusher {
-   display:block;
-    height:500px; 
-    width:640px;
-    background:grey;
+
+
 }
 
 
 
-.headerWrapper {
-float:left;	
-height:200px;
-
+.timeline-headerWrapper {
+	max-width:100%;
+	position:relative;
+	float:left;
 }
-.header {
-    width:640px;
-    background:#fff;
+.timeline-header {
+  
+    background:#f6f6f6;
     position:fixed;
+	max-width:100%;
     z-index:99;
+	width:inherit;
+	border:1px solid #efefef;
+	border-bottom-right-radius:4px;
+	border-bottom-left-radius:4px;
+	
 }
+.timeline-header h1 { margin:0; padding:10px 0 0 10px;}
+.timeline-header p { margin:0; padding:10px 10px 0 10px; width:75%; }
 
 #timeline-navi {
+	
 	position:absolute;
-	top:30px;
-	right:0;
+	bottom:50px;
+	right:10px;
+	font-family:Arial, sans-serif;
 }
-#timeline-next, #timeline-prev {
+/*#timeline-next, #timeline-prev {
 	width:75px;
 	height:25px;	
     background:#efefef;
 	float:left;
 	margin: 0 10px 0 0;
     cursor:pointer;
-}
+}*/
 
 
 
 #indikatorWrapper {
-    width:640px;
-    background:grey;
+    width:100%;
     height:50px;	
     position:relative;
     float:left;
+}
+.indikatorLine {
+height:1px;
+width:100%;
+background:#999;	
+top:25px;
+position:absolute;
+left:0;
 }
 .indikator {
     height:10px;
@@ -88,14 +132,15 @@ height:200px;
     background:white;
     top:20px;
     margin-left:-5px;
-    
-    -webkit-transition: all 200ms;
-            -moz-transition: all 200ms;
-            -ms-transition: all 200ms;
-            -o-transition: all 200ms;
-            transition: all 200ms;	
+    border:1px solid #999;
+  /*  -webkit-transition: all 100ms;
+            -moz-transition: all 100ms;
+            -ms-transition: all 100ms;
+            -o-transition: all 100ms;
+            transition: all 100ms;	*/
     
     cursor:pointer;
+	border-radius:10px;
 
 }
 .indikator:hover {
@@ -103,6 +148,7 @@ background-color:#999;
 }
 .indikatorSelected {
 background-color:#666;
+border:1px solid #666;
 }
 .indikatorSelected:hover {
 background-color:#666;	
