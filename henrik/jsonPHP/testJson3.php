@@ -14,11 +14,9 @@ function fetchData() {
 	
 	$get = 1;
 
-/*
 	$timelineQuery = mysql_query("SELECT * FROM timeline_table WHERE timeline_table.tl_ID = $get") or die(mysql_error());
 	$contentQuery = mysql_query("SELECT * FROM content_table WHERE content_table.tl_ID = $get") or die(mysql_error());
-	$picQuery = mysql_query("SELECT * FROM pic_table WHERE pic_table.content_ID = $get") or die(mysql_error());
-*/
+	$picQuery = mysql_query("SELECT pic_table.*, content_table.content_ID FROM pic_table, content_table WHERE pic_table.content_ID = content_table.content_ID") or die(mysql_error());
 
 /*
 	$results = mysql_query("
@@ -26,12 +24,14 @@ function fetchData() {
 	SELECT timeline_table.*, content_table.*, pic_table.*
 	FROM timeline_table, content_table, pic_table
 	WHERE timeline_table.tl_ID = $get
-	AND pic_table.content_ID = $get
 	AND content_table.tl_ID = $get
+	AND pic_table.content_ID = content_table.content_ID
+	
 	
 	") or die(mysql_error());
 */
 
+/*
 	$results = mysql_query("
 	
 	SELECT timeline_table.*, content_table.*, pic_table.*
@@ -40,27 +40,21 @@ function fetchData() {
 			ON content_table.tl_ID = timeline_table.tl_ID
 		JOIN pic_table
 			ON pic_table.content_ID = content_table.content_ID
-		WHERE timeline_table.tl_ID = $get	
+		WHERE timeline_table.tl_ID = $get
+		AND pic_table.content_ID = $get
 	
 	") or die(mysql_error());
-
-	
-	
-	while($row = mysql_fetch_assoc($results)){
+*/
+             
+	while($row = mysql_fetch_assoc($timelineQuery)){
 		$timeline['timeline'] = array(
 			'tl_ID' => $row['tl_ID'],
 			'tl_name' => $row['tl_name'],
 			'tl_date' => $row['tl_date'],
 			'tl_desc' => $row['tl_desc']
 		);
-/*
-		$timeline['tl_ID'] = $row['tl_ID'];
-		$timeline['tl_name'] = $row['tl_name'];
-		$timeline['tl_date'] = $row['tl_date'];
-		$timeline['tl_desc'] = $row['tl_desc'];
-*/
 	
-		while($row2 = mysql_fetch_assoc($results)){
+		while($row2 = mysql_fetch_assoc($contentQuery)){
 			$timeline['timeline']['content'] = array(
 				'content_ID' => $row2['content_ID'],
 				'tl_ID' => $row2['tl_ID'],
@@ -72,10 +66,11 @@ function fetchData() {
 				'content_mapLat' => $row2['content_mapLat'],
 				'content_mapLng' => $row2['content_mapLng'],
 				'content_zoomLvl' => $row2['content_zoomLvl']
+				/* 'pic_ID' => $row2['pic_ID'] */
 			);
 			
-			while($row3 = mysql_fetch_assoc($results)){
-					$timeline['timeline']['content']['pictures'][] = array(
+			while($row3 = mysql_fetch_assoc($picQuery)){
+					$timeline['timeline']['content']['pictures'] = array(
 						'pic_ID' => $row3['pic_ID'],
 						'content_ID' => $row3['content_ID'],
 						'pic_path' => $row3['pic_path'],

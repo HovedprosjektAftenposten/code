@@ -45,7 +45,7 @@ function fetchData() {
 */
 	
 	while($row = mysql_fetch_assoc($timelineQuery)){
-		$timeline['timeline'][] = array(
+		$timeline['timeline'] = array(
 			'tl_ID' => $row['tl_ID'],
 			'tl_name' => $row['tl_name'],
 			'tl_date' => $row['tl_date'],
@@ -54,7 +54,7 @@ function fetchData() {
 	}
 	
 	while($row2 = mysql_fetch_assoc($contentQuery)){
-		$timeline['timeline']['content'][] = array(
+		$timeline['timeline']['content'] = array(
 			'content_ID' => $row2['content_ID'],
 			'tl_ID' => $row2['tl_ID'],
 			'content_time' => $row2['content_time'],
@@ -64,7 +64,8 @@ function fetchData() {
 			'content_category' => $row2['content_category'],
 			'content_mapLat' => $row2['content_mapLat'],
 			'content_mapLng' => $row2['content_mapLng'],
-			'content_zoomLvl' => $row2['content_zoomLvl']
+			'content_zoomLvl' => $row2['content_zoomLvl'],
+			/* 'pic_ID' => $row2['pic_ID'] */
 			);
 	}
 
