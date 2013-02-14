@@ -1,11 +1,7 @@
 // Variablene under brukes gjentatte ganger i scritpet.
+var fokusHendelse = 0;
+var $headerHeight = 0;
 
-var fokusHendelse = 0;		//Representerer indexen av hendelsen leseren leser
-var $headerHeight = 0;		//Headeren har dynamisk høyde, og vi trenger høyden flere ganger for å scrolle riktig ved event.
-var $ingressHeight = 0;		//Brukes for å finne ut høyden på header uten ingress-tekst.
-var $boolIngress = true;	//True = Ingressteksten er synlig.
-
-//Array for å få norske månedsnavn
 var norwegian_month=new Array();
 	norwegian_month[0]="Januar";
 	norwegian_month[1]="Februar";
@@ -20,141 +16,125 @@ var norwegian_month=new Array();
 	norwegian_month[10]="November";
 	norwegian_month[11]="Desember";
 
-	var $tlWrapper = $(".nu-timeline-wrapper");
-	var $tlHeader = $(".nu-timeline-header");
-	var $tlHeaderWrapper = $('.nu-timeline-header-wrapper');
-	var $tlHeaderIngress = $('#nu-timeline-ingress');
-	var $tlHendelse = $('.nu-timeline-hendelse');
-
 $(document).ready(function (){
-
-	$headerHeight = $tlHeader.height();
-	$tlHeaderWrapper.height($headerHeight + 25);
-	$ingressHeight =  $tlHeaderIngress.height();
 	
-	//Foreløpig løsning for reponsivt design: Fixed-div 100%.
-	var $headerWidth = $tlWrapper.width();
-	$tlHeaderWrapper.width($headerWidth);
+	$headerHeight = $(".timeline-header").height();
+	$('.timeline-headerWrapper').height($headerHeight);
+				//Foreløpig løsning for reponsivt design: Fixed-div 100%.
+	var $headerWidth = $(".wrapper").width();
+	$('.timeline-headerWrapper').width($headerWidth);
+	
+	$("img.lazy").lazyload();
+	//
 
 	$(window).resize(function (){
 			//Foreløpig løsning for reponsivt design: Fixed-div 100%.
-			var $desiredHeaderWidth = $tlWrapper.width();
-			$tlHeaderWrapper.width($desiredHeaderWidth);
-			$tlHeader.width($desiredHeaderWidth);
-			
-			//Høyden på header
-			//Sørger for at .headerWrapper får en fast høyde, 
-			//slik at contentdivisjoner under flyter under stickyheader.
-			$headerHeight = $tlHeader.height();
-			$tlHeaderWrapper.height($headerHeight);
-			
+			var $headerWidth = $(".wrapper").width();
+			$('.timeline-headerWrapper').width($headerWidth);
+			$headerHeight = $(".timeline-header").height();
+			$('.timeline-headerWrapper').height($headerHeight);
+			//
 	});
-	
 	scrolleLytter();
 	hentData();
 	knappeKlargjøring();
+
+	sjekkNav();
+	//Sørger for at .headerWrapper får en fast høyde, 
+	//slik at contentdivisjoner under flyter under stickyheader.
 	
     /*fikser footer, slik at man kan navigere seg til siste hendelse uanz str */
 	var $windowHeight = $(window).height();
-	var lastHendelse = $('.nu-timeline-hendelse:last').height();
-	$('.nu-timeline-bottom-pusher').height($windowHeight - lastHendelse);
+	var lastHendelse = $('.hendelse:last').height();
+	$('.timeline-bottom-pusher').height($windowHeight - lastHendelse);
 	//
-	//$("img.lazy").lazyload(); Måtte kommentere ut pga scrollingen fikk feil offset når bilder var inaktive.
-
+	
 });
+var points = 0;
 function scrolleLytter() {
 	
     //Lytter til scrollehjulet, og tar vekk ingresstekst om man scroller nedover. + visa versa
+   
 	$(window).scroll(function () {
-		var $tlHendelse = $('.nu-timeline-hendelse');
         //var $timelineTop = $('.header').position().top; // Brukes ikke?
-       	$headerHeight = $tlHeader.height();
+       $headerHeight = $(".timeline-header").height();
          //Med Waypoint(jquery plugin), ser koden hvilken hendelse som er i viewport og markerer tilsvarende indikator.    
-          $tlHendelse.waypoint(function(direction) {
-                fokusHendelse = $tlHendelse.index(this);  
-				  
-                $(".nu-timeline-indikator").eq(fokusHendelse).addClass("nu-timeline-indikator-selected").siblings().removeClass("nu-timeline-indikator-selected");
+          $('.hendelse').waypoint(function(direction) {
+              
+                fokusHendelse = $(".hendelse").index(this);    
+                $(".indikator").eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");
           },{
                 offset: $headerHeight + 10,
                 horizontal: false
-          });  
-		    
+          });    
           sjekkNav();
 		 
-		
 		if ($(this).scrollTop() > 75) {
-			$('#nu-timeline-ingress').slideUp(260,function() {
-				$boolIngress = false;
-
-			});
+			$('#timelineIngress').slideUp(260);
 		} else {
-			$('#nu-timeline-ingress').slideDown(260,function() {
-				$headerHeight = $tlHeader.height();
-				$tlHeaderWrapper.height($headerHeight);
-				$boolIngress = true;
-				
+			$('#timelineIngress').slideDown(260,function() {
+               //funksjon etter slide inn her..
+			   points++;
+			   $headerHeight = $(".timeline-header").height();
+				$('.timeline-headerWrapper').height($headerHeight);
+			   
           });
+                        
 		}
+	
 	});
+   
 }
 
 function knappeKlargjøring(){
+	
+ 
 	//Bruker .on("click", ".ind... ) istedenfor live() som ble fjernet i jquery v1.9. 
-	$(document).on("click", ".nu-timeline-indikator", function(){
+	$(document).on("click", ".indikator", function(){
+		//Setter en egen css-klasse på valgt indikator
+		//$(this).addClass("indikatorSelected").siblings().removeClass("indikatorSelected"); BRUKER HELLER WAYPOINT TIL Å STYRE SELECTED INDIKATOR
+		
 		//finner ut hvilken kindikator som er trykket på, og scroller til tilsvarende hendelse
 		var $id = $(this).attr("id");
+		$(window).scrollTo("." + $id, 300, {offset: -$headerHeight});
 		
-		if ($boolIngress){
-			$headerHeight = $tlHeader.height() - ($tlHeaderIngress.height());
-			$(window).scrollTo("." + $id, 300, {offset: -$headerHeight});
-		}else{
-			$(window).scrollTo("." + $id, 300, {offset: -$headerHeight });
-		}
+		//Justerer på hvilken hendelse som er i fokus.
+		//fokusHendelse = ($(".indikator").index(this)); Må kanskje ha denne senere DONT DELETE
 		
 	});
 	
-	$("#nu-timeline-prev").click(function(){
-      var $tlHendelse = $('.nu-timeline-hendelse');
+	$("#timeline-prev").click(function(){
+      
 		if (fokusHendelse == 0){
              return false;
         }
         
 		fokusHendelse--;
-		$headerHeight = $tlHeader.height();
-	
-		//Animerer til forrige hendelse.. (Bruker animate istedenfor scrollTo pga .eq(), usikker på syntax med scrolLTo.)
+		$headerHeight = $(".timeline-header").height();
+		//AAnimerer til forrige hendelse.. (Bruker animate istedenfor scrollTo pga .eq(), usikker på syntax med scrolLTo.)
 		$('html, body').animate({
-                    scrollTop: $tlHendelse.eq(fokusHendelse).offset().top - $headerHeight
+                    scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight
                      }, 200);
 		//Setter css .indikatorSelected på riktig indikator.			 
 		//$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");	
 	});
-
-	$("#nu-timeline-next").click(function($tlHendelse){
+	
+	$("#timeline-next").click(function(){
 		//Hvis fokushendelsen er siste hendelse, skal det ikke skje noe når man trykker next.
-        var $tlHendelse = $('.nu-timeline-hendelse');
-	    if (fokusHendelse == $tlHendelse.length - 1){
-			
+        if (fokusHendelse == $('.hendelse').length - 1){
             return false;   
-			
-        }else if ($boolIngress){ // Hvis vi er på første hendelse trengs det litt ekstra scrolling pga scrolleLytter.. 
-			
-			$headerHeight = $tlHeader.height() - ($tlHeaderIngress.height() + 15);
-			fokusHendelse++;
-			
-			$('html, body').animate({
-					   scrollTop: $tlHendelse.eq(fokusHendelse).offset().top - $headerHeight
-			 }, 200);
-			 
-		}else{
-			$headerHeight = $tlHeader.height();
-			fokusHendelse++;
-			
-			$('html, body').animate({
-					   scrollTop: $tlHendelse.eq(fokusHendelse).offset().top - $headerHeight
-			 }, 200);
-		}
+        }
+        $headerHeight = $(".timeline-header").height();
+		fokusHendelse++;
+		$('html, body').animate({
+                   /* scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight*/
+				   scrollTop: $(".hendelse").eq(fokusHendelse).offset().top - $headerHeight 
+                     }, 200);
+					 
+		//$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");			
 	});
+	
+	
 }
 
 function leggTilIndikatorer(datoArray){
@@ -192,17 +172,21 @@ function leggTilIndikatorer(datoArray){
 		var datoFormatert = datoArray[i].getDate().toString() + "-" + datoArray[i].getMonth().toString() + "-" + datoArray[i].getFullYear().toString();
 		
 		//Appenderer #indikatorWrapper med indikatordiv som får en venstremargin med riktig prosent i forhold til tidsaspektet.
-		$("#nu-timeline-indikator-wrapper").append("<div id='" + datoFormatert + "'class='nu-timeline-indikator " + prosent + "'></div>");
+		$("#indikatorWrapper").append("<div id='" + datoFormatert + "'class='indikator " + prosent + "'></div>");
 		$("." + prosent + "").css({left: prosent + "%" });
+		
 	};
 	
 	//Setter .indikatorSeleected på første indikator.
-	$('.nu-timeline-indikator:first').addClass("nu-timeline-indikator-selected"); //TRENGS VEL EGENTLIG IKKE?
+	$('.indikator:first').addClass("indikatorSelected");
 }
 
+
+
 function hentData(){
+	
 	//Loading-gif før data blir skrevet ut til .hendelseWrapper.
-	$('.nu-timeline-hendelse-wrapper').html("<img id='nu-timeline-loading' src='gfx/loading2.gif' alt='Laster tidslinje...' />");
+	$('.hendelseWrapper').html("<img id='timeline-loading' src='gfx/loading2.gif' alt='Laster tidslinje...' />");
 	
 	var url = 'http://www.svendsen-it.no/hovedprosjekt/htdocs/testJson.php?tidslinje=1';
 	
@@ -248,20 +232,19 @@ function hentData(){
 			// Klikker man på en indikator, vil siden scrolle til den div.hendelse som har samme klasse som indikator har som id.
 			var datoFormatert = hendelseDato.getDate().toString() + "-" + hendelseDato.getMonth().toString() + "-" + hendelseDato.getFullYear().toString();
 			
-			htmlTxt += "<div class='nu-timeline-hendelse " + datoFormatert + "'>";
-			htmlTxt += 		"<div class='nu-timeline-hendelse-tid'>";
+			htmlTxt += "<div class='hendelse " + datoFormatert + "'>";
+			htmlTxt += 		"<div class='hendelseTid'>";
 			htmlTxt += 			"<h2>" + hendelseDato.getDate().toString() + ". " + norwegian_month[hendelseDato.getMonth()] + " " + hendelseDato.getFullYear().toString() + "</h2>";
 			htmlTxt += 		"</div>"
-			htmlTxt += 		"<div class='nu-timeline-hendelse-innhold'>"
-			htmlTxt += 			"<div class='nu-timeline-hendelse-media'><img src='"+picPath+"' alt /></div>";
-			htmlTxt += 	    	"<div class='nu-timeline-hendelse-story'><h2>" + title + "</h2>";
-			htmlTxt +=			"";
+			htmlTxt += 		"<div class='hendelseInnhold'>"
+			htmlTxt += 	    	"<h2>" + title + "</h2>";
+			htmlTxt +=			"<img class='lazy' data-original='" + picPath + "' src='" + picPath + "' />";
             htmlTxt +=          wrapTxt(content, "p");
-			htmlTxt += "</div></div></div><div class='nu-timeline-clearFix'></div>";
+			htmlTxt += "</div></div><div class='clearFix'></div>";
 			
 		});
 		
-		$('.nu-timeline-hendelse-wrapper').html(htmlTxt); //Skriver ut strengen htmlTxt.
+		$('.hendelseWrapper').html(htmlTxt); //Skriver ut strengen htmlTxt.
 		leggTilIndikatorer(datoArray); //Funksjon med array som parameter.
 	})
 	.complete (function(jsonStatus){
@@ -286,15 +269,14 @@ function hentJSONTekst(){
 }
     
 function sjekkNav(){
-	var $tlHendelse = $('.nu-timeline-hendelse');
-
      if(fokusHendelse == 0){
-		 $('#nu-timeline-prev').addClass('disabled');
-		
-    }else if(fokusHendelse == $tlHendelse.length - 1){
-        $('#nu-timeline-next').addClass('disabled');
+        $('#timeline-prev').css("opacity","0.3");    
+         $('#timeline-next').css("opacity","1");    
+    }else if(fokusHendelse == $('.hendelse').length - 1){
+        $('#timeline-prev').css("opacity","1");
+        $('#timeline-next').css("opacity","0.3");
     }else {
-         $('#nu-timeline-prev, #nu-timeline-next').removeClass('disabled');
+         $('#timeline-prev, #timeline-next').css("opacity","1");
       
     }   
 }
@@ -368,6 +350,6 @@ function hentData2(){ //BRUKES TIL TESTING AV SKUMLE KODESNUTTER
 }
     
  
-
+    
     
     

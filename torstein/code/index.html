@@ -3,12 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Aftenposten tidslinje</title>
-<script src="scripts/jquery1.9.js"></script>
-<script src="scripts/jquery.scrollTo-1.4.3.1-min.js"></script>
-<script src="scripts/jquery.viewport.js"></script>  
-<script src="scripts/jquery.waypoints.min.js"></script>  
-<script src="scripts/jsTidslinje.js"></script>    
-<!--<script src="scripts/jquery.jsonp-2.4.0.min.js"></script> BRUKES IKKE, MEN KANSKJE SENERE-->
 
 <link rel="stylesheet" type="text/css" href="styles/css_timeline.css" />
 <link rel="stylesheet" type="text/css" href="styles/fonts/fonts.css" />
@@ -17,33 +11,42 @@
 
 <body>
 <div class="aftenpostenDummy">
-<div class="wrapper">
+<div class="nu-timeline-wrapper">
 <div class="testHeader"></div>
-    <div class="timeline-headerWrapper">
-        <div class="timeline-header">
+    <div class="nu-timeline-header-wrapper">
+        <div class="nu-timeline-header">
             <h1>Overskrift på tidslinje</h1>
          
-        <p id="timelineIngress">Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. ENDA MER???   ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER??? </p>
+        <p id="nu-timeline-ingress">Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. Ingresstekst skal stå her, og den er veldig fin. ENDA MER???   ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER???  ENDA MER??? </p>
 
-           <div id="timeline-navi">
-                <a id="timeline-prev" class="btn">Forrige</a>
-                <a id="timeline-next" class="btn">Neste</a>
-        </div>
-        <div id="indikatorWrapper">
-        <div class="indikatorLine"></div>
+           <div id="nu-timeline-navi">
+                <a id="nu-timeline-prev" class="btn">Forrige</a>
+                <a id="nu-timeline-next" class="btn">Neste</a>
+        	</div>
+        <div id="nu-timeline-indikator-wrapper">
+       		<div class="nu-timeline-indikator-line"></div>
         </div>
     </div>
-</div>
-    <div class="clearFix"></div>
+	</div>
+    <div class="nu-timeline-clearFix"></div>
     
-    <div class="hendelseWrapper">
+    <div class="nu-timeline-hendelse-wrapper">
         
     
-    </div><!-- END .hendelseWrapper -->
-    <div class="timeline-bottom-pusher">
+    </div><!-- END .nu-timeline-hendelseWrapper -->
+    <div class="nu-timeline-bottom-pusher">
         
     </div>
-</div><!-- END .wrapper -->
+</div><!-- END .nu-timeline-wrapper -->
 </div><!-- END .aftenpostenDummy -->
 </body>
+
+<script src="scripts/jquery1.9.js"></script>
+<script src="scripts/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script src="scripts/jquery.viewport.js"></script>
+<script src="scripts/jquery.waypoints.min.js"></script>  
+<script src="scripts/jquery.lazyload.js"></script> <!-- DEPRECIATED BY TORSTEIN -->
+<script src="scripts/jsTidslinje.js"></script>  
+<!--<script src="scripts/jquery.jsonp-2.4.0.min.js"></script> BRUKES IKKE, MEN KANSKJE SENERE-->
+
 </html>
