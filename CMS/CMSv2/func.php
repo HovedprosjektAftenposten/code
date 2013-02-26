@@ -1,11 +1,14 @@
 <?php
+
 include('connect.inc.php');
 
 //function som skriver ut alle tidslinjer på index.php. Hver tidslinje får en onclick som er satt til tl_ID. Onclick kaller på js script i index.php, som igjen setter urlen til edit.php?id= tl_ID.
 //På denne måten kan alt innhold i de forskjellige tidslinjene skrives ut på edit.php siden.
 function getTimeline() {
-			
-	$sql = "SELECT * FROM timeline_table";
+
+		
+	
+	$sql = "SELECT * FROM timeline_table ORDER BY tl_date DESC";
 
 	$result = mysql_query($sql);
 	
@@ -15,6 +18,8 @@ function getTimeline() {
 		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_date']."</td>"."<td class='last'></td>";
 		echo "</tr>";
 	}
+	
+	
 }
 //funskjon som finner riktig navn på tidslinje. Brukes i "meny teksten" øverst på edit.php. Bruker $_GET['id'] fra url.
 function getTimelineName(){
@@ -41,18 +46,29 @@ function getArticle() {
 	
 	$result = mysql_query($sql);
 	
-	
 	while($row = mysql_fetch_array($result)) {
 
 		$content = $row['content_content'];
-		$trimContent = substr($content, 0, 200).'...';
-		echo "<div class='article' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+		$trimContent = substr($content, 0, 30).'...';
+		/*
+echo "<div class='article' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
 		echo "<div class='articleTitle'>".$row['content_title']."</div>"."<div class='articleDate'>".$row['content_date']."</div>"."</br>"."<div class='articleContent'>".$trimContent."</div>";
-
+*/
+		
+		if($row['content_status'] == 0) {
+			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+		}
+		else {
+			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+		}
+		
 		echo "</div>";
+		
 
 	}
-	/* "<div class='liveStatus'>".liveStatus()."</div>". */
+	
 }
 
 
@@ -70,14 +86,14 @@ function preview() {
 }
 
 //function som henter verdien av article i fra url'en, og bruker denne til å fylle input-felter.
-function fillInputs() {
+function fillEditInputs() {
 
-	$get = $_GET['article'];
+	$getTLID = $_GET['id'];
+	$getContentID = $_GET['article'];
 	
-	if($get >= 1) {
+	if($getContentID >= 1) {
 	
-		$sql = "SELECT * FROM content_table WHERE content_ID = $get";
-	//	$update = "UPDATE content_table SET content_ID = $cID, tl_ID = $tID, content_time = $time, content_date = $date, content_title = $title, content_content = $content WHERE content_ID = $get";
+		$sql = "SELECT * FROM content_table WHERE content_ID = $getContentID";
 		
 		$result = mysql_query($sql);
 		
@@ -90,32 +106,66 @@ function fillInputs() {
 		$content_date = $print['content_date'];
 		$content_title = $print['content_title'];
 		$content_content = $print['content_content'];
-	//		$content_category = $print['content_category'];
-	//		$content_mapLat = $print['content_mapLat'];
-	//		$content_mapLng = $print['content_mapLng'];
-	//		$content_zoomLvl = $print['content_zoomLvl'];
 		
+		echo "<form method='post' id='nu-timeline-cms-editForm' action='updateContent.php?id=$getTLID&article=$getContentID'>
+			<label>Overskrift:</label><input type='text' name='overskrift' class='nu-timeline-cms-fields' value='$content_title' /></br>
+			<label>Dato:</label><input type='text' name='dato'  class='nu-timeline-cms-fields datepicker' value='$content_date' /></br>
+			<label>Tid:</label><input type='text' name='tid' id='tid' class='nu-timeline-cms-fields' value='$content_time' /></br>
+			<label>Tekst:</label></br><div id='nu-timeline-cms-editor'><textarea cols='10' rows='10' name='articleText' id='text'>$content_content</textarea></div></br>
 			
-		echo "<form method='post' id='editForm'>
-			<label>Overskrift:</label><input type='text' name='overskrift' id='overskrift' value='$content_title' /></br>
-			<label>Dato:</label><input type='date' name='dato' id='dato' value='$content_date' /></br>
-			<label>Tid:</label><input type='time' name='tid' id='tid' value='$content_time' /></br>
-			<label>Tekst:</label></br><textarea cols='50' rows='20' name='text' id='text'>$content_content</textarea></form>";
+			
+			<div class='nu-timeline-cms-status-buttons-wrapper'>
+		<ul>
+			<li>
+				<a id='ddStatus' class='btn'>Change status<span class='arrow'></span></a>
+
+				<ul>
+					<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
+					<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
+					<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+				</ul>
+			</li>
+		</ul>
+	</div>";
+
+			
 		//må posisjoneres!!!!!!
-		echo "<div class='liveStatus'>".liveStatus()."</div>";
+		echo liveStatus();
 			
-		echo "<label>Bilder:</label><div id='pop'></div>
-						<div id='fade'>
-							<div id='popWindow'>
-								<form action='' method='get'>
-								Skriv inn Escenic ID: <input type='text' name='test'/> <input type='submit' value='OK' /> </form>
-								
-								<a href='#' id='close'>close</a>
-							</div>
-						</div>";
+		echo "<label>Bilder:</label>";
+		echo "</form>";
 	}
 		
 }
+
+function fillTlInfoInputs() {
+	$getTLID = $_GET['id'];
+	
+	if($getTLID >= 1) {
+	
+		$sql = "SELECT * FROM timeline_table WHERE tl_ID = $getTLID";
+		
+		$result = mysql_query($sql);
+		
+		$print = mysql_fetch_array($result);
+		
+	
+		$tl_ID = $print['tl_ID'];
+		$tl_name = $print['tl_name'];
+		$tl_date = $print['tl_date'];
+		$tl_desc = $print['tl_desc'];
+		
+		echo "<form method='post' name='nu-timeline-cms-tlInfoForm' id='nu-timeline-cms-tlInfoForm' action='updateTimeline.php'>
+						<label>Tittel:</label> <input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormFields' value='$tl_name' /> </br>
+						<label>Dato:</label> <input type='text' name='nu-timeline-cms-tlDate' class='nu-timeline-cms-tlInfoFormFields' value='$tl_date' /> </br>
+						<span class='nu-timeline-cms-tlTextArea'><label>Ingress:</label> <textarea cols='67' rows='10' name='nu-timeline-cms-tlIngress'>$tl_desc</textarea></span></br>
+						<input type='submit' name='nu-timeline-cms-tlInfoFormSubmit' class='nu-timeline-cms-tlInfoFormSubmit' value='Lagre' />
+						<input type='hidden' value='$getTLID' name='hidden' /> 
+			</form>";
+
+	}
+}
+
 //funskjon som sjekker om hendelsen er publisert eller om det kun er en kladd. Rødt kryss for kladd(draft) og grønn v for published.
 function liveStatus() {
 	
@@ -135,6 +185,21 @@ function liveStatus() {
 		}
 	}
 }
+
+//funksjon som henter tl_ID fra url
+function getTLID() {
+	
+	$get = $_GET['id'];
+	
+	echo $get;
+}
+//funksjon som henter content_ID fra url
+function getContentID() {
+	$get = $_GET['article'];
+	
+	echo $get;
+}
+
 
 ?>
 

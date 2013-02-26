@@ -1,3 +1,5 @@
+/* HOVEDREGLER FOR OPPSETT */
+
 #wrapper{
 	height: 600px;
 	width: 960px;
@@ -12,7 +14,7 @@
 	background-color: yellow;
 }
 
-#mainWrapper{
+#nu-timeline-cms-mainWrapper{
 	height: 900px;
 	width: 980px;
 	margin-left: auto;
@@ -20,27 +22,53 @@
 	background-color: #fff;
 }
 
-#headerWrapper{
+#nu-timeline-cms-headerWrapper{
 	height: 80px;
 	width: 960px;
 	background-color: #fff;
 	margin-left: 10px;
-	
 }
 
-#menuText a{
+#nu-timeline-cms-main{
+	height: 700px;
+	width: 980px;
+}
+
+#nu-timeline-cms-vNav{
+	height: 700px;
+	width: 299px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: left;
+	margin-left: 10px;
+	overflow: scroll;
+
+}
+
+#nu-timeline-cms-hNav{
+	height: 700px;
+	width: 659px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: right;
+	margin-right: 8px;
+}
+
+/* INNHOLD HEADER, INDEX OG EDIT */
+
+#nu-timeline-cms-menuText a{
 	text-decoration: none;
 	color: black;
 }
 
-#logo{
+#nu-timeline-cms-logo{
 	height: 50px;
-	width: 500px;
+	width: auto;
 	float: left;
 	margin-top: 10px;
 }
 
-#home{
+#nu-timeline-cms-home{
 	background-image: url(img/homeButton.png);
 	height: 50px;
 	width: 50px;
@@ -48,12 +76,12 @@
 	margin-right: 10px;
 }
 
-#home:hover{
+#nu-timeline-cms-home:hover{
 	background-image: url(img/homeButtonHover.png);
 	cursor: pointer;
 }
 
-#loggUt{
+#nu-timeline-cms-loggUt{
 	height: 30px;
 	width: 50px;
 	color: black;
@@ -62,33 +90,36 @@
 	font-size: 8pt;
 }
 
-#loggUt a{
+#nu-timeline-cms-loggUt a{
 	color: black;
 	text-decoration: none;
 }
 
-#loggUt a:hover{
+#nu-timeline-cms-loggUt a:hover{
 	color: #666;
 }
 
-#bilde{
+#nu-timeline-cms-bilde{
 	float: left;
 }
 
-#text{
+#nu-timeline-cms-text{
 	float: left;
 	margin-top: -10px;
 	margin-left: 10px;
+	width: auto;
 }
 
-#search{
+#nu-timeline-cms-search{
 	height: 30px;
 	width: 230px;
 	position: relative;
 	top: 20px;
+	clear: both;
+	display: block;
 }
 
-#searchButton{
+#nu-timeline-cms-searchButton{
 	height: 18px;
 	width: 40px;
 	background-color: black;
@@ -96,17 +127,100 @@
 	color: white;
 }
 
-#searchButton:hover{
+#nu-timeline-cms-searchButton:hover{
 	background-color: #666;
 	cursor: pointer;
 }
 
-#result{
-	height: 300px;
+/* INNHOLD MAIN, INDEX */
+
+#nu-timeline-cms-result{
+	height: auto;
+	max-height: 600px;
 	width: 960px;
 	background-color: #fff;
 	margin-left: 10px;
 	margin-top: 50px;
+	overflow: scroll;
+}
+
+/* INNHOLD MAIN, EDIT */
+
+#nu-timeline-cms-tlInfoWrapper{
+	height: auto;
+	width: 960px;
+	margin-left: 10px;
+}
+
+#nu-timeline-cms-tlInfo{
+	height: 30px;
+	width: 960px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+}
+
+#nu-timeline-cms-tlInfo p{
+	padding: 5px;
+	margin: 0;
+}
+
+#nu-timeline-cms-slide{
+	height: auto;
+	width: 960px;
+	overflow: hidden;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: left;
+	display: none;
+}
+
+#nu-timeline-cms-hendelser{
+	height: 700px;
+	width: 980px;
+	float: left;
+}
+
+#nu-timeline-cms-hendelserTop{
+	height: 30px;
+	width: 960px;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	margin-left: 10px;
+	margin-top: 10px;
+	float: left;
+}
+
+#nu-timeline-cms-hendelserTop p{
+	padding: 5px;
+	margin: 0;
+	float: left;
+}
+
+/* INNHOLD  VNAV, EDIT */
+
+
+
+/* INNHOLD  HNAV, EDIT */
+
+
+#newTimeline{
+	height: 30px;
+	width: 125px;
+	background-color: black;
+	color: white;
+	margin-left: 10px;
+}
+
+#newTimeline p{
+	margin: 0;
+	padding-top: 7px;
+	padding-left: 4px;
+	float: left;
+	font-size: small;
+}
+
+#newTimeline img{
+	float: left;
 }
 
 table, th, tr, td{
@@ -117,45 +231,51 @@ table, th, tr, td{
 
 th{
 	text-align: left;
+	background-color: white;
+	cursor: default;
 }
 
-#indexTable tr:hover{
-	background-color: pink;
+th:hover{
+	text-align: left;
+	background-color: white;
+}
+
+#nu-timeline-cms-indexTable tr:hover, nu-timeline-cms-indexTable tr:nth-child(2n):hover{
+	background-color: gray !important;
 	cursor: pointer;
 }
-
-#indexTable tr:nth-child(2n+1){
+#nu-timeline-cms-indexTable tr:nth-child(2n+1){
 	background-color: #fff;
 }
 
-#indexTable tr:nth-child(2n){
+#nu-timeline-cms-indexTable tr:nth-child(2n){
 	background-color: #e4e4e4;
 }
 
-td{
+#nu-timeline-cms-indexTable td{
 	padding: 5px;
 	margin-top: 4px;
 }
 
-td.first{
+#nu-timeline-cms-indexTable td.first{
 	width: 100px;
 }
 
-td.second{
+#nu-timeline-cms-indexTable td.second{
 	width: 700px;
 }
 
-td.third{
+#nu-timeline-cms-indexTable td.third{
 	width: 100px;
 }
 
-td.last{
+#nu-timeline-cms-indexTable td.last{
 	width: 20px;
 	background-image: url(img/editButton.png);
 	background-repeat: no-repeat;
 }
 
-td.last:hover{
+#nu-timeline-cms-indexTable td.last:hover{
 	background-image: url(img/editButtonHover.png);
 }
 
@@ -163,11 +283,9 @@ h2{
 	text-decoration: underline;
 }
 
-#main{
-	height: 700px;
-	width: 980px;
-}
 
+
+/*
 #tlInfo{
 	height: 30px;
 	width: 960px;
@@ -180,113 +298,115 @@ h2{
 	padding: 5px;
 	margin: 0;
 }
+*/
 
-#hendelser{
-	height: 700px;
-	width: 980px;
-}
 
-#hendelserTop{
-	height: 30px;
-	width: 960px;
-	background-color: #f8f8f8;
-	border: 1px solid #e4e4e4;
-	margin-left: 10px;
-	margin-top: 10px;
-}
 
-#hendelserTop p{
+.nu-timeline-cms-article{
 	padding: 5px;
-	margin: 0;
 }
 
-#vNav{
-	height: 700px;
-	width: 299px;
-	background-color: #f8f8f8;
-	border: 1px solid #e4e4e4;
-	float: left;
-	margin-left: 10px;
-	overflow: scroll;
-
-}
-
-.article:nth-child(2n){
+.nu-timeline-cms-article:nth-child(2n){
 	background-color: #e4e4e4;
 }
 
-.article:nth-child(2n+1){
+.nu-timeline-cms-article:nth-child(2n+1){
 	background-color: #f8f8f8;
 }
 
-.article:hover{
+.nu-timeline-cms-article:hover{
 	background-color: gray;
 	color: white;
 }
 
-.article:active{
+.nu-timeline-cms-article:active{
 	background-color: black;
 	color: white;
 }
 
-.articleTitle{
+.nu-timeline-cms-articleTitle{
 	font-weight: bold;
+	padding-top: 0px;
 }
 
-.articleDate{
+.nu-timeline-cms-articleDate{
 	font-style: italic;
 }
 
-.articleContent, .articleTitle, .articleDate{
-	padding: 5px;
+.nu-timeline-cms-articleContent, .nu-timeline-cms-articleTitle, .nu-timeline-cms-articleDate{
+	padding: 0px;
 }
 
-#hNav{
-	height: 700px;
-	width: 659px;
-	background-color: #f8f8f8;
-	border: 1px solid #e4e4e4;
-	float: right;
-	margin-right: 8px;
+.nu-timeline-cms-articleContent{
+	padding-bottom: 0px;
 }
+
+
 
 
 /* FORM I EDIT!! */
 
-.form{
-	margin: 0;
-	width: 500px;
-	height: 500px;
-	padding: 20px;
-/* 	background-color: yellow; */
-	
+#nu-timeline-cms-editForm{
+	height: 600px;
+	width: 659px;
 }
 
-#inputFields label{
-	display: block;
-	font-weight: bold;
+#nu-timeline-cms-editForm label{
+	float: left;
+	margin-top: 20px;
+	margin-right: 500px;
+	margin-left: 0px;
 	text-align: right;
 	width: 100px;
-	float: left;
-	margin-top: 5px;
+
 }
 
-#inputFields input{
+.nu-timeline-cms-fields{
 	float: left;
-	font-size: 12px;
-	padding: 4px 2px;
-	border: 1px solid #e4e4e4;
-	width: 300px;
-	margin: 2px 0 20px 10px;
-}
-
-#inputFields textarea{
-	float: left;
-	font-size: 12px;
-	border: solid 1px #e4e4e4;
-	width: 400px;
-	margin-left: 110px;
 	margin-top: -20px;
+	margin-right: 400px;
+	margin-left: 110px;
+	width: 480px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+
+
+}
+
+/*
+#nu-timeline-cms-editForm textarea{
+	float: left;
+	margin-top: -20px;
+	margin-left: 110px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+
+}
+*/
+
+#nu-timeline-cms-formBtns{
+	float: left;
+	margin-top: 10px;
+		
+}
+
+#nu-timeline-cms-saveButton{
+	float: left;
+	margin-right: 0px;
+	margin-left: 110px;
+	margin-top: 0px;
+	padding: 3px;
+}
+
+#nu-timeline-cms-formDropdown{
+	float: left;
+	padding: 3px;
+	margin-top: 0px;
+}
+
+#nu-timeline-cms-editForm select{
+	float: left;
+	margin-right: 200px;
 }
 
 #picInput{
@@ -296,16 +416,16 @@ h2{
 /* 	background-color: red; */
 }
 
-#fade{
+#nu-timeline-cms-fade{
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;
 	z-index: 100;
-	background-color: gray;
+	background-color: rgba(0,0,0,0.7);
 }
 
-#pop{
+#nu-timeline-cms-newTimelineBtn{
 	height: 30px;
 	width: 30px;
 	background-image: url(img/plus.png);
@@ -314,14 +434,35 @@ h2{
 	float: left;
 }
 
-#pop:hover{
+#nu-timeline-cms-newTimelineBtn:hover{
 	cursor: pointer;
 	background-image: url(img/plusHover.png);
 }
 
-#popWindow{
-	height: 400px; 
-	width: 600px; 
+#nu-timeline-cms-newArticleBtn{
+	height: 30px;
+	width: 30px;
+	background-image: url(img/plus.png);
+	text-decoration: none;
+	margin-left: 10px;
+	float: left;
+}
+
+#nu-timeline-cms-newArticleBtn:hover{
+	cursor: pointer;
+	background-image: url(img/plusHover.png);
+}
+
+.nu-timeline-cms-test{
+	width: 100%;
+	height: 100%;
+	display: block;
+	
+}
+
+#nu-timeline-cms-popWindow{
+	height: 150px; 
+	width: 250px; 
 	background-color: #f8f8f8; 
 	display: none;
 	border: 1px solid #e4e4e4;
@@ -334,6 +475,178 @@ h2{
 	margin-top: 10px;
 	float: left;
 }
+
+textarea{
+	resize: none;
+}
+
+#liveStatus {
+	float: right;
+	margin-left: 60px;
+	margin-top: 20px;
+	height: 40px;
+	width: 40px;
+}
+
+.nu-timeline-cms-contentLiveStatus{
+	float: right;
+}
+
+.nu-timeline-cms-textInactive{
+	color: red;
+	font-style: italic;
+	font-size: small;
+	margin-right: 5px;
+}
+
+.nu-timeline-cms-textActive{
+	color: green;
+	font-style: italic;
+	font-size: small;
+	margin-right: 5px;
+}
+
+
+#nu-timeline-cms-editor{
+	height: 400px;
+	width: 500px;
+	float: left;
+	margin-top: 0px;
+	margin-left: 110px;	
+}
+
+
+/* HENTET FRA BOOTSTRAP */ /* TORSTEIN SIN KNAPP */
+
+
+.nu-timeline-cms-status-buttons-wrapper {
+	width:auto;
+	height:auto;
+	float:right;
+	margin-top: 30px;
+	margin-right: 45px;
+
+}
+.nu-timeline-cms-status-buttons-wrapper ul {
+	padding-left:0;
+	margin:0;
+	
+}
+.nu-timeline-cms-status-buttons-wrapper ul * {
+	list-style: none;
+	font-family:arial;
+}
+.nu-timeline-cms-status-buttons-wrapper ul li a {
+
+}
+
+.nu-timeline-cms-status-buttons-wrapper ul li ul {
+	
+	display:none;
+	position: absolute;
+}
+.nu-timeline-cms-status-buttons-wrapper .btn {
+	max-width:100%;
+	width:150px;
+	margin:0px 0 0 0;
+	position:relative;
+
+
+}
+.nu-timeline-cms-status-buttons-wrapper #ddStatus{
+	width:125px;
+
+
+}
+.nu-timeline-cms-status-buttons-wrapper .arrow {
+	display:inline-block;
+	float:right;
+	width:19px;
+	height:20px;
+	margin-right:-5px;
+
+	border-left:1px solid #cdcdcd;
+	background-image:url(arrows.png);
+	background-repeat:no-repeat;
+	background-position:3px 3px;
+		
+}
+.nu-timeline-cms-status-buttons-wrapper .droppedDown  {
+	background-position:-12px 3px;
+	
+}
+
+/* TIMELINE INFO SLIDER */
+
+#nu-timeline-cms-tlInfoForm{
+	padding: 10px;
+	
+}
+
+#nu-timeline-cms-tlInfoForm label{
+	float: left;
+	margin-top: 20px;
+	margin-right: 0px;
+	margin-left: 0px;
+	text-align: right;
+	width: 100px;
+}
+
+.nu-timeline-cms-tlInfoFormFields{
+	float: left;
+	margin-top: -20px;
+	margin-right: 400px;
+	margin-left: 110px;
+	width: 480px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+}
+
+#nu-timeline-cms-tlInfoForm textarea{
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+	border: 1px solid #e4e4e4;	
+}
+
+.nu-timeline-cms-tlInfoFormSubmit{
+	clear: both;
+	float: left;
+	margin-left: 110px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: block;
+	
+}
+
+.nu-timeline-cms-tlTextArea label{
+	vertical-align: top;
+}
+
+#nu-timeline-cms-deleteForm{
+	height: 100px;
+	width: 250px;
+	padding: 5px;
+}
+
+#nu-timeline-cms-deleteForm p{
+	float: left;
+	text-align: left;
+	margin-left: 20px;
+}
+
+#nu-timeline-cms-deleteForm input{
+	float: left;
+	padding: 5px;
+	margin-top: 10px;
+	margin-left: 40px;
+}
+
+
+
+
+
+
 
 
 
