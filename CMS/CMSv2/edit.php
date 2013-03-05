@@ -31,7 +31,7 @@
 	    	$(".article" + superid).css({"background-color":"gray","color":"white"});
 	    	
 		   
-	   }	    	    	
+	   }
 	</script>
 <!-- 	DROPDOWN BUTTIN IN edit.php -->
 	<script type="text/javascript">
@@ -147,6 +147,8 @@
 		     
 		    $min_length = 1;
 		    // sets minimum length of the search query
+	
+// IN PROGRESS	
 		    if(empty($query)){
 			    getArticle();
 		    }

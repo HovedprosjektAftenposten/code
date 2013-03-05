@@ -40,13 +40,13 @@ if (isset($save) && !empty($valg)) {
 
 	if(isset($kladd)) {
 		$live = 0;
-		mysql_query("UPDATE content_table SET content_time='$tid', content_date='$dato', content_title='$overskrift', content_content='$text', content_category='1', content_status='$live', pic_ID='1' WHERE content_table.content_ID = $getContentID AND content_table.tl_ID = $getTLID");
+		mysql_query("UPDATE content_table SET content_status='$live' WHERE content_table.content_ID = $getContentID AND content_table.tl_ID = $getTLID");
 		mysql_query("UPDATE pic_table SET pic_path='$purl' WHERE content_ID = $getContentID");
 		header('Location:edit.php?id='.$getTLID.'&article='.$getContentID);
 	}
 	if(isset($publiser)) {
 		$live = 1;
-		mysql_query("UPDATE content_table SET content_time='$tid', content_date='$dato', content_title='$overskrift', content_content='$text', content_category='1', content_status='$live', pic_ID='1' WHERE content_table.content_ID = $getContentID AND content_table.tl_ID = $getTLID");
+		mysql_query("UPDATE content_table SET content_status='$live' WHERE content_table.content_ID = $getContentID AND content_table.tl_ID = $getTLID");
 		mysql_query("UPDATE pic_table SET pic_path='$purl' WHERE content_ID = $getContentID");
 		header('Location:edit.php?id='.$getTLID.'&article='.$getContentID);
 	}

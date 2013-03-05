@@ -58,14 +58,13 @@ echo "<div class='article' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row
 		if($row['content_status'] == 0) {
 			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
 			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "</div>";
 		}
 		else {
 			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
 			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "</div>";
 		}
-		
-		echo "</div>";
-		
 
 	}
 	
@@ -163,7 +162,6 @@ function fillTlInfoInputs() {
 						<label>Tittel:</label> <input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormFields' id='nu-timeline-cms-tlInfoFormTitle' value='$tl_name' /> </br>
 						
 						<span class='nu-timeline-cms-tlTextArea'><label>Ingress:</label> <textarea cols='67' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>$tl_desc</textarea></span></br>
-						<input type='submit' name='nu-timeline-cms-tlInfoFormSubmit' class='nu-timeline-cms-tlInfoFormSubmit' value='Lagre' />
 						<input type='hidden' value='$getTLID' name='hidden' id='nu-timeline-cms-tlInfoFormHiddenID' /> 
 			</form>";
 
