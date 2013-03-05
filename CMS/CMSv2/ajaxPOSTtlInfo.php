@@ -15,16 +15,12 @@ $tlID = $_REQUEST['tlID'];
 		mysql_query("UPDATE timeline_table SET tl_name='$title' WHERE tl_ID = $tlID");
 		$felt ='Navn';
 	}
-	if(isset($date)){
-		mysql_query("UPDATE timeline_table SET tl_date='$date' WHERE tl_ID = $tlID");		
-		$felt = 'Tekst';
-	}//if
 	if(isset($text)){
 		mysql_query("UPDATE timeline_table SET tl_desc='$text' WHERE tl_ID = $tlID");
 		$felt = 'Info';
 	}
 	
 
-echo "<p>$felt er oppdatert</p>";
+print_r( "<p>$felt er oppdatert</p>");
 
 ?>

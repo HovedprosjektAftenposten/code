@@ -161,7 +161,7 @@ function fillTlInfoInputs() {
 		
 		echo "<form method='post' name='nu-timeline-cms-tlInfoForm' id='nu-timeline-cms-tlInfoForm' action='updateTimeline.php'>
 						<label>Tittel:</label> <input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormFields' id='nu-timeline-cms-tlInfoFormTitle' value='$tl_name' /> </br>
-						<label>Dato:</label> <input type='text' name='nu-timeline-cms-tlDate' class='nu-timeline-cms-tlInfoFormFields' id='nu-timeline-cms-tlInfoFormDate' value='$tl_date' /> </br>
+						
 						<span class='nu-timeline-cms-tlTextArea'><label>Ingress:</label> <textarea cols='67' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>$tl_desc</textarea></span></br>
 						<input type='submit' name='nu-timeline-cms-tlInfoFormSubmit' class='nu-timeline-cms-tlInfoFormSubmit' value='Lagre' />
 						<input type='hidden' value='$getTLID' name='hidden' id='nu-timeline-cms-tlInfoFormHiddenID' /> 
