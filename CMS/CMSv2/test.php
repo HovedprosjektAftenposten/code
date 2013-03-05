@@ -1,7 +1,7 @@
 <?php
 include('connect.inc.php');
 
-$id = null;
+
 $felt = null;
 $sql = "";
 
@@ -12,29 +12,25 @@ $text = $_REQUEST['text'];
 $tlID = $_REQUEST['tlid'];
 $contentID = $_REQUEST['contentid'];
 
-if(isset($contentID){
-	if(isset($_REQUEST['overskrift'])){
-		$sql .= "UPDATE content_table SET content_title = '" . $_REQUEST['overskrift'] . "' WHERE content_ID = " . $contentID;
+
+	if(isset($overskrift)){
+		mysql_query("UPDATE content_table SET content_title='$overskrift' WHERE content_ID = $contentID");
 		$felt ='Navn';
 	}
-	if(isset($_REQUEST['dato'])){
-		$sql .= "UPDATE content_table SET content_date = '" . $_REQUEST['dato'] . "' WHERE content_ID = " . $contentID;
+	if(isset($dato)){
+		mysql_query("UPDATE content_table SET content_date='$dato' WHERE content_ID = $contentID");		
 		$felt = 'Tekst';
 	}//if
-	if(isset($_REQUEST['tid'])){
-		$sql .= "UPDATE content_table SET content_time = '" . $_REQUEST['tid'] . "' WHERE content_ID = " . $contentID;
+	if(isset($tid)){
+		mysql_query("UPDATE content_table SET content_time='$tid' WHERE content_ID = $contentID");		
 		$felt = 'Navn';
 	}
-	if(isset($_REQUEST['text'])){
-		$sql .= "UPDATE content_table SET content_content = '" . $_REQUEST['text'] . "' WHERE content_ID = " . $$contentID;
+	if(isset($text)){
+		mysql_query("UPDATE content_table SET content_content='$text' WHERE content_ID = $contentID");
 		$felt = 'Info';
 	}
 	
-	$res = mysql_query($sql);
-	
-}
 
-echo mysql_error();
 echo "<p>$felt er oppdatert</p>";
 
 ?>

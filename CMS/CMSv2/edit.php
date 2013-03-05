@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="jquery-ui.css" />	
 	<script src="jquery-1.9.0.js" type="text/javascript"></script>
 	<script src="pop.js" type="text/javascript"></script>
+	<script src="javaScript.js" type="text/javascript"></script>
 	<script src="bootstrap.min.js" type="text/javascript"></script>
 	<script src="jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
 	<script src="ckeditor/ckeditor.js"></script>
@@ -21,93 +22,7 @@
 		function hentArtikkelInnhold(id,article) {
 			window.location = "?id="+id+"&article="+article;
 		}
-    	
-    	$(document).ready(function(){
-    		$( ".datepicker" ).datepicker();
-    	
-    		fixSelectedBackground(); //DEPERCIATED BY TORSTEIN ;/
-	
-	    	$('#nu-timeline-cms-tlInfo').click(function(){
-				$('#nu-timeline-cms-slide').slideToggle(100);	
-			});    	
-			
-			var hidden = $('#nu-timeline-cms-hiddenInput').val();
-			if(hidden == "OK") {
-				$('#nu-timeline-cms-slide').show();
-			}
-			
-			
-			
-			
-			/*
-$(document).on("blur", "textarea#text", function(){
-					 alert("k");	 
-			});
-			
-*/
-			
-			
-			
-
-				/*
-$.ajax({
-					type: 'POST',
-					url: 'test.php',
-					data: {overskrift: title, dato: date, tid: time, text: text}, 
-					success: function(postData){
-						alert('yay' + postData);
-					}
-					error: function(){
-						alert('nay');
-					}
-				});
-*/
-
-				/*
-
-				$.post('test.php', {overskrift: 'HALLO', dato: '1989-11-20', tid: '18:00:00', text: 'TEXT UP IN HERE'})
-				.success(function(postData){
-					alert('yay' + postData);
-				}).error(function(){
-					alert('nay');	
-				});
-*/
-				 /* alert('title: ' + title + ' date: ' + date + ' time: ' + time + ' text: ' + text); */
-			CKEDITOR.replace( 'articleText' );
-				 
-			editorPostOnBlur();
-			inputPostOnBlur();
-	    });
-	   
-	   function editorPostOnBlur(){
-		   var editor = CKEDITOR.instances['text'];
-			
-		   editor.on('blur', function() {
-			   var text = editor.getData();
-			   var title = $('input#nu-timeline-cms-TESTcontentTitle').val();
-			   var date = $('input#nu-timeline-cms-TESTcontentDate').val();
-			   var time = $('input#tid').val();
-			   var contentID = $('input#TESTcontentID').val();
-					
-			   editor.updateElement();
-			   $.post('test.php', {overskrift: title, dato: date, tid: time, text: text, contentid: contentID});
-			});
-	   }
-	   
-	   function inputPostOnBlur(){
-		   $('#nu-timeline-cms-editForm input').blur(function(){
-				var title = $('input#nu-timeline-cms-TESTcontentTitle').val();
-				var date = $('input#nu-timeline-cms-TESTcontentDate').val();
-				var time = $('input#tid').val();
-				/* var text = $('textarea#text').val(); */
-				var tlID = $('input#TESTtlID').val();
-				var contentID = $('input#TESTcontentID').val();
-				
-				$.post('test.php', {overskrift: title, dato: date, tid: time, tlid: tlID, contentid: contentID});
-			});
-	   }
-	    
-	    
+		   
 	   function fixSelectedBackground() {
 		    var url = document.URL;
 	    	var urlsplitted = url.split("article");
