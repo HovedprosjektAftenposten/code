@@ -35,7 +35,77 @@
 			if(hidden == "OK") {
 				$('#nu-timeline-cms-slide').show();
 			}
+			
+			
+			
+			
+			/*
+$(document).on("blur", "textarea#text", function(){
+					 alert("k");	 
+			});
+			
+*/
+			
+			
+			
+
+				/*
+$.ajax({
+					type: 'POST',
+					url: 'test.php',
+					data: {overskrift: title, dato: date, tid: time, text: text}, 
+					success: function(postData){
+						alert('yay' + postData);
+					}
+					error: function(){
+						alert('nay');
+					}
+				});
+*/
+
+				/*
+
+				$.post('test.php', {overskrift: 'HALLO', dato: '1989-11-20', tid: '18:00:00', text: 'TEXT UP IN HERE'})
+				.success(function(postData){
+					alert('yay' + postData);
+				}).error(function(){
+					alert('nay');	
+				});
+*/
+				 /* alert('title: ' + title + ' date: ' + date + ' time: ' + time + ' text: ' + text); */
+			CKEDITOR.replace( 'articleText' );
+				 
+			editorPostOnBlur();
+			inputPostOnBlur();
 	    });
+	   
+	   function editorPostOnBlur(){
+		   var editor = CKEDITOR.instances['text'];
+			
+		   editor.on('blur', function() {
+			   var text = editor.getData();
+			   var title = $('input#nu-timeline-cms-TESTcontentTitle').val();
+			   var date = $('input#nu-timeline-cms-TESTcontentDate').val();
+			   var time = $('input#tid').val();
+			   var contentID = $('input#TESTcontentID').val();
+					
+			   editor.updateElement();
+			   $.post('test.php', {overskrift: title, dato: date, tid: time, text: text, contentid: contentID});
+			});
+	   }
+	   
+	   function inputPostOnBlur(){
+		   $('#nu-timeline-cms-editForm input').blur(function(){
+				var title = $('input#nu-timeline-cms-TESTcontentTitle').val();
+				var date = $('input#nu-timeline-cms-TESTcontentDate').val();
+				var time = $('input#tid').val();
+				/* var text = $('textarea#text').val(); */
+				var tlID = $('input#TESTtlID').val();
+				var contentID = $('input#TESTcontentID').val();
+				
+				$.post('test.php', {overskrift: title, dato: date, tid: time, tlid: tlID, contentid: contentID});
+			});
+	   }
 	    
 	    
 	   function fixSelectedBackground() {
@@ -91,7 +161,7 @@
 	
 	?>
 	
-	
+	<div id="resultat"></div>
 
 
 </head>
@@ -130,10 +200,10 @@
 							</span>
 						</a>
 					</div>
-					
+		<!-- SEARCHFORM -->					
 					<form id="nu-timeline-cms-articleSearchForm" method="post" action="edit.php?id=<?php getTLID(); ?>">
 						<input type="text" name="sok" placeholder="S&oslash;k i hendelser...">
-						<input type="submit" value="S&oslash;k">
+						<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K">
 					</form>
 					
 					<div id="nu-timeline-cms-fade">
@@ -234,9 +304,6 @@
 						<?php
 							fillEditInputs();
 						?>
-						
-							<script>CKEDITOR.replace( 'articleText' );</script>
-						
 					</div>
 					
 					<div id="picInput"></div>

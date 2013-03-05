@@ -33,7 +33,16 @@
 			<div id="nu-timeline-cms-search">
 				<form action="index.php" method="get">
 					<input type="text" size="30" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
-					<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K" />
+					<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K" /> 
+					<?php
+					
+					$get = $_GET['sok'];
+					
+					if(!empty($get)){
+						echo "Gjeldende s&oslash;k: $get";
+					} 
+					
+					?>
 				</form>
 			</div>
 		</div>
@@ -59,7 +68,11 @@
 				     
 				    $min_length = 1;
 				    // sets minimum length of the search query
-				     
+				    if(empty($query)){
+					    getTimeline();
+				    }
+				    
+				    
 				    if(strlen($query) >= $min_length){ // if query length is more than or equal to minimum length then
 				         
 				        $query = htmlspecialchars($query); 
@@ -100,19 +113,7 @@
 				    
 				    }
 				    getSearchResults();				    
-				    
 				
-				?>
-				
-				<?php
-
-/* 					CHECKS IF THERE IS SOMETHING IN $_GET. IF THERE IS NOTHING THERE, THEN IT PRINTS OUT getTimeline FROM func.php */
-
-
-					if(empty($_GET)){
-						getTimeline();
-					}
-					
 				?>
 				
 			</table>

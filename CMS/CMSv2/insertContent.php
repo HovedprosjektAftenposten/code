@@ -23,7 +23,7 @@
 	}
 	
 	mysql_query("INSERT INTO content_table (content_ID, tl_ID) VALUES ('$newID','$get')");
-	
+	mysql_query("INSERT INTO pic_table (content_ID) VALUES ('$newID')");
 	
 	header('Location:edit.php?id='.$get.'&article='.$newID);
 	

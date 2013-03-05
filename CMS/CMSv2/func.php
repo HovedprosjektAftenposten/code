@@ -42,7 +42,7 @@ function getArticle() {
 	
 	$get = $_GET['id'];
 	
-	$sql = "SELECT * FROM content_table WHERE tl_ID = $get";
+	$sql = "SELECT * FROM content_table WHERE tl_ID = $get ORDER BY content_date DESC";
 	
 	$result = mysql_query($sql);
 	
@@ -93,7 +93,7 @@ function fillEditInputs() {
 	
 	if($getContentID >= 1) {
 	
-		$sql = "SELECT * FROM content_table WHERE content_ID = $getContentID";
+		$sql = "SELECT content_table.*, pic_table.* FROM content_table, pic_table WHERE (content_table.content_ID = $getContentID AND pic_table.content_ID = $getContentID)";
 		
 		$result = mysql_query($sql);
 		
@@ -106,12 +106,16 @@ function fillEditInputs() {
 		$content_date = $print['content_date'];
 		$content_title = $print['content_title'];
 		$content_content = $print['content_content'];
+		$pic_path = $print['pic_path'];
 		
 		echo "<form method='post' id='nu-timeline-cms-editForm' action='updateContent.php?id=$getTLID&article=$getContentID'>
-			<label>Overskrift:</label><input type='text' name='overskrift' class='nu-timeline-cms-fields' value='$content_title' /></br>
-			<label>Dato:</label><input type='text' name='dato'  class='nu-timeline-cms-fields datepicker' value='$content_date' /></br>
+			<label>Overskrift:</label><input id='nu-timeline-cms-TESTcontentTitle' type='text' name='overskrift' class='nu-timeline-cms-fields' value='$content_title' /></br>
+			<label>Dato:</label><input type='text' name='dato'  id='nu-timeline-cms-TESTcontentDate' class='nu-timeline-cms-fields datepicker' value='$content_date' /></br>
 			<label>Tid:</label><input type='text' name='tid' id='tid' class='nu-timeline-cms-fields' value='$content_time' /></br>
-			<label>Tekst:</label></br><div id='nu-timeline-cms-editor'><textarea cols='10' rows='10' name='articleText' id='text'>$content_content</textarea></div></br>
+			<label>Tekst:</label></br><div id='nu-timeline-cms-editor'><textarea id='text' cols='10' rows='10' name='articleText'>$content_content</textarea></div></br>
+			<label>Bilde url: </label><input type='text' name='purl' id='purl' class='nu-timeline-cms-fields' value='$pic_path' /></br>
+			<input type='hidden' id='TESTtlID' value='$getTLID' />			
+			<input type='hidden' id='TESTcontentID' value='$getContentID' />
 			
 			
 			<div class='nu-timeline-cms-status-buttons-wrapper'>
@@ -132,7 +136,7 @@ function fillEditInputs() {
 		//må posisjoneres!!!!!!
 		echo liveStatus();
 			
-		echo "<label>Bilder:</label>";
+		
 		echo "</form>";
 	}
 		
