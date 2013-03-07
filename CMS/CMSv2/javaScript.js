@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	fixSelectedBackground(); //DEPRECIATED BY TORSTEIN ;/
+	/* fixSelectedBackground(); */ //DEPRECIATED BY TORSTEIN ;/
 	
 	$('#nu-timeline-cms-tlInfo').click(function(){
 		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');	
