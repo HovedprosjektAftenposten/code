@@ -13,7 +13,7 @@ $connect = mysql_connect("localhost", "root", ""); //kobler til server (server, 
 
 	$get = $_GET['id'];
 	
-	$sql = "SELECT * FROM content_table WHERE tl_ID = 1 ORDER BY content_date DESC";
+	$sql = "SELECT * FROM content_table WHERE tl_ID = $get ORDER BY content_date DESC";
 	
 	$result = mysql_query($sql);
 	

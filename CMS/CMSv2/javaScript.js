@@ -12,7 +12,7 @@ $(document).ready(function(){
 	if(hidden == "OK") {
 		$('#nu-timeline-cms-slide').show();
 	}
-
+	updateArticlesOnBlur();
 	tlInfoPostOnBlurInput();
 	tlInfoPostOnBlurText();
 		 
@@ -68,6 +68,7 @@ function tlInfoPostOnBlurInput(){
 		var tlID = $('input#nu-timeline-cms-tlInfoFormHiddenID').val();
 
 		$.post('ajaxPOSTtlInfo.php', {title: title, tlID: tlID});
+		updateArticlesOnBlur();
 	});
 }
 
@@ -77,12 +78,14 @@ function tlInfoPostOnBlurText(){
 		var tlID = $('input#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
 		$.post('ajaxPOSTtlInfo.php', {text: text, tlID: tlID});
+		updateArticlesOnBlur();
 	});
 }
 
 function updateArticlesOnBlur(){
 /* IN PROGRESS */
-	$.get('whatever.php', function(data){
+	var id = window.location.search;
+	$.get('whatever.php'+id, function(data){
 		$('#nu-timeline-cms-vNav').html(data);
 	});
 	
