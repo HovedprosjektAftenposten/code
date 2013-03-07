@@ -22,6 +22,7 @@
 			window.location = "?id="+id+"&article="+article;
 		}
 		   
+/*
 	   function fixSelectedBackground() {
 		    var url = document.URL;
 	    	var urlsplitted = url.split("article");
@@ -29,6 +30,7 @@
 	    	var superid = supersplitted[supersplitted.length - 1];	    	
 	    	$(".article" + superid).css({"background-color":"gray","color":"white"});
 	   }
+*/
 	   
 	</script>
 <!-- 	DROPDOWN BUTTON IN edit.php -->
@@ -120,16 +122,6 @@
 						<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K">
 					</form>
 					
-					<div id="nu-timeline-cms-fade">
-						<div id="nu-timeline-cms-popWindow">
-							<form id="nu-timeline-cms-deleteForm" action="deleteContent.php?id=<?php getTLID();?>&article=<?php getContentID();?>" method="post">
-									<p>Er du sikker p&aring; at du vil slette innlegget?</p>
-									<p>NB! Dette kan ikke angres!</p>
-									<input type="submit" name="delete" value="JA" /><input type="submit" name="goBack" value="NEI" />
-							</form>		
-							<a href="#" id="close">close</a>
-						</div>
-					</div>
 			</div>
 				<div id="nu-timeline-cms-vNav">
 					
