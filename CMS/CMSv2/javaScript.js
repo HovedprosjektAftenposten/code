@@ -1,9 +1,11 @@
 $(document).ready(function(){
-
-	fixSelectedBackground(); //DEPERCIATED BY TORSTEIN ;/
-
+	
+	fixSelectedBackground(); //DEPRECIATED BY TORSTEIN ;/
+	
 	$('#nu-timeline-cms-tlInfo').click(function(){
-		$('#nu-timeline-cms-slide').slideToggle(100);	
+		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');	
+		$('#nu-timeline-cms-slide').slideToggle(100);
+		
 	});    	
 	
 	var hidden = $('#nu-timeline-cms-hiddenInput').val();
@@ -18,21 +20,20 @@ $(document).ready(function(){
 	inputPostOnBlur();
 	updateDate();
 	
-	
 });
 	   
 function editorPostOnBlur(){
 	CKEDITOR.replace( 'articleText' );
-   var editor = CKEDITOR.instances['text'];
+	var editor = CKEDITOR.instances['text'];
    
 	
-   editor.on('blur', function() {
-	   var text = editor.getData();
-	   var contentID = $('input#TESTcontentID').val();
+	editor.on('blur', function() {
+		var text = editor.getData();
+		var contentID = $('input#TESTcontentID').val();
 			
-	   editor.updateElement();
-	   $.post('test.php', {text: text, contentid: contentID});
-	   updateArticlesOnBlur();
+		editor.updateElement();
+		$.post('test.php', {text: text, contentid: contentID});
+		updateArticlesOnBlur();
 	});
 }
 
@@ -45,6 +46,7 @@ function inputPostOnBlur(){
 		var contentID = $('input#TESTcontentID').val();
 		
 		$.post('test.php', {overskrift: title, tid: time, purl: picPath, tlid: tlID, contentid: contentID});
+		updateArticlesOnBlur();
 	});
 }
 
@@ -55,6 +57,7 @@ function updateDate(){
 			var contentID = $('input#TESTcontentID').val();
 			
 			$.post('test.php', {dato: datepickerDate, contentid: contentID});
+			updateArticlesOnBlur();
 		}
 	});
 }
@@ -79,7 +82,6 @@ function tlInfoPostOnBlurText(){
 
 function updateArticlesOnBlur(){
 /* IN PROGRESS */
-	
 	$.get('whatever.php', function(data){
 		$('#nu-timeline-cms-vNav').html(data);
 	});

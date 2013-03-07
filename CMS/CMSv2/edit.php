@@ -29,11 +29,10 @@
 	    	var supersplitted = urlsplitted[urlsplitted.length -1].split("=");
 	    	var superid = supersplitted[supersplitted.length - 1];	    	
 	    	$(".article" + superid).css({"background-color":"gray","color":"white"});
-	    	
-		   
 	   }
+	   
 	</script>
-<!-- 	DROPDOWN BUTTIN IN edit.php -->
+<!-- 	DROPDOWN BUTTON IN edit.php -->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#ddStatus').click(function(){
@@ -87,7 +86,7 @@
 		<div id="nu-timeline-cms-headerWrapper">
 			<div id="nu-timeline-cms-logo">
 				<div id="nu-timeline-cms-bilde">
-				<img src="img/Alogo.jpg" height="50px" width="50px" /> 
+				<a href="index.php"><img src="img/Alogo.jpg" height="50px" width="50px" /></a> 
 				</div>
 				<div id="nu-timeline-cms-text">
 					<h1 id="nu-timeline-cms-menuText"><a href="index.php">Tidslinjer</a> > <?php getTimelineName(); ?></h1>
@@ -100,6 +99,7 @@
 			<div id="nu-timeline-cms-tlInfoWrapper">
 				<div id="nu-timeline-cms-tlInfo">
 					<p>Tidslinjeinformasjon</p>
+					<a id="nu-timeline-cms-tlOpenClose"><span class="tlOpenCloseArrow"></span></a>
 				</div>
 				<div id="nu-timeline-cms-slide">
 					<?php fillTlInfoInputs(); ?>
