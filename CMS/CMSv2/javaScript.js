@@ -12,14 +12,15 @@ $(document).ready(function(){
 	if(hidden == "OK") {
 		$('#nu-timeline-cms-slide').show();
 	}
-	updateArticlesOnBlur();
+	
+	updateArticles();
 	tlInfoPostOnBlurInput();
 	tlInfoPostOnBlurText();
 		 
 	editorPostOnBlur();
 	inputPostOnBlur();
 	updateDate();
-	
+	deleteArticles();
 });
 	   
 function editorPostOnBlur(){
@@ -33,7 +34,7 @@ function editorPostOnBlur(){
 			
 		editor.updateElement();
 		$.post('test.php', {text: text, contentid: contentID});
-		updateArticlesOnBlur();
+		updateArticles();
 	});
 }
 
@@ -46,7 +47,7 @@ function inputPostOnBlur(){
 		var contentID = $('input#TESTcontentID').val();
 		
 		$.post('test.php', {overskrift: title, tid: time, purl: picPath, tlid: tlID, contentid: contentID});
-		updateArticlesOnBlur();
+		updateArticles();
 	});
 }
 
@@ -57,7 +58,7 @@ function updateDate(){
 			var contentID = $('input#TESTcontentID').val();
 			
 			$.post('test.php', {dato: datepickerDate, contentid: contentID});
-			updateArticlesOnBlur();
+			updateArticles();
 		}
 	});
 }
@@ -68,7 +69,7 @@ function tlInfoPostOnBlurInput(){
 		var tlID = $('input#nu-timeline-cms-tlInfoFormHiddenID').val();
 
 		$.post('ajaxPOSTtlInfo.php', {title: title, tlID: tlID});
-		updateArticlesOnBlur();
+		updateArticles();
 	});
 }
 
@@ -78,40 +79,36 @@ function tlInfoPostOnBlurText(){
 		var tlID = $('input#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
 		$.post('ajaxPOSTtlInfo.php', {text: text, tlID: tlID});
-		updateArticlesOnBlur();
+		updateArticles();
 	});
 }
 
-function updateArticlesOnBlur(){
+function updateArticles(){
 /* IN PROGRESS */
 	var id = window.location.search;
 	$.get('whatever.php'+id, function(data){
 		$('#nu-timeline-cms-vNav').html(data);
 	});
+}	
 	
-	
-	
-	
-	
-	/*
-var cID = 
-	
-	html = "";
-	html += "<div class='nu-timeline-cms-article article"
-	. $row['content_ID'].
-	html += "' onclick='hentArtikkelInnhold("
-	.$row['tl_ID'].
-	html += ","
-	.$row['content_ID'].
-	html += ")'>"
-	html += "<div class='nu-timeline-cms-articleTitle'>"
-	.$row['content_title'].
-	html += "</div>"+"<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"+"<div class='nu-timeline-cms-articleDate'>"
-	.$row['content_date'].
-	html += "</div>"+"<div class='nu-timeline-cms-articleContent'>"
-	.$trimContent.
-	html += "</div>"+"</div>";	
-*/
+function deleteArticles(){
+	$('.btn-danger').click(function(){
+		var deleteArticle = confirm('Vil du slette hendelsen?');
+		var id = window.location.search;
+		
+		if(deleteArticle == true){
+			var slett = 'ja';
+			$.post('deleteContent.php'+id, {deleteContent: slett});
+			updateArticles();
+			
+			$('ul li > ul').hide();		
+			$('.arrow').removeClass('droppedDown');	
+			
+		}else{
+			var angre = 'nei';
+			$.post('deleteContent.php'+id, {goBack: angre});
+		}
+	});
 }
 
 

@@ -7,7 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="jquery-ui.css" />	
 	<script src="jquery-1.9.0.js" type="text/javascript"></script>
-	<script src="pop.js" type="text/javascript"></script>
 	<script src="javaScript.js" type="text/javascript"></script>
 	<script src="bootstrap.min.js" type="text/javascript"></script>
 	<script src="jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
