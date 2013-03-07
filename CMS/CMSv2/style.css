@@ -329,10 +329,15 @@ h2{
 .nu-timeline-cms-articleTitle{
 	font-weight: bold;
 	padding-top: 0px;
+	
 }
 
 .nu-timeline-cms-articleDate{
 	font-style: italic;
+}
+
+.nu-timeline-cms-articleDate strong{
+	font-weight: normal;
 }
 
 .nu-timeline-cms-articleContent, .nu-timeline-cms-articleTitle, .nu-timeline-cms-articleDate{
@@ -343,6 +348,9 @@ h2{
 	padding-bottom: 0px;
 }
 
+.nu-timeline-cms-articleContent strong{
+	font-weight: normal;
+}
 
 
 
@@ -560,6 +568,7 @@ textarea{
 }
 .nu-timeline-cms-status-buttons-wrapper #ddStatus{
 	width:125px;
+	font-weight: normal;
 
 
 }
@@ -669,6 +678,17 @@ textarea{
 	margin-left: 40px;
 }
 
+
+/* REGLER FOR Å UNNGÅ BOLD PÅ EDIT.PHP 
+.nu-timeline-cms-status-buttons-wrapper #ddStatus
+.nu-timeline-cms-articleDate strong
+.nu-timeline-cms-articleContent strong
+label
+*/
+
+label{
+	font-weight: normal;
+}
 
 
 
