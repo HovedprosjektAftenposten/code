@@ -591,6 +591,7 @@ textarea{
 	
 	background-image: url(img/timelineOpenClose.png);
 	background-repeat: no-repeat;
+	background-position: -25px 0px;
 	opacity: 1;
 }
 
@@ -600,7 +601,7 @@ textarea{
 }
 
 #nu-timeline-cms-tlOpenClose .tlDroppedDown{
-	background-position: -25px 0px;
+	background-position: 0px 0px;
 }
 /* Henriksen slutt */
 
