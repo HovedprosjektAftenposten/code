@@ -73,11 +73,12 @@
 	width: 50px;
 	float: right;
 	margin-right: 10px;
+	opacity: 1;
 }
 
 #nu-timeline-cms-home:hover{
-	background-image: url(img/homeButtonHover.png);
 	cursor: pointer;
+	opacity: 0.7;
 }
 
 #nu-timeline-cms-loggUt{
@@ -92,10 +93,11 @@
 #nu-timeline-cms-loggUt a{
 	color: black;
 	text-decoration: none;
+	opacity: 1;
 }
 
 #nu-timeline-cms-loggUt a:hover{
-	color: #666;
+	opacity: 0.7;
 }
 
 #nu-timeline-cms-bilde{
@@ -119,8 +121,9 @@
 }
 
 #nu-timeline-cms-searchButton{
-	height: 18px;
+	height: 19px;
 	width: 40px;
+	margin-top: 6px;
 	background-color: black;
 	border: 0px;
 	color: white;
@@ -425,31 +428,34 @@ h2{
 }
 
 #nu-timeline-cms-newTimelineBtn{
-	height: 30px;
-	width: 30px;
+	height: 25px;
+	width: 25px;
 	background-image: url(img/plus.png);
 	text-decoration: none;
 	margin-left: 10px;
 	float: left;
+	opacity: 1;
 }
 
 #nu-timeline-cms-newTimelineBtn:hover{
 	cursor: pointer;
-	background-image: url(img/plusHover.png);
+	opacity: 0.7;
 }
 
 #nu-timeline-cms-newArticleBtn{
-	height: 30px;
-	width: 30px;
+	height: 25px;
+	width: 25px;
 	background-image: url(img/plus.png);
 	text-decoration: none;
 	margin-left: 10px;
+	margin-top: 2px;
 	float: left;
+	opacity: 1;
 }
 
 #nu-timeline-cms-newArticleBtn:hover{
 	cursor: pointer;
-	background-image: url(img/plusHover.png);
+	opacity: 0.7;
 }
 
 .nu-timeline-cms-test{
@@ -567,19 +573,16 @@ textarea{
 	border-left:1px solid #cdcdcd;
 	background-image:url(arrows.png);
 	background-repeat:no-repeat;
-	background-position:3px 3px;
-		
+	background-position:3px 3px;	
 }
 .nu-timeline-cms-status-buttons-wrapper .droppedDown  {
 	background-position:-12px 3px;
-	
 }
 
 /* TIMELINE INFO SLIDER */
 
 /* Henriksen */
 #nu-timeline-cms-tlOpenClose .tlOpenCloseArrow{
-	/* display: inline-block; */
 	float: right;
 	width: 25px;
 	height: 25px;
@@ -592,6 +595,7 @@ textarea{
 }
 
 #nu-timeline-cms-tlOpenClose .tlOpenCloseArrow:hover{
+	cursor: pointer;
 	opacity: 0.7;
 }
 
