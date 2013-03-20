@@ -1,40 +1,23 @@
 <?php
 include('connect.inc.php');
 
-
-$felt = null;
-$sql = "";
-
-$overskrift = $_REQUEST['overskrift'];
-$dato = $_REQUEST['dato'];
-$tid = $_REQUEST['tid'];
-$text = $_REQUEST['text'];
-$picPath = $_REQUEST['purl'];
-$tlID = $_REQUEST['tlid'];
-$contentID = $_REQUEST['contentid'];
-
-
-	if(isset($overskrift)){
-		mysql_query("UPDATE content_table SET content_title='$overskrift' WHERE content_ID = $contentID");
-		$felt ='Navn';
+	if(isset($_REQUEST['overskrift'])){
+		mysql_query("UPDATE content_table SET content_title='".$_REQUEST['overskrift']."' WHERE content_ID = '".$_REQUEST['contentid']."'");
 	}
-	if(isset($dato)){
-		mysql_query("UPDATE content_table SET content_date='$dato' WHERE content_ID = $contentID");		
-		$felt = 'Tekst';
+	if(isset($_REQUEST['dato'])){
+		mysql_query("UPDATE content_table SET content_date='".$_REQUEST['dato']."' WHERE content_ID = '".$_REQUEST['contentid']."'");		
 	}
-	if(isset($tid)){
-		mysql_query("UPDATE content_table SET content_time='$tid' WHERE content_ID = $contentID");		
-		$felt = 'Navn';
+	if(isset($_REQUEST['tid'])){
+		mysql_query("UPDATE content_table SET content_time='".$_REQUEST['tid']."' WHERE content_ID = '".$_REQUEST['contentid']."'");		
 	}
-	if(isset($text)){
-		mysql_query("UPDATE content_table SET content_content='$text' WHERE content_ID = $contentID");
-		$felt = 'Info';
+	if(isset($_REQUEST['text'])){
+		mysql_query("UPDATE content_table SET content_content='".$_REQUEST['text']."' WHERE content_ID = '".$_REQUEST['contentid']."'");
 	}
-	if(isset($picPath)){
-		mysql_query("UPDATE pic_table SET pic_path='$picPath' WHERE content_ID = $contentID");
+	if(isset($_REQUEST['purl'])){
+		mysql_query("UPDATE media_table SET media_data='".$_REQUEST['purl']."', media_type='picture' WHERE content_ID = '".$_REQUEST['contentid']."'");
 	}
-	
-
-echo "<p>$felt er oppdatert</p>";
+	if(isset($_REQUEST['custom'])){
+		mysql_query("UPDATE content_table SET content_custom='".$_REQUEST['custom']."' WHERE content_ID = '".$_REQUEST['contentid']."'");
+	}
 
 ?>

@@ -7,9 +7,12 @@
 	
 	$maxID = mysql_query($sql);
 	
-	while($row = mysql_fetch_array($maxID)) {
-		$ID = $row['tl_ID'];
-		$newID = ++$ID;
+	$ID = mysql_fetch_array($maxID);
+	
+	if(empty($ID['tl_ID'])) {
+		$newID = 1;
+	}else {
+		$newID = ++$ID['tl_ID'];
 	}
 	
 	mysql_query("INSERT INTO timeline_table (tl_ID) VALUES ('$newID')");

@@ -16,7 +16,7 @@ function fetchData(){
 	// Query with LEFT JOIN to show content without belonging pictures etc, WHERE for pseudo-callback. WHERE content_status = 1 later, to 
 	$result = mysql_query("
 	
-	SELECT t.tl_ID, t.tl_name, t.tl_date, t.tl_desc, c.content_ID, c.content_time, c.content_date, c.content_title, c.content_content, c.content_category, p.pic_ID, p.pic_path, p.pic_desc, p.pic_link
+	SELECT t.tl_ID, t.tl_name, t.tl_date, t.tl_ingress, c.content_ID, c.content_time, c.content_date, c.content_title, c.content_content, c.content_category, p.pic_ID, p.pic_path, p.pic_desc, p.pic_link
 	FROM timeline_table t
 		LEFT JOIN content_table c ON t.tl_ID = c.tl_ID
 		LEFT JOIN pic_table p ON c.content_ID = p.content_ID
@@ -48,7 +48,7 @@ function fetchData(){
 			$jsonData['timeline'][$timelineIndex]['tl_ID'] = $row['tl_ID'];
 			$jsonData['timeline'][$timelineIndex]['tl_name'] = $row['tl_name'];
 			$jsonData['timeline'][$timelineIndex]['tl_date'] = $row['tl_date'];
-			$jsonData['timeline'][$timelineIndex]['tl_desc'] = $row['tl_desc'];
+			$jsonData['timeline'][$timelineIndex]['tl_ingress'] = $row['tl_ingress'];
 			
 			// Declare array for content
 			$jsonData['timeline'][$timelineIndex]['content'] = array();

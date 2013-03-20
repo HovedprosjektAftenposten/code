@@ -6,13 +6,10 @@ include('connect.inc.php');
 //På denne måten kan alt innhold i de forskjellige tidslinjene skrives ut på edit.php siden.
 function getTimeline() {
 
-		
-	
-	$sql = "SELECT * FROM timeline_table ORDER BY tl_date DESC";
+	/* $sql = "SELECT * FROM timeline_table ORDER BY tl_date DESC"; */
 
-	$result = mysql_query($sql);
+	$result = mysql_query("SELECT * FROM timeline_table ORDER BY tl_date DESC");
 	
-
 	while($row = mysql_fetch_array($result)) {
 		echo "<tr class='timelineLine' id='".$row['tl_ID']."' onclick='hentTidslinje(".$row['tl_ID'].")'>";
 		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_date']."</td>"."<td class='last'></td>";
@@ -24,32 +21,32 @@ function getTimeline() {
 //funskjon som finner riktig navn på tidslinje. Brukes i "meny teksten" øverst på edit.php. Bruker $_GET['id'] fra url.
 function getTimelineName(){
 	
-	$get = $_GET['id'];
+	/* $sql = "SELECT tl_name FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'"; */
 	
-	$sql = "SELECT tl_name FROM timeline_table WHERE tl_ID = $get";
-	
-	$result = mysql_query($sql);
-	
-	while($row = mysql_fetch_array($result)) {
-		echo $row['tl_name'];
+	$result = mysql_query("SELECT tl_name FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
+	if(!empty($result)){
+		while($row = mysql_fetch_array($result)) {
+			if(strlen($row['tl_name']) < 23){
+				echo $row['tl_name'];
+			}else{
+				$trimContent = substr($row['tl_name'], 0, 23).' ...';
+				echo $trimContent;
+			}
+		}
 	}
-	
 }
 
 //funksjon som henter ut alt fra content_table hvor tl_ID = id i url. Lager div'er med innholdet fra content_table. Hver div får en onclick som kaller på et js script i edit.php.
 //onclicken sender med seg tl_ID og content_ID som bruke i urlen til å håndtere $_GET.
 function getArticle() {
 	
-	$get = $_GET['id'];
+	/* $sql = "SELECT * FROM content_table WHERE tl_ID = '".$_REQUEST['id']."' ORDER BY content_date DESC"; */
 	
-	$sql = "SELECT * FROM content_table WHERE tl_ID = $get ORDER BY content_date DESC";
-	
-	$result = mysql_query($sql);
+	$result = mysql_query("SELECT * FROM content_table WHERE tl_ID = '".$_REQUEST['id']."' ORDER BY content_date DESC");
 	
 	while($row = mysql_fetch_array($result)) {
 
-		$content = $row['content_content'];
-		$trimContent = substr($content, 0, 30).'...';
+		$trimContent = substr($row['content_content'], 0, 30).' ...';
 		/*
 echo "<div class='article' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
 		echo "<div class='articleTitle'>".$row['content_title']."</div>"."<div class='articleDate'>".$row['content_date']."</div>"."</br>"."<div class='articleContent'>".$trimContent."</div>";
@@ -70,70 +67,103 @@ echo "<div class='article' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row
 	
 }
 
-
-function getPicUrl(){
-	
-	$get = $_GET['url'];
-	
-	echo "http://test/".$get."/";
-}
-
-function preview() {
-	$post = $_POST['test'];
-	
-	echo "<img src='".$post."' />";
-}
-
 //function som henter verdien av article i fra url'en, og bruker denne til å fylle input-felter.
 function fillEditInputs() {
 
-	$getTLID = $_GET['id'];
-	$getContentID = $_GET['article'];
+	if($_REQUEST['article'] >= 1) {
 	
-	if($getContentID >= 1) {
-	
-		$sql = "SELECT content_table.*, pic_table.* FROM content_table, pic_table WHERE (content_table.content_ID = $getContentID AND pic_table.content_ID = $getContentID)";
+/* 		$sql = "SELECT content_table.*, media_table.* FROM content_table, media_table WHERE (content_table.content_ID = '".$_REQUEST['article']."' AND media_table.content_ID = '".$_REQUEST['article']."')"; */
 		
-		$result = mysql_query($sql);
+		$result = mysql_query("SELECT content_table.*, media_table.* FROM content_table, media_table WHERE (content_table.content_ID = '".$_REQUEST['article']."' AND media_table.content_ID = '".$_REQUEST['article']."')");
+		
+		$result2 = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
 		
 		$print = mysql_fetch_array($result);
 		
-	
-		$content_ID = $print['content_ID'];
-		$tl_ID = $print['tl_ID'];
-		$content_time = $print['content_time'];
-		$content_date = $print['content_date'];
-		$content_title = $print['content_title'];
-		$content_content = $print['content_content'];
-		$pic_path = $print['pic_path'];
+		$print2 = mysql_fetch_array($result2);
 		
-		echo "<form method='post' id='nu-timeline-cms-editForm' action='updateContent.php?id=$getTLID&article=$getContentID'>
-			<label>Overskrift:</label><input id='nu-timeline-cms-TESTcontentTitle' type='text' name='overskrift' class='nu-timeline-cms-fields' value='$content_title' /></br>
-			<label>Dato:</label><input type='text' name='dato'  id='nu-timeline-cms-TESTcontentDate' class='nu-timeline-cms-fields datepicker' value='$content_date' /></br>
-			<label>Tid:</label><input type='text' name='tid' id='tid' class='nu-timeline-cms-fields' value='$content_time' /></br>
-			<label>Tekst:</label></br><div id='nu-timeline-cms-editor'><textarea id='text' cols='10' rows='10' name='articleText'>$content_content</textarea></div></br>
-			<label>Bilde url: </label><input type='text' name='purl' id='purl' class='nu-timeline-cms-fields' value='$pic_path' /></br>
-			<input type='hidden' id='TESTtlID' value='$getTLID' />			
-			<input type='hidden' id='TESTcontentID' value='$getContentID' />
-			
-			
-			<div class='nu-timeline-cms-status-buttons-wrapper'>
-		<ul>
-			<li>
-				<a id='ddStatus' class='btn'>Change status<span class='arrow'></span></a>
-
+		echo "<form method='post' id='nu-timeline-cms-editForm' action='updateContent.php?id=".$_REQUEST['id']."&article=".$_REQUEST['article']."'>
+			<table class='nu-timeline-cms-editTable'>
+			<tr>
+				<td><label>Overskrift:</label></td>
+				<td><label>Viktig hendelse?</label></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input id='nu-timeline-cms-editFormContentTitle' type='text' name='overskrift' value='".$print['content_title']."'></input></td>
+				<td>
+					<select id='nu-timeline-cms-editFormImportantArticle'>
+						"; editFormFillImportant(); echo "
+					</select>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label>Dato:</label></td>
+				
+				<td><label>Kategori:</label></td>
+			</tr>
+			<tr>
+				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."'></input></td>
+				<td>
+					<select id='nu-timeline-cms-editFormChooseCategory'>
+						"; editFormFillCategories(); echo"
+					</select>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label>Tid:</label></td>
+				<td><label>Egendefinert tid/dato:</label></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' class='nu-timeline-cms-fields' value='".$print['content_time']."'></input></td>
+				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label>Tekst:</label></td>
+				<td></td>
+				<td></td>
+			</tr>
+			</table>
+			<table>
+			<tr>
+				<td><div id='nu-timeline-cms-CKeditor'><textarea id='text' cols='10' rows='10' name='articleText'>".$print['content_content']."</textarea></div></td>
+			</tr>
+			</table>
+			<table>
+			<tr>
+				<td><label>Bilde url: </label></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type='text' name='purl' id='nu-timeline-cms-editFormContentPic' class='nu-timeline-cms-fields' value='".$print['media_data']."'></input></td>
+				<td class='nu-timeline-cms-editFormStatusBtn'><div class='nu-timeline-cms-status-buttons-wrapper'>
 				<ul>
-					<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
-					<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
-					<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+					<li>
+						<a id='ddStatus' class='btn'>Change status<span class='arrow'></span></a>
+		
+						<ul>
+							<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
+							<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
+							<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+						</ul>
+					</li>
 				</ul>
-			</li>
-		</ul>
-	</div>";
+			</div>
+			</td>
+			</tr>
+			</table>
+			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
+			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
+			
+			
+			
+			";
 
 			
-		//må posisjoneres!!!!!!
-		echo liveStatus();
 			
 		
 		echo "</form>";
@@ -142,27 +172,41 @@ function fillEditInputs() {
 }
 
 function fillTlInfoInputs() {
-	$getTLID = $_GET['id'];
 	
-	if($getTLID >= 1) {
+	if($_REQUEST['id'] >= 1) {
 	
-		$sql = "SELECT * FROM timeline_table WHERE tl_ID = $getTLID";
+/* 		$sql = "SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'"; */
 		
-		$result = mysql_query($sql);
+		$result = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
 		
 		$print = mysql_fetch_array($result);
 		
-	
-		$tl_ID = $print['tl_ID'];
-		$tl_name = $print['tl_name'];
-		$tl_date = $print['tl_date'];
-		$tl_desc = $print['tl_desc'];
-		
-		echo "<form method='post' name='nu-timeline-cms-tlInfoForm' id='nu-timeline-cms-tlInfoForm' action='updateTimeline.php'>
-						<label>Tittel:</label> <input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormFields' id='nu-timeline-cms-tlInfoFormTitle' value='$tl_name' /> </br>
-						
-						<span class='nu-timeline-cms-tlTextArea'><label>Ingress:</label> <textarea cols='67' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>$tl_desc</textarea></span></br>
-						<input type='hidden' value='$getTLID' name='hidden' id='nu-timeline-cms-tlInfoFormHiddenID' /> 
+		echo "<form method='post' id='nu-timeline-cms-tlInfoForm' name='nu-timeline-cms-tlInfoForm' action='updateTimeline.php'>
+			<table>
+			<tr>
+				<td><label class='nu-timeline-cms-tlInfoFormLabels'>Tittel:</label></td>
+				<td><label class='nu-timeline-cms-tlInforFormCategoriesLabel'>Kategorier (maks 6):</label></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormTitle' id='nu-timeline-cms-tlInfoFormTitle' value='".$print['tl_name']."' /></td>
+				<td><input type='text' id='nu-timeline-cms-tlInfoFormCategoryInput' name='nu-timeline-cms-categoryName' /></td>
+				<td><span id='nu-timeline-cms-addCategoryBtn' class='nu-timeline-cms-plusBtn' name='nu-timeline-cms-addCategoryBtn'></span></td>
+			</tr>
+			<tr>
+				<td><label class='nu-timeline-cms-tlInfoFormLabels'>Ingress:</label></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><textarea cols='67' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>".$print['tl_ingress']."</textarea></td>
+				<td><div id='nu-timeline-cms-showCategories'></div></td>
+				<td></td>
+				 
+			</tr>
+			</table>
+			<input type='hidden' value='".$_REQUEST['id']."' name='hidden' id='nu-timeline-cms-tlInfoFormHiddenID' />
+			<input type='hidden' id='editFormHiddenCategory' value='".$print['tl_category6']."' />
 			</form>";
 
 	}
@@ -171,11 +215,9 @@ function fillTlInfoInputs() {
 //funskjon som sjekker om hendelsen er publisert eller om det kun er en kladd. Rødt kryss for kladd(draft) og grønn v for published.
 function liveStatus() {
 	
-	$get = $_GET['article'];
+/* 	$sql = "SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'"; */
 	
-	$sql = "SELECT * FROM content_table WHERE content_ID = $get";
-	
-	$result = mysql_query($sql);
+	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
 	
 	while($print = mysql_fetch_array($result)){
 		
@@ -191,17 +233,88 @@ function liveStatus() {
 //funksjon som henter tl_ID fra url
 function getTLID() {
 	
-	$get = $_GET['id'];
-	
-	echo $get;
+	echo $_REQUEST['id'];
 }
 //funksjon som henter content_ID fra url
 function getContentID() {
-	$get = $_GET['article'];
+
+	echo $_REQUEST['article'];
+}
+// function that fills the dropdown menu with the correct categories, and sets one as selected.
+function editFormFillCategories(){
+
+	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
+	$result2 = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
+	$print = mysql_fetch_array($result);
+	$print2 = mysql_fetch_array($result2);
 	
-	echo $get;
+	
+	echo "<option>Velg kategori..</option>";
+
+	if (!empty($print2['tl_category1'])){
+		if($print['content_category'] == $print2['tl_category1']) {
+			echo "<option selected='selected'>".$print2['tl_category1']."</option>";
+		}else{
+			echo "<option>".$print2['tl_category1']."</option>";
+		}
+	}
+	if (!empty($print2['tl_category2'])){
+		if($print['content_category'] == $print2['tl_category2']) {
+			echo "<option selected='selected'>".$print2['tl_category2']."</option>";
+		}else{
+			echo "<option>".$print2['tl_category2']."</option>";
+		}
+	}
+	if (!empty($print2['tl_category3'])){
+		if($print['content_category'] == $print2['tl_category3']) {
+			echo "<option selected='selected'>".$print2['tl_category3']."</option>";
+		}else{
+			echo "<option>".$print2['tl_category3']."</option>";
+		}
+	}
+	if (!empty($print2['tl_category4'])){
+		if($print['content_category'] == $print2['tl_category4']) {
+			echo "<option selected='selected'>".$print2['tl_category4']."</option>";
+		}else{
+			echo "<option>".$print2['tl_category4']."</option>";
+		}
+	}
+	if (!empty($print2['tl_category5'])){
+		if($print['content_category'] == $print2['tl_category5']) {
+			echo "<option selected='selected'>".$print2['tl_category5']."</option>";
+		}else{
+			echo "<option>".$print2['tl_category5']."</option>";
+		}
+	}
+	if (!empty($print2['tl_category6'])){
+		if($print['content_category'] == $print2['tl_category6']) {
+			echo "<option selected='selected'>".$print2['tl_category6']."</option>";
+		}else{
+			echo "<option>".$print2['tl_category6']."</option>";
+		}
+	}
 }
 
+function editFormFillImportant(){
+	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
+	$print = mysql_fetch_array($result);
+	
+	echo "<option>Velg..</option>";
+	
+	if(!empty($print['content_important'])) {
+		if($print['content_important'] == "Nei") {
+			echo "<option selected='selected'>Nei</option>";
+			echo "<option>Ja</option>";
+		}
+		if($print['content_important'] == "Ja") {
+			echo "<option>Nei</option>";
+			echo "<option selected='selected'>Ja</option>";
+		}
+		
+	}else if(empty($print['content_important'])){
+		echo "<option>Nei</option><option>Ja</option>";
+	}
+}
 
 ?>
 

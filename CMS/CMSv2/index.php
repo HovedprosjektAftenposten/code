@@ -20,16 +20,29 @@
 <body>
 	<div id="nu-timeline-cms-mainWrapper">
 		<div id="nu-timeline-cms-headerWrapper">
-			<div id="nu-timeline-cms-logo">
-				<div id="nu-timeline-cms-bilde">
-				<img src="img/Alogo.jpg" height="50px" width="50px" /> 
+		<table>
+		<tr>
+			<td id='nu-timeline-cms-headerTableFirst'>
+				<div id="nu-timeline-cms-logo">
+					<div id="nu-timeline-cms-bilde">
+					<img src="img/Alogo.jpg" height="50px" width="50px" /> 
+					</div>
+					<div id="nu-timeline-cms-text">
+					<h1>Tidslinjer</h1>
+					</div>
+				
 				</div>
-				<div id="nu-timeline-cms-text">
-				<h1>Tidslinjer</h1>
-				</div>
-			</div>
-			<div id="nu-timeline-cms-loggUt"><a href="#">LOGG UT</a></div>
-			<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'"></div>
+			</td>
+			<td id='nu-timeline-cms-headerTableSecond'>
+			</td>
+			<td id='nu-timeline-cms-headerTableThird'>
+				<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'"></div>
+			</td>
+			<td id='nu-timeline-cms-headerTableFourth'>
+				<div id="nu-timeline-cms-loggUt"><a href="#">LOGG UT</a></div>
+			</td>
+		</tr>
+		</table>	
 			<div id="nu-timeline-cms-search">
 				<form action="index.php" method="get">
 					<input type="text" size="30" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
@@ -119,12 +132,12 @@
 			</table>
 			
 		</div>
-		<div id="nu-timeline-cms-newTimelineBtn">
-				<a href="insertTimeline.php">
-					<span class="nu-timeline-cms-test">
-					</span>
-				</a>
-		</div>
+		
+			<a href="insertTimeline.php">
+				<span class="nu-timeline-cms-plusBtn">
+				</span>
+			</a>
+		
 
 	</div>
 		

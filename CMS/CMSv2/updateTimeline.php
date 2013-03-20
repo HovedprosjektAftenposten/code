@@ -1,15 +1,16 @@
 <?php
 	ob_start();
 	include('connect.inc.php');
-	
-/* 	henter felter fra tlInfoForm */
-	$name = $_POST['nu-timeline-cms-tlTitle'];
-	$date = $_POST['nu-timeline-cms-tlDate'];
-	$ingress = $_POST['nu-timeline-cms-tlIngress'];
-	$hidden = $_POST['hidden'];
 		
-	mysql_query("UPDATE timeline_table SET tl_name='$name', tl_date='$date', tl_desc='$ingress' WHERE tl_ID = $hidden");
+	if(isset($_REQUEST['nu-timeline-cms-addCategoryBtn'])) {
+		mysql_query("");
+		
+	}
+	else {
+		mysql_query("UPDATE timeline_table SET tl_name='".$_REQUEST['nu-timeline-cms-tlTitle']."', tl_date='".$_REQUEST['nu-timeline-cms-tlDate']."', tl_ingress='".$_REQUEST['nu-timeline-cms-tlIngress']."' WHERE tl_ID = '".$_REQUEST['hidden']."'");
+	}
 
-	header('Location:edit.php?id='.$hidden);
+
+	header('Location:edit.php?id='.$_REQUEST['hidden']);
 
 ?>

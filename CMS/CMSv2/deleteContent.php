@@ -2,19 +2,13 @@
 	ob_start();
 	include('connect.inc.php');
 	
-	$getTLID = $_REQUEST['id'];
-	$getContentID = $_REQUEST['article'];
-	
-	$slett = $_REQUEST['deleteContent'];
-	$angre = $_REQUEST['goBack'];
-	
-	if(isset($slett)) {
-		mysql_query("DELETE FROM content_table WHERE content_ID = $getContentID");
-		mysql_query("DELETE FROM pic_table WHERE content_ID = $getContentID");
-		header('Location:edit.php?id='.$getTLID);
+	if(isset($_REQUEST['deleteContent'])) {
+		mysql_query("DELETE FROM media_table WHERE content_ID = '".$_REQUEST['article']."'");
+		mysql_query("DELETE FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
+		header('Location:edit.php?id='.$_REQUEST['id']);
 	}
-	if(isset($angre)){
-		header('Location:edit.php?id='.$getTLID.'&article='.$getContentID);
+	if(isset($_REQUEST['goBack'])){
+		header('Location:edit.php?id='.$_REQUEST['id'].'&article='.$_REQUEST['article']);
 	}
 
 ?>

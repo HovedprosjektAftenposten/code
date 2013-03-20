@@ -1,4 +1,9 @@
 /* HOVEDREGLER FOR OPPSETT */
+.nu-timeline-cms-editTable{
+	
+}
+
+
 #wrapper{
 	height: 600px;
 	width: 960px;
@@ -51,6 +56,7 @@
 	border: 1px solid #e4e4e4;
 	float: right;
 	margin-right: 8px;
+	position: relative;
 }
 
 /* INNHOLD HEADER, INDEX OG EDIT */
@@ -134,6 +140,24 @@
 	cursor: pointer;
 }
 
+#nu-timeline-cms-headerTableFirst{
+	width: 1000px;
+}
+
+#nu-timeline-cms-headerTableSecond{
+	width: 400px;
+}
+
+#nu-timeline-cms-headerTableThird{
+	width: 100px;
+}
+
+#nu-timeline-cms-headerTableFourth{
+
+}
+
+
+
 /* INNHOLD MAIN, INDEX */
 
 #nu-timeline-cms-result{
@@ -198,12 +222,113 @@
 	float: left;
 }
 
-/* INNHOLD  VNAV, EDIT */
+
+/* Start TLINFO FORM */
 
 
+.nu-timeline-cms-tlInforFormCategoriesLabel{
+	margin-top: 0px;
+	margin-left: 30px;
+	float: left;
+}
 
-/* INNHOLD  HNAV, EDIT */
+#nu-timeline-cms-tlInfoFormCategoryInput{
+	float: left;
+	margin-top: 5px;
+	margin-left: 30px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+}
 
+#nu-timeline-cms-tlInfoFormText{
+	float: left;
+	margin-top: 5px;
+	margin-left: 75px;
+	margin-bottom: 20px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+}
+
+.nu-timeline-cms-tlInfoFormLabels{
+	margin-left: 75px;
+	margin-top: 0px;
+	float: left;
+}
+
+.nu-timeline-cms-tlInfoFormTitle{
+	margin-left: 75px;
+	float: left;
+	margin-top: 5px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+	width: 485px;
+}
+
+#nu-timeline-cms-addCategoryBtn{
+	margin-right: 100px;
+	padding: 0;
+}
+
+#nu-timeline-cms-showCategories{
+	width: auto;
+	height: 150px;
+	margin-left: 30px;
+}
+
+#nu-timeline-cms-tlInfoListCategories{
+	list-style-type: none;
+	margin-top: 20px;
+	padding: 0;
+}
+
+#nu-timeline-cms-tlInfoListCategories li{
+	clear: both;
+}
+
+.nu-timeline-cms-labelCategories{
+	margin-left: 10px;
+}
+
+.nu-timeline-cms-showCategoriesNewLine{
+	height: 15px;
+	width: 15px;
+	float: left;
+	border: 1px solid #000;
+	margin-bottom: 2px;
+}
+
+.nu-timeline-cms-showCategoriesNewLine.en{
+	background-color: red;	
+}
+
+.nu-timeline-cms-showCategoriesNewLine.to{
+	background-color: blue;
+}
+
+.nu-timeline-cms-showCategoriesNewLine.tre{
+	background-color: purple;
+}
+
+.nu-timeline-cms-showCategoriesNewLine.fire{
+	background-color: green;
+}
+
+.nu-timeline-cms-showCategoriesNewLine.fem{
+	background-color: pink;
+}
+
+.nu-timeline-cms-showCategoriesNewLine.seks{
+	background-color: orange;
+}
+
+/* End TLINFO FORM */
+
+/* Start INNHOLD  VNAV, EDIT */
+/* End INNHOLD  VNAV, EDIT */
+
+
+/* Start INNHOLD  HNAV, EDIT */
+/* End INNHOLD  HNAV, EDIT */
 
 #newTimeline{
 	height: 30px;
@@ -357,32 +482,73 @@ h2{
 /* FORM I EDIT!! */
 
 #nu-timeline-cms-editForm{
-	height: 600px;
+	/*
+height: 600px;
 	width: 659px;
+*/
 }
 
 #nu-timeline-cms-editForm label{
 	float: left;
-	margin-top: 20px;
-	margin-right: 500px;
-	margin-left: 0px;
-	text-align: right;
-	width: 100px;
+	margin-left: 50px;
+	margin-top: 10px;
+	width: 150px;
 
 }
 
 .nu-timeline-cms-fields{
 	float: left;
-	margin-top: -20px;
-	margin-right: 400px;
-	margin-left: 110px;
-	width: 480px;
+	margin-left: 50px;
+	width: 80px;
 	padding: 5px;
 	border: 1px solid #e4e4e4;
 
-
 }
 
+#nu-timeline-cms-editFormContentTitle{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+	width: 300px;
+	margin-left: 50px;
+}
+
+#nu-timeline-cms-editFormChooseCategory{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+	width: 140px;
+	margin-left: 50px;
+}
+
+#nu-timeline-cms-editFormImportantArticle{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+	width: 140px;
+	margin-left: 50px;
+}
+
+#nu-timeline-cms-editFormCustomTimeDate{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+	width: 130px;
+	margin-left: 50px;
+}
+
+#nu-timeline-cms-CKeditor{
+	height: 400px;
+	width: 500px;
+	float: left;
+	margin-top: 0px;
+	margin-left: 50px;
+	margin-bottom: 20px;
+}
+
+#nu-timeline-cms-editFormContentPic{
+	width: 300px;
+}
+
+.nu-timeline-cms-editFormStatusBtn{
+	
+}
 /*
 #nu-timeline-cms-editForm textarea{
 	float: left;
@@ -435,6 +601,7 @@ h2{
 	background-color: rgba(0,0,0,0.7);
 }
 
+/*
 #nu-timeline-cms-newTimelineBtn{
 	height: 25px;
 	width: 25px;
@@ -449,8 +616,9 @@ h2{
 	cursor: pointer;
 	opacity: 0.7;
 }
+*/
 
-#nu-timeline-cms-newArticleBtn{
+.nu-timeline-cms-plusBtn{
 	height: 25px;
 	width: 25px;
 	background-image: url(img/plus.png);
@@ -461,7 +629,7 @@ h2{
 	opacity: 1;
 }
 
-#nu-timeline-cms-newArticleBtn:hover{
+.nu-timeline-cms-plusBtn:hover{
 	cursor: pointer;
 	opacity: 0.7;
 }
@@ -519,25 +687,11 @@ textarea{
 	margin-right: 5px;
 }
 
-
-#nu-timeline-cms-editor{
-	height: 400px;
-	width: 500px;
-	float: left;
-	margin-top: 0px;
-	margin-left: 110px;	
-}
-
-
 /* HENTET FRA BOOTSTRAP */ /* TORSTEIN SIN KNAPP */
 
 
 .nu-timeline-cms-status-buttons-wrapper {
-	width:auto;
-	height:auto;
-	float:right;
-	margin-top: 30px;
-	margin-right: 45px;
+	margin-left: 40px;
 
 }
 .nu-timeline-cms-status-buttons-wrapper ul {
@@ -616,43 +770,8 @@ textarea{
 
 #nu-timeline-cms-tlInfoForm{
 	padding: 10px;
-}
-
-#nu-timeline-cms-tlInfoForm label{
 	float: left;
-	margin-top: 20px;
-	margin-right: 0px;
-	margin-left: 0px;
-	text-align: right;
-	width: 100px;
-}
-
-.nu-timeline-cms-tlInfoFormFields{
-	float: left;
-	margin-top: -20px;
-	margin-right: 400px;
-	margin-left: 110px;
-	width: 480px;
-	padding: 5px;
-	border: 1px solid #e4e4e4;
-}
-
-#nu-timeline-cms-tlInfoForm textarea{
-	float: left;
-	margin-top: 20px;
-	margin-left: 10px;
-	margin-bottom: 20px; /* Henrik added */
-	border: 1px solid #e4e4e4;	
-}
-
-.nu-timeline-cms-tlInfoFormSubmit{
-	clear: both;
-	float: left;
-	margin-left: 110px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	display: block;
-	
+	width: 600px;
 }
 
 .nu-timeline-cms-tlTextArea label{

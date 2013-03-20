@@ -21,16 +21,6 @@
 		function hentArtikkelInnhold(id,article) {
 			window.location = "?id="+id+"&article="+article;
 		}
-		   
-/*
-	   function fixSelectedBackground() {
-		    var url = document.URL;
-	    	var urlsplitted = url.split("article");
-	    	var supersplitted = urlsplitted[urlsplitted.length -1].split("=");
-	    	var superid = supersplitted[supersplitted.length - 1];	    	
-	    	$(".article" + superid).css({"background-color":"gray","color":"white"});
-	   }
-*/
 	   
 	</script>
 <!-- 	DROPDOWN BUTTON IN edit.php -->
@@ -52,24 +42,24 @@
 	
 	<?php
 		function test() {
-	
-			$get = $_GET['id'];
 			
-			$sql = "SELECT * FROM timeline_table WHERE tl_ID = $get";
+			$sql = "SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'";
 			
 			$result = mysql_query($sql);
 			
-			while($row = mysql_fetch_array($result)) {
-				$sjekk = $row['tl_name'];
-				
-			}
 			
-			if(strlen($sjekk) < 1){
-				echo "<input type='hidden' value='OK' id='nu-timeline-cms-hiddenInput' />";	
-			}
-			else {
-				echo "<input type='hidden' value='NOPE' id='nu-timeline-cms-hiddenInput' />";
-			}
+				while($row = mysql_fetch_array($result)) {
+					$sjekk = $row['tl_name'];
+					
+				}
+				
+				if(strlen($sjekk) < 1){
+					echo "<input type='hidden' value='OK' id='nu-timeline-cms-hiddenInput' />";	
+				}
+				else {
+					echo "<input type='hidden' value='NOPE' id='nu-timeline-cms-hiddenInput' />";
+				}
+			
 	}
 
 	echo test();
@@ -82,20 +72,33 @@
 </head>
 
 <body>
-
 	<div id="nu-timeline-cms-mainWrapper">
 		<div id="nu-timeline-cms-headerWrapper">
-			<div id="nu-timeline-cms-logo">
-				<div id="nu-timeline-cms-bilde">
-				<a href="index.php"><img src="img/Alogo.jpg" height="50px" width="50px" /></a> 
-				</div>
-				<div id="nu-timeline-cms-text">
-					<h1 id="nu-timeline-cms-menuText"><a href="index.php">Tidslinjer</a> > <?php getTimelineName(); ?></h1>
-				</div>
-			</div>
-			<div id="nu-timeline-cms-loggUt"><a href="#">LOGG UT</a></div>
-			<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'"></div>
+		<table>
+			<tr>
+				<td id='nu-timeline-cms-headerTableFirst'>
+					<div id="nu-timeline-cms-logo">
+						<div id="nu-timeline-cms-bilde">
+						<a href="index.php"><img src="img/Alogo.jpg" height="50px" width="50px"></a> 
+						</div>
+						<div id="nu-timeline-cms-text">
+							<h1 id="nu-timeline-cms-menuText"><a href="index.php">Tidslinjer</a> > <?php getTimelineName(); ?></h1>
+						</div>
+					</div>
+				</td>
+				<td id='nu-timeline-cms-headerTableSecond'>
+					
+				</td>
+				<td id='nu-timeline-cms-headerTableThird'>
+					<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'"></div>
+				</td>
+				<td id='nu-timeline-cms-headerTableFourth'>	
+					<div id="nu-timeline-cms-loggUt"><a href="#">LOGG UT</a></div>
+				</td>
+			</tr>
+		</table>
 		</div>
+		
 		<div id="nu-timeline-cms-main">
 			<div id="nu-timeline-cms-tlInfoWrapper">
 				<div id="nu-timeline-cms-tlInfo">
@@ -110,18 +113,17 @@
 				<div id="nu-timeline-cms-hendelserTop">
 					<p>Hendelser</p>
 					
-					<div id="nu-timeline-cms-newArticleBtn">
+					
 						<a href="insertContent.php?id=<?php getTLID(); ?>">
-							<span class="nu-timeline-cms-test">
+							<span class="nu-timeline-cms-plusBtn">
 							</span>
 						</a>
-					</div>
+					
 		<!-- SEARCHFORM -->					
 					<form id="nu-timeline-cms-articleSearchForm" method="post" action="edit.php?id=<?php getTLID(); ?>">
 						<input type="text" name="sok" placeholder="S&oslash;k i hendelser...">
 						<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K">
 					</form>
-					
 			</div>
 				<div id="nu-timeline-cms-vNav">
 					
@@ -220,6 +222,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id='nu-timeline-cms-statusMessage' style='background-color: white; border: 1px solid #e4e4e4; padding: 5px; position: fixed; bottom: 0px; right: 5px;'></div>
 	
 </body>
 
