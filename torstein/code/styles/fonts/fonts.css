@@ -23,7 +23,7 @@
     font-family: "publicoHeadlineWeb";
     src: url("PublicoHeadWeb-Medium.eot?#iefix") format("embedded-opentype"),
          url("PublicoHeadWeb-Medium.woff") format("woff"),
-         url("PublicoHeadWeb-Medium.svg#svgFontName") format("svg");
+        /*url("PublicoHeadWeb-Medium.svg#svgFontName") format("svg");  */
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
