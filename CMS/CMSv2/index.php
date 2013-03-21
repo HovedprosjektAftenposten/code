@@ -62,9 +62,9 @@
 		<div id="nu-timeline-cms-result">
 			<table id="nu-timeline-cms-indexTable">
 				<tr>
-					<th>id</th>
-					<th>tidslinjenavn</th>
-					<th>sist endret</th>
+					<th>ID</th>
+					<th>Tidslinjenavn</th>
+					<th>Sist endret</th>
 				</tr>
 				
 				

@@ -25,7 +25,7 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 	
 	config.height = '300px'; 
-	config.width = '500px';  
+	config.width = '617px';  
 	config.resize_enabled = false; //false says not resizable
 	config.enterMode = CKEDITOR.ENTER_BR;
 	

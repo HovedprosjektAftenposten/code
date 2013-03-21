@@ -8,11 +8,11 @@ function getTimeline() {
 
 	/* $sql = "SELECT * FROM timeline_table ORDER BY tl_date DESC"; */
 
-	$result = mysql_query("SELECT * FROM timeline_table ORDER BY tl_date DESC");
+	$result = mysql_query("SELECT * FROM timeline_table ORDER BY tl_lastEdit DESC");
 	
 	while($row = mysql_fetch_array($result)) {
 		echo "<tr class='timelineLine' id='".$row['tl_ID']."' onclick='hentTidslinje(".$row['tl_ID'].")'>";
-		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_date']."</td>"."<td class='last'></td>";
+		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_lastEdit']."</td>"."<td class='last'></td>";
 		echo "</tr>";
 	}
 	
@@ -45,21 +45,28 @@ function getArticle() {
 	$result = mysql_query("SELECT * FROM content_table WHERE tl_ID = '".$_REQUEST['id']."' ORDER BY content_date DESC");
 	
 	while($row = mysql_fetch_array($result)) {
-
-		$trimContent = substr($row['content_content'], 0, 30).' ...';
-		/*
-echo "<div class='article' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-		echo "<div class='articleTitle'>".$row['content_title']."</div>"."<div class='articleDate'>".$row['content_date']."</div>"."</br>"."<div class='articleContent'>".$trimContent."</div>";
-*/
+	
+			if(strlen($row['content_content']) > 30){
+				$trimContent = substr($row['content_content'], 0, 30).'...';
+				
+			}else{
+				$trimContent = $row['content_content'];
+				
+			}
+			if(strlen($row['content_title']) > 30){
+				$trimTitle = substr($row['content_title'], 0, 30).'...';
+			}else{
+				$trimTitle = $row['content_title'];
+			}
 		
 		if($row['content_status'] == 0) {
 			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 			echo "</div>";
 		}
 		else {
 			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 			echo "</div>";
 		}
 
@@ -84,80 +91,82 @@ function fillEditInputs() {
 		
 		echo "<form method='post' id='nu-timeline-cms-editForm' action='updateContent.php?id=".$_REQUEST['id']."&article=".$_REQUEST['article']."'>
 			<table class='nu-timeline-cms-editTable'>
+			<table class='nu-timeline-cms-editFormTitleTable'>
 			<tr>
 				<td><label>Overskrift:</label></td>
-				<td><label>Viktig hendelse?</label></td>
-				<td></td>
 			</tr>
 			<tr>
 				<td><input id='nu-timeline-cms-editFormContentTitle' type='text' name='overskrift' value='".$print['content_title']."'></input></td>
+			</tr>
+			</table>
+			
+			<table class='nu-timeline-cms-editFormDateTable'>
+			<tr>
+				<td><label>Dato:</label></td>
+				<td><label>Tid:</label></td>
+				<td><label>Egendefinert dato tekst:</label></td>
+			</tr>
+			<tr>
+				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."'></input></td>
+				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' class='nu-timeline-cms-fields' value='".$print['content_time']."'></input></td>
+				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
+			</tr>
+			</table>
+			
+			<table class='nu-timeline-cms-editFormCategoryTable'>
+			<tr>
+				<td><label>Kategori:</label></td>
+				<td><label>Viktig hendelse?</label></td>
+			</tr>
+			<tr>
+				<td>
+					<select id='nu-timeline-cms-editFormChooseCategory'>
+						"; editFormFillCategories(); echo "
+					</select>
+				</td>
 				<td>
 					<select id='nu-timeline-cms-editFormImportantArticle'>
 						"; editFormFillImportant(); echo "
 					</select>
 				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><label>Dato:</label></td>
-				
-				<td><label>Kategori:</label></td>
-			</tr>
-			<tr>
-				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."'></input></td>
-				<td>
-					<select id='nu-timeline-cms-editFormChooseCategory'>
-						"; editFormFillCategories(); echo"
-					</select>
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><label>Tid:</label></td>
-				<td><label>Egendefinert tid/dato:</label></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' class='nu-timeline-cms-fields' value='".$print['content_time']."'></input></td>
-				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><label>Tekst:</label></td>
-				<td></td>
-				<td></td>
 			</tr>
 			</table>
-			<table>
+			
+			<table class='nu-timeline-cms-editFormTextTable'>
+			<tr>
+				<td><label>Tekst:</label></td>
+			</tr>
 			<tr>
 				<td><div id='nu-timeline-cms-CKeditor'><textarea id='text' cols='10' rows='10' name='articleText'>".$print['content_content']."</textarea></div></td>
 			</tr>
 			</table>
-			<table>
+			
+			<table class='nu-timeline-cms-editFormBottomTable'>
 			<tr>
 				<td><label>Bilde url: </label></td>
-				<td></td>
+				<td><label>Status:<label></td>
 			</tr>
 			<tr>
 				<td><input type='text' name='purl' id='nu-timeline-cms-editFormContentPic' class='nu-timeline-cms-fields' value='".$print['media_data']."'></input></td>
-				<td class='nu-timeline-cms-editFormStatusBtn'><div class='nu-timeline-cms-status-buttons-wrapper'>
-				<ul>
-					<li>
-						<a id='ddStatus' class='btn'>Change status<span class='arrow'></span></a>
-		
+				<td class='nu-timeline-cms-editFormStatusBtn'>
+					<div class='nu-timeline-cms-status-buttons-wrapper'>
 						<ul>
-							<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
-							<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
-							<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+							<li>
+								<a id='ddStatus' class='btn'>Change status<span class='arrow'></span></a>
+								<ul>
+									<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
+									<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
+									<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+								</ul>
+							</li>
 						</ul>
-					</li>
-				</ul>
-			</div>
-			</td>
+					</div>
+				</td>
 			</tr>
 			</table>
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
 			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
+			</table>
 			
 			
 			

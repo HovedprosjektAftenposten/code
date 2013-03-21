@@ -1,8 +1,4 @@
 /* HOVEDREGLER FOR OPPSETT */
-.nu-timeline-cms-editTable{
-	
-}
-
 
 #wrapper{
 	height: 600px;
@@ -389,11 +385,11 @@ th:hover{
 }
 
 #nu-timeline-cms-indexTable td.second{
-	width: 700px;
+	width: 600px;
 }
 
 #nu-timeline-cms-indexTable td.third{
-	width: 100px;
+	width: 200px;
 }
 
 #nu-timeline-cms-indexTable td.last{
@@ -481,16 +477,18 @@ h2{
 
 /* FORM I EDIT!! */
 
+#nu-timeline-cms-editFormDateTable{
+	width: 700px;
+}
+
 #nu-timeline-cms-editForm{
-	/*
-height: 600px;
-	width: 659px;
-*/
+	margin: 0;
+	padding: 0;
 }
 
 #nu-timeline-cms-editForm label{
 	float: left;
-	margin-left: 50px;
+	margin-left: 20px;
 	margin-top: 10px;
 	width: 150px;
 
@@ -498,7 +496,7 @@ height: 600px;
 
 .nu-timeline-cms-fields{
 	float: left;
-	margin-left: 50px;
+	margin-left: 20px;
 	width: 80px;
 	padding: 5px;
 	border: 1px solid #e4e4e4;
@@ -508,29 +506,29 @@ height: 600px;
 #nu-timeline-cms-editFormContentTitle{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
-	width: 300px;
-	margin-left: 50px;
+	width: 609px;
+	margin-left: 20px;
 }
 
 #nu-timeline-cms-editFormChooseCategory{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
 	width: 140px;
-	margin-left: 50px;
+	margin-left: 20px;
 }
 
 #nu-timeline-cms-editFormImportantArticle{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
 	width: 140px;
-	margin-left: 50px;
+	margin-left: 20px;
 }
 
 #nu-timeline-cms-editFormCustomTimeDate{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
 	width: 130px;
-	margin-left: 50px;
+	margin-left: 20px;
 }
 
 #nu-timeline-cms-CKeditor{
@@ -538,7 +536,7 @@ height: 600px;
 	width: 500px;
 	float: left;
 	margin-top: 0px;
-	margin-left: 50px;
+	margin-left: 20px;
 	margin-bottom: 20px;
 }
 
@@ -691,7 +689,7 @@ textarea{
 
 
 .nu-timeline-cms-status-buttons-wrapper {
-	margin-left: 40px;
+	margin-left: 20px;
 
 }
 .nu-timeline-cms-status-buttons-wrapper ul {

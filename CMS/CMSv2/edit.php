@@ -102,7 +102,7 @@
 		<div id="nu-timeline-cms-main">
 			<div id="nu-timeline-cms-tlInfoWrapper">
 				<div id="nu-timeline-cms-tlInfo">
-					<p>Tidslinjeinformasjon</p>
+					<p>Fyll inn informasjon om tidslinjen</p>
 					<a id="nu-timeline-cms-tlOpenClose"><span class="tlOpenCloseArrow"></span></a>
 				</div>
 				<div id="nu-timeline-cms-slide">
@@ -111,7 +111,7 @@
 			</div>
 			<div id="nu-timeline-cms-hendelser">
 				<div id="nu-timeline-cms-hendelserTop">
-					<p>Hendelser</p>
+					<p>Legg til hendelse</p>
 					
 					
 						<a href="insertContent.php?id=<?php getTLID(); ?>">
@@ -170,18 +170,28 @@
 		            while($results = mysql_fetch_array($raw_results)){
 		            // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
 		                
-		                $content = $results['content_content'];
-		                $trimContent = substr($content, 0, 30).'...';
+		                if(strlen($results['content_content']) > 30){
+			                $trimContent = substr($results['content_content'], 0, 30).'...';
+				
+						}else{
+							$trimContent = $results['content_content'];
+							
+						}
+						if(strlen($results['content_title']) > 30){
+							$trimTitle = substr($results['content_title'], 0, 30).'...';
+						}else{
+							$trimTitle = $results['content_title'];
+						}
 
 		                if($results['content_status'] == 0) {
 		                	
 							echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='hentArtikkelInnhold(".$results['tl_ID'].",".$results['content_ID'].")'>";
-							echo "<div class='nu-timeline-cms-articleTitle'>".$results['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+							echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 							
 						}
 						else {
 							echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='hentArtikkelInnhold(".$results['tl_ID'].",".$results['content_ID'].")'>";
-							echo "<div class='nu-timeline-cms-articleTitle'>".$results['content_title']."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+							echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 							
 						}
 

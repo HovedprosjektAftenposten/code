@@ -45,6 +45,7 @@ function tlInfoPostOnBlurInput(){
 		var field = "Tittel";
 		
 		statusMessage(field);
+		fetchTimeDate();
 		updateTimelineName();
 	});
 }
@@ -58,6 +59,7 @@ function tlInfoPostOnBlurText(){
 		var field = "Tekstfelt";
 		
 		statusMessage(field);
+		fetchTimeDate();
 	});
 }
 
@@ -70,6 +72,7 @@ function addCategories(){
 		var field = "Kategori";
 		
 		var full = $('#editFormHiddenCategory').val();
+		fetchTimeDate();
 		showCategories();
 		
 		
@@ -81,7 +84,7 @@ function addCategories(){
 			$('#nu-timeline-cms-statusMessage').html('<p style="color: red; text-align: center">Maks antall kategorier er nådd</p>');
 			$('#nu-timeline-cms-statusMessage').fadeOut(3000);
 		}
-		
+		fetchTimeDate();
 		showCategories();
 		
 	});
@@ -96,6 +99,7 @@ function addImportant() {
 		var field = "Viktig hendelse";
 		
 		statusMessage(field);
+		fetchTimeDate();
 	});
 }  
 
@@ -120,6 +124,7 @@ function editorPostOnBlur(){
 		var field = "Tekstfelt";
 		
 		statusMessage(field);
+		fetchTimeDate();
 		updateArticles();
 	});
 }
@@ -133,6 +138,7 @@ function inputPostOnBlur(){
 		$.post('test.php', {overskrift: title, tlid: tlID, contentid: contentID});
 		var field = "Tittel";
 		
+		fetchTimeDate();
 		statusMessage(field);
 		updateArticles();
 		});
@@ -141,6 +147,7 @@ function inputPostOnBlur(){
 		$.post('test.php', {tid: time, tlid: tlID, contentid: contentID});
 		var field = "Tid";
 		
+		fetchTimeDate();
 		statusMessage(field);
 		updateArticles();
 		});
@@ -149,6 +156,7 @@ function inputPostOnBlur(){
 		$.post('test.php', {purl: picPath, tlid: tlID, contentid: contentID});
 		var field = "Bilde";
 		
+		fetchTimeDate();
 		statusMessage(field);
 		updateArticles();
 		});
@@ -157,6 +165,7 @@ function inputPostOnBlur(){
 		$.post('test.php', {custom: custom, tlid: tlID, contentid: contentID});
 		var field = "Egendefinert";
 		
+		fetchTimeDate();
 		statusMessage(field);
 		updateArticles();
 		});
@@ -171,6 +180,7 @@ function updateDate(){
 			$.post('test.php', {dato: datepickerDate, contentid: contentID});
 			var field = "Dato";
 			
+			fetchTimeDate();
 			statusMessage(field);
 			updateArticles();
 		}
@@ -206,6 +216,7 @@ function deleteArticles(){
 			var angre = 'nei';
 			$.post('deleteContent.php'+id, {goBack: angre});
 		}
+		fetchTimeDate();
 		updateArticles();
 	});
 }
@@ -234,6 +245,7 @@ function saveArticleCategory() {
 		$.post('ajaxCategories.php'+id, {category: category});
 		var field = "Kategori";
 		
+		fetchTimeDate();
 		statusMessage(field);
 	});
 }
@@ -244,7 +256,37 @@ function statusMessage(field){
 	$('#nu-timeline-cms-statusMessage').fadeOut(3000);
 }
 
-
+function fetchTimeDate() {
+	var ids = window.location.search;
+	var date = new Date();
+	var day = date.getDate();
+	if(day < 10){
+		day = '0' + day;
+	}
+	var month = date.getMonth();
+	month++;
+	if(month < 10){
+		month = '0' + month;
+	}
+	var year = date.getFullYear();
+	
+	var hour = date.getHours();
+	if(hour < 10){
+		hour = '0' + hour;
+	}
+	var minutes = date.getMinutes();
+	if(minutes < 10){
+		minutes = '0' + minutes;
+	}
+	var seconds = date.getSeconds();
+	if(seconds < 10){
+		seconds = '0' + seconds;
+	}
+	
+	var dbDateTime = year + "-" + month + "-" + day + " " + hour+":"+minutes+":"+seconds;
+	
+	$.post('ajaxDate.php'+ids, {dateTime: dbDateTime, ids: ids});
+}
 
 
 
