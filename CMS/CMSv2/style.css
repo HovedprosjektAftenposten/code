@@ -1,5 +1,13 @@
 /* HOVEDREGLER FOR OPPSETT */
 
+input::-moz-focus-inner,
+input[type="text"]::-moz-focus-inner,
+input[type="date"]::-moz-focus-inner,
+input[type="time"]::-moz-focus-inner {
+     padding: 0 !important;
+     border: 0 none !important;
+ }
+
 #wrapper{
 	height: 600px;
 	width: 960px;
@@ -269,7 +277,8 @@
 	width: 200px;
 	height: 150px;
 	margin-left: 30px;
-	background-color: red;
+	padding: 0;
+	
 }
 
 .nu-timeline-cms-colorPicker{
@@ -293,7 +302,7 @@
 
 #nu-timeline-cms-tlInfoListCategories{
 	list-style-type: none;
-	margin-top: 20px;
+	margin: 0;
 	padding: 0;
 	width: auto;
 }
@@ -302,41 +311,16 @@
 	clear: both;
 }
 
+#nu-timeline-cms-tlInfoListCategories li input{
+	border: 1px solid #e4e4e4;
+	padding: 3px;	
+	width: 100px;
+}
+
 .nu-timeline-cms-labelCategories{
 	margin-left: 10px;
 }
 
-.nu-timeline-cms-showCategoriesNewLine{
-	height: 15px;
-	width: 15px;
-	float: left;
-	border: 1px solid #000;
-	margin-bottom: 2px;
-}
-
-.nu-timeline-cms-showCategoriesNewLine.en{
-	background-color: red;	
-}
-
-.nu-timeline-cms-showCategoriesNewLine.to{
-	background-color: blue;
-}
-
-.nu-timeline-cms-showCategoriesNewLine.tre{
-	background-color: purple;
-}
-
-.nu-timeline-cms-showCategoriesNewLine.fire{
-	background-color: green;
-}
-
-.nu-timeline-cms-showCategoriesNewLine.fem{
-	background-color: pink;
-}
-
-.nu-timeline-cms-showCategoriesNewLine.seks{
-	background-color: orange;
-}
 
 /* End TLINFO FORM */
 

@@ -110,8 +110,7 @@ function showCategories(){
 			$('#nu-timeline-cms-showCategories').html(data);
 	});
 	
-	/*
-$('.nu-timeline-cms-colorPicker').spectrum({
+	$('.nu-timeline-cms-colorPicker').spectrum({
 		showPaletteOnly: true,
 		showPalette: true,
 		color: 'blanchedalmond',
@@ -121,7 +120,6 @@ $('.nu-timeline-cms-colorPicker').spectrum({
         ['red', 'yellow', 'green', 'blue', 'violet']
         ]
 	});
-*/
 }
 	   
 function editorPostOnBlur(){
