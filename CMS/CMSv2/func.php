@@ -1,5 +1,4 @@
 <?php
-
 include('connect.inc.php');
 
 //function som skriver ut alle tidslinjer på index.php. Hver tidslinje får en onclick som er satt til tl_ID. Onclick kaller på js script i index.php, som igjen setter urlen til edit.php?id= tl_ID.
@@ -37,7 +36,7 @@ function getTimelineName(){
 }
 
 //funksjon som henter ut alt fra content_table hvor tl_ID = id i url. Lager div'er med innholdet fra content_table. Hver div får en onclick som kaller på et js script i edit.php.
-//onclicken sender med seg tl_ID og content_ID som bruke i urlen til å håndtere $_GET.
+//onclicken sender med seg tl_ID og content_ID som brukes i urlen til å håndtere $_GET.
 function getArticle() {
 	
 	/* $sql = "SELECT * FROM content_table WHERE tl_ID = '".$_REQUEST['id']."' ORDER BY content_date DESC"; */
@@ -74,7 +73,7 @@ function getArticle() {
 	
 }
 
-//function som henter verdien av article i fra url'en, og bruker denne til å fylle input-felter.
+//function som henter verdien av article fra url'en, og bruker denne til å fylle input-felter.
 function fillEditInputs() {
 
 	if($_REQUEST['article'] >= 1) {
@@ -93,29 +92,29 @@ function fillEditInputs() {
 			<table class='nu-timeline-cms-editTable'>
 			<table class='nu-timeline-cms-editFormTitleTable'>
 			<tr>
-				<td><label>Overskrift:</label></td>
+				<td><label class='nu-timeline-cms-editFormLeftLabel'>Overskrift:</label></td>
 			</tr>
 			<tr>
-				<td><input id='nu-timeline-cms-editFormContentTitle' type='text' name='overskrift' value='".$print['content_title']."'></input></td>
+				<td><input id='nu-timeline-cms-editFormContentTitle' type='text' name='overskrift' value='".$print['content_title']."''></input></td>
 			</tr>
 			</table>
 			
 			<table class='nu-timeline-cms-editFormDateTable'>
 			<tr>
-				<td><label>Dato:</label></td>
+				<td><label class='nu-timeline-cms-editFormLeftLabel'>Dato:</label></td>
 				<td><label>Tid:</label></td>
 				<td><label>Egendefinert dato tekst:</label></td>
 			</tr>
 			<tr>
 				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."'></input></td>
-				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' class='nu-timeline-cms-fields' value='".$print['content_time']."'></input></td>
+				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' value='".$print['content_time']."'></input></td>
 				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
 			</tr>
 			</table>
 			
 			<table class='nu-timeline-cms-editFormCategoryTable'>
 			<tr>
-				<td><label>Kategori:</label></td>
+				<td><label class='nu-timeline-cms-editFormLeftLabel'>Kategori:</label></td>
 				<td><label>Viktig hendelse?</label></td>
 			</tr>
 			<tr>
@@ -134,7 +133,7 @@ function fillEditInputs() {
 			
 			<table class='nu-timeline-cms-editFormTextTable'>
 			<tr>
-				<td><label>Tekst:</label></td>
+				<td><label class='nu-timeline-cms-editFormLeftLabel'>Tekst:</label></td>
 			</tr>
 			<tr>
 				<td><div id='nu-timeline-cms-CKeditor'><textarea id='text' cols='10' rows='10' name='articleText'>".$print['content_content']."</textarea></div></td>
@@ -143,7 +142,7 @@ function fillEditInputs() {
 			
 			<table class='nu-timeline-cms-editFormBottomTable'>
 			<tr>
-				<td><label>Bilde url: </label></td>
+				<td><label class='nu-timeline-cms-editFormLeftLabel'>Bilde url: </label></td>
 				<td><label>Status:<label></td>
 			</tr>
 			<tr>
@@ -324,22 +323,4 @@ function editFormFillImportant(){
 		echo "<option>Nei</option><option>Ja</option>";
 	}
 }
-
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

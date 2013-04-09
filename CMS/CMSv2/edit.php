@@ -1,3 +1,6 @@
+<?php
+header ('content-type:text/html;charset=utf-8');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,11 +9,14 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="jquery-ui.css" />	
+	<link rel='stylesheet' href='spectrum/spectrum.css' />
 	<script src="jquery-1.9.0.js" type="text/javascript"></script>
 	<script src="javaScript.js" type="text/javascript"></script>
 	<script src="bootstrap.min.js" type="text/javascript"></script>
 	<script src="jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
 	<script src="ckeditor/ckeditor.js"></script>
+	<script src='spectrum/spectrum.js'></script>
+	
 
 						
 	
@@ -35,11 +41,9 @@
 		});
 
 	</script>
-		
 	<?php
 		include('func.php');
 	?>
-	
 	<?php
 		function test() {
 			
@@ -65,7 +69,6 @@
 	echo test();
 	
 	?>
-	
 	<div id="resultat"></div>
 
 
@@ -125,8 +128,9 @@
 						<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K">
 					</form>
 			</div>
+			
+			
 				<div id="nu-timeline-cms-vNav">
-					
 					<?php
 				
 				/* SHOW RESULTS FROM SEARCH. SEARCHES FOR TL_ID AND TL_NAME IN TIMELINE_TABLE AND PRINTS RESULTS TO index.php */
@@ -216,7 +220,6 @@
 				    
 				
 	?>
-
 				</div>
 				<div id="nu-timeline-cms-hNav">
 					

@@ -21,6 +21,7 @@ $(document).ready(function(){
 		$('#nu-timeline-cms-slide').show();
 	}
 	
+	
 	showCategories();
 	tlInfoPostOnBlurInput();
 	tlInfoPostOnBlurText();
@@ -107,6 +108,17 @@ function showCategories(){
 	var id = window.location.search;
 	$.get('ajaxCategories.php'+id, function(data){
 			$('#nu-timeline-cms-showCategories').html(data);
+	});
+	
+	$('.nu-timeline-cms-colorPicker').spectrum({
+		showPaletteOnly: true,
+		showPalette: true,
+		color: 'blanchedalmond',
+		palette: [
+        ['black', 'white', 'blanchedalmond',
+        'rgb(255, 128, 0);', 'hsv 100 70 50'],
+        ['red', 'yellow', 'green', 'blue', 'violet']
+        ]
 	});
 }
 	   
