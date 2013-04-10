@@ -3,11 +3,11 @@
 header("Content-Type: application/json");
 header("access-control-allow-origin: *");
 
-$connect = mysql_connect("localhost", "root", ""); // Connect 
+$connect = mysql_connect("localhost", "root", "root"); // Connect 
 	if (!$connect) {
 		die('Could not connect: ' . mysql_error());  // Displays error if there is no connection
 	}
-	mysql_select_db("hovedprosjekt", $connect); // Pick database/schema
+	mysql_select_db("aftenposten", $connect); // Pick database/schema
 	
 function fetchData(){
 	// Pseudo-callback
@@ -16,12 +16,13 @@ function fetchData(){
 	// Query with LEFT JOIN to show content without belonging pictures etc, WHERE for pseudo-callback. WHERE content_status = 1 later, to 
 	$result = mysql_query("
 	
-	SELECT t.tl_ID, t.tl_name, t.tl_date, t.tl_ingress, c.content_ID, c.content_time, c.content_date, c.content_title, c.content_content, c.content_category, p.pic_ID, p.pic_path, p.pic_desc, p.pic_link
+	SELECT t.tl_ID, t.tl_name, t.tl_date, t.tl_ingress, t.tl_lastEdit, cat.category1, cat.category2, cat.category3, cat.category4, cat.category5, cat.category6, cat.color1, cat.color2, cat.color3, cat.color4, cat.color5, cat.color6, c.content_ID, c.content_time, c.content_date, c.content_title, c.content_content, c.content_category, c.content_status, c.content_custom, c.content_media, c.content_important, m.media_ID, m.media_type, m.media_title, m.media_data, m.media_text
 	FROM timeline_table t
+		LEFT JOIN category_table cat on t.tl_ID = cat.tl_ID
 		LEFT JOIN content_table c ON t.tl_ID = c.tl_ID
-		LEFT JOIN pic_table p ON c.content_ID = p.content_ID
+		LEFT JOIN media_table m ON c.content_ID = m.content_ID
 	WHERE t.tl_ID = $get
-	ORDER BY t.tl_ID, c.tl_ID, p.content_ID
+	ORDER BY t.tl_ID, c.tl_ID, m.content_ID
 	
 	") or die(mysql_error()); 
 	
@@ -49,6 +50,33 @@ function fetchData(){
 			$jsonData['timeline'][$timelineIndex]['tl_name'] = $row['tl_name'];
 			$jsonData['timeline'][$timelineIndex]['tl_date'] = $row['tl_date'];
 			$jsonData['timeline'][$timelineIndex]['tl_ingress'] = $row['tl_ingress'];
+			$jsonData['timeline'][$timelineIndex]['tl_lastEdit'] = $row['tl_lastEdit'];
+			
+			// Oppdateres as we speak av Vegard, kategorier og farger flyttes i egen tabell
+			
+			$jsonData['timeline'][$timelineIndex]['categories'][] = array(
+				'category1' => $row['category1'],
+				'category2' => $row['category2'],
+				'category3' => $row['category3'],
+				'category4' => $row['category4'],
+				'category5' => $row['category5'],
+				'category6' => $row['category6'],
+				'color1' => $row['color1'],
+				'color2' => $row['color2'],
+				'color3' => $row['color3'],
+				'color4' => $row['color4'],
+				'color5' => $row['color5'],
+				'color6' => $row['color6'],
+			);
+			
+/*
+			$jsonData['timeline'][$timelineIndex]['tl_category1'] = $row['tl_category1'];
+			$jsonData['timeline'][$timelineIndex]['tl_category2'] = $row['tl_category2'];
+			$jsonData['timeline'][$timelineIndex]['tl_category3'] = $row['tl_category3'];
+			$jsonData['timeline'][$timelineIndex]['tl_category4'] = $row['tl_category4'];
+			$jsonData['timeline'][$timelineIndex]['tl_category5'] = $row['tl_category5'];
+			$jsonData['timeline'][$timelineIndex]['tl_category6'] = $row['tl_category6'];
+*/
 			
 			// Declare array for content
 			$jsonData['timeline'][$timelineIndex]['content'] = array();
@@ -66,15 +94,21 @@ function fetchData(){
 			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['content_content'] = $row['content_content'];
 			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['content_category'] = $row['content_category'];
 			
+			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['content_status'] = $row['content_status'];
+			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['content_custom'] = $row['content_custom'];
+			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['content_media'] = $row['content_media'];
+			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['content_important'] = $row['content_important'];
+			
 			// Declare array for pictures
-			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['pictures'] = array();
+			$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['media'] = array();
 		}
 		// Add picture data to current content data
-		$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['pictures'][] = array(
-			'pic_ID' => $row['pic_ID'],
-			'pic_path' => $row['pic_path'],
-			'pic_desc' => $row['pic_desc'],
-			'pic_link' => $row['pic_link']
+		$jsonData['timeline'][$timelineIndex]['content'][$contentIndex]['media'][] = array(
+			'media_ID' => $row['media_ID'],
+			'media_type' => $row['media_type'],
+			'media_title' => $row['media_title'],
+			'media_data' => $row['media_data'],
+			'media_text' => $row['media_text']
 		);
 		
 	}
