@@ -1,20 +1,20 @@
 var jsonPrototype = 
 [{ "tl_ID" : "1",
-   "tl_title" : "Overskrift overskrift oh yes",
+   "tl_title" : "Overskrift overskrift oh yes! En to tre vips",
    "tl_ingress":"Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og har i tillegg til å bestå gjennom fem århundrer også tålt spranget over til elektronisk typografi uten vesentlige endringer. Lorem Ipsum ble gjort allment kjent i 1960-årene ved lanseringen av Letraset-ark med avsnitt fra Lorem Ipsum, og senere med sideombrekkingsprogrammet Aldus PageMaker som tok i bruk nettopp Lorem Ipsum for dummytekst.",
    "tl_category1" : "kategori1",
    "tl_category2" : "kategori2",
    "tl_category3" : "kategori3",
-   "tl_category4" : "0",
-   "tl_category5" : "0",
-   "tl_category6" : "0",
+   "tl_category4" : "kategori4",
+   "tl_category5" : "kategori5",
+   "tl_category6" : "kategori6",
    "tl_content":  [{
                 "content_ID": "5",
                 "tl_ID": "1",
                 "content_time": "15:21:00",
-                "content_date": "2012-12-23",
+                "content_date": "2012-12-01",
                 "custom_time" : "0",
-                "content_category":"kategori3",
+                "content_category":"kategori5",
                 "content_important" : "false",
                 "content_title": "Denne første overskriften er ganske lang",
                 "content_content": "Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. Uhuh ... yih! a erat. Vestibulizzle izzle uhuh ... yih! sed maurizzle i saw beyonces tizzles and my pizzle went crizzle tristique. Mah nizzle izzle phat sizzle amet eros shizznit porta. Yippiyo velizzle tortor, ultricizzle shiznit, hendrerizzle bow wow wow, adipiscing quis, hizzle. Shit velizzle sizzle, aliquam dang, pharetra dizzle, dictizzle bow wow wow, turpizzle. Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. Uhuh ... yih! a erat. Vestibulizzle izzle uhuh ... yih! sed maurizzle i saw beyonces tizzles and my pizzle went crizzle tristique. Mah nizzle izzle phat sizzle amet eros shizznit porta. Yippiyo velizzle tortor, ultricizzle shiznit, hendrerizzle bow wow wow, adipiscing quis, hizzle. Shit velizzle sizzle, aliquam dang, pharetra dizzle, dictizzle bow wow wow, turpizzle.",
@@ -41,9 +41,9 @@ var jsonPrototype =
                 "content_ID": "6",
                 "tl_ID": "1",
                 "content_time": "23:21:00",
-                "content_date": "2012-12-23",
+                "content_date": "2012-12-02",
                 "custom_time" : "Desember-ish",
-                "content_category":"kategori2",
+                "content_category":"0",
                 "content_important" : "true",
                 "content_title": "Gruppe 21 er awesome",
                 "content_content": "Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. Uhuh ... yih! a erat. Vestibulizzle izzle uhuh ... yih! sed maurizzle i saw beyonces tizzles and my pizzle went crizzle tristique. Mah nizzle izzle phat sizzle amet eros shizznit porta. Yippiyo velizzle tortor, ultricizzle shiznit, hendrerizzle bow wow wow, adipiscing quis, hizzle. Shit velizzle sizzle, aliquam dang, pharetra dizzle, dictizzle bow wow wow, turpizzle.",
@@ -70,10 +70,10 @@ var jsonPrototype =
                 "content_ID": "7",
                 "tl_ID": "1",
                 "content_time": "18:21:00",
-                "content_date": "2012-12-24",
+                "content_date": "2012-12-03",
                 "custom_time" : "0",
                 "content_important" : "false",
-                "content_category":"kategori2",
+                "content_category":"kategori5",
                 "content_title": "Kort hendelse",
                 "content_content": "Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. ",
                 "content_media": "false",
@@ -83,11 +83,11 @@ var jsonPrototype =
                },{
                 "content_ID": "7",
                 "tl_ID": "1",
-                "content_time": "15:12:00",
-                "content_date": "2012-12-26",
+                "content_time": "15:04:00",
+                "content_date": "2012-12-04",
                 "custom_time" : "0",
                 "content_important" : "true",
-                "content_category":"kategori3",
+                "content_category":"kategori4",
                 "content_title": "Kort hendelse",
                 "content_content": "Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. ",
                 "content_media": "false",
@@ -97,11 +97,11 @@ var jsonPrototype =
                },{
                 "content_ID": "7",
                 "tl_ID": "1",
-                "content_time": "05:12:00",
-                "content_date": "2012-12-30",
+                "content_time": "15:05:00",
+                "content_date": "2012-12-05",
                 "custom_time" : "0",
                 "content_important" : "false",
-                "content_category":"kategori3",
+                "content_category":"0",
                 "content_title": "Kort hendelse",
                 "content_content": "Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. ",
                 "content_media": "false",
@@ -111,11 +111,96 @@ var jsonPrototype =
                },{
                 "content_ID": "7",
                 "tl_ID": "1",
-                "content_time": "15:12:00",
+                "content_time": "15:10:00",
+                "content_date": "2012-12-06",
+                "custom_time" : "0",
+                "content_important" : "false",
+                "content_category":"kategori6",
+                "content_title": "Kort hendelse",
+                "content_content": "Donizzle shiznit auctizzle shiz. ",
+                "content_media": "false",
+                "content_media_table":[{
+                                 }]
+              
+               },{
+                "content_ID": "7",
+                "tl_ID": "1",
+                "content_time": "15:13:00",
                 "content_date": "2013-01-07",
                 "custom_time" : "0",
                 "content_important" : "false",
                 "content_category":"kategori1",
+                "content_title": "Kort hendelse",
+                "content_content": "Donizzle shiznit auctizzle shiz. ",
+                "content_media": "false",
+                "content_media_table":[{
+                                 }]
+              
+               },{
+                "content_ID": "7",
+                "tl_ID": "1",
+                "content_time": "15:14:00",
+                "content_date": "2013-01-10",
+                "custom_time" : "0",
+                "content_important" : "false",
+                "content_category":"kategori1",
+                "content_title": "Kort hendelse",
+                "content_content": "Donizzle shiznit auctizzle shiz. ",
+                "content_media": "false",
+                "content_media_table":[{
+                                 }]
+              
+               },{
+                "content_ID": "200",
+                "tl_ID": "1",
+                "content_time": "23:21:00",
+                "content_date": "2013-01-12",
+                "custom_time" : "Datoen er 12.01",
+                "content_category":"kategori2",
+                "content_important" : "true",
+                "content_title": "Gruppe 21 er awesome",
+                "content_content": "Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. Uhuh ... yih! a erat. Vestibulizzle izzle uhuh ... yih! sed maurizzle i saw beyonces tizzles and my pizzle went crizzle tristique. Mah nizzle izzle phat sizzle amet eros shizznit porta. Yippiyo velizzle tortor, ultricizzle shiznit, hendrerizzle bow wow wow, adipiscing quis, hizzle. Shit velizzle sizzle, aliquam dang, pharetra dizzle, dictizzle bow wow wow, turpizzle.",
+                "content_media": "true",
+                "content_media_table":[{  
+                                    "media_type":"picture",
+                                    "media_text":"Donizzle shiznit auctizzle shiz. Phasellizzle funky fresh elit ut nibh pretium tincidunt. Uhuh ... yih!",
+                                    "media_data":"http:\/\/www.acuteaday.com\/blog\/wp-content\/uploads\/2011\/09\/epic-horse-running.jpg"
+                                 },{
+                                    "media_type":"picture",
+                                    "media_text":"Bla2 bla2 bla2",
+                                    "media_data":"http:\/\/whateverblog.dallasnews.com\/files\/2012\/12\/Grumpy-Cat-MEME-01.jpg"
+                                 },{
+                                    "media_type":"map",
+                                    "media_text":"Great map",
+                                    "media_data":"34.69996,126.03771,16"
+                                 },{
+                                    "media_type":"picture",
+                                    "media_text":"Great video",
+                                    "media_data":"http://www.9ori.com/store/media/images/8ab579a656.jpg"
+                                 }]
+              
+               },{
+                "content_ID": "7",
+                "tl_ID": "1",
+                "content_time": "15:15:00",
+                "content_date": "2013-01-15",
+                "custom_time" : "0",
+                "content_important" : "false",
+                "content_category":"kategori1",
+                "content_title": "Kort hendelse",
+                "content_content": "Donizzle shiznit auctizzle shiz. ",
+                "content_media": "false",
+                "content_media_table":[{
+                                 }]
+              
+               },{
+                "content_ID": "7",
+                "tl_ID": "1",
+                "content_time": "15:18:00",
+                "content_date": "2013-02-02",
+                "custom_time" : "0",
+                "content_important" : "false",
+                "content_category":"kategori3",
                 "content_title": "Kort hendelse",
                 "content_content": "Donizzle shiznit auctizzle shiz. ",
                 "content_media": "false",
@@ -178,13 +263,11 @@ var norwegian_month_short = new Array();
 
 
 function getTimeline(timeline_id){
-    $(document).ready(function(){
-    
+    $(document).ready(function(){    
 
 	hentDataPrototype();
 	resizeListener();
 	
-
     //hentJSONTekst();
 	
 	initButtons();
@@ -197,6 +280,7 @@ function getTimeline(timeline_id){
     keyboardListener();
     watchWaypoints();
 
+    //shallWeZoom(); WORK IN PROGRESS. 
 	//$("img.lazy").lazyload(); Måtte kommentere ut pga scrollingen fikk feil offset når bilder var inaktive.
 
     //Sets the most left tab active and the content that belongs(within media div of each timeline-item)
@@ -279,19 +363,21 @@ function hentDataPrototype(){
     var importantDates = [];
     var customDates = [];
     var categories = [];
+    var categoryClasses = [];
 	var mapTeller = 0; 		//This int will count the number of maps to be shown in the timeline
-	
+	var categoryColor = "";
 
-	var url = 'http://www.svendsen-it.no/hovedprosjekt/htdocs/fetchToJson.php?id=1'; //The url to json
+	//var url = 'http://www.svendsen-it.no/hovedprosjekt/htdocs/fetchToJson.php?id=1'; //The url to json
    
     $.support.cors = true;	//IE8 fix
 
     $.ajaxSetup({
-        async: false
+        async: false,
         /* cache:false MAYBE LATER? */
+        cache:true
     });
 
-	$.getJSON(url, function(jsonData){
+	//$.getJSON(url, function(jsonData){
 
 		$.each(jsonPrototype, function(i,item){//First indent
 
@@ -304,17 +390,41 @@ function hentDataPrototype(){
             
             htmlHeaderTxt += "<div class='nu-timeline-category-wrapper'>";
             if(item.tl_category1 != 0){
-                htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category1+'" checked>'+ item.tl_category1;
+              htmlHeaderTxt += '<div data-category="' + item.tl_category1 + '" class="cbCategory cbCategory1"><span>' + item.tl_category1 + '</span></div>';
+              categoryColor = "categoryColor1";
+              
+
+              //  htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category1+'" checked>'+ item.tl_category1;
             }
             if(item.tl_category2 != 0){
-                htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category2+'" checked>'+ item.tl_category2;
+              htmlHeaderTxt += '<div data-category="' + item.tl_category2 + '" class="cbCategory cbCategory2"><span>' + item.tl_category2 + '</span></div>';
+               categoryColor = "categoryColor2";
+              //  htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category2+'" checked>'+ item.tl_category2;
             }
             if(item.tl_category3 != 0){
-                htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category3+'" checked>'+ item.tl_category3;
+              htmlHeaderTxt += '<div data-category="' + item.tl_category3 + '" class="cbCategory cbCategory3"><span>' + item.tl_category3 + '</span></div>';
+               categoryColor = "categoryColor3";
+              //htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category3+'" checked><label>'+ item.tl_category3 + '</label>';
             }
+               if(item.tl_category4 != 0){
+              htmlHeaderTxt += '<div data-category="' + item.tl_category4 + '" class="cbCategory cbCategory4"><span>' + item.tl_category4 + '</span></div>';
+               categoryColor = "categoryColor4";
+              //htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category3+'" checked><label>'+ item.tl_category3 + '</label>';
+            }
+               if(item.tl_category5 != 0){
+              htmlHeaderTxt += '<div data-category="' + item.tl_category5 + '" class="cbCategory cbCategory5"><span>' + item.tl_category5 + '</span></div>';
+               categoryColor = "categoryColor5";
+              //htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category3+'" checked><label>'+ item.tl_category3 + '</label>';
+            }
+               if(item.tl_category6 != 0){
+              htmlHeaderTxt += '<div data-category="' + item.tl_category6 + '" class="cbCategory cbCategory6"><span>' + item.tl_category6 + '</span></div>';
+               categoryColor = "categoryColor6";
+              //htmlHeaderTxt += '<input class="cbCategory" type="checkbox" name="category" value="'+item.tl_category3+'" checked><label>'+ item.tl_category3 + '</label>';
+            }
+
             htmlHeaderTxt += "</div>";
 
-            htmlHeaderTxt += ' <div id="nu-timeline-navi"><a id="nu-timeline-prev" class="btn">Forrige</a><a id="nu-timeline-next" class="btn">Neste</a></div><div id="nu-timeline-indikator-wrapper"><div class="nu-timeline-indikator-line"></div></div></div></div><div class="nu-timeline-clearFix"></div>';
+            htmlHeaderTxt += ' <div id="nu-timeline-navi"><a id="nu-timeline-prev" class="btn">Forrige</a><a id="nu-timeline-next" class="btn">Neste</a></div><div id="nu-timeline-indikator-wrapper"><div id="nu-timeline-indikator-wrapper2"><div class="nu-timeline-indikator-line"></div></div></div></div></div><div class="nu-timeline-clearFix"></div>';
            
             $('.nu-timeline-wrapper').html(htmlHeaderTxt);
 
@@ -365,6 +475,7 @@ function hentDataPrototype(){
                                 pictureString += "<li class='active'><div class='sliderContentWrapper'><img src='" + mediaitem.media_data + "' alt='"+ mediaitem.media_text +"' />"//Puts the picture to the list, and a wrapper that wraps the picture and text.
                                 pictureString += "<div class='nu-timeline-slider-tekst'><p>"+ mediaitem.media_text + "</p></div></div></li>"; //Adds the text, and closes the tags so we are ready for next item.
     						    firstPic = false;	//The first picture has now past. 
+             
                             }else {                            
                                 pictureString += "<li><div class='sliderContentWrapper'><img src='" + mediaitem.media_data + "' alt='"+ mediaitem.media_text  +"' />";
                                 pictureString += "<div class='nu-timeline-slider-tekst'><p>"+ mediaitem.media_text + "</p></div></div></li>";	
@@ -443,7 +554,7 @@ function hentDataPrototype(){
                             + "-" + hendelseDato.getFullYear().toString()
                             + " " + hendelseDato.getHours() + hendelseDato.getMinutes();
 
-    			var date_time = hendelseDato.getHours().toString() + ":" + hendelseDato.getMinutes();
+    			var date_time = hendelseDato.getHours().toString() + ":" + (hendelseDato.getMinutes()<10?'0':'') + hendelseDato.getMinutes(); //Puts a 0 in front of minute if under 2 chars(10)
                 var date_month = hendelseDato.getDate().toString() + ". " + norwegian_month[hendelseDato.getMonth()];
                 var date_year = hendelseDato.getFullYear().toString();
                 var htmlTime = "";
@@ -458,21 +569,30 @@ function hentDataPrototype(){
                     htmlTime += "<p class='nu-timeline-hendelse-customtime'>" + custom_time + "</p>";
                 }
 
+                if (category == 0){
+                    category = "";
+                }
 
     			htmlTxt += "<div class='nu-timeline-hendelse' data-date='" + datoFormatert + "' data-category='"+ category +"'>";
+                htmlTxt += "<div class='nu-timeline-hendelse-left-wrapper'>"
     			htmlTxt += 		"<div class='nu-timeline-hendelse-tid'>";
-                htmlTxt +=          htmlTime;
-    			htmlTxt += 		"</div>";
+                htmlTxt +=          htmlTime;   
+                htmlTxt +=      "</div>";
+                htmlTxt +=          "<p class='nu-timeline-hendelse-category " + category + " '>"+category+"</p>";
+                htmlTxt +=      "</div>";
     			htmlTxt += 		"<div class='nu-timeline-hendelse-innhold'>";
     			htmlTxt += 			mediaString;
     			htmlTxt += 	    	"<div class='nu-timeline-hendelse-story'>" + wrapTxt(title,"h2");
                 htmlTxt +=          wrapTxt(content, "p");
     			htmlTxt += "</div></div></div>";
+
+                categoryColor = "";
     			
     		});
     		 
     		$('.nu-timeline-wrapper').append("<div id='fullscreenSlider'></div><div class='nu-timeline-hendelse-wrapper'>" + htmlTxt + "</div><div class='nu-timeline-bottom-pusher'></div>"); //Skriver ut strengen htmlTxt.
-    		leggTilIndikatorer(datoArray, importantDates, customDates, categories); //Funksjon med array som parameter.
+    		
+            leggTilIndikatorer(datoArray, importantDates, customDates, categories); //Funksjon med array som parameter.
             
             //Gives these variable a selector
 
@@ -483,9 +603,43 @@ function hentDataPrototype(){
             $tlHendelse = $('.nu-timeline-hendelse');
             $indikator = $('.nu-timeline-indikator');
 
+  
+            $('.' + item.tl_category1).css("color","#fb7f05");
+             $('.' + item.tl_category2).css("color","#ca5151");
+              $('.' + item.tl_category3).css("color","#d1b993");
+               $('.' + item.tl_category4).css("color","#C45A3B");
+                $('.' + item.tl_category5).css("color","#98AB31");
+                 $('.' + item.tl_category6).css("color","#21ABA5");
+
+            $('.' + item.tl_category1 + "bg").css({"background-image":"url(gfx/gradient_orange.png)" ,"borderColor":"#fb7f05", "background-color":"#fb7f05"});
+             $('.' + item.tl_category2 + "bg").css({"background-image":"url(gfx/gradient_wine.png)"   ,"borderColor":"#ca5151", "background-color":"#ca5151"});
+              $('.' + item.tl_category3 + "bg").css({"background-image":"url(gfx/gradient_beige.png)"  ,"borderColor":"#d1b993", "background-color":"#d1b993"});
+               $('.' + item.tl_category4 + "bg").css({"background-image":"url(gfx/gradient_sunsetish.png)"  ,"borderColor":"#C45A3B", "background-color":"#C45A3B"});
+                $('.' + item.tl_category5 + "bg").css({"background-image":"url(gfx/gradient_green.png)"  ,"borderColor":"#98AB31", "background-color":"#98AB31"});
+                 $('.' + item.tl_category6 + "bg").css({"background-image":"url(gfx/gradient_cyan.png)"  ,"borderColor":"#21ABA5", "background-color":"#21ABA5"});
+                  $('.0bg').css({"background-image":"url(gfx/gradient_grey.png)"  ,"borderColor":"#777", "background-color":"#777"});
+
+            $('.' + item.tl_category1 + "bg").mouseenter(function(){ $(this).css({"background-color":"#fb7f05","background-image":"none"}); });
+             $('.' + item.tl_category2 + "bg").mouseenter(function(){ $(this).css({"background-color":"#ca5151","background-image":"none"}); });
+              $('.' + item.tl_category3 + "bg").mouseenter(function(){ $(this).css({"background-color":"#d1b993","background-image":"none"}); });
+               $('.' + item.tl_category4 + "bg").mouseenter(function(){ $(this).css({"background-color":"#C45A3B","background-image":"none"}); });
+                $('.' + item.tl_category5 + "bg").mouseenter(function(){ $(this).css({"background-color":"#98AB31","background-image":"none"}); });
+                 $('.' + item.tl_category6 + "bg").mouseenter(function(){ $(this).css({"background-color":"#21ABA5","background-image":"none"}); });
+                  $('.0bg').mouseenter(function(){ $(this).css({"background-color":"#777","background-image":"none"}); });
+
+            $('.' + item.tl_category1 + "bg").mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_orange.png)","borderColor":"#fb7f05"}); });
+             $('.' + item.tl_category2 + "bg").mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_wine.png)","borderColor":"#ca5151"}); });
+              $('.' + item.tl_category3 + "bg").mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_beige.png)","borderColor":"#d1b993"}); });
+               $('.' + item.tl_category4 + "bg").mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_sunsetish.png)","borderColor":"#C45A3B"}); });
+                $('.' + item.tl_category5 + "bg").mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_green.png)","borderColor":"#98AB31" }); });
+                 $('.' + item.tl_category6 + "bg").mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_cyan.png)","borderColor":"#21ABA5" }); });
+                  $('.0bg').mouseleave(function(){ $(this).css({"background-image":"url(gfx/gradient_grey.png)","borderColor":"#777" }); });
+           
+           
+
             fixHeaderSize();
         });
-	});	
+	//});	
 }//END func(hentDataPrototype)
     
 function initSliders(){
@@ -691,51 +845,57 @@ function makeBottomSpace() {
 }//END func(makeBottomSpace)
 
 function watchWaypoints(){
-    var $tlHendelse = $('.nu-timeline-hendelse');
+    var $tlHendelse = $('.nu-timeline-hendelse:not(.nu-timeline-hendelse-inactive)');
 
     $tlHendelse.waypoint(function(direction) {
-   
-    fokusHendelse = $tlHendelse.index(this); 
-
+         var $tlHendelse = $('.nu-timeline-hendelse:not(.nu-timeline-hendelse-inactive)');
+        fokusHendelse = $tlHendelse.index(this); 
+    
 
         if(direction == 'up'){
-            if (fokusHendelse == 0){
+
+
+            if (fokusHendelse <= 0){
                 return false;
             }
-
-            fokusHendelse--; //Somehow this is needed when we navigate backwards in timeline to get correct selectedclass on indicator.
+            fokusHendelse--;
+             
+            
+             // fokusHendelse--;    //Somehow this is needed when we navigate backwards in timeline to get correct selectedclass on indicator.
          $('#status').html("up " + fokusHendelse + " " + $boolIngress);
            
         }else if(direction == 'down'){
             if ($boolIngress){
                
             }
+
             $('#status').html("down "  + fokusHendelse + " " + $boolIngress); 
         }
 
        
           
-            $('.nu-timeline-indikator').eq(fokusHendelse).addClass("nu-timeline-indikator-selected").siblings().removeClass("nu-timeline-indikator-selected"); //Sets active class on the active indicator
+            $('.nu-timeline-indikator:not(.nu-timeline-indikator-inactive)').eq(fokusHendelse).addClass("nu-timeline-indikator-selected").siblings().removeClass("nu-timeline-indikator-selected"); //Sets active class on the active indicator
             $('.nu-timeline-indikator').children("div.nu-timeline-indikator-open").not('.nu-timeline-indikator-first, .nu-timeline-indikator-last').hide(); //Hides all the hover-dates 
-          
-            var prosent = $('.nu-timeline-indikator').eq(fokusHendelse).attr('data-date-percent'); //Finds the percent to the left of the indicator
+            
+            var prosent = $('.nu-timeline-indikator:not(.nu-timeline-indikator-inactive)').eq(fokusHendelse).attr('data-date-percent'); //Finds the percent to the left of the indicator
 
+            //Prevents overlapping of the tooltips
             if (prosent < 10){
                 $('.nu-timeline-indikator-first').hide();
-                $('.nu-timeline-indikator').eq(fokusHendelse).children("div.nu-timeline-indikator-open").show();
+                $('.nu-timeline-indikator:not(.nu-timeline-indikator-inactive)').eq(fokusHendelse).children("div.nu-timeline-indikator-open").show();
             }else if (prosent > 90){
                 $('.nu-timeline-indikator-last').hide();
             }else {
                 $('.nu-timeline-indikator-last, .nu-timeline-indikator-first').show();
             }
 
-            $('.nu-timeline-indikator').eq(fokusHendelse).children("div.nu-timeline-indikator-open").show();
+            $('.nu-timeline-indikator:not(.nu-timeline-indikator-inactive)').eq(fokusHendelse).children("div.nu-timeline-indikator-open").show();
             sjekkNav();
                  
 
         },{
             offset: function(){
-                                return  150; //Circus-height of the header without ingress(excerpt). 
+                                return  200; //Circus-height of the header without ingress(excerpt). 
                                 },
             horizontal: false   
             
@@ -766,9 +926,6 @@ function scrollListener() {
             $('#nu-timeline-ingress').slideUp(300,'easeOutCubic',function() {
                 
             });
-             
-
-             
 
         } else {
               $boolIngress = true;
@@ -782,34 +939,38 @@ function scrollListener() {
             });
           
         }
-      
+        
+
+
          //sjekkNav();
     });
 }//END func(scrollListener)
 
 function previousArticle(){
 
-    var $tlHendelse = $('.nu-timeline-hendelse');
+    var $tlHendelse = $('.nu-timeline-hendelse').not('.nu-timeline-hendelse-inactive');
+
         if (fokusHendelse == 0){
              return false;
         }
         
         fokusHendelse--;
+       
         $headerHeight = $tlHeader.height();
     
         //Animerer til forrige hendelse.. (Bruker animate istedenfor scrollTo pga .eq(), usikker på syntax med scrolLTo.)
         $('html, body').stop(true,false).animate({
                     scrollTop: $tlHendelse.eq(fokusHendelse).offset().top - $headerHeight 
                      }, 400, 'easeOutCubic');
-        //Setter css .indikatorSelected på riktig indikator.             
-        //$('.indikator').eq(fokusHendelse).addClass("indikatorSelected").siblings().removeClass("indikatorSelected");  
+
 }//END func(previousArticle)
 
 function nextArticle(){
      //Hvis fokushendelsen er siste hendelse, skal det ikke skje noe når man trykker next.
- 
-        var $tlHendelse = $('.nu-timeline-hendelse');
+
         
+        var $tlHendelse = $('.nu-timeline-hendelse').not('.nu-timeline-hendelse-inactive');
+
         if (fokusHendelse == $tlHendelse.length - 1){
             
             return false;   
@@ -831,14 +992,17 @@ function nextArticle(){
                        scrollTop: $tlHendelse.eq(fokusHendelse).offset().top - $headerHeight 
              }, 400, 'easeOutCubic');
         }
+
 }//END func(nextArticle)
 
 function initButtons(){
     //Bruker .on("click", ".ind... ) istedenfor live() som ble fjernet i jquery v1.9. 
-    $(document).on("click", ".nu-timeline-indikator", function(){
+    $(document).on("click", ".nu-timeline-indikator:not(.nu-timeline-indikator-inactive)", function(){
         //finner ut hvilken kindikator som er trykket på, og scroller til tilsvarende hendelse
         var $id = $(this).attr("data-date");
-        
+      
+        watchWaypoints();
+
         if ($boolIngress){
             $headerHeight = $tlHeader.height() - ($tlHeaderIngress.height());
             $(window).scrollTo(".nu-timeline-hendelse[data-date='" + $id + "']", 400, {offset: -$headerHeight});
@@ -871,22 +1035,28 @@ function initButtons(){
          
      });
 
-    $(".cbCategory[name='category']").click(function() {
-       
-        if($(this).attr('checked')) {
-            var kategori = $(this).val();
-            $('.nu-timeline-hendelse[data-category="' + kategori + '"]').fadeOut();
-            $('.nu-timeline-indikator[data-category="' + kategori + '"]').fadeOut();
-            $(this).removeAttr('checked');
-        } else {
-            var kategori = $(this).val();
-            $('.nu-timeline-indikator[data-category="' + kategori + '"]').fadeIn();
-             $('.nu-timeline-hendelse[data-category="' + kategori + '"]').fadeIn();
-            $(this).attr('checked','checked');
-        }
-        $.waypoints('refresh');
 
+$('.cbCategory').click(function(){
+    //$(this).removeClass("cbCategory1 cbCategory2 cbCategory3 cbCategory4 cbCategory5 cbCategory6");
+    $(this).toggleClass("cbCategoryUnchecked");
+    var whatCat = $(this).attr("data-category");
+     $('.nu-timeline-hendelse[data-category="' + whatCat + '"]').toggleClass("nu-timeline-hendelse-inactive").toggle();
+     $('.nu-timeline-indikator[data-category="' + whatCat + '"]').toggleClass("nu-timeline-indikator-inactive");
+
+     //$('.nu-timeline-hendelse-wrapper').isotope({ filter: '.nu-timeline-hendelse[data-category="'+ whatCat +'"]' });
+
+    $.waypoints('refresh');
+
+    $('.cbCategory').each(function(a,b){
+       //MUSTDOLATER//Check if all is unselected 
     });
+ 
+ 
+
+});
+
+
+
 }//END func(initButtons)
 
 function leggTilIndikatorer(datoArray, importantDates, custom_time, categories){
@@ -918,7 +1088,7 @@ function leggTilIndikatorer(datoArray, importantDates, custom_time, categories){
         var tidsaspekt_dager = (tidsaspekt_milli / (1000*60*60*24));
         
         //Finds the percent of this date compared to the entire timeaspect.
-        var prosent = ((tidsaspekt_dager / dager) * 100).toFixed(0);
+        var prosent = ((tidsaspekt_dager / dager) * 100).toFixed(2);
         
         //Formats the Date to: dd-mm-yyyy
         var datoFormatert = datoArray[i].getDate().toString() + "-" + datoArray[i].getMonth().toString() + "-" + datoArray[i].getFullYear().toString();
@@ -938,7 +1108,7 @@ function leggTilIndikatorer(datoArray, importantDates, custom_time, categories){
         }
 
         //Appends #indikatorWrapper with an indicatorDiv that gets it's percent of the time-aspect in left-positioning.
-        $("#nu-timeline-indikator-wrapper").append("<div data-date='" + datoFormatert + " " + datoArray[i].getHours().toString() + datoArray[i].getMinutes().toString() + "' class='nu-timeline-indikator " + importantClass + "' data-date-percent='"
+        $("#nu-timeline-indikator-wrapper2").append("<div data-date='" + datoFormatert + " " + datoArray[i].getHours().toString() + datoArray[i].getMinutes().toString() + "' class='nu-timeline-indikator " + importantClass + " " + categories[i] + "bg ' data-date-percent='"
                                                                  + prosent + "' data-category='"+ categories[i] + "'><div class='nu-timeline-indikator-open' data-date-percent='" + prosent + "'>" + dateToolTip + "</div></div>");
 
         $(".nu-timeline-indikator[data-date-percent='" + prosent + "']").css({left: prosent + "%" });
@@ -1102,3 +1272,29 @@ function wrapTxt(text, tag){
     // Wrap-funksjon for å forenkle konstruksjon av HTML-string fra json
     return "<" + tag + ">" + text + "</" + tag + ">";   
 }//END func(wrapTxt)
+
+function shallWeZoom(){
+    
+var percentArray = [];
+
+    $('.nu-timeline-indikator').each(function(e,x){
+        //alert($(this).attr("data-date-percent"));
+        var prosenten = $(this).attr("data-date-percent");
+        var heltall = prosenten.split(".");
+        percentArray.push(heltall[0]);
+
+       // $.each(percentArray, function(i,x){
+           
+            if(percentArray[e-1] == heltall[0]){
+                //alert("oi " + percentArray[e]);  
+                $('#nu-timeline-indikator-wrapper2').width("5000px"); 
+            }
+        //})
+    });
+
+    var flytt=1;
+    $('.move').click(function(){
+        flytt -= 50;
+        $('#nu-timeline-indikator-wrapper2').css("margin-left",flytt + "px");
+    });
+}
