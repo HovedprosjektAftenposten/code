@@ -1,5 +1,5 @@
 <?php
-include('connect.inc.php');
+include('connect.inc');
 
 	if(isset($_REQUEST['overskrift'])){
 		mysql_query("UPDATE content_table SET content_title='".$_REQUEST['overskrift']."' WHERE content_ID = '".$_REQUEST['contentid']."'");

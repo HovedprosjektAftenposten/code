@@ -5,7 +5,7 @@
 	// Kode som henter data fra et form og oppdaterer den aktuelle artikkelen i databasen.
 		
 	ob_start();
-	include('connect.inc.php');
+	include('connect.inc');
 
 	$live = 0;
 	

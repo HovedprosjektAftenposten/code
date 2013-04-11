@@ -1,6 +1,6 @@
 <?php
 	ob_start();
-	include('connect.inc.php');
+	include('connect.inc');
 	
 	if(isset($_REQUEST['deleteContent'])) {
 		mysql_query("DELETE FROM media_table WHERE content_ID = '".$_REQUEST['article']."'");

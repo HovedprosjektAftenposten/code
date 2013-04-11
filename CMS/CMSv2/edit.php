@@ -15,10 +15,7 @@ header ('content-type:text/html;charset=utf-8');
 	<script src="bootstrap.min.js" type="text/javascript"></script>
 	<script src="jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
 	<script src="ckeditor/ckeditor.js"></script>
-	<script src='spectrum/spectrum.js'></script>
-	
-
-						
+	<script src='spectrum/spectrum.js'></script>					
 	
 	<script>
 
@@ -30,17 +27,7 @@ header ('content-type:text/html;charset=utf-8');
 	   
 	</script>
 <!-- 	DROPDOWN BUTTON IN edit.php -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#ddStatus').click(function(){
-
-				$('ul li > ul').slideToggle(100);		
-				$('.arrow').toggleClass('droppedDown');	
-			});
-
-		});
-
-	</script>
+	
 	<?php
 		include('func.php');
 	?>
@@ -145,7 +132,7 @@ header ('content-type:text/html;charset=utf-8');
 		    $min_length = 1;
 		    // sets minimum length of the search query
 	
-// IN PROGRESS	
+	
 		    if(empty($query)){
 			    getArticle();
 		    }

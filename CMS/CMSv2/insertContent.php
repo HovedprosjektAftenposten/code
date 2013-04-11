@@ -2,7 +2,7 @@
 	//Kode som henter data fra et form og setter de inn i databasen under den aktuelle tidslinjen
 
 	ob_start();
-	include('connect.inc.php');
+	include('connect.inc');
 	
 	/*
 $sql = "SELECT * FROM content_table ORDER BY content_ID DESC LIMIT 1";

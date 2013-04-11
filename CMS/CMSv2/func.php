@@ -1,5 +1,5 @@
 <?php
-include('connect.inc.php');
+include('connect.inc');
 
 //function som skriver ut alle tidslinjer på index.php. Hver tidslinje får en onclick som er satt til tl_ID. Onclick kaller på js script i index.php, som igjen setter urlen til edit.php?id= tl_ID.
 //På denne måten kan alt innhold i de forskjellige tidslinjene skrives ut på edit.php siden.
@@ -193,7 +193,7 @@ function fillTlInfoInputs() {
 			<table>
 			<tr>
 				<td><label class='nu-timeline-cms-tlInfoFormLabels'>Tittel:</label></td>
-				<td><label class='nu-timeline-cms-tlInforFormCategoriesLabel'>Kategorier (maks 6):</label></td>
+				<td><label class='nu-timeline-cms-tlInforFormCategoriesLabel'>Legg til kategori (maks 6):</label></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -203,7 +203,7 @@ function fillTlInfoInputs() {
 			</tr>
 			<tr>
 				<td><label class='nu-timeline-cms-tlInfoFormLabels'>Ingress:</label></td>
-				<td></td>
+				<td><label class='nu-timeline-cms-tlInforFormCategoriesLabel'>Kategorier:</label></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -252,53 +252,53 @@ function getContentID() {
 function editFormFillCategories(){
 
 	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
-	$result2 = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
+	$result2 = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['id']."'");
 	$print = mysql_fetch_array($result);
 	$print2 = mysql_fetch_array($result2);
 	
 	
 	echo "<option>Velg kategori..</option>";
 
-	if (!empty($print2['tl_category1'])){
-		if($print['content_category'] == $print2['tl_category1']) {
-			echo "<option selected='selected'>".$print2['tl_category1']."</option>";
+	if (!empty($print2['category1'])){
+		if($print['content_category'] == $print2['category1']) {
+			echo "<option selected='selected'>".$print2['category1']."</option>";
 		}else{
-			echo "<option>".$print2['tl_category1']."</option>";
+			echo "<option>".$print2['category1']."</option>";
 		}
 	}
-	if (!empty($print2['tl_category2'])){
-		if($print['content_category'] == $print2['tl_category2']) {
-			echo "<option selected='selected'>".$print2['tl_category2']."</option>";
+	if (!empty($print2['category2'])){
+		if($print['content_category'] == $print2['category2']) {
+			echo "<option selected='selected'>".$print2['category2']."</option>";
 		}else{
-			echo "<option>".$print2['tl_category2']."</option>";
+			echo "<option>".$print2['category2']."</option>";
 		}
 	}
-	if (!empty($print2['tl_category3'])){
-		if($print['content_category'] == $print2['tl_category3']) {
-			echo "<option selected='selected'>".$print2['tl_category3']."</option>";
+	if (!empty($print2['category3'])){
+		if($print['content_category'] == $print2['category3']) {
+			echo "<option selected='selected'>".$print2['category3']."</option>";
 		}else{
-			echo "<option>".$print2['tl_category3']."</option>";
+			echo "<option>".$print2['category3']."</option>";
 		}
 	}
-	if (!empty($print2['tl_category4'])){
-		if($print['content_category'] == $print2['tl_category4']) {
-			echo "<option selected='selected'>".$print2['tl_category4']."</option>";
+	if (!empty($print2['category4'])){
+		if($print['content_category'] == $print2['category4']) {
+			echo "<option selected='selected'>".$print2['category4']."</option>";
 		}else{
-			echo "<option>".$print2['tl_category4']."</option>";
+			echo "<option>".$print2['category4']."</option>";
 		}
 	}
-	if (!empty($print2['tl_category5'])){
-		if($print['content_category'] == $print2['tl_category5']) {
-			echo "<option selected='selected'>".$print2['tl_category5']."</option>";
+	if (!empty($print2['category5'])){
+		if($print['content_category'] == $print2['category5']) {
+			echo "<option selected='selected'>".$print2['category5']."</option>";
 		}else{
-			echo "<option>".$print2['tl_category5']."</option>";
+			echo "<option>".$print2['category5']."</option>";
 		}
 	}
-	if (!empty($print2['tl_category6'])){
-		if($print['content_category'] == $print2['tl_category6']) {
-			echo "<option selected='selected'>".$print2['tl_category6']."</option>";
+	if (!empty($print2['category6'])){
+		if($print['content_category'] == $print2['category6']) {
+			echo "<option selected='selected'>".$print2['category6']."</option>";
 		}else{
-			echo "<option>".$print2['tl_category6']."</option>";
+			echo "<option>".$print2['category6']."</option>";
 		}
 	}
 }

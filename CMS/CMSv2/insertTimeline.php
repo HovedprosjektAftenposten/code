@@ -1,6 +1,6 @@
 <?php
 	ob_start();
-	include('connect.inc.php');
+	include('connect.inc');
 	
 	$maxTLID = mysql_query("SELECT * FROM timeline_table ORDER BY tl_ID DESC LIMIT 1");
 	

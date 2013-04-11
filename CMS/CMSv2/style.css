@@ -1,26 +1,4 @@
-/* HOVEDREGLER FOR OPPSETT */
-
-input::-moz-focus-inner,
-input[type="text"]::-moz-focus-inner,
-input[type="date"]::-moz-focus-inner,
-input[type="time"]::-moz-focus-inner {
-     padding: 0 !important;
-     border: 0 none !important;
- }
-
-#wrapper{
-	height: 600px;
-	width: 960px;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: gray;
-}
-
-#leftNav{
-	height: 600px;
-	width: 300px;
-	background-color: yellow;
-}
+/* MAIN RULES */
 
 #nu-timeline-cms-mainWrapper{
 	height: 900px;
@@ -63,7 +41,17 @@ input[type="time"]::-moz-focus-inner {
 	position: relative;
 }
 
-/* INNHOLD HEADER, INDEX OG EDIT */
+textarea{
+	resize: none;
+}
+
+label{
+	font-weight: normal;
+}
+
+/* MAIN RULES END */
+
+/* CONTENT HEADER, INDEX AND EDIT */
 
 #nu-timeline-cms-menuText a{
 	text-decoration: none;
@@ -145,7 +133,7 @@ input[type="time"]::-moz-focus-inner {
 }
 
 #nu-timeline-cms-headerTableFirst{
-	width: 1000px;
+	width: 460px;
 }
 
 #nu-timeline-cms-headerTableSecond{
@@ -160,7 +148,7 @@ input[type="time"]::-moz-focus-inner {
 
 }
 
-
+/* END CONTENT HEADER, INDEX AND EDIT */
 
 /* INNHOLD MAIN, INDEX */
 
@@ -173,6 +161,8 @@ input[type="time"]::-moz-focus-inner {
 	margin-top: 50px;
 	overflow: scroll;
 }
+
+/* END INNHOLD MAIN, INDEX */
 
 /* INNHOLD MAIN, EDIT */
 
@@ -226,6 +216,27 @@ input[type="time"]::-moz-focus-inner {
 	float: left;
 }
 
+#nu-timeline-cms-tlOpenClose .tlOpenCloseArrow{
+	float: right;
+	width: 25px;
+	height: 25px;
+	margin-top: -26px;
+	margin-right: 2px;
+	
+	background-image: url(img/timelineOpenClose.png);
+	background-repeat: no-repeat;
+	background-position: -25px 0px;
+	opacity: 1;
+}
+
+#nu-timeline-cms-tlOpenClose .tlOpenCloseArrow:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#nu-timeline-cms-tlOpenClose .tlDroppedDown{
+	background-position: 0px 0px;
+}
 
 /* Start TLINFO FORM */
 
@@ -237,6 +248,7 @@ input[type="time"]::-moz-focus-inner {
 }
 
 #nu-timeline-cms-tlInfoFormCategoryInput{
+	width: 181px;
 	float: left;
 	margin-top: 5px;
 	margin-left: 30px;
@@ -297,6 +309,12 @@ input[type="time"]::-moz-focus-inner {
 }
 
 .nu-timeline-cms-tlFormDeleteCategoryBtn:hover{
+	background-image: url(img/trashHover.png);
+	background-repeat: no-repeat;
+	margin-top: 3px;
+	height: 20px;
+	width: 20px;
+	float: right;
 	opacity: 0.7;
 }
 
@@ -315,6 +333,7 @@ input[type="time"]::-moz-focus-inner {
 	border: 1px solid #e4e4e4;
 	padding: 3px;	
 	width: 100px;
+	margin-right: 15px;
 }
 
 .nu-timeline-cms-labelCategories{
@@ -324,12 +343,12 @@ input[type="time"]::-moz-focus-inner {
 
 /* End TLINFO FORM */
 
-/* Start INNHOLD  VNAV, EDIT */
-/* End INNHOLD  VNAV, EDIT */
+/* Start CONTENT  VNAV, EDIT */
+/* End CONTENT  VNAV, EDIT */
 
 
-/* Start INNHOLD  HNAV, EDIT */
-/* End INNHOLD  HNAV, EDIT */
+/* Start CONTENT  HNAV, EDIT */
+/* End CONTENT  HNAV, EDIT */
 
 #newTimeline{
 	height: 30px;
@@ -410,25 +429,6 @@ th:hover{
 h2{
 	text-decoration: underline;
 }
-
-
-
-/*
-#tlInfo{
-	height: 30px;
-	width: 960px;
-	background-color: #f8f8f8;
-	border: 1px solid #e4e4e4;
-	margin-left: 10px;
-}
-
-#tlInfo p{
-	padding: 5px;
-	margin: 0;
-}
-*/
-
-
 
 .nu-timeline-cms-article{
 	padding: 5px;
@@ -561,19 +561,6 @@ h2{
 	width: 300px;
 }
 
-.nu-timeline-cms-editFormStatusBtn{
-	
-}
-/*
-#nu-timeline-cms-editForm textarea{
-	float: left;
-	margin-top: -20px;
-	margin-left: 110px;
-	padding: 5px;
-	border: 1px solid #e4e4e4;
-
-}
-*/
 
 #nu-timeline-cms-formBtns{
 	float: left;
@@ -600,39 +587,6 @@ h2{
 	margin-right: 200px;
 }
 
-#picInput{
-	height: 100px;
-	width: 500px;
-	float: left;
-/* 	background-color: red; */
-}
-
-#nu-timeline-cms-fade{
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	z-index: 100;
-	background-color: rgba(0,0,0,0.7);
-}
-
-/*
-#nu-timeline-cms-newTimelineBtn{
-	height: 25px;
-	width: 25px;
-	background-image: url(img/plus.png);
-	text-decoration: none;
-	margin-left: 10px;
-	float: left;
-	opacity: 1;
-}
-
-#nu-timeline-cms-newTimelineBtn:hover{
-	cursor: pointer;
-	opacity: 0.7;
-}
-*/
-
 .nu-timeline-cms-plusBtn{
 	height: 25px;
 	width: 25px;
@@ -649,63 +603,12 @@ h2{
 	opacity: 0.7;
 }
 
-.nu-timeline-cms-minusBtn{
-	height: 25px;
-	width: 25px;
-	background-image: url(img/minus.png);
-	text-decoration: none;
-	margin-left: 10px;
-	margin-top: 2px;
-	float: left;
-	opacity: 1;
-}
-
-.nu-timeline-cms-minusBtn:hover{
-	cursor: pointer;
-	opacity: 0.7;
-}
-
-.nu-timeline-cms-test{
-	width: 100%;
-	height: 100%;
-	display: block;
-	
-}
-
-#nu-timeline-cms-popWindow{
-	height: 150px; 
-	width: 250px; 
-	background-color: #f8f8f8; 
-	display: none;
-	border: 1px solid #e4e4e4;
-}
-
-#picInput label{
-	font-weight: bold;
-	text-align: left;
-	margin-left: 20px;
-	margin-top: 10px;
-	float: left;
-}
-
-textarea{
-	resize: none;
-}
-
-#liveStatus {
-	float: right;
-	margin-left: 60px;
-	margin-top: 20px;
-	height: 40px;
-	width: 40px;
-}
-
 .nu-timeline-cms-contentLiveStatus{
 	float: right;
 }
 
 .nu-timeline-cms-textInactive{
-	color: red;
+	color: blue;
 	font-style: italic;
 	font-size: small;
 	margin-right: 5px;
@@ -718,7 +621,7 @@ textarea{
 	margin-right: 5px;
 }
 
-/* HENTET FRA BOOTSTRAP */ /* TORSTEIN SIN KNAPP */
+/* STATUS BUTTON */
 
 
 .nu-timeline-cms-status-buttons-wrapper {
@@ -773,31 +676,10 @@ textarea{
 	background-position:-12px 3px;
 }
 
+/* END STATUS BUTTON */
+
 /* TIMELINE INFO SLIDER */
 
-/* Henriksen */
-#nu-timeline-cms-tlOpenClose .tlOpenCloseArrow{
-	float: right;
-	width: 25px;
-	height: 25px;
-	margin-top: -26px;
-	margin-right: 2px;
-	
-	background-image: url(img/timelineOpenClose.png);
-	background-repeat: no-repeat;
-	background-position: -25px 0px;
-	opacity: 1;
-}
-
-#nu-timeline-cms-tlOpenClose .tlOpenCloseArrow:hover{
-	cursor: pointer;
-	opacity: 0.7;
-}
-
-#nu-timeline-cms-tlOpenClose .tlDroppedDown{
-	background-position: 0px 0px;
-}
-/* Henriksen slutt */
 
 #nu-timeline-cms-tlInfoForm{
 	padding: 10px;
@@ -809,24 +691,7 @@ textarea{
 	vertical-align: top;
 }
 
-#nu-timeline-cms-deleteForm{
-	height: 100px;
-	width: 250px;
-	padding: 5px;
-}
-
-#nu-timeline-cms-deleteForm p{
-	float: left;
-	text-align: left;
-	margin-left: 20px;
-}
-
-#nu-timeline-cms-deleteForm input{
-	float: left;
-	padding: 5px;
-	margin-top: 10px;
-	margin-left: 40px;
-}
+/* END TIMELINE INFO SLIDER */
 
 
 /* REGLER FOR Å UNNGÅ BOLD PÅ EDIT.PHP 
@@ -835,25 +700,4 @@ textarea{
 .nu-timeline-cms-articleContent strong
 label
 */
-
-label{
-	font-weight: normal;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -17,30 +17,22 @@
 	echo "<ul id='nu-timeline-cms-tlInfoListCategories'>";
 	
 	if(!empty($print['category1'])){
-		if(!empty($print['category1'])){
-		/* echo "<li><div class='nu-timeline-cms-showCategoriesNewLine en'></div><span class='nu-timeline-cms-labelCategories'>".$print['tl_category1']."</span></li>"; */ 
-		echo "<li><input type='text' value='".$print['category1']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn'></div></li>";
-		}
-		if(!empty($print['category2'])){
-		/* echo "<li><div class='nu-timeline-cms-showCategoriesNewLine to'></div><span class='nu-timeline-cms-labelCategories'>".$print['tl_category2']."</span></li>"; */ 
-		echo "<li><input type='text' value='".$print['category2']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn'></div></li>";
-		}
-		if(!empty($print['category3'])){
-		/* echo "<li><div class='nu-timeline-cms-showCategoriesNewLine tre'></div><span class='nu-timeline-cms-labelCategories'>".$print['tl_category3']."</span></li>"; */
-		echo "<li><input type='text' value='".$print['category3']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn'></div></li>";
-		}
-		if(!empty($print['category4'])){
-		/* echo "<li><div class='nu-timeline-cms-showCategoriesNewLine fire'></div><span class='nu-timeline-cms-labelCategories'>".$print['tl_category4']."</span></li>";  */
-		echo "<li><input type='text' value='".$print['category4']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn'></div></li>";
-		}
-		if(!empty($print['category5'])){
-		/* echo "<li><div class='nu-timeline-cms-showCategoriesNewLine fem'></div><span class='nu-timeline-cms-labelCategories'>".$print['tl_category5']."</span></li>";  */
-		echo "<li><input type='text' value='".$print['category5']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn'></div></li>";
-		}
-		if(!empty($print['category6'])){
-		/* echo "<li><div class='nu-timeline-cms-showCategoriesNewLine seks'></div><span class='nu-timeline-cms-labelCategories'>".$print['tl_category6']."</span></li>";  */
-		echo "<li><input type='text' value='".$print['category6']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn'></div></li>";
-		}
+		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory1' value='".$print['category1']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn1'></div></li>";
+	}
+	if(!empty($print['category2'])){
+		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory2' value='".$print['category2']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn2'></div></li>";
+	}
+	if(!empty($print['category3'])){
+		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory3' value='".$print['category3']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn3'></div></li>";
+	}
+	if(!empty($print['category4'])){
+		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory4' value='".$print['category4']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn4'></div></li>";
+	}
+	if(!empty($print['category5'])){
+		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory5' value='".$print['category5']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn5'></div></li>";
+	}
+	if(!empty($print['category6'])){
+		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory6' value='".$print['category6']."'></input><input type='text' class='nu-timeline-cms-colorPicker'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn6'></div></li>";
 	}
 	echo "</ul>";
 ?>

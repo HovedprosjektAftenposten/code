@@ -1,5 +1,5 @@
 <?php
-include('connect.inc.php');
+include('connect.inc');
 
 
 $result = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['tlID']."'");
