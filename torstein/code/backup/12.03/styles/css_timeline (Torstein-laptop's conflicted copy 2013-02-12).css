@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+/* STILARK for Aftenpostens tidslinje */
+body {
+margin:0;	
+background:#efefef;
+overflow-y:scroll;
+}
+.wrapper {
+ width:640px;
+ margin:0 auto;	
+ 
+}
+
+overflow:
+.hendelseWrapper {
+    width:640px;
+    
+    position:relative;
+}
+.hendelse {
+ border:1px solid #cdcdcd;	
+ padding:10px 10px 30px 10px;
+width:618px; /*2px border*/
+float:left;
+background-color:#
+}
+.hendelseTid {
+width:150px;
+float:left;	
+}
+.hendelseInnhold {
+float:right;	
+width:450px;
+}
+.hendelseInnhold img {
+width:350px;	
+clear:both;
+}
+.timeline-bottom-pusher {
+   display:block;
+    height:500px; 
+    width:640px;
+    background:grey;
+}
+
+
+
+.headerWrapper {
+float:left;	
+height:200px;
+
+}
+.header {
+    width:640px;
+    background:#fff;
+    position:fixed;
+    z-index:99;
+}
+
+#timeline-navi {
+	position:absolute;
+	top:30px;
+	right:0;
+}
+#timeline-next, #timeline-prev {
+	width:75px;
+	height:25px;	
+    background:#efefef;
+	float:left;
+	margin: 0 10px 0 0;
+    cursor:pointer;
+}
+
+
+
+#indikatorWrapper {
+    width:640px;
+    background:grey;
+    height:50px;	
+    position:relative;
+    float:left;
+}
+.indikator {
+    height:10px;
+    width:10px;
+    position:absolute;
+    background:white;
+    top:20px;
+    margin-left:-5px;
+    
+    -webkit-transition: all 200ms;
+            -moz-transition: all 200ms;
+            -ms-transition: all 200ms;
+            -o-transition: all 200ms;
+            transition: all 200ms;	
+    
+    cursor:pointer;
+
+}
+.indikator:hover {
+background-color:#999;	
+}
+.indikatorSelected {
+background-color:#666;
+}
+.indikatorSelected:hover {
+background-color:#666;	
+}
+
+
+
+.clearFix {
+clear:both;	
+}
