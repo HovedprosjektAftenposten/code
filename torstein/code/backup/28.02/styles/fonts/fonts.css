@@ -1,0 +1,136 @@
+/* Publico Headline */
+@font-face {
+    font-family: "publicoHeadlineWeb";
+    src: url("PublicoHeadWeb-Extrabold.eot?#iefix") format("embedded-opentype"),
+         url("PublicoHeadWeb-Extrabold.woff") format("woff"),
+         url("PublicoHeadWeb-Extrabold.svg#svgFontName") format("svg");
+    font-style: normal;
+    font-weight: bold;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "publicoHeadlineWeb";
+    src: url("PublicoHeadWeb-Extrabolditalic.eot?#iefix") format("embedded-opentype"),
+         url("PublicoHeadWeb-Extrabolditalic.woff") format("woff"),
+         url("PublicoHeadWeb-Extrabolditalic.svg#svgFontName") format("svg");
+    font-style: italic;
+    font-weight: bold;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "publicoHeadlineWeb";
+    src: url("PublicoHeadWeb-Medium.eot?#iefix") format("embedded-opentype"),
+         url("PublicoHeadWeb-Medium.woff") format("woff"),
+        /*url("PublicoHeadWeb-Medium.svg#svgFontName") format("svg");  */
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+}
+
+@font-face {
+    font-family: "publicoHeadlineWeb";
+    src: url("PublicoHeadWeb-Mediumitalic.eot?#iefix") format("embedded-opentype"),
+         url("PublicoHeadWeb-Mediumitalic.woff") format("woff"),
+         url("PublicoHeadWeb-Mediumitalic.svg#svgFontName") format("svg");
+    font-style: italic;
+    font-weight: normal;
+    font-stretch: normal;
+}
+
+/* IE 7-8 */
+@font-face {
+    font-family: "publicoHeadlineWebBold";
+    src: url("PublicoHeadWeb-Extrabold.eot?#iefix") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "publicoHeadlineWebBoldItalic";
+    src: url("PublicoHeadWeb-Extrabolditalic.eot?#iefix") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "publicoHeadlineWebNormal";
+    src: url("PublicoHeadWeb-Medium.eot?#iefix") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "publicoHeadlineWebNormalItalic";
+    src: url("PublicoHeadWeb-Mediumitalic.eot?#iefix") format("embedded-opentype");
+}
+
+/* Clan OT */
+@font-face {
+    font-family: "ClanWeb";
+    src: url("ClanWeb-NarrBlack.eot?#iefix") format("embedded-opentype"),
+         url("ClanWeb-NarrBlack.woff") format("woff"),
+         url("ClanComp-NarrowBlack.ttf") format("truetype");
+    font-style:normal;
+    font-weight:bold;
+    font-stretch:normal;
+}
+
+@font-face {
+    font-family: "ClanWeb";
+    src: url("ClanWeb-NarrBlackItalic.eot?#iefix") format("embedded-opentype"),
+         url("ClanWeb-NarrBlackItalic.woff") format("woff"),
+         url("ClanComp-NarrowBlackItalic.ttf") format("truetype");
+    font-style:italic;
+    font-weight:bold;
+    font-stretch:normal;
+}
+
+@font-face {
+    font-family: "ClanWeb";
+    src: url("ClanWeb-Book.eot?#iefix") format("embedded-opentype"),
+         url("ClanWeb-Book.woff") format("woff"),
+         url("ClanComp-Book.ttf") format("truetype");
+    font-style:normal;
+    font-weight:normal;
+    font-stretch:normal;
+}
+
+@font-face {
+    font-family: "ClanWeb";
+    src: url("ClanWeb-BookItalic.eot?#iefix") format("embedded-opentype"),
+         url("ClanWeb-BookItalic.woff") format("woff"),
+         url("ClanComp-BookItalic.ttf") format("opentype");
+    font-style:italic;
+    font-weight:normal;
+    font-stretch:normal;
+}
+
+/* ie 7-8 */
+@font-face {
+    font-family: "ClanWebBold";
+    src: url("ClanWeb-NarrBlack.eot?#iefix") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "ClanWebBoldItalic";
+    src: url("ClanWeb-NarrBlackItalic.eot?#iefix") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "ClanWebNormal";
+    src: url("ClanWeb-Book.eot?#iefix") format("embedded-opentype");
+}
+
+@font-face {
+    font-family: "ClanWebNormalItalic";
+    src: url("ClanWeb-BookItalic.eot?#iefix") format("embedded-opentype");
+}
+
+/* Small caps
+@font-face {
+    font-family: "ClanWeb";
+    src: url("ClanScWeb-NarrBlack.eot?#iefix") format("embedded-opentype"),
+         url("ClanScWeb-NarrBlack.woff") format("woff"),
+         url("ClanScWeb-NarrBlack.ttf") format("truetype");
+    font-style:normal;
+    font-weight:bold;
+    font-stretch:normal;
+    font-variant: small-caps;
+}
+*/
