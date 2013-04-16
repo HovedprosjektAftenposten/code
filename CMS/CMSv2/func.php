@@ -163,9 +163,33 @@ function fillEditInputs() {
 				</td>
 			</tr>
 			</table>
+			</table>
+		
+			<div id='nu-timeline-cms-contentMediaPicture'>
+				Bilde
+				
+				<div id='nu-timeline-cms-slideContentPicture'>
+				Open
+				</div>
+			</div>
+			<div id='nu-timeline-cms-contentMediaVideo'>
+				Video
+				
+				<div id='nu-timeline-cms-slideContentVideo'>
+				Open
+				</div>
+			</div>
+			<div id='nu-timeline-cms-contentMediaMap'>
+				Kart
+				
+				<div id='nu-timeline-cms-slideContentMap'>
+					<input type='text'></input>
+				</div>
+			</div>
+			
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
 			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
-			</table>
+			
 			
 			
 			
@@ -186,8 +210,10 @@ function fillTlInfoInputs() {
 /* 		$sql = "SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'"; */
 		
 		$result = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
+		$result2 = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['id']."'");
 		
 		$print = mysql_fetch_array($result);
+		$print2 = mysql_fetch_array($result2);
 		
 		echo "<form method='post' id='nu-timeline-cms-tlInfoForm' name='nu-timeline-cms-tlInfoForm' action='updateTimeline.php'>
 			<table>
@@ -214,7 +240,7 @@ function fillTlInfoInputs() {
 			</tr>
 			</table>
 			<input type='hidden' value='".$_REQUEST['id']."' name='hidden' id='nu-timeline-cms-tlInfoFormHiddenID' />
-			<input type='hidden' id='editFormHiddenCategory' value='".$print['tl_category6']."' />
+			<input type='hidden' value='".$print2['category6']."' id='editFormHiddenCategory' />
 			</form>";
 
 	}
@@ -322,5 +348,26 @@ function editFormFillImportant(){
 	}else if(empty($print['content_important'])){
 		echo "<option>Nei</option><option>Ja</option>";
 	}
+}
+
+function checkTlName() {
+			
+	$sql = "SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'";
+	
+	$result = mysql_query($sql);
+	
+	
+		while($row = mysql_fetch_array($result)) {
+			$sjekk = $row['tl_name'];
+			
+		}
+		
+		if(strlen($sjekk) < 1){
+			echo "<input type='hidden' value='OK' id='nu-timeline-cms-hiddenInput' />";	
+		}
+		else {
+			echo "<input type='hidden' value='NOPE' id='nu-timeline-cms-hiddenInput' />";
+		}
+		
 }
 ?>

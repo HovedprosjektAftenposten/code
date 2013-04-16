@@ -1,7 +1,12 @@
 /* MAIN RULES */
+body{
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
 
 #nu-timeline-cms-mainWrapper{
-	height: 900px;
+	height: auto;
 	width: 980px;
 	margin-left: auto;
 	margin-right: auto;
@@ -16,28 +21,38 @@
 }
 
 #nu-timeline-cms-main{
-	height: 700px;
+	height: auto;
 	width: 980px;
 }
 
-#nu-timeline-cms-vNav{
-	height: 700px;
-	width: 299px;
+#nu-timeline-cms-navWrapper{
 	background-color: #f8f8f8;
 	border: 1px solid #e4e4e4;
-	float: left;
+	height: 931px;
+	width: 960px;
 	margin-left: 10px;
-	overflow: scroll;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#nu-timeline-cms-vNav{
+	height: 900px;
+	width: 299px;
+	background-color: #f8f8f8;
+	border-left: 1px solid #e4e4e4;
+	float: left;
+	margin-left: 0px;
+	overflow-y: scroll;
 
 }
 
 #nu-timeline-cms-hNav{
-	height: 700px;
+	height: auto;
 	width: 659px;
 	background-color: #f8f8f8;
-	border: 1px solid #e4e4e4;
+	border-left: 1px solid #e4e4e4;
 	float: right;
-	margin-right: 8px;
+	margin-right: 0px;
 	position: relative;
 }
 
@@ -184,7 +199,7 @@ label{
 	margin: 0;
 }
 
-#nu-timeline-cms-slide{
+.nu-timeline-cms-slide{
 	height: auto;
 	width: 960px;
 	overflow: hidden;
@@ -195,7 +210,7 @@ label{
 }
 
 #nu-timeline-cms-hendelser{
-	height: 700px;
+	height: 42px;
 	width: 980px;
 	float: left;
 }
@@ -290,7 +305,7 @@ label{
 	height: 150px;
 	margin-left: 30px;
 	padding: 0;
-	
+		
 }
 
 .nu-timeline-cms-colorPicker{
@@ -619,6 +634,48 @@ h2{
 	font-style: italic;
 	font-size: small;
 	margin-right: 5px;
+}
+
+#nu-timeline-cms-contentMediaPicture{
+
+}
+
+#nu-timeline-cms-contentMediaVideo{
+
+}
+
+#nu-timeline-cms-contentMediaMap{
+
+}
+
+#nu-timeline-cms-slideContentPicture{
+	height: auto;
+	width: 658px;
+	overflow: hidden;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: left;
+	display: none;
+}
+
+#nu-timeline-cms-slideContentVideo{
+	height: auto;
+	width: 658px;
+	overflow: hidden;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: left;
+	display: none;
+}
+
+#nu-timeline-cms-slideContentMap{
+	height: auto;
+	width: 658px;
+	overflow: hidden;
+	background-color: #f8f8f8;
+	border: 1px solid #e4e4e4;
+	float: left;
+	display: none;
 }
 
 /* STATUS BUTTON */

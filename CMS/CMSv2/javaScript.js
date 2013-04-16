@@ -12,9 +12,22 @@ $(document).ready(function(){
 	
 	$('#nu-timeline-cms-tlInfo').click(function(){
 		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');	
-		$('#nu-timeline-cms-slide').slideToggle(100);
+		$('.nu-timeline-cms-slide').slideToggle(100);
 		
-	});    	
+	});
+	
+	$('#nu-timeline-cms-contentMediaPicture').click(function(){	
+		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');
+		$('#nu-timeline-cms-slideContentPicture').slideToggle(100);
+	});
+	$('#nu-timeline-cms-contentMediaVideo').click(function(){	
+		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');
+		$('#nu-timeline-cms-slideContentVideo').slideToggle(100);
+	}); 
+	$('#nu-timeline-cms-contentMediaMap').click(function(){	
+		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');
+		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
+	}); 	
 	
 	var hidden = $('#nu-timeline-cms-hiddenInput').val();
 	if(hidden == "OK") {
@@ -30,6 +43,8 @@ $(document).ready(function(){
 	showCategories();
 	tlInfoPostOnBlurInput();
 	tlInfoPostOnBlurText();
+	setColorPicker();
+	categoryUpdateOnBlur();
 		 
 	addCategories();
 	addImportant();
@@ -38,7 +53,6 @@ $(document).ready(function(){
 	inputPostOnBlur();
 	updateDate();
 	deleteArticles();
-	setColorPicker();
 	
 	saveArticleCategory();
 });
@@ -47,9 +61,7 @@ function updateSearch(){
 	var id = window.location.search;
 	$.get('getSearchResults.php'+id, function(data){
 		$('#nu-timeline-cms-vNav').html(data);
-	});	
-	
-	
+	});		
 }
 
 function postSearch(){
@@ -70,8 +82,9 @@ function tlInfoPostOnBlurInput(){
 
 		$.post('ajaxPOSTtlInfo.php', {title: title, tlID: tlID});
 		var field = "Tittel";
+		var farge = "green";
 		
-		statusMessage(field);
+		statusMessage(field, farge);
 		fetchTimeDate();
 		updateTimelineName();
 	});
@@ -84,8 +97,9 @@ function tlInfoPostOnBlurText(){
 		
 		$.post('ajaxPOSTtlInfo.php', {text: text, tlID: tlID});
 		var field = "Tekstfelt";
+		var farge= "green";
 		
-		statusMessage(field);
+		statusMessage(field, farge);
 		fetchTimeDate();
 	});
 }
@@ -97,6 +111,7 @@ function addCategories(){
 		
 		$.post('ajaxPOSTtlInfo.php', {category: category, tlID: tlID});
 		var field = "Kategori";
+		var farge = "green";
 		
 		var full = $('#editFormHiddenCategory').val();
 		fetchTimeDate();
@@ -104,11 +119,11 @@ function addCategories(){
 		
 		
 		if(!full){
-		
-			statusMessage(field);
+			var farge = "green";
+			statusMessage(field, farge);
 		}else{
 			$('#nu-timeline-cms-statusMessage').fadeIn();
-			$('#nu-timeline-cms-statusMessage').html('<p style="color: red; text-align: center">Maks antall kategorier er nådd</p>');
+			$('#nu-timeline-cms-statusMessage').html('<p style="color: red; text-align: center">Kan ikke overstige 6 kategorier</p>');
 			$('#nu-timeline-cms-statusMessage').fadeOut(3000);
 		}
 		fetchTimeDate();
@@ -124,8 +139,9 @@ function addImportant() {
 		
 		$.post('ajaxImportantArticle.php'+id, {important: important});
 		var field = "Viktig hendelse";
+		var farge = "green";
 		
-		statusMessage(field);
+		statusMessage(field, farge);
 		fetchTimeDate();
 	});
 }  
@@ -139,7 +155,7 @@ function showCategories(){
 	$('.nu-timeline-cms-colorPicker').spectrum({
 		showPaletteOnly: true,
 		showPalette: true,
-		color: 'green',
+		color: '',
 		palette: [
         ['black', 'rgb(10,10,10)', 'blanchedalmond',
         'rgb(255, 128, 0)', 'hsv 100 70 50'],
@@ -147,6 +163,13 @@ function showCategories(){
         ]
         
 	});
+	$('.color1').spectrum("set", $('#hiddenColor1').val());
+	$('.color2').spectrum("set", $('#hiddenColor2').val());
+	$('.color3').spectrum("set", $('#hiddenColor3').val());
+	$('.color4').spectrum("set", $('#hiddenColor4').val());
+	$('.color5').spectrum("set", $('#hiddenColor5').val());
+	$('.color6').spectrum("set", $('#hiddenColor6').val());
+	
 	deleteCategory();
 }
 	   
@@ -162,8 +185,9 @@ function editorPostOnBlur(){
 		editor.updateElement();
 		$.post('test.php', {text: text, contentid: contentID});
 		var field = "Tekstfelt";
+		var farge = "green";
 		
-		statusMessage(field);
+		statusMessage(field, farge);
 		fetchTimeDate();
 		updateArticles();
 	});
@@ -177,36 +201,40 @@ function inputPostOnBlur(){
 		var title = $('#nu-timeline-cms-editFormContentTitle').val();
 		$.post('test.php', {overskrift: title, tlid: tlID, contentid: contentID});
 		var field = "Tittel";
+		var farge = "green";
 		
 		fetchTimeDate();
-		statusMessage(field);
+		statusMessage(field, farge);
 		updateArticles();
 		});
 	$('#nu-timeline-cms-editFormContentTime').blur(function(){
 		var time = $('#nu-timeline-cms-editFormContentTime').val();
 		$.post('test.php', {tid: time, tlid: tlID, contentid: contentID});
 		var field = "Tid";
+		var farge = "green";
 		
 		fetchTimeDate();
-		statusMessage(field);
+		statusMessage(field, farge);
 		updateArticles();
 		});
 	$('#nu-timeline-cms-editFormContentPic').blur(function(){
 		var picPath = $('#nu-timeline-cms-editFormContentPic').val();
 		$.post('test.php', {purl: picPath, tlid: tlID, contentid: contentID});
 		var field = "Bilde";
+		var farge = "green";
 		
 		fetchTimeDate();
-		statusMessage(field);
+		statusMessage(field, farge);
 		updateArticles();
 		});
 	$('#nu-timeline-cms-editFormCustomTimeDate').blur(function(){
 		var custom = $('#nu-timeline-cms-editFormCustomTimeDate').val();
 		$.post('test.php', {custom: custom, tlid: tlID, contentid: contentID});
 		var field = "Egendefinert";
+		var farge = "green";
 		
 		fetchTimeDate();
-		statusMessage(field);
+		statusMessage(field, farge);
 		updateArticles();
 		});
 }
@@ -219,9 +247,10 @@ function updateDate(){
 			
 			$.post('test.php', {dato: datepickerDate, contentid: contentID});
 			var field = "Dato";
+			var farge = "green";
 			
 			fetchTimeDate();
-			statusMessage(field);
+			statusMessage(field, farge);
 			updateArticles();
 		}
 	});
@@ -243,11 +272,10 @@ function deleteArticles(){
 		if(deleteArticle == true){
 			var slett = 'ja';
 			$.post('deleteContent.php'+id, {deleteContent: slett});
+			var field = "Hendelse";
+			var farge = "red";
 			
-			$('#nu-timeline-cms-statusMessage').fadeIn();
-			$('#nu-timeline-cms-statusMessage').html('<p style="color: red; text-align: center">Hendelse er slettet</p>');
-			$('#nu-timeline-cms-statusMessage').fadeOut(3000);
-			
+			statusMessage(field, farge);
 			
 			$('ul li > ul').hide();		
 			$('.arrow').removeClass('droppedDown');	
@@ -261,13 +289,12 @@ function deleteArticles(){
 	});
 }
 
-function updateTimelineName(){
+function updateTimelineName() {
 	var id = window.location.search;
 	$.get('ajaxTimelineName.php'+id, function(data){
 		$('#nu-timeline-cms-menuText').html(data);
 	});
-	
-}
+	}
 
 function fixSelectedBackground() {
     var url = document.URL;
@@ -284,16 +311,23 @@ function saveArticleCategory() {
 		
 		$.post('ajaxCategories.php'+id, {category: category});
 		var field = "Kategori";
+		var farge = "green";
 		
 		fetchTimeDate();
-		statusMessage(field);
+		statusMessage(field, farge);
 	});
 }
 
-function statusMessage(field){
-	$('#nu-timeline-cms-statusMessage').fadeIn();
-	$('#nu-timeline-cms-statusMessage').html('<p style="color: green; text-align: center">'+field+' er oppdatert</p>');
-	$('#nu-timeline-cms-statusMessage').fadeOut(3000);
+function statusMessage(field, farge){
+	if(farge == "red"){
+		$('#nu-timeline-cms-statusMessage').fadeIn();
+		$('#nu-timeline-cms-statusMessage').html('<p style="color: '+farge+'; text-align: center">'+field+' er slettet</p>');
+		$('#nu-timeline-cms-statusMessage').fadeOut(3000);
+	}else if(farge == "green"){
+		$('#nu-timeline-cms-statusMessage').fadeIn();
+		$('#nu-timeline-cms-statusMessage').html('<p style="color: '+farge+'; text-align: center">'+field+' er oppdatert</p>');
+		$('#nu-timeline-cms-statusMessage').fadeOut(3000);
+	}
 }
 
 function fetchTimeDate() {
@@ -334,6 +368,10 @@ function deleteCategory() {
 		var slett = "category1";
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
+		var field = "Kategori 1";
+		var farge = "red";
+		
+		statusMessage(field, farge);
 		showCategories();
 	});
 	$('#categoryBtn2').click(function() {
@@ -341,6 +379,10 @@ function deleteCategory() {
 		var slett = "category2";
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
+		var field = "Kategori 2";
+		var farge = "red";
+		
+		statusMessage(field, farge);
 		showCategories();
 	});
 	$('#categoryBtn3').click(function() {
@@ -348,6 +390,10 @@ function deleteCategory() {
 		var slett = "category3";
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
+		var field = "Kategori 3";
+		var farge = "red";
+		
+		statusMessage(field, farge);
 		showCategories();
 	});
 	$('#categoryBtn4').click(function() {
@@ -355,6 +401,10 @@ function deleteCategory() {
 		var slett = "category4";
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
+		var field = "Kategori 4";
+		var farge = "red";
+		
+		statusMessage(field, farge);
 		showCategories();
 	});
 	$('#categoryBtn5').click(function() {
@@ -362,6 +412,10 @@ function deleteCategory() {
 		var slett = "category5";
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
+		var field = "Kategori 5";
+		var farge = "red";
+		
+		statusMessage(field, farge);
 		showCategories();
 	});
 	$('#categoryBtn6').click(function() {
@@ -369,19 +423,84 @@ function deleteCategory() {
 		var slett = "category6";
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
+		var field = "Kategori 6";
+		var farge = "red";
+		
+		statusMessage(field, farge);
 		showCategories();
 	});
 }
 
-function setColorPicker() { //// LEGG TIL FOR ALLE KATEGORIENE!!!
-	$('.nu-timeline-cms-colorPicker').change(function(){
-		var color = $('.nu-timeline-cms-colorPicker').val();
+function setColorPicker() {
+	$('.color1').change(function(){
+		var color = $('.color1').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		var catnr = "cat1";
 		
-		$.post('ajaxUpdateCategory.php', {color: color, id: id});
+		
+		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
+		var field = "Farge 1";
+		var farge = "green";
+		
+		statusMessage(field, farge);
 	});
-	
+	$('.color2').change(function(){
+		var color = $('.color2').val();
+		
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		var catnr = "cat2";
+		
+		
+		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
+		var field = "Farge 2";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('.color3').change(function(){
+		var color = $('.color3').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		var catnr = "cat3";
+		
+		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
+		var field = "Farge 3";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('.color4').change(function(){
+		var color = $('.color4').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		var catnr = "cat4";
+		
+		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
+		var field = "Farge 4";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('.color5').change(function(){
+		var color = $('.color5').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		var catnr = "cat5";
+		
+		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
+		var field = "Farge 5";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('.color6').change(function(){
+		var color = $('.color6').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		var catnr = "cat6";
+		
+		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
+		var field = "Farge 6";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
 	
 }
 
@@ -390,17 +509,62 @@ function categoryUpdateOnBlur() {
 		var category1 = $('#nu-timeline-cms-tlInfoCategory1').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
-		$.post('', {category1: category1, id: id});
+		$.post('ajaxUpdateCategory.php', {category1: category1, id: id});
+		var field = "Kategori 1";
+		var farge = "green";
+		
+		statusMessage(field, farge);
 	});
-	
-	var categoryInput = new array();
-	
-	categoryInput[0] = $('#nu-timeline-cms-tlInfoCategory1');
-	categoryInput[1] = $('#nu-timeline-cms-tlInfoCategory2');
-	categoryInput[2] = $('#nu-timeline-cms-tlInfoCategory3');
-	categoryInput[3] = $('#nu-timeline-cms-tlInfoCategory4');
-	categoryInput[4] = $('#nu-timeline-cms-tlInfoCategory5');
-	categoryInput[5] = $('#nu-timeline-cms-tlInfoCategory6');
+	$('#nu-timeline-cms-tlInfoCategory2').blur(function(){
+		var category2 = $('#nu-timeline-cms-tlInfoCategory2').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		
+		$.post('ajaxUpdateCategory.php', {category2: category2, id: id});
+		var field = "Kategori 2";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('#nu-timeline-cms-tlInfoCategory3').blur(function(){
+		var category3 = $('#nu-timeline-cms-tlInfoCategory3').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		
+		$.post('ajaxUpdateCategory.php', {category3: category3, id: id});
+		var field = "Kategori 3";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('#nu-timeline-cms-tlInfoCategory4').blur(function(){
+		var category4 = $('#nu-timeline-cms-tlInfoCategory4').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		
+		$.post('ajaxUpdateCategory.php', {category4: category4, id: id});
+		var field = "Kategori 4";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('#nu-timeline-cms-tlInfoCategory5').blur(function(){
+		var category5 = $('#nu-timeline-cms-tlInfoCategory5').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		
+		$.post('ajaxUpdateCategory.php', {category5: category5, id: id});
+		var field = "Kategori 5";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+	$('#nu-timeline-cms-tlInfoCategory6').blur(function(){
+		var category6 = $('#nu-timeline-cms-tlInfoCategory6').val();
+		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+		
+		$.post('ajaxUpdateCategory.php', {category6: category6, id: id});
+		var field = "Kategori 6";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
 	
 }
 

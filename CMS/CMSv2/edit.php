@@ -32,31 +32,10 @@ header ('content-type:text/html;charset=utf-8');
 		include('func.php');
 	?>
 	<?php
-		function test() {
-			
-			$sql = "SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'";
-			
-			$result = mysql_query($sql);
-			
-			
-				while($row = mysql_fetch_array($result)) {
-					$sjekk = $row['tl_name'];
-					
-				}
-				
-				if(strlen($sjekk) < 1){
-					echo "<input type='hidden' value='OK' id='nu-timeline-cms-hiddenInput' />";	
-				}
-				else {
-					echo "<input type='hidden' value='NOPE' id='nu-timeline-cms-hiddenInput' />";
-				}
-			
-	}
-
-	echo test();
+		
+		checkTlName();
 	
 	?>
-	<div id="resultat"></div>
 
 
 </head>
@@ -95,7 +74,7 @@ header ('content-type:text/html;charset=utf-8');
 					<p>Fyll inn informasjon om tidslinjen</p>
 					<a id="nu-timeline-cms-tlOpenClose"><span class="tlOpenCloseArrow"></span></a>
 				</div>
-				<div id="nu-timeline-cms-slide">
+				<div class="nu-timeline-cms-slide">
 					<?php fillTlInfoInputs(); ?>
 				</div>
 			</div>
@@ -114,8 +93,9 @@ header ('content-type:text/html;charset=utf-8');
 						<input type="text" name="sok" placeholder="S&oslash;k i hendelser...">
 						<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K">
 					</form>
+				</div>
 			</div>
-			
+			<div id="nu-timeline-cms-navWrapper">
 			
 				<div id="nu-timeline-cms-vNav">
 					<?php
@@ -178,15 +158,16 @@ header ('content-type:text/html;charset=utf-8');
 		                	
 							echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='hentArtikkelInnhold(".$results['tl_ID'].",".$results['content_ID'].")'>";
 							echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+							echo "</div>";
 							
 						}
 						else {
 							echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='hentArtikkelInnhold(".$results['tl_ID'].",".$results['content_ID'].")'>";
 							echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
-							
+							echo "</div>";
 						}
 
-							echo "</div>";
+							
 		                // posts results gotten from database
 		            }
 		             
@@ -216,12 +197,14 @@ header ('content-type:text/html;charset=utf-8');
 						?>
 					</div>
 					
-					<div id="picInput"></div>
+					
 					
 				</div>
 			</div>
+			</div>
 		</div>
 	</div>
+
 	
 	<div id='nu-timeline-cms-statusMessage' style='background-color: white; border: 1px solid #e4e4e4; padding: 5px; position: fixed; bottom: 0px; right: 5px;'></div>
 	
