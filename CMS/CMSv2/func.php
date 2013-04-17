@@ -115,7 +115,7 @@ function fillEditInputs() {
 			<table class='nu-timeline-cms-editFormCategoryTable'>
 			<tr>
 				<td><label class='nu-timeline-cms-editFormLeftLabel'>Kategori:</label></td>
-				<td><label>Viktig hendelse?</label></td>
+				<td><label class='nu-timeline-cms-editFormRightLabel'>Viktig hendelse?</label></td>
 			</tr>
 			<tr>
 				<td>
@@ -166,25 +166,37 @@ function fillEditInputs() {
 			</table>
 		
 			<div id='nu-timeline-cms-contentMediaPicture'>
-				Bilde
-				
-				<div id='nu-timeline-cms-slideContentPicture'>
-				Open
-				</div>
+				Legg til bilde(r):	
 			</div>
+			<div id='nu-timeline-cms-slideContentPicture'>
+					<label>Escenic ID: </label><input type='text'></input>
+					<div id='nu-timeline-cms-pictureSliderPreview'></div>
+			</div>
+				
 			<div id='nu-timeline-cms-contentMediaVideo'>
-				Video
-				
-				<div id='nu-timeline-cms-slideContentVideo'>
-				Open
-				</div>
+				Legg til video:	
 			</div>
-			<div id='nu-timeline-cms-contentMediaMap'>
-				Kart
+			<div id='nu-timeline-cms-slideContentVideo'>
 				
-				<div id='nu-timeline-cms-slideContentMap'>
-					<input type='text'></input>
+			</div>
+			
+			<div id='nu-timeline-cms-contentMediaMap'>
+				Legg til kart:
+			</div>
+			<div id='nu-timeline-cms-slideContentMap'>
+				<div id='nu-timeline-cms-mapsSearchPanel' style='margin-left: 0px'>
+					<input id='nu-timeline-cms-mapSearchTextField' type='text' size='50'>
+					<input type='radio' name='type' id='changetype-all' checked='checked'>
+					<label for='changetype-all'>All</label>
+	
+					<input type='radio' name='type' id='changetype-establishment'>
+					<label for='changetype-establishment'>Establishments</label>
+	
+					<input type='radio' name='type' id='changetype-geocode'>
+					<label for='changetype-geocode'>Geocodes</lable>
 				</div>
+				<div id='nu-timeline-cms-googleMapAPI'></div>
+				
 			</div>
 			
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			

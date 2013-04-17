@@ -1,4 +1,11 @@
 /* MAIN RULES */
+#nu-timeline-cms-googleMapAPI{
+	height: 300px;
+	width: 658px;
+	float: right;
+}
+
+
 body{
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -23,16 +30,18 @@ body{
 #nu-timeline-cms-main{
 	height: auto;
 	width: 980px;
+
 }
 
 #nu-timeline-cms-navWrapper{
 	background-color: #f8f8f8;
 	border: 1px solid #e4e4e4;
-	height: 931px;
+	height: auto;
 	width: 960px;
 	margin-left: 10px;
-	margin-top: 10px;
+	margin-top: 0px;
 	margin-bottom: 10px;
+	float: left;
 }
 
 #nu-timeline-cms-vNav{
@@ -48,9 +57,9 @@ body{
 
 #nu-timeline-cms-hNav{
 	height: auto;
-	width: 659px;
+	width: 658px;
 	background-color: #f8f8f8;
-	border-left: 1px solid #e4e4e4;
+	border: 1px solid #e4e4e4;
 	float: right;
 	margin-right: 0px;
 	position: relative;
@@ -162,6 +171,7 @@ label{
 #nu-timeline-cms-headerTableFourth{
 
 }
+
 
 /* END CONTENT HEADER, INDEX AND EDIT */
 
@@ -359,6 +369,15 @@ label{
 /* End TLINFO FORM */
 
 /* Start CONTENT  VNAV, EDIT */
+#nu-timeline-cms-searchContent{
+	border-bottom: 1px solid #e4e4e4;
+	padding: 5px;
+}
+
+#nu-timeline-cms-contentSearchField{
+	width: 210px;
+	margin-left: 10px;
+}
 /* End CONTENT  VNAV, EDIT */
 
 
@@ -512,6 +531,12 @@ h2{
 	margin-top: 10px;
 }
 
+#nu-timeline-cms-editForm .nu-timeline-cms-editFormRightLabel{
+	float: left;
+	margin-left: 140px;
+	margin-top: 10px;
+}
+
 .nu-timeline-cms-fields{
 	float: left;
 	margin-left: 0px;
@@ -637,42 +662,46 @@ h2{
 }
 
 #nu-timeline-cms-contentMediaPicture{
-
+	border: 1px solid #e4e4e4;
+	padding: 5px;
+	margin-top: 10px;
 }
 
 #nu-timeline-cms-contentMediaVideo{
-
+	border: 1px solid #e4e4e4;
+	padding: 5px;
 }
 
 #nu-timeline-cms-contentMediaMap{
-
+	border: 1px solid #e4e4e4;
+	padding: 5px;
 }
 
 #nu-timeline-cms-slideContentPicture{
-	height: auto;
+	height: 200px;
 	width: 658px;
 	overflow: hidden;
-	background-color: #f8f8f8;
+	background-color: #e4e4e4;
 	border: 1px solid #e4e4e4;
 	float: left;
 	display: none;
 }
 
 #nu-timeline-cms-slideContentVideo{
-	height: auto;
+	height: 200px;
 	width: 658px;
 	overflow: hidden;
-	background-color: #f8f8f8;
+	background-color: #e4e4e4;
 	border: 1px solid #e4e4e4;
 	float: left;
 	display: none;
 }
 
 #nu-timeline-cms-slideContentMap{
-	height: auto;
+	height: 300px;
 	width: 658px;
 	overflow: hidden;
-	background-color: #f8f8f8;
+	background-color: #e4e4e4;
 	border: 1px solid #e4e4e4;
 	float: left;
 	display: none;
