@@ -17,16 +17,16 @@ $(document).ready(function(){
 	});
 	
 	$('#nu-timeline-cms-contentMediaPicture').click(function(){	
-		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');
 		$('#nu-timeline-cms-slideContentPicture').slideToggle(100);
 	});
 	$('#nu-timeline-cms-contentMediaVideo').click(function(){	
-		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');
 		$('#nu-timeline-cms-slideContentVideo').slideToggle(100);
 	}); 
 	$('#nu-timeline-cms-contentMediaMap').click(function(){	
-		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');
-		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
+		$('#nu-timeline-cms-slideContentMap').show();
+		googleMaps();
+		/* google.maps.event.trigger(map, "resize"); */
+		
 	}); 	
 	
 	var hidden = $('#nu-timeline-cms-hiddenInput').val();
@@ -38,6 +38,7 @@ $(document).ready(function(){
 		$('ul li > ul').slideToggle(100);		
 		$('.arrow').toggleClass('droppedDown');	
 	});
+	
 	
 	
 	showCategories();
@@ -54,10 +55,23 @@ $(document).ready(function(){
 	inputPostOnBlur();
 	updateDate();
 	deleteArticles();
+	saveMapCoords();
+	getMapData();
 	
 	saveArticleCategory();
-	googleMaps();
+	
+// IN PROGRESS
+	$(document).on("click",'div[title="Zoom in"]',function(){
+	      zoomz++;
+    });
+	
+	$(document).on("click",'div[title="Zoom out"]',function(){
+	      zoomz--;
+	      console.log(zoomz);
+    });
+//	
 });
+
 
 function updateSearch(){
 	var id = window.location.search;
@@ -571,16 +585,20 @@ function categoryUpdateOnBlur() {
 }
 
 function googleMaps() {
+	var myLatLng = new google.maps.LatLng(lats,longs);
   var mapOptions = {
-    center: new google.maps.LatLng(-33.8688, 151.2195),
-    zoom: 13,
+  	center: myLatLng,
+    /* center: new google.maps.LatLng(59.9138688, 10.752245399999993), */
+    zoom: parseInt(zoomz),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  var map = new google.maps.Map(document.getElementById('nu-timeline-cms-googleMapAPI'),
+  window.map = new google.maps.Map(document.getElementById('nu-timeline-cms-googleMapAPI'),
     mapOptions);
+    
 
   var input = /** @type {HTMLInputElement} */(document.getElementById('nu-timeline-cms-mapSearchTextField'));
   var autocomplete = new google.maps.places.Autocomplete(input);
+  
 
   autocomplete.bindTo('bounds', map);
 
@@ -590,6 +608,7 @@ function googleMaps() {
   });
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
+  	
     infowindow.close();
     marker.setVisible(false);
     input.className = '';
@@ -616,6 +635,8 @@ function googleMaps() {
     }));
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
+    getLatLong();
+    
 
     var address = '';
     if (place.address_components) {
@@ -628,6 +649,7 @@ function googleMaps() {
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
+    
   });
 
   // Sets a listener on a radio button to change the filter type on Places
@@ -642,10 +664,52 @@ function googleMaps() {
   setupClickListener('changetype-all', []);
   setupClickListener('changetype-establishment', ['establishment']);
   setupClickListener('changetype-geocode', ['geocode']);
+  
+  
+  
+  
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);
+
+function getLatLong(){
 
 
+	var address = $('#nu-timeline-cms-mapSearchTextField').val();
+    var geo = new google.maps.Geocoder;
 
+    geo.geocode({'address':address},function(results, status){
+      if (status == google.maps.GeocoderStatus.OK) {
+        window.latitude = results[0].geometry.location.lat();
+        window.longitude = results[0].geometry.location.lng();
+        window.zoom = map.getZoom();
+        
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
 
+    });
+    
+ }
+ 
+function saveMapCoords() {
+	$('#nu-timeline-cms-saveMapButton').click(function(){
+		var coords = latitude+","+longitude+","+zoom;
+		var contentid = $('#editFormHiddenContentID').val();
+		alert(coords);
+		$.post('ajaxGoogleMaps.php', {coords: coords, contentid: contentid});
+	});
+}
+
+function getMapData() {
+	var id = window.location.search;
+	$.get('ajaxGoogleMaps.php'+id, function(data){
+		window.mapDataFromDb = data;
+		var array = mapDataFromDb.split(",");
+		window.lats = array[0];
+		window.longs = array[1];
+		window.zoomz = array[2];
+		
+	});
+	
+}

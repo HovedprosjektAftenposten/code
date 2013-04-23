@@ -164,6 +164,7 @@ function fillEditInputs() {
 			</tr>
 			</table>
 			</table>
+			</form>
 		
 			<div id='nu-timeline-cms-contentMediaPicture'>
 				Legg til bilde(r):	
@@ -186,16 +187,11 @@ function fillEditInputs() {
 			<div id='nu-timeline-cms-slideContentMap'>
 				<div id='nu-timeline-cms-mapsSearchPanel' style='margin-left: 0px'>
 					<input id='nu-timeline-cms-mapSearchTextField' type='text' size='50'>
-					<input type='radio' name='type' id='changetype-all' checked='checked'>
-					<label for='changetype-all'>All</label>
+					
 	
-					<input type='radio' name='type' id='changetype-establishment'>
-					<label for='changetype-establishment'>Establishments</label>
-	
-					<input type='radio' name='type' id='changetype-geocode'>
-					<label for='changetype-geocode'>Geocodes</lable>
 				</div>
 				<div id='nu-timeline-cms-googleMapAPI'></div>
+				<button id='nu-timeline-cms-saveMapButton'>Save</button>
 				
 			</div>
 			
@@ -210,7 +206,7 @@ function fillEditInputs() {
 			
 			
 		
-		echo "</form>";
+		
 	}
 		
 }
