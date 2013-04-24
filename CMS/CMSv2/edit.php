@@ -9,13 +9,13 @@ header ('content-type:text/html;charset=utf-8');
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="jquery-ui.css" />	
-	<link rel='stylesheet' href='spectrum/spectrum.css' />
+	<link rel="stylesheet" href="spectrum/spectrum.css" />
 	<script src="jquery-1.9.0.js" type="text/javascript"></script>
 	<script src="javaScript.js" type="text/javascript"></script>
 	<script src="bootstrap.min.js" type="text/javascript"></script>
 	<script src="jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
 	<script src="ckeditor/ckeditor.js"></script>
-	<script src='spectrum/spectrum.js'></script>					
+	<script src="spectrum/spectrum.js"></script>					
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 	
 	<script>

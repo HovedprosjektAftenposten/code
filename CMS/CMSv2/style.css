@@ -677,14 +677,26 @@ h2{
 	margin-top: 10px;
 }
 
+#nu-timeline-cms-lblContentMediaPicture{
+	margin-left: 15px;
+}
+
 #nu-timeline-cms-contentMediaVideo{
 	border: 1px solid #e4e4e4;
 	padding: 5px;
 }
 
+#nu-timeline-cms-lblContentMediaVideo{
+	margin-left: 15px;
+}
+
 #nu-timeline-cms-contentMediaMap{
 	border: 1px solid #e4e4e4;
 	padding: 5px;
+}
+
+#nu-timeline-cms-lblContentMediaMap{
+	margin-left: 15px;
 }
 
 #nu-timeline-cms-slideContentPicture{

@@ -163,7 +163,7 @@ function fillEditInputs() {
 			</form>
 		
 			<div id='nu-timeline-cms-contentMediaPicture'>
-				Legg til bilder:	
+				<label id='nu-timeline-cms-lblContentMediaPicture'>Legg til bilder:</label>	
 			</div>
 			<div id='nu-timeline-cms-slideContentPicture'>
 					<label>Escenic ID: </label><input type='text' id='nu-timeline-cms-escenicID'></input>
@@ -221,14 +221,14 @@ function fillEditInputs() {
 			</div>
 				
 			<div id='nu-timeline-cms-contentMediaVideo'>
-				Legg til video:	
+				<label id='nu-timeline-cms-lblContentMediaVideo'>Legg til video:</label>	
 			</div>
 			<div id='nu-timeline-cms-slideContentVideo'>
 				
 			</div>
 			
 			<div id='nu-timeline-cms-contentMediaMap'>
-				Legg til kart:
+				<label id='nu-timeline-cms-lblContentMediaMap'>Legg til kart:</label>
 			</div>
 			<div id='nu-timeline-cms-slideContentMap'>
 				<div id='nu-timeline-cms-mapsSearchPanel' style='margin-left: 0px'>
@@ -240,6 +240,8 @@ function fillEditInputs() {
 				<button id='nu-timeline-cms-saveMapButton'>Save</button>
 				
 			</div>
+			
+			
 			
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
 			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
