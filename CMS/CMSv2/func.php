@@ -163,14 +163,57 @@ function fillEditInputs() {
 			</form>
 		
 			<div id='nu-timeline-cms-contentMediaPicture'>
-				Legg til bilde(r):	
+				Legg til bilder:	
 			</div>
 			<div id='nu-timeline-cms-slideContentPicture'>
 					<label>Escenic ID: </label><input type='text' id='nu-timeline-cms-escenicID'></input>
 					<label>Versjon: </label>
 					<select id='nu-timeline-cms-cropVersion'>
-						<option disabled selected>Velg bildeversjon</option>
+						<option disabled selected>Velg størrelse</option>
+						<option>w180c169</option>
+						<option>w180c23</option>
+						<option>w180c34</option>
+						<option>w180c43</option>
+						<option>w180cFree</option>
+						<option>w280c169</option>
+						<option>w280c23</option>
+						<option>w280c34</option>
+						<option>w280c43</option>
+						<option>w280cFree</option>
+						<option>w380c169</option>
+						<option>w380c23</option>
+						<option>w380c34</option>
+						<option>w380c43</option>
+						<option>w380cFree</option>
+						<option>w480c169</option>
+						<option>w480c23</option>
+						<option>w480c34</option>
+						<option>w480c43</option>
+						<option>w480cFree</option>
+						<option>w580c169</option>
+						<option>w580c23</option>
+						<option>w580c34</option>
+						<option>w580c43</option>
+						<option>w580cFree</option>
+						<option>w680c169</option>
+						<option>w680c23</option>
+						<option>w680c34</option>
+						<option>w680c43</option>
+						<option>w680cFree</option>
+						<option>w780c169</option>
+						<option>w780c43</option>
+						<option>w780cFree</option>
+						<option>w80c169</option>
+						<option>w80c23</option>
+						<option>w80c34</option>
+						<option>w80c43</option>
+						<option>w80cFree</option>
+						<option>w880c169</option>
+						<option>w880c43</option>
+						<option>w880cFree</option>
 						<option>w980c169</option>
+						<option>w980c43</option>
+						<option>w980cFree</option>
 					</select>
 					<div id='nu-timeline-cms-picturePreview'>
 						Preview

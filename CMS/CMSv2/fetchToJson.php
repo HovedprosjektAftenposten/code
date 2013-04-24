@@ -22,7 +22,7 @@ function fetchData(){
 		LEFT JOIN content_table c ON t.tl_ID = c.tl_ID
 		LEFT JOIN media_table m ON c.content_ID = m.content_ID
 	WHERE t.tl_ID = $get
-	ORDER BY t.tl_ID, c.tl_ID, m.content_ID
+	ORDER BY t.tl_ID, c.content_date, m.content_ID
 	
 	") or die(mysql_error()); 
 	

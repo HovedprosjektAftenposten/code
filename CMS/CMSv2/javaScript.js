@@ -745,9 +745,15 @@ function getTest() {
 	}
 	xmlhttp.open("GET","http://api.snd.no/news/publication/ap/searchContents/instance?contentId=7180552&contentType=image&callback=myFunc",true);
 	xmlhttp.send();
-	var test = $('#nu-timeline-cms-picturePreview').html();
+
 	var test = $('entry link').attr('href');
-	alert(""+test+"");
+	var test2 = test.replace("{snd:mode}", "ALTERNATES");
+	
+	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
+	var test3 = test2.replace("{snd:cropversion}", cropVersion);
+	
+	var imgUrl = "<img src='" + test3 + "'></img>";
+	$('#nu-timeline-cms-picturePreview').html(imgUrl);
 	}
 
 
