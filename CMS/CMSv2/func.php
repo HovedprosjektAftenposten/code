@@ -141,12 +141,8 @@ function fillEditInputs() {
 			</table>
 			
 			<table class='nu-timeline-cms-editFormBottomTable'>
+			
 			<tr>
-				<td><label class='nu-timeline-cms-editFormLeftLabel'>Bilde url: </label></td>
-				<td><label>Status:<label></td>
-			</tr>
-			<tr>
-				<td><input type='text' name='purl' id='nu-timeline-cms-editFormContentPic' class='nu-timeline-cms-fields' value='".$print['media_data']."'></input></td>
 				<td class='nu-timeline-cms-editFormStatusBtn'>
 					<div class='nu-timeline-cms-status-buttons-wrapper'>
 						<ul>
@@ -170,8 +166,15 @@ function fillEditInputs() {
 				Legg til bilde(r):	
 			</div>
 			<div id='nu-timeline-cms-slideContentPicture'>
-					<label>Escenic ID: </label><input type='text'></input>
-					<div id='nu-timeline-cms-pictureSliderPreview'></div>
+					<label>Escenic ID: </label><input type='text' id='nu-timeline-cms-escenicID'></input>
+					<label>Versjon: </label>
+					<select id='nu-timeline-cms-cropVersion'>
+						<option disabled selected>Velg bildeversjon</option>
+						<option>w980c169</option>
+					</select>
+					<div id='nu-timeline-cms-picturePreview'>
+						Preview
+					</div>
 			</div>
 				
 			<div id='nu-timeline-cms-contentMediaVideo'>
@@ -291,7 +294,7 @@ function editFormFillCategories(){
 	$print2 = mysql_fetch_array($result2);
 	
 	
-	echo "<option>Velg kategori..</option>";
+	echo "<option disabled selected>Velg kategori..</option>";
 
 	if (!empty($print2['category1'])){
 		if($print['content_category'] == $print2['category1']) {
@@ -341,7 +344,7 @@ function editFormFillImportant(){
 	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
 	$print = mysql_fetch_array($result);
 	
-	echo "<option>Velg..</option>";
+	echo "<option disabled selected>Velg..</option>";
 	
 	if(!empty($print['content_important'])) {
 		if($print['content_important'] == "Nei") {
@@ -378,4 +381,5 @@ function checkTlName() {
 		}
 		
 }
+
 ?>

@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$.ajaxSetup({
 		async: false,
 	});
-	//IE8 fix ?
+	//IE8 fix
 	$.support.cors = true;
 	
 	fixSelectedBackground(); //DEPRECIATED BY TORSTEIN ;/
@@ -59,6 +59,10 @@ $(document).ready(function(){
 	getMapData();
 	
 	saveArticleCategory();
+	
+	
+	postEscenicID();
+	
 	
 // IN PROGRESS
 	$(document).on("click",'div[title="Zoom in"]',function(){
@@ -227,16 +231,6 @@ function inputPostOnBlur(){
 		var time = $('#nu-timeline-cms-editFormContentTime').val();
 		$.post('test.php', {tid: time, tlid: tlID, contentid: contentID});
 		var field = "Tid";
-		var farge = "green";
-		
-		fetchTimeDate();
-		statusMessage(field, farge);
-		updateArticles();
-		});
-	$('#nu-timeline-cms-editFormContentPic').blur(function(){
-		var picPath = $('#nu-timeline-cms-editFormContentPic').val();
-		$.post('test.php', {purl: picPath, tlid: tlID, contentid: contentID});
-		var field = "Bilde";
 		var farge = "green";
 		
 		fetchTimeDate();
@@ -713,3 +707,53 @@ function getMapData() {
 	});
 	
 }
+
+function postEscenicID() {
+	$('#nu-timeline-cms-cropVersion').change(function() {
+	window.escenicID = $('#nu-timeline-cms-escenicID').val();
+	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
+	
+	$.post('ajaxGetEscenicPicture.php', {escenicID: escenicID, cropVersion: cropVersion});
+	getTest();
+	});
+		
+}
+
+function getEscenicID() {
+	var id = window.location.search;
+	$.get('ajaxGetEscenicPicture.php'+id, function(data){
+		$('#nu-timeline-cms-picturePreview').html(data);
+	});
+}
+
+function getTest() {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	    {
+	    document.getElementById("nu-timeline-cms-picturePreview").innerHTML=xmlhttp.responseText;
+	    }
+	}
+	xmlhttp.open("GET","http://api.snd.no/news/publication/ap/searchContents/instance?contentId=7180552&contentType=image&callback=myFunc",true);
+	xmlhttp.send();
+	var test = $('#nu-timeline-cms-picturePreview').html();
+	var test = $('entry link').attr('href');
+	alert(""+test+"");
+	}
+
+
+
+
+
+
+
+

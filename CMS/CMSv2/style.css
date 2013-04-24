@@ -222,7 +222,9 @@ label{
 	width: 960px;
 	overflow: hidden;
 	background-color: #f8f8f8;
-	border: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	border-left: 1px solid #e4e4e4;
+	border-right: 1px solid #e4e4e4;
 	float: left;
 	display: none;
 }
