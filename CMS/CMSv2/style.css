@@ -898,9 +898,11 @@ h2{
 
 
 .nu-timeline-cms-status-buttons-wrapper {
-	margin-left: 20px;
-
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
 }
+
 .nu-timeline-cms-status-buttons-wrapper ul {
 	padding-left:0;
 	margin:0;
