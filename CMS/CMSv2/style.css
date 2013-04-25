@@ -1,3 +1,28 @@
+input:required:focus:valid {
+	background:#E3F9E7 url(../images/gfx/godkjent.png) no-repeat !important;
+	background-repeat:no-repeat !important;
+	background-position:top right !important;
+}
+input:required:focus:invalid {
+	background:#FFE8E8 url(../images/gfx/required.png) no-repeat !important;
+	background-repeat:no-repeat !important;
+	background-position:top right !important;
+}
+input:required:valid, textarea:required:valid{
+    background:#f9f9f9 url(../images/gfx/godkjent.png) no-repeat;
+	background-repeat:no-repeat;
+	background-position:top right;
+}
+input:required:invalid, textarea:required:invalid {
+	background:#f9f9f9 url(../images/gfx/required.png) no-repeat;
+	background-repeat:no-repeat;
+	background-position:top right;
+	-moz-box-shadow: none;
+}
+
+
+
+
 /* MAIN RULES */
 #nu-timeline-cms-googleMapAPI{
 	height: 300px;

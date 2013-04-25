@@ -95,7 +95,7 @@ function fillEditInputs() {
 				<td><label class='nu-timeline-cms-editFormLeftLabel'>Overskrift:</label></td>
 			</tr>
 			<tr>
-				<td><input id='nu-timeline-cms-editFormContentTitle' type='text' name='overskrift' value='".$print['content_title']."''></input></td>
+				<td><input id='nu-timeline-cms-editFormContentTitle' type='text' name='overskrift' value='".$print['content_title']."'' required></input></td>
 			</tr>
 			</table>
 			
@@ -106,9 +106,9 @@ function fillEditInputs() {
 				<td><label>Egendefinert dato tekst:</label></td>
 			</tr>
 			<tr>
-				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."'></input></td>
-				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' value='".$print['content_time']."'></input></td>
-				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
+				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."' required pattern='^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$'></input></td>
+				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' placeholder='HH:MM:SS' value='".$print['content_time']."' required pattern='^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$'></input></td>
+				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."' required placeholder='Test'></input></td>
 			</tr>
 			</table>
 			
@@ -170,6 +170,11 @@ function fillEditInputs() {
 					<label>Versjon: </label>
 					<select id='nu-timeline-cms-cropVersion'>
 						<option disabled selected>Velg størrelse</option>
+						<option>w80c169</option>
+						<option>w80c23</option>
+						<option>w80c34</option>
+						<option>w80c43</option>
+						<option>w80cFree</option>
 						<option>w180c169</option>
 						<option>w180c23</option>
 						<option>w180c34</option>
@@ -203,11 +208,6 @@ function fillEditInputs() {
 						<option>w780c169</option>
 						<option>w780c43</option>
 						<option>w780cFree</option>
-						<option>w80c169</option>
-						<option>w80c23</option>
-						<option>w80c34</option>
-						<option>w80c43</option>
-						<option>w80cFree</option>
 						<option>w880c169</option>
 						<option>w880c43</option>
 						<option>w880cFree</option>
@@ -279,8 +279,8 @@ function fillTlInfoInputs() {
 				<td></td>
 			</tr>
 			<tr>
-				<td><input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormTitle' id='nu-timeline-cms-tlInfoFormTitle' value='".$print['tl_name']."' /></td>
-				<td><input type='text' id='nu-timeline-cms-tlInfoFormCategoryInput' name='nu-timeline-cms-categoryName' /></td>
+				<td><input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormTitle' id='nu-timeline-cms-tlInfoFormTitle' value='".$print['tl_name']."'  required/></td>
+				<td><input type='text' id='nu-timeline-cms-tlInfoFormCategoryInput' name='nu-timeline-cms-categoryName'  required/></td>
 				<td><span id='nu-timeline-cms-addCategoryBtn' class='nu-timeline-cms-plusBtn' name='nu-timeline-cms-addCategoryBtn'></span></td>
 			</tr>
 			<tr>

@@ -746,7 +746,8 @@ function getTest() {
 	xmlhttp.open("GET","http://api.snd.no/news/publication/ap/searchContents/instance?contentId=7180552&contentType=image&callback=myFunc",true);
 	xmlhttp.send();
 
-	var test = $('entry link').attr('href');
+	/*
+var test = $('entry link').attr('href');
 	var test2 = test.replace("{snd:mode}", "ALTERNATES");
 	
 	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
@@ -754,6 +755,7 @@ function getTest() {
 	
 	var imgUrl = '<img src="' + test3 + '"></img>';
 	$('#nu-timeline-cms-picturePreview').html(imgUrl);
+*/
 	}
 
 
