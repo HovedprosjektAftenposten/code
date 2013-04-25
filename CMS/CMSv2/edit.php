@@ -7,12 +7,12 @@ header ('content-type:text/html;charset=utf-8');
 <head>
 	<title>Rediger tidslinje</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="jquery-ui.css" />	
 	<link rel="stylesheet" href="spectrum/spectrum.css" />
 	<script src="jquery-1.9.0.js" type="text/javascript"></script>
 	<script src="javaScript.js" type="text/javascript"></script>
-	<script src="bootstrap.min.js" type="text/javascript"></script>
+	<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script src="jquery-ui-1.10.0.custom.js" type="text/javascript"></script>
 	<script src="ckeditor/ckeditor.js"></script>
 	<script src="spectrum/spectrum.js"></script>					
@@ -77,7 +77,7 @@ header ('content-type:text/html;charset=utf-8');
 			<div id="nu-timeline-cms-tlInfoWrapper">
 				<div id="nu-timeline-cms-tlInfo">
 					<p>Fyll inn informasjon om tidslinjen</p>
-					<a id="nu-timeline-cms-tlOpenClose"><span class="tlOpenCloseArrow"></span></a>
+					<a id="nu-timeline-cms-tlOpenClose"><span class="nu-timeline-cms-tlOpenCloseArrow"></span></a>
 				</div>
 				<div class="nu-timeline-cms-slide">
 					<?php fillTlInfoInputs(); ?>

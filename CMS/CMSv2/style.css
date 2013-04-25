@@ -1,3 +1,69 @@
+body{
+	font-family: arial;
+	font-size: 14px;
+}
+
+#nu-timeline-cms-dateCoin{
+	background-image: url(img/qCoin.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+	position: absolute;
+	margin-top: -8px;
+	margin-left: -20px;
+}
+
+#nu-timeline-cms-timeCoin{
+	background-image: url(img/qCoin.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+	position: absolute;
+	margin-top: -8px;
+	margin-left: -20px;
+}
+
+#nu-timeline-cms-customCoin{
+	background-image: url(img/qCoin.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	margin-top: -8px;
+	margin-left: -20px;
+}
+
+#nu-timeline-cms-categoryCoin{
+	background-image: url(img/qCoin.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	margin-left: 5px;
+}
+
+#nu-timeline-cms-importantCoin{
+	background-image: url(img/qCoin.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	margin-left: 5px;
+}
+
+#nu-timeline-cms-tlCategoryCoin{
+	background-image: url(img/qCoin.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	margin-left: 5px;
+	position: absolute;
+	margin-top: -6px;
+	margin-left: -27px;
+}
+
 input:required:focus:valid {
 	background:#E3F9E7 url(../images/gfx/godkjent.png) no-repeat !important;
 	background-repeat:no-repeat !important;
@@ -9,12 +75,12 @@ input:required:focus:invalid {
 	background-position:top right !important;
 }
 input:required:valid, textarea:required:valid{
-    background:#f9f9f9 url(../images/gfx/godkjent.png) no-repeat;
+    background:white url(../images/gfx/godkjent.png) no-repeat;
 	background-repeat:no-repeat;
 	background-position:top right;
 }
 input:required:invalid, textarea:required:invalid {
-	background:#f9f9f9 url(../images/gfx/required.png) no-repeat;
+	background:white url(../images/gfx/required.png) no-repeat;
 	background-repeat:no-repeat;
 	background-position:top right;
 	-moz-box-shadow: none;
@@ -276,7 +342,7 @@ label{
 	float: left;
 }
 
-#nu-timeline-cms-tlOpenClose .tlOpenCloseArrow{
+#nu-timeline-cms-tlOpenClose .nu-timeline-cms-tlOpenCloseArrow{
 	float: right;
 	width: 25px;
 	height: 25px;
@@ -289,7 +355,7 @@ label{
 	opacity: 1;
 }
 
-#nu-timeline-cms-tlOpenClose .tlOpenCloseArrow:hover{
+#nu-timeline-cms-tlOpenClose .nu-timeline-cms-tlOpenCloseArrow:hover{
 	cursor: pointer;
 	opacity: 0.7;
 }
@@ -319,20 +385,20 @@ label{
 #nu-timeline-cms-tlInfoFormText{
 	float: left;
 	margin-top: 5px;
-	margin-left: 75px;
+	margin-left: 10px;
 	margin-bottom: 20px;
 	padding: 5px;
 	border: 1px solid #e4e4e4;
 }
 
 .nu-timeline-cms-tlInfoFormLabels{
-	margin-left: 75px;
+	margin-left: 10px;
 	margin-top: 0px;
 	float: left;
 }
 
 .nu-timeline-cms-tlInfoFormTitle{
-	margin-left: 75px;
+	margin-left: 10px;
 	float: left;
 	margin-top: 5px;
 	padding: 5px;
@@ -341,7 +407,7 @@ label{
 }
 
 #nu-timeline-cms-addCategoryBtn{
-	margin-right: 100px;
+	margin-right: 0px;
 	padding: 0;
 }
 
@@ -482,17 +548,7 @@ th:hover{
 }
 
 #nu-timeline-cms-indexTable td.third{
-	width: 200px;
-}
-
-#nu-timeline-cms-indexTable td.last{
-	width: 20px;
-	background-image: url(img/editButton.png);
-	background-repeat: no-repeat;
-}
-
-#nu-timeline-cms-indexTable td.last:hover{
-	background-image: url(img/editButtonHover.png);
+	width: 220px;
 }
 
 h2{
@@ -572,6 +628,17 @@ h2{
 	margin-top: 10px;
 }
 
+#nu-timeline-cms-editForm .nu-timeline-cms-editFormTimeLabel{
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+#nu-timeline-cms-editForm .nu-timeline-cms-editFormCustomLabel{
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
 .nu-timeline-cms-fields{
 	float: left;
 	margin-left: 0px;
@@ -604,22 +671,24 @@ h2{
 }
 
 #nu-timeline-cms-editFormContentDate{
-	margin-right: 138px;
+	margin-right: 0px;
 	margin-left: 20px;
+	width: 100px;
 }
 
 #nu-timeline-cms-editFormContentTime{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
-	width: 60px;
-	margin-left: 0px;
-	margin-right: 158px;
+	width: 80px;
+	margin-left: 10px;
+	margin-right: 0px;
 }
 
 #nu-timeline-cms-editFormCustomTimeDate{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
-	width: 145px;
+	width: 379px;
+	margin-left: 10px;
 	
 }
 
@@ -659,7 +728,7 @@ h2{
 
 #nu-timeline-cms-editForm select{
 	float: left;
-	margin-right: 200px;
+	margin-right: 0px;
 }
 
 .nu-timeline-cms-plusBtn{
@@ -734,6 +803,33 @@ h2{
 	display: none;
 }
 
+#nu-timeline-cms-slideContentPicture label{
+	float: left;
+	margin-left: 20px;
+}
+
+#nu-timeline-cms-contentMediaPictureOpenClose .nu-timeline-cms-contentMediaPictureOpenCloseArrow{
+	float: right;
+	width: 25px;
+	height: 25px;
+	margin-top: -4px;
+	margin-right: -2px;
+	
+	background-image: url(img/timelineOpenClose.png);
+	background-repeat: no-repeat;
+	background-position: -25px 0px;
+	opacity: 1;
+}
+
+#nu-timeline-cms-contentMediaPictureOpenClose .nu-timeline-cms-contentMediaPictureOpenCloseArrow:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#nu-timeline-cms-contentMediaPictureOpenClose .contentMediaPictureDroppedDown{
+	background-position: 0px 0px;
+}
+
 #nu-timeline-cms-slideContentVideo{
 	height: 200px;
 	width: 658px;
@@ -744,6 +840,28 @@ h2{
 	display: none;
 }
 
+#nu-timeline-cms-contentMediaVideoOpenClose .nu-timeline-cms-contentMediaVideoOpenCloseArrow{
+	float: right;
+	width: 25px;
+	height: 25px;
+	margin-top: -4px;
+	margin-right: -2px;
+	
+	background-image: url(img/timelineOpenClose.png);
+	background-repeat: no-repeat;
+	background-position: -25px 0px;
+	opacity: 1;
+}
+
+#nu-timeline-cms-contentMediaVideoOpenClose .nu-timeline-cms-contentMediaVideoOpenCloseArrow:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#nu-timeline-cms-contentMediaVideoOpenClose .contentMediaVideoDroppedDown{
+	background-position: 0px 0px;
+}
+
 #nu-timeline-cms-slideContentMap{
 	height: 300px;
 	width: 658px;
@@ -752,6 +870,28 @@ h2{
 	border: 1px solid #e4e4e4;
 	float: left;
 	display: none;
+}
+
+#nu-timeline-cms-contentMediaMapOpenClose .nu-timeline-cms-contentMediaMapOpenCloseArrow{
+	float: right;
+	width: 25px;
+	height: 25px;
+	margin-top: -4px;
+	margin-right: -2px;
+	
+	background-image: url(img/timelineOpenClose.png);
+	background-repeat: no-repeat;
+	background-position: -25px 0px;
+	opacity: 1;
+}
+
+#nu-timeline-cms-contentMediaMapOpenClose .nu-timeline-cms-contentMediaMapOpenCloseArrow:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#nu-timeline-cms-contentMediaMapOpenClose .contentMediaMapDroppedDown{
+	background-position: 0px 0px;
 }
 
 /* STATUS BUTTON */

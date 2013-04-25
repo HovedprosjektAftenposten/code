@@ -10,20 +10,23 @@ $(document).ready(function(){
 	
 	fixSelectedBackground(); //DEPRECIATED BY TORSTEIN ;/
 	
-	$('#nu-timeline-cms-tlInfo').click(function(){
-		$('.tlOpenCloseArrow').toggleClass('tlDroppedDown');	
+	$('#nu-timeline-cms-tlInfo').click(function(){		
 		$('.nu-timeline-cms-slide').slideToggle(100);
-		
+		$('.nu-timeline-cms-tlOpenCloseArrow').toggleClass('tlDroppedDown');
 	});
 	
 	$('#nu-timeline-cms-contentMediaPicture').click(function(){	
 		$('#nu-timeline-cms-slideContentPicture').slideToggle(100);
+		$('.nu-timeline-cms-contentMediaPictureOpenCloseArrow').toggleClass('contentMediaPictureDroppedDown');
+		
 	});
 	$('#nu-timeline-cms-contentMediaVideo').click(function(){	
 		$('#nu-timeline-cms-slideContentVideo').slideToggle(100);
+		$('.nu-timeline-cms-contentMediaVideoOpenCloseArrow').toggleClass('contentMediaVideoDroppedDown');
 	}); 
 	$('#nu-timeline-cms-contentMediaMap').click(function(){	
 		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
+		$('.nu-timeline-cms-contentMediaMapOpenCloseArrow').toggleClass('contentMediaMapDroppedDown');
 		googleMaps();
 		/* google.maps.event.trigger(map, "resize"); */
 		
@@ -38,6 +41,26 @@ $(document).ready(function(){
 		$('ul li > ul').slideToggle(100);		
 		$('.arrow').toggleClass('droppedDown');	
 	});
+	
+	$('#nu-timeline-cms-dateCoin').hover(function(){
+		$('#nu-timeline-cms-dateCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-timeCoin').hover(function(){
+		$('#nu-timeline-cms-timeCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-customCoin').hover(function(){
+		$('#nu-timeline-cms-customCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-categoryCoin').hover(function(){
+		$('#nu-timeline-cms-categoryCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-importantCoin').hover(function(){
+		$('#nu-timeline-cms-importantCoin').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-tlCategoryCoin').hover(function(){
+		$('#nu-timeline-cms-tlCategoryCoin').tooltip('toggle');	
+	});
+	
 	
 	showCategories();
 	deleteCategory();

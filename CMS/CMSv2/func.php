@@ -102,20 +102,28 @@ function fillEditInputs() {
 			<table class='nu-timeline-cms-editFormDateTable'>
 			<tr>
 				<td><label class='nu-timeline-cms-editFormLeftLabel'>Dato:</label></td>
-				<td><label>Tid:</label></td>
-				<td><label>Egendefinert dato tekst:</label></td>
+				<td></td>
+				<td><label class='nu-timeline-cms-editFormTimeLabel'>Tid:</label></td>
+				<td></td>
+				<td><label class='nu-timeline-cms-editFormCustomLabel'>Egendefinert dato tekst:</label></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."' required pattern='^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$'></input></td>
+				<td><div id='nu-timeline-cms-dateCoin' data-toggle='tooltip' data-placement='top' title='Velg dato for hendelsen. Dette gir hendelsen riktig plassering på tidslinjen.'></div></td>
 				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' placeholder='HH:MM:SS' value='".$print['content_time']."' required pattern='^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$'></input></td>
-				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."' required placeholder='Test'></input></td>
+				<td><div id='nu-timeline-cms-timeCoin' data-toggle='tooltip' data-placement='top' title='Velg tidspunkt for hendelsen. Format: HH:MM:SS'></div></td>
+				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
+				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Dato må fortsatt settes for å få riktig posisjon på tidslinjen.'></div></td>
 			</tr>
 			</table>
 			
 			<table class='nu-timeline-cms-editFormCategoryTable'>
 			<tr>
 				<td><label class='nu-timeline-cms-editFormLeftLabel'>Kategori:</label></td>
+				<td></td>
 				<td><label class='nu-timeline-cms-editFormRightLabel'>Viktig hendelse?</label></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>
@@ -123,11 +131,13 @@ function fillEditInputs() {
 						"; editFormFillCategories(); echo "
 					</select>
 				</td>
+				<td><div id='nu-timeline-cms-categoryCoin' data-toggle='tooltip' data-placement='top' title='Velg kategori for hendelsen. En hendelse MÅ ikke ha en kategori.'></div></td>
 				<td>
 					<select id='nu-timeline-cms-editFormImportantArticle'>
 						"; editFormFillImportant(); echo "
 					</select>
 				</td>
+				<td><div id='nu-timeline-cms-importantCoin' data-toggle='tooltip' data-placement='top' title='Er hendelsen viktig, vil den utheves på tidslinjen.'></div></td>
 			</tr>
 			</table>
 			
@@ -140,88 +150,86 @@ function fillEditInputs() {
 			</tr>
 			</table>
 			
-			<table class='nu-timeline-cms-editFormBottomTable'>
 			
-			<tr>
-				<td class='nu-timeline-cms-editFormStatusBtn'>
-					<div class='nu-timeline-cms-status-buttons-wrapper'>
-						<ul>
-							<li>
-								<a id='ddStatus' class='btn'>Change status<span class='arrow'></span></a>
-								<ul>
-									<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
-									<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
-									<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</td>
-			</tr>
-			</table>
-			</table>
-			</form>
+			</table>		
 		
 			<div id='nu-timeline-cms-contentMediaPicture'>
 				<label id='nu-timeline-cms-lblContentMediaPicture'>Legg til bilder:</label>	
+				<a id='nu-timeline-cms-contentMediaPictureOpenClose'><span class='nu-timeline-cms-contentMediaPictureOpenCloseArrow'></span></a>
 			</div>
 			<div id='nu-timeline-cms-slideContentPicture'>
-					<label>Escenic ID: </label><input type='text' id='nu-timeline-cms-escenicID'></input>
-					<label>Versjon: </label>
-					<select id='nu-timeline-cms-cropVersion'>
-						<option disabled selected>Velg størrelse</option>
-						<option>w80c169</option>
-						<option>w80c23</option>
-						<option>w80c34</option>
-						<option>w80c43</option>
-						<option>w80cFree</option>
-						<option>w180c169</option>
-						<option>w180c23</option>
-						<option>w180c34</option>
-						<option>w180c43</option>
-						<option>w180cFree</option>
-						<option>w280c169</option>
-						<option>w280c23</option>
-						<option>w280c34</option>
-						<option>w280c43</option>
-						<option>w280cFree</option>
-						<option>w380c169</option>
-						<option>w380c23</option>
-						<option>w380c34</option>
-						<option>w380c43</option>
-						<option>w380cFree</option>
-						<option>w480c169</option>
-						<option>w480c23</option>
-						<option>w480c34</option>
-						<option>w480c43</option>
-						<option>w480cFree</option>
-						<option>w580c169</option>
-						<option>w580c23</option>
-						<option>w580c34</option>
-						<option>w580c43</option>
-						<option>w580cFree</option>
-						<option>w680c169</option>
-						<option>w680c23</option>
-						<option>w680c34</option>
-						<option>w680c43</option>
-						<option>w680cFree</option>
-						<option>w780c169</option>
-						<option>w780c43</option>
-						<option>w780cFree</option>
-						<option>w880c169</option>
-						<option>w880c43</option>
-						<option>w880cFree</option>
-						<option>w980c169</option>
-						<option>w980c43</option>
-						<option>w980cFree</option>
-					</select>
-					<div id='nu-timeline-cms-picturePreview'>
-						Preview
-					</div>
+				<table>
+					<tr>
+						<td>
+							<label>Bildets escenic ID: </label>
+						</td>
+						<td>	
+							<input type='text' id='nu-timeline-cms-escenicID'></input>
+						</td>
+						<td>
+							<select id='nu-timeline-cms-cropVersion'>
+								<option disabled selected>Velg størrelse</option>
+								<option>w80c169</option>
+								<option>w80c23</option>
+								<option>w80c34</option>
+								<option>w80c43</option>
+								<option>w80cFree</option>
+								<option>w180c169</option>
+								<option>w180c23</option>
+								<option>w180c34</option>
+								<option>w180c43</option>
+								<option>w180cFree</option>
+								<option>w280c169</option>
+								<option>w280c23</option>
+								<option>w280c34</option>
+								<option>w280c43</option>
+								<option>w280cFree</option>
+								<option>w380c169</option>
+								<option>w380c23</option>
+								<option>w380c34</option>
+								<option>w380c43</option>
+								<option>w380cFree</option>
+								<option>w480c169</option>
+								<option>w480c23</option>
+								<option>w480c34</option>
+								<option>w480c43</option>
+								<option>w480cFree</option>
+								<option>w580c169</option>
+								<option>w580c23</option>
+								<option>w580c34</option>
+								<option>w580c43</option>
+								<option>w580cFree</option>
+								<option>w680c169</option>
+								<option>w680c23</option>
+								<option>w680c34</option>
+								<option>w680c43</option>
+								<option>w680cFree</option>
+								<option>w780c169</option>
+								<option>w780c43</option>
+								<option>w780cFree</option>
+								<option>w880c169</option>
+								<option>w880c43</option>
+								<option>w880cFree</option>
+								<option>w980c169</option>
+								<option>w980c43</option>
+								<option>w980cFree</option>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div id='nu-timeline-cms-picturePreview'>
+								<label>Preview</label>
+							</div>
+						</td>
+					</tr>
+				</table>
 			</div>
 				
 			<div id='nu-timeline-cms-contentMediaVideo'>
-				<label id='nu-timeline-cms-lblContentMediaVideo'>Legg til video:</label>	
+				<label id='nu-timeline-cms-lblContentMediaVideo'>Legg til video:</label>
+				<a id='nu-timeline-cms-contentMediaVideoOpenClose'><span class='nu-timeline-cms-contentMediaVideoOpenCloseArrow'></span></a>	
 			</div>
 			<div id='nu-timeline-cms-slideContentVideo'>
 				
@@ -229,6 +237,7 @@ function fillEditInputs() {
 			
 			<div id='nu-timeline-cms-contentMediaMap'>
 				<label id='nu-timeline-cms-lblContentMediaMap'>Legg til kart:</label>
+				<a id='nu-timeline-cms-contentMediaMapOpenClose'><span class='nu-timeline-cms-contentMediaMapOpenCloseArrow'></span></a>
 			</div>
 			<div id='nu-timeline-cms-slideContentMap'>
 				<div id='nu-timeline-cms-mapsSearchPanel' style='margin-left: 0px'>
@@ -246,9 +255,21 @@ function fillEditInputs() {
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
 			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
 			
-			
-			
-			
+
+			<div class='nu-timeline-cms-status-buttons-wrapper'>
+				<ul>
+					<li>
+						<a id='ddStatus' class='btn'>Endre status<span class='arrow'></span></a>
+						<ul>
+							<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
+							<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
+							<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			</form>
 			";
 
 			
@@ -277,15 +298,17 @@ function fillTlInfoInputs() {
 				<td><label class='nu-timeline-cms-tlInfoFormLabels'>Tittel:</label></td>
 				<td><label class='nu-timeline-cms-tlInforFormCategoriesLabel'>Legg til kategori (maks 6):</label></td>
 				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td><input type='text' name='nu-timeline-cms-tlTitle' class='nu-timeline-cms-tlInfoFormTitle' id='nu-timeline-cms-tlInfoFormTitle' value='".$print['tl_name']."'  required/></td>
 				<td><input type='text' id='nu-timeline-cms-tlInfoFormCategoryInput' name='nu-timeline-cms-categoryName'  required/></td>
+				<td><div id='nu-timeline-cms-tlCategoryCoin' data-toggle='tooltip' data-placement='top' title='En tidslinje kan ha opp til 6 kategorier. Kategorisering av hendelser gjør det mulig for leser å spesifisere hva som vises på tidslinjen.'></div></td>
 				<td><span id='nu-timeline-cms-addCategoryBtn' class='nu-timeline-cms-plusBtn' name='nu-timeline-cms-addCategoryBtn'></span></td>
 			</tr>
 			<tr>
 				<td><label class='nu-timeline-cms-tlInfoFormLabels'>Ingress:</label></td>
-				<td><label class='nu-timeline-cms-tlInforFormCategoriesLabel'>Kategorier:</label></td>
+				<td></td>
 				<td></td>
 			</tr>
 			<tr>
