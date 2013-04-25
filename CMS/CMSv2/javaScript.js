@@ -725,7 +725,7 @@ function getEscenicID() {
 		$('#nu-timeline-cms-picturePreview').html(data);
 	});
 }
-// IN PROGRESS
+// IN PROGRESS lululu i've got some apples
 function getTest() {
 	var xmlhttp;
 	if (window.XMLHttpRequest)
