@@ -210,9 +210,8 @@ function showCategories(){
 		showPalette: true,
 		color: '',
 		palette: [
-        ['black', 'rgb(10,10,10)', 'blanchedalmond',
-        'rgb(255, 128, 0)', 'hsv 100 70 50'],
-        ['red', 'yellow', 'green', 'blue', 'violet']
+        ['#00aeef', '#8dc63f', '#5b57a6'],
+        ['#f7941d', '#ed1c24', '#0072bc']
         ]
         
 	});

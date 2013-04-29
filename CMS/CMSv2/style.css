@@ -176,6 +176,11 @@ label{
 
 /* CONTENT HEADER, INDEX AND EDIT */
 
+#nu-timeline-cms-userLoggedIn{
+	position: absolute;
+	margin-left: 810px;
+}
+
 #nu-timeline-cms-menuText a{
 	text-decoration: none;
 	color: black;
@@ -254,10 +259,7 @@ label{
 #nu-timeline-cms-search{
 	height: 30px;
 	width: 230px;
-	position: relative;
-	top: 20px;
-	clear: both;
-	display: block;
+	margin-left: 575px;
 }
 
 #nu-timeline-cms-searchButton{
@@ -273,6 +275,36 @@ label{
 	background-color: #666;
 	cursor: pointer;
 }
+
+#nu-timeline-cms-newTimeline{
+	width: 155px;
+	float: right;
+	height: 30px;
+	margin-right: 10px;
+	margin-top: 5px;
+	padding-top: 5px;
+}
+
+#nu-timeline-cms-newTimeline a{
+	text-decoration: none;	
+}
+
+.nu-timeline-cms-addTimelineBtn{
+	height: 25px;
+	width: 25px;
+	background-image: url(img/plus.png);
+	text-decoration: none;
+	margin-left: 5px;
+	margin-top: -3px;
+	opacity: 1;
+	float: right;
+}
+
+.nu-timeline-cms-addTimelineBtn:hover{
+	opacity: 0.7;
+	cursor: pointer;
+}
+
 
 #nu-timeline-cms-headerTableFirst{
 	width: 810px;
@@ -297,12 +329,10 @@ label{
 
 #nu-timeline-cms-result{
 	height: auto;
-	max-height: 600px;
 	width: 960px;
 	background-color: #fff;
 	margin-left: 10px;
-	margin-top: 50px;
-	overflow: scroll;
+	margin-top: 30px;
 }
 
 /* END INNHOLD MAIN, INDEX */
@@ -366,7 +396,7 @@ label{
 	float: right;
 	width: 25px;
 	height: 25px;
-	margin-top: -26px;
+	margin-top: -25px;
 	margin-right: 2px;
 	
 	background-image: url(img/timelineOpenClose.png);
@@ -492,12 +522,13 @@ label{
 /* Start CONTENT  VNAV, EDIT */
 #nu-timeline-cms-searchContent{
 	border-bottom: 1px solid #e4e4e4;
-	padding: 5px;
+	padding: 3px;
 }
 
 #nu-timeline-cms-contentSearchField{
-	width: 210px;
-	margin-left: 10px;
+	width: 230px;
+	padding: 5px;
+	border: 1px solid #e4e4e4;
 }
 /* End CONTENT  VNAV, EDIT */
 
@@ -645,7 +676,7 @@ h2{
 
 #nu-timeline-cms-editForm .nu-timeline-cms-editFormRightLabel{
 	float: left;
-	margin-left: 120px;
+	margin-left: 68px;
 	margin-top: 10px;
 }
 
@@ -689,7 +720,7 @@ h2{
 	padding: 5px;
 	border: 1px solid #e4e4e4;
 	width: 137px;
-	margin-left: 120px;
+	margin-left: 68px;
 	cursor: pointer;
 }
 
@@ -760,9 +791,8 @@ h2{
 	background-image: url(img/plus.png);
 	text-decoration: none;
 	margin-left: 10px;
-	margin-top: 2px;
-	float: left;
 	opacity: 1;
+	float: left;
 }
 
 .nu-timeline-cms-plusBtn:hover{
@@ -778,50 +808,46 @@ h2{
 	color: blue;
 	font-style: italic;
 	font-size: small;
-	margin-right: 5px;
+	margin-left: 80px;
+	
 }
 
 .nu-timeline-cms-textActive{
 	color: green;
 	font-style: italic;
 	font-size: small;
-	margin-right: 5px;
+	margin-left: 80px;
 }
 
 #nu-timeline-cms-contentMediaPicture{
 	border: 1px solid #e4e4e4;
+	width: 608px;
+	margin-left: 20px;
 	padding: 5px;
 	margin-top: 10px;
 	cursor: pointer;
 }
 
-#nu-timeline-cms-lblContentMediaPicture{
-	margin-left: 15px;
-}
-
 #nu-timeline-cms-contentMediaVideo{
 	border: 1px solid #e4e4e4;
+	width: 608px;
+	margin-left: 20px;
 	padding: 5px;
 	cursor: pointer;
-}
-
-#nu-timeline-cms-lblContentMediaVideo{
-	margin-left: 15px;
 }
 
 #nu-timeline-cms-contentMediaMap{
 	border: 1px solid #e4e4e4;
+	width: 608px;
+	margin-left: 20px;
 	padding: 5px;
 	cursor: pointer;
 }
 
-#nu-timeline-cms-lblContentMediaMap{
-	margin-left: 15px;
-}
-
 #nu-timeline-cms-slideContentPicture{
 	height: 200px;
-	width: 658px;
+	width: 618px;
+	margin-left: 20px;
 	overflow: hidden;
 	background-color: #e4e4e4;
 	border: 1px solid #e4e4e4;
@@ -830,8 +856,7 @@ h2{
 }
 
 #nu-timeline-cms-slideContentPicture label{
-	float: left;
-	margin-left: 20px;
+	padding: 5px;
 }
 
 #nu-timeline-cms-contentMediaPictureOpenClose .nu-timeline-cms-contentMediaPictureOpenCloseArrow{
@@ -858,7 +883,8 @@ h2{
 
 #nu-timeline-cms-slideContentVideo{
 	height: 200px;
-	width: 658px;
+	width: 618px;
+	margin-left: 20px;
 	overflow: hidden;
 	background-color: #e4e4e4;
 	border: 1px solid #e4e4e4;
@@ -890,7 +916,8 @@ h2{
 
 #nu-timeline-cms-slideContentMap{
 	height: 300px;
-	width: 658px;
+	width: 618px;
+	margin-left: 20px;
 	overflow: hidden;
 	background-color: #e4e4e4;
 	border: 1px solid #e4e4e4;
@@ -924,7 +951,9 @@ h2{
 
 
 .nu-timeline-cms-status-buttons-wrapper {
-	margin-left: 20px;
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
 
 }
 .nu-timeline-cms-status-buttons-wrapper ul {

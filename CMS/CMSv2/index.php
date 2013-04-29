@@ -1,7 +1,21 @@
 <?php
+
+   // if no valid session is found then the user is not logged in and will
+   // receive a access denied message and will be redirected to the login page.
+   session_start();
+   if (!isset($_SESSION['user_name'])) {
+	
+	  header("Refresh: 3; url=login/index.php");
+	  echo '<h3>Access deined - you do not have access to this page</h3>';
+	  echo '<p>You will be redirected in 3 seconds</p>';
+	  exit(); // Quit the script.
+   }  
+?>
+<?php
 header ('content-type:text/html;charset=utf-8');
 ?>
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -25,6 +39,9 @@ header ('content-type:text/html;charset=utf-8');
 <body>
 	<div id="nu-timeline-cms-mainWrapper">
 		<div id="nu-timeline-cms-headerWrapper">
+		<div id="nu-timeline-cms-userLoggedIn">
+			Logget inn som: <?php  echo $_SESSION['user_name'] ?>	
+		</div>
 		<table>
 		<tr>
 			<td id='nu-timeline-cms-headerTableFirst'>
@@ -44,25 +61,44 @@ header ('content-type:text/html;charset=utf-8');
 				
 			</td>
 			<td id='nu-timeline-cms-headerTableFourth'>
+				
 				<div class="nu-timeline-cms-loggUt" data-toggle='tooltip' data-placement='bottom' title='Logg ut' onclick="window.location.href='login/index.php?logout'"></div>
 			</td>
 		</tr>
-		</table>	
-			<div id="nu-timeline-cms-search">
-				<form action="index.php" method="get">
-					<input type="text" size="30" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
-					<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K" /> 
-					<?php
+		</table>
+		<table>	
+			<tr>
+				<td>
+					<div id ="nu-timeline-cms-newTimeline">
+						<a href="insertTimeline.php">Legg til ny tidslinje
+							<span class="nu-timeline-cms-addTimelineBtn"></span>
+						</a>
+					</div>
 					
-					$get = $_GET['sok'];
-					
-					if(!empty($get)){
-						echo "Gjeldende s&oslash;k: $get";
-					} 
-					
-					?>
-				</form>
-			</div>
+				</td>	
+			
+				<td>
+					<div id="nu-timeline-cms-search">
+						<form action="index.php" method="get">
+							<input type="text" size="30" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
+							<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K" /> 
+							
+							<?php
+							
+							$get = $_GET['sok'];
+							
+							if(!empty($get)){
+								echo "Gjeldende s&oslash;k: $get";
+							} 
+							
+							?>
+						</form>
+						
+					</div>
+				</td>
+			</tr>
+
+		</table>
 		</div>
 		<div id="nu-timeline-cms-result">
 			<table id="nu-timeline-cms-indexTable">
@@ -136,13 +172,7 @@ header ('content-type:text/html;charset=utf-8');
 				
 			</table>
 			
-		</div>
-		
-			<a href="insertTimeline.php">
-				<span class="nu-timeline-cms-plusBtn">
-				</span>
-			</a>
-		
+		</div>		
 
 	</div>
 		

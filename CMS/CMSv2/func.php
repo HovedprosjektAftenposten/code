@@ -59,13 +59,13 @@ function getArticle() {
 			}
 		
 		if($row['content_status'] == 0) {
-			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "<div style='border-left: 5px solid blue' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 			echo "</div>";
 		}
 		else {
-			echo "<div class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "<div style='border-left: 5px solid green' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 			echo "</div>";
 		}
 
@@ -138,6 +138,13 @@ function fillEditInputs() {
 					</select>
 				</td>
 				<td><div id='nu-timeline-cms-importantCoin' data-toggle='tooltip' data-placement='top' title='Er hendelsen viktig, vil den utheves på tidslinjen.'></div></td>
+				<td>";  
+				if($print['content_status'] == 0){
+					echo "<div class='nu-timeline-cms-textInactive'>KLADD</div>";		
+				}else{
+					echo "<div class='nu-timeline-cms-textActive'>PUBLISERT</div>";
+				}
+				echo "</td>
 			</tr>
 			</table>
 			
@@ -261,9 +268,9 @@ function fillEditInputs() {
 					<li>
 						<a id='ddStatus' class='btn'>Endre status<span class='arrow'></span></a>
 						<ul>
-							<li><input type='submit' class='btn btn-success' value='Publish' name='savePublish' ></li>
-							<li><input type='submit' class='btn btn-primary' value='Draft' name='saveDraft' ></li>
-							<li><input type='button' class='btn btn-danger' value='Delete' name='delete' ></li>
+							<li><input type='submit' class='btn btn-success' value='Publiser' name='savePublish' ></li>
+							<li><input type='submit' class='btn btn-primary' value='Kladd' name='saveDraft' ></li>
+							<li><input type='button' class='btn btn-danger' value='Slett' name='delete' ></li>
 						</ul>
 					</li>
 				</ul>

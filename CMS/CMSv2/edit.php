@@ -1,4 +1,17 @@
 <?php
+
+   // if no valid session is found then the user is not logged in and will
+   // receive a access denied message and will be redirected to the login page.
+   session_start();
+   if (!isset($_SESSION['user_name'])) {
+	
+	  header("Refresh: 3; url=login/index.php");
+	  echo '<h3>Access deined - you do not have access to this page</h3>';
+	  echo '<p>You will be redirected in 3 seconds</p>';
+	  exit(); // Quit the script.
+   }  
+?>
+<?php
 header ('content-type:text/html;charset=utf-8');
 ?>
 <!DOCTYPE html>
@@ -48,6 +61,9 @@ header ('content-type:text/html;charset=utf-8');
 <body>
 	<div id="nu-timeline-cms-mainWrapper">
 		<div id="nu-timeline-cms-headerWrapper">
+		<div id="nu-timeline-cms-userLoggedIn">
+			Logget inn som: <?php  echo $_SESSION['user_name'] ?>	
+		</div>
 		<table>
 			<tr>
 				<td id='nu-timeline-cms-headerTableFirst'>
@@ -67,7 +83,7 @@ header ('content-type:text/html;charset=utf-8');
 					<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'" data-toggle='tooltip' data-placement='bottom' title='Hjem'></div>
 				</td>
 				<td id='nu-timeline-cms-headerTableFourth'>	
-					<div class="nu-timeline-cms-loggUt" data-toggle='tooltip' data-placement='bottom' title='Logg ut'></div>
+					<div class="nu-timeline-cms-loggUt" data-toggle='tooltip' data-placement='bottom' title='Logg ut' onclick="window.location.href='login/index.php?logout'"></div>
 				</td>
 			</tr>
 		</table>
