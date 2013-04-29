@@ -7,8 +7,10 @@ header ('content-type:text/html;charset=utf-8');
 <head>
 	<title>Tidslinje CMS</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
 	<script src="jquery-1.9.0.js" type="text/javascript"></script>
-	<script src="pop.js" type="text/javascript"></script>
+	<script src="javaScript.js" type="text/javascript"></script>
+	<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script>
 		function hentTidslinje(id) {
 			window.location = "edit.php?id="+id;
@@ -39,10 +41,10 @@ header ('content-type:text/html;charset=utf-8');
 			<td id='nu-timeline-cms-headerTableSecond'>
 			</td>
 			<td id='nu-timeline-cms-headerTableThird'>
-				<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'"></div>
+				
 			</td>
 			<td id='nu-timeline-cms-headerTableFourth'>
-				<div id="nu-timeline-cms-loggUt"><a href="#">LOGG UT</a></div>
+				<div class="nu-timeline-cms-loggUt" data-toggle='tooltip' data-placement='bottom' title='Logg ut' onclick="window.location.href='login/index.php?logout'"></div>
 			</td>
 		</tr>
 		</table>	

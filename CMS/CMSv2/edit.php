@@ -61,13 +61,13 @@ header ('content-type:text/html;charset=utf-8');
 					</div>
 				</td>
 				<td id='nu-timeline-cms-headerTableSecond'>
-					
+					<div id="nu-timeline-cms-tlCodeBtn" data-toggle='tooltip' data-placement='bottom' title='Last ned Escenic kode'></div>
 				</td>
 				<td id='nu-timeline-cms-headerTableThird'>
-					<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'"></div>
+					<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'" data-toggle='tooltip' data-placement='bottom' title='Hjem'></div>
 				</td>
 				<td id='nu-timeline-cms-headerTableFourth'>	
-					<div id="nu-timeline-cms-loggUt"><a href="#">LOGG UT</a></div>
+					<div class="nu-timeline-cms-loggUt" data-toggle='tooltip' data-placement='bottom' title='Logg ut'></div>
 				</td>
 			</tr>
 		</table>
@@ -77,6 +77,7 @@ header ('content-type:text/html;charset=utf-8');
 			<div id="nu-timeline-cms-tlInfoWrapper">
 				<div id="nu-timeline-cms-tlInfo">
 					<p>Fyll inn informasjon om tidslinjen</p>
+					
 					<a id="nu-timeline-cms-tlOpenClose"><span class="nu-timeline-cms-tlOpenCloseArrow"></span></a>
 				</div>
 				<div class="nu-timeline-cms-slide">

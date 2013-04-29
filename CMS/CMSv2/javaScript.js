@@ -1,5 +1,15 @@
 $(document).ready(function(){
 	
+	$('.nu-timeline-cms-loggUt').hover(function(){
+		$('.nu-timeline-cms-loggUt').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-home').hover(function(){
+		$('#nu-timeline-cms-home').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-tlCodeBtn').hover(function(){
+		$('#nu-timeline-cms-tlCodeBtn').tooltip('toggle');	
+	});
+	
 	fixSelectedBackground();
 	
 	$.ajaxSetup({
@@ -60,6 +70,8 @@ $(document).ready(function(){
 	$('#nu-timeline-cms-tlCategoryCoin').hover(function(){
 		$('#nu-timeline-cms-tlCategoryCoin').tooltip('toggle');	
 	});
+	
+	
 	
 	
 	showCategories();
@@ -780,8 +792,6 @@ var test = $('entry link').attr('href');
 	$('#nu-timeline-cms-picturePreview').html(imgUrl);
 */
 	}
-
-
 
 
 
