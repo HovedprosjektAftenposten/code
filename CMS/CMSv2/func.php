@@ -172,6 +172,7 @@ function fillEditInputs() {
 						</td>
 						<td>	
 							<input type='text' id='nu-timeline-cms-escenicID'></input>
+							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
 							<select id='nu-timeline-cms-cropVersion'>
@@ -223,15 +224,13 @@ function fillEditInputs() {
 							</select>
 						</td>
 					</tr>
-					
-					<tr>
-						<td>
-							<div id='nu-timeline-cms-picturePreview'>
-								<label>Preview</label>
-							</div>
-						</td>
-					</tr>
 				</table>
+				
+				<div id='nu-timeline-cms-picturePreview'>
+					<label>Preview</label>
+				</div>
+						
+				
 			</div>
 				
 			<div id='nu-timeline-cms-contentMediaVideo'>

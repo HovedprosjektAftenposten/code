@@ -3,6 +3,37 @@ body{
 	font-size: 14px;
 }
 
+/* LOGIN */
+
+#login_input_username{}
+#login_input_password{}
+#login_input_submit{
+	
+}
+
+#login_form{
+	height: 50px;
+	width: 300px;
+	margin-left: 300px;
+	background-color: gray;
+}
+
+
+.login_input{
+	padding: 5px;
+}
+
+
+/* END LOGIN */
+
+#nu-timeline-cms-picturePreview img{
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 100px;
+	width: auto;
+	clear: both;
+}
+
 #nu-timeline-cms-dateCoin{
 	background-image: url(img/qCoin.png);
 	background-repeat: no-repeat;

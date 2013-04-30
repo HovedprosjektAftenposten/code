@@ -93,7 +93,7 @@ $(document).ready(function(){
 	
 	saveArticleCategory();
 	
-	
+	getEscenicID();
 	postEscenicID();
 	
 	
@@ -744,11 +744,15 @@ function getMapData() {
 
 function postEscenicID() {
 	$('#nu-timeline-cms-cropVersion').change(function() {
-	window.escenicID = $('#nu-timeline-cms-escenicID').val();
-	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
 	
-	$.post('ajaxGetEscenicPicture.php', {escenicID: escenicID, cropVersion: cropVersion});
-	getTest();
+	window.escenicID = $('#nu-timeline-cms-escenicID').val();
+	getEscenicURL(escenicID);
+	var hiddenURL = $('#nu-timeline-cms-hiddenEscenicLink').val();
+	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
+	var article = $('#editFormHiddenContentID').val();
+	
+	$.post('ajaxGetEscenicPicture.php', {escenicID: escenicID, hiddenURL: hiddenURL, article: article, cropVersion: cropVersion});
+	getEscenicID();
 	});
 		
 }
@@ -759,41 +763,22 @@ function getEscenicID() {
 		$('#nu-timeline-cms-picturePreview').html(data);
 	});
 }
-// IN PROGRESS lululu i've got some apples
-function getTest() {
-	var xmlhttp;
-	if (window.XMLHttpRequest)
-	  {// code for IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp=new XMLHttpRequest();
-	  }
-	else
-	  {// code for IE6, IE5
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	  }
-	xmlhttp.onreadystatechange=function()
-	  {
-	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-	    {
-	    document.getElementById("nu-timeline-cms-picturePreview").innerHTML=xmlhttp.responseText;
-	    }
-	}
-	xmlhttp.open("GET","http://api.snd.no/news/publication/ap/searchContents/instance?contentId=7180552&contentType=image&callback=myFunc",true);
-	xmlhttp.send();
-
-	/*
-var test = $('entry link').attr('href');
-	var test2 = test.replace("{snd:mode}", "ALTERNATES");
-	
-	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
-	var test3 = test2.replace("{snd:cropversion}", cropVersion);
-	
-	var imgUrl = '<img src="' + test3 + '"></img>';
-	$('#nu-timeline-cms-picturePreview').html(imgUrl);
-*/
-	}
 
 
-
-
+function getEscenicURL(escenicID) {
+	$.ajax({
+		type: "GET",
+		url: "http://api.snd.no/news/publication/ap/searchContents/instance?contentId="+escenicID+"&contentType=image&callback=myFunc",
+		dataType: "xml",
+		success: function(xmlBildeAPI){
+			var test = $(xmlBildeAPI).find('link');
+			var url = test.attr('href');
+			$('#nu-timeline-cms-hiddenEscenicLink').val(url);
+		},
+		error: function(){
+			$('#sectNyheter').html("<p>oOops, noe har gått galt:( prøv igjen senere.</p>");
+		}
+	});	
+}
 
 

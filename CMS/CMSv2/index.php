@@ -6,8 +6,8 @@
    if (!isset($_SESSION['user_name'])) {
 	
 	  header("Refresh: 3; url=login/index.php");
-	  echo '<h3>Access deined - you do not have access to this page</h3>';
-	  echo '<p>You will be redirected in 3 seconds</p>';
+	  echo '<h3>Du har ikke tilgang til denne siden.</h3>';
+	  echo '<p>Du vil bli sendt til innlogging om 3 sekunder.</p>';
 	  exit(); // Quit the script.
    }  
 ?>
