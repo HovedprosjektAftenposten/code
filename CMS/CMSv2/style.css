@@ -25,13 +25,27 @@ body{
 
 
 /* END LOGIN */
+#nu-timeline-cms-savePictureBtn{
+	height: 20px;
+	width: 40px;
+	margin-left: 30px;
+	background-color: yellow;
+	cursor: pointer;
+}
+
+#nu-timeline-cms-picturePreview{
+	height: 200px;
+	width: 600px;
+	overflow-x: scroll;
+}
+
 
 #nu-timeline-cms-picturePreview img{
 	margin-top: 10px;
 	margin-left: 10px;
 	height: 100px;
 	width: auto;
-	clear: both;
+	float: left;
 }
 
 #nu-timeline-cms-dateCoin{
@@ -876,7 +890,7 @@ h2{
 }
 
 #nu-timeline-cms-slideContentPicture{
-	height: 200px;
+	height: auto;
 	width: 618px;
 	margin-left: 20px;
 	overflow: hidden;
@@ -985,6 +999,7 @@ h2{
 	float: right;
 	margin-right: 20px;
 	margin-top: 20px;
+	margin-bottom: 10px;
 
 }
 .nu-timeline-cms-status-buttons-wrapper ul {

@@ -20,12 +20,25 @@
 	
 	$pictureLink = str_replace($existingCropVersion, $newCropVersion, $pictureNew);
 	
-	mysql_query("UPDATE media_table SET media_type = 'picture' , media_data = '".$pictureLink."' WHERE content_ID = '".$_REQUEST['article']."' ORDER BY media_ID DESC LIMIT 1");
+	$mediaID = mysql_query("SELECT * FROM media_table ORDER BY media_ID DESC LIMIT 1");
+	
+	$array = mysql_fetch_array($mediaID);
+	
+	$newMediaID = ++$array['media_ID'];
+	
+	
+	mysql_query("INSERT INTO media_table (media_ID, content_ID, media_type, media_title, media_data, media_text)VALUES ('".$newMediaID."','".$_REQUEST['article']."','picture','','".$pictureLink."','')");
+	
+	/* mysql_query("UPDATE media_table SET media_type = 'picture' , media_data = '".$pictureLink."' WHERE content_ID = '".$_REQUEST['article']."' ORDER BY media_ID DESC LIMIT 1"); */
 	}
 	
 	$query = mysql_query("SELECT media_data FROM media_table WHERE content_ID = '".$_REQUEST['article']."'");
-	$print = mysql_fetch_array($query);
 	
-	echo "<img src='".$print[0]."'></img>";
+	
+	
+	while($print = mysql_fetch_array($query)) {
+		echo "<img src='".$print['media_data']."'></img>";
+		
+	}
 	
 ?>

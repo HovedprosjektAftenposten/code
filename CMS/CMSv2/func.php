@@ -223,6 +223,9 @@ function fillEditInputs() {
 								<option>w980cFree</option>
 							</select>
 						</td>
+						<td>
+							<div id='nu-timeline-cms-savePictureBtn'>Lagre</div>
+						</td>
 					</tr>
 				</table>
 				

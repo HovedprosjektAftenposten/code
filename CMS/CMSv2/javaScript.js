@@ -743,7 +743,7 @@ function getMapData() {
 }
 
 function postEscenicID() {
-	$('#nu-timeline-cms-cropVersion').change(function() {
+	$('#nu-timeline-cms-savePictureBtn').click(function() {
 	
 	window.escenicID = $('#nu-timeline-cms-escenicID').val();
 	getEscenicURL(escenicID);
