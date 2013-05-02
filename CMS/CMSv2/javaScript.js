@@ -96,6 +96,8 @@ $(document).ready(function(){
 	getEscenicID();
 	postEscenicID();
 	
+	getStatus();
+	
 	
 // IN PROGRESS
 	$(document).on("click",'div[title="Zoom in"]',function(){
@@ -108,6 +110,18 @@ $(document).ready(function(){
     });
 //	
 });
+
+function getStatus(){
+	if($('.nu-timeline-cms-textInactive').length > 0){
+		$('#ddStatus').toggleClass('btn-primary');
+		$('#ddStatus').html('Kladd');
+	}else if($('.nu-timeline-cms-textActive').length > 0){
+		$('#ddStatus').toggleClass('btn-success');
+		$('#ddStatus').html('Publisert');
+	}else{
+		alert('gæærnt');
+	}	
+}
 
 
 function updateSearch(){
