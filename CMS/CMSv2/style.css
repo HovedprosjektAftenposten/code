@@ -25,6 +25,22 @@ body{
 
 
 /* END LOGIN */
+#nu-timeline-cms-saveVideoBtn{
+	height: 20px;
+	width: 40px;
+	margin-left: 30px;
+	background-color: yellow;
+	cursor: pointer;
+}
+
+#nu-timeline-cms-deleteVideoBtn{
+	height: 20px;
+	width: 40px;
+	margin-left: 30px;
+	background-color: yellow;
+	cursor: pointer;
+}
+
 #nu-timeline-cms-savePictureBtn{
 	height: 20px;
 	width: 40px;
@@ -34,9 +50,13 @@ body{
 }
 
 #nu-timeline-cms-picturePreview{
-	height: 200px;
+	height: 300px;
 	width: 600px;
-	overflow-x: scroll;
+}
+
+#nu-timeline-cms-videoPreview{
+	height: 300px;
+	width: 600px;
 }
 
 
@@ -46,6 +66,11 @@ body{
 	height: 100px;
 	width: auto;
 	float: left;
+}
+
+#nu-timeline-cms-picturePreview img:hover{
+	opacity: 0.5;
+	
 }
 
 #nu-timeline-cms-dateCoin{
@@ -146,6 +171,7 @@ input:required:invalid, textarea:required:invalid {
 	width: 50px;
 	background-color: yellow;
 	float: right;
+	cursor: pointer;
 }
 
 

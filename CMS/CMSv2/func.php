@@ -140,9 +140,9 @@ function fillEditInputs() {
 				<td><div id='nu-timeline-cms-importantCoin' data-toggle='tooltip' data-placement='top' title='Er hendelsen viktig, vil den utheves på tidslinjen.'></div></td>
 				<td>";  
 				if($print['content_status'] == 0){
-					echo "<div class='nu-timeline-cms-textInactive'>KLADD</div>";		
+					echo "<input type='hidden' class='nu-timeline-cms-textInactive' value='KLADD'></input>";		
 				}else{
-					echo "<div class='nu-timeline-cms-textActive'>PUBLISERT</div>";
+					echo "<input type='hidden' class='nu-timeline-cms-textActive' value='PUBLISERT'></input>";
 				}
 				echo "</td>
 			</tr>
@@ -171,7 +171,7 @@ function fillEditInputs() {
 							<label>Bildets escenic ID: </label>
 						</td>
 						<td>	
-							<input type='text' id='nu-timeline-cms-escenicID'></input>
+							<input type='text' id='nu-timeline-cms-picEscenicID'></input>
 							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
@@ -229,9 +229,7 @@ function fillEditInputs() {
 					</tr>
 				</table>
 				
-				<div id='nu-timeline-cms-picturePreview'>
-					<label>Preview</label>
-				</div>
+				<div id='nu-timeline-cms-picturePreview'></div>
 						
 				
 			</div>
@@ -241,7 +239,24 @@ function fillEditInputs() {
 				<a id='nu-timeline-cms-contentMediaVideoOpenClose'><span class='nu-timeline-cms-contentMediaVideoOpenCloseArrow'></span></a>	
 			</div>
 			<div id='nu-timeline-cms-slideContentVideo'>
-				
+				<table>
+					<tr>
+						<td>
+							<label>Videoens escenic ID: </label>
+						</td>
+						<td>	
+							<input type='text' id='nu-timeline-cms-vidEscenicID'></input>
+							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
+						</td>
+						<td>
+							<div id='nu-timeline-cms-saveVideoBtn'>Lagre</div>
+						</td>
+						<td>
+							<div id='nu-timeline-cms-deleteVideoBtn'>Slett</div>
+						</td>
+					</tr>
+				</table>
+				<div id='nu-timeline-cms-videoPreview'></div>
 			</div>
 			
 			<div id='nu-timeline-cms-contentMediaMap'>
@@ -255,7 +270,7 @@ function fillEditInputs() {
 	
 				</div>
 				<div id='nu-timeline-cms-googleMapAPI'></div>
-				<button id='nu-timeline-cms-saveMapButton'>Save</button>
+				<div id='nu-timeline-cms-saveMapButton'>Save</div>
 				
 			</div>
 			

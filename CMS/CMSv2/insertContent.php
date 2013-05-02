@@ -31,9 +31,7 @@ $sql = "SELECT * FROM content_table ORDER BY content_ID DESC LIMIT 1";
 	
 	
 	mysql_query("INSERT INTO content_table (content_ID, tl_ID, content_media) VALUES ('$newContentID','".$_REQUEST['id']."','0')");
-	mysql_query("INSERT INTO media_table (media_ID, content_ID) VALUES ('$newMediaID','$newContentID')");
-	
-	
+		
 	header('Location:edit.php?id='.$_REQUEST['id'].'&article='.$newContentID);
 
 ?>

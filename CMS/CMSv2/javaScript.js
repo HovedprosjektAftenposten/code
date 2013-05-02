@@ -93,8 +93,13 @@ $(document).ready(function(){
 	
 	saveArticleCategory();
 	
-	getEscenicID();
-	postEscenicID();
+	getEscenicPictureID();
+	postEscenicPictureID();
+	deletePicture();
+	
+	getEscenicVideoID();
+	postEscenicVideoID();
+	deleteVideo();
 	
 	getStatus();
 	
@@ -115,9 +120,11 @@ function getStatus(){
 	if($('.nu-timeline-cms-textInactive').length > 0){
 		$('#ddStatus').toggleClass('btn-primary');
 		$('#ddStatus').html('Kladd');
+		$('<span class="arrow"></span>').appendTo('#ddStatus');
 	}else if($('.nu-timeline-cms-textActive').length > 0){
 		$('#ddStatus').toggleClass('btn-success');
 		$('#ddStatus').html('Publisert');
+		$('<span class="arrow"></span>').appendTo('#ddStatus');
 	}else{
 		alert('gæærnt');
 	}	
@@ -737,9 +744,9 @@ function getLatLong(){
 function saveMapCoords() {
 	$('#nu-timeline-cms-saveMapButton').click(function(){
 		var coords = latitude+","+longitude+","+zoom;
-		var contentid = $('#editFormHiddenContentID').val();
-		alert(coords);
-		$.post('ajaxGoogleMaps.php', {coords: coords, contentid: contentid});
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post('ajaxGoogleMaps.php', {coords: coords, article: article});
 	});
 }
 
@@ -756,22 +763,22 @@ function getMapData() {
 	
 }
 
-function postEscenicID() {
+function postEscenicPictureID() {
 	$('#nu-timeline-cms-savePictureBtn').click(function() {
 	
-	window.escenicID = $('#nu-timeline-cms-escenicID').val();
-	getEscenicURL(escenicID);
+	window.picEscenicID = $('#nu-timeline-cms-picEscenicID').val();
+	getEscenicPictureURL(picEscenicID);
 	var hiddenURL = $('#nu-timeline-cms-hiddenEscenicLink').val();
 	var cropVersion = $('#nu-timeline-cms-cropVersion').val();
 	var article = $('#editFormHiddenContentID').val();
 	
-	$.post('ajaxGetEscenicPicture.php', {escenicID: escenicID, hiddenURL: hiddenURL, article: article, cropVersion: cropVersion});
-	getEscenicID();
+	$.post('ajaxGetEscenicPicture.php', {picEscenicID: picEscenicID, hiddenURL: hiddenURL, article: article, cropVersion: cropVersion});
+	getEscenicPictureID();
 	});
 		
 }
 
-function getEscenicID() {
+function getEscenicPictureID() {
 	var id = window.location.search;
 	$.get('ajaxGetEscenicPicture.php'+id, function(data){
 		$('#nu-timeline-cms-picturePreview').html(data);
@@ -779,20 +786,52 @@ function getEscenicID() {
 }
 
 
-function getEscenicURL(escenicID) {
+function getEscenicPictureURL(picEscenicID) {
 	$.ajax({
 		type: "GET",
-		url: "http://api.snd.no/news/publication/ap/searchContents/instance?contentId="+escenicID+"&contentType=image&callback=myFunc",
+		url: "http://api.snd.no/news/publication/ap/searchContents/instance?contentId="+picEscenicID+"&contentType=image&callback=myFunc",
 		dataType: "xml",
 		success: function(xmlBildeAPI){
 			var test = $(xmlBildeAPI).find('link');
 			var url = test.attr('href');
 			$('#nu-timeline-cms-hiddenEscenicLink').val(url);
-		},
-		error: function(){
-			$('#sectNyheter').html("<p>oOops, noe har gått galt:( prøv igjen senere.</p>");
 		}
 	});	
 }
 
+function deletePicture() {
+	$(document).on("click", "#nu-timeline-cms-picturePreview img", function() {
+		var selectedID = $(this).attr("id");
+		
+		$.post("ajaxGetEscenicPicture.php", {selectedID: selectedID});
+		getEscenicPictureID();
+	});
+}
 
+function postEscenicVideoID() {
+	$('#nu-timeline-cms-saveVideoBtn').click(function() {
+	
+		window.vidEscenicID = $('#nu-timeline-cms-vidEscenicID').val();
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post('ajaxGetEscenicVideo.php', {vidEscenicID: vidEscenicID, article: article});
+		getEscenicVideoID();
+	});
+}
+
+function getEscenicVideoID() {
+	var id = window.location.search;
+	$.get('ajaxGetEscenicVideo.php'+id, function(data){
+		$('#nu-timeline-cms-videoPreview').html(data);
+	});
+}
+
+function deleteVideo() {
+	$('#nu-timeline-cms-deleteVideoBtn').click(function() {
+		var delVideo = "delete";
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post("ajaxGetEscenicVideo.php", {delVideo: delVideo, article: article});
+		getEscenicVideoID();
+	});
+}
