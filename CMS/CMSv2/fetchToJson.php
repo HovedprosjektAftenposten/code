@@ -1,6 +1,6 @@
 <?php 
 
-header("Content-Type: application/json");
+header("Content-Type: application/json; charset=utf-8");
 header("access-control-allow-origin: *");
 
 $connect = mysql_connect("localhost", "root", "root"); // Connect 
@@ -8,6 +8,7 @@ $connect = mysql_connect("localhost", "root", "root"); // Connect
 		die('Could not connect: ' . mysql_error());  // Displays error if there is no connection
 	}
 	mysql_select_db("aftenposten", $connect); // Pick database/schema
+	mysql_query ('SET NAMES utf8');
 	
 function fetchData(){
 	// Pseudo-callback
@@ -22,8 +23,7 @@ function fetchData(){
 		LEFT JOIN content_table c ON t.tl_ID = c.tl_ID
 		LEFT JOIN media_table m ON c.content_ID = m.content_ID
 	WHERE t.tl_ID = $get
-	ORDER BY t.tl_ID, c.content_date, m.content_ID
-	
+	ORDER BY t.tl_ID, c.content_date, c.content_time, m.content_ID
 	") or die(mysql_error()); 
 	
 	// Declare array for json

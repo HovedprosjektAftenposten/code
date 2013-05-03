@@ -1,14 +1,15 @@
 <?php
-	
+	header ('content-type:text/html;charset=utf-8');
 	$connect = mysql_connect("localhost", "root", "root"); //kobler til server (server, brukernavn, passord)
 		if (!$connect) {
 			die('Could not connect: ' . mysql_error()); //hvis tilkoblingen ikke blir gjennomført blir det feilmelding
 		}
 	mysql_select_db("aftenposten", $connect); //velger database/schema
+	mysql_query ('SET NAMES utf8');
 
 	
 	if(isset($_REQUEST['category'])){
-		mysql_query("UPDATE content_table SET content_category = '".$_REQUEST['category']."' WHERE content_ID = '".$_REQUEST['article']."'");
+		mysql_query("UPDATE content_table SET content_category = '".htmlentities($_REQUEST['category'])."' WHERE content_ID = '".$_REQUEST['article']."'");
 	}
 	
 	$result = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['id']."'");

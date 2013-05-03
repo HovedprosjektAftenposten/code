@@ -28,6 +28,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.width = '617px';  
 	config.resize_enabled = false; //false says not resizable
 	config.enterMode = CKEDITOR.ENTER_BR;
+	config.forcePasteAsPlainText = true;
 	
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.

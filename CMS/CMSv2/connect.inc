@@ -8,4 +8,5 @@ Inkluderes i hver fil ved å bruke include('connect.php'); i head.-->
 	}
 //	echo '<p style="color: green;">Connected</p>'; //hvis tilkoblingen er OK, skrives Connected ut på skjermen
 	mysql_select_db("aftenposten", $connect); //velger database/schema
+	mysql_query ('SET NAMES utf8');
 ?>

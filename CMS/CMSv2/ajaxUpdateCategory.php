@@ -47,21 +47,21 @@
 	
 	
 	else if(isset($_REQUEST['category1'])){
-		mysql_query("UPDATE category_table SET category1 = '".$_REQUEST['category1']."' WHERE tl_ID = '".$_REQUEST['id']."'");
+		mysql_query("UPDATE category_table SET category1 = '".htmlentities($_REQUEST['category1'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	else if(isset($_REQUEST['category2'])){
-		mysql_query("UPDATE category_table SET category2 = '".$_REQUEST['category2']."' WHERE tl_ID = '".$_REQUEST['id']."'");
+		mysql_query("UPDATE category_table SET category2 = '".htmlentities($_REQUEST['category2'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	else if(isset($_REQUEST['category3'])){
-		mysql_query("UPDATE category_table SET category3 = '".$_REQUEST['category3']."' WHERE tl_ID = '".$_REQUEST['id']."'");
+		mysql_query("UPDATE category_table SET category3 = '".htmlentities($_REQUEST['category3'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	else if(isset($_REQUEST['category4'])){
-		mysql_query("UPDATE category_table SET category4 = '".$_REQUEST['category4']."' WHERE tl_ID = '".$_REQUEST['id']."'");
+		mysql_query("UPDATE category_table SET category4 = '".htmlentities($_REQUEST['category4'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	else if(isset($_REQUEST['category5'])){
-		mysql_query("UPDATE category_table SET category5 = '".$_REQUEST['category5']."' WHERE tl_ID = '".$_REQUEST['id']."'");
+		mysql_query("UPDATE category_table SET category5 = '".htmlentities($_REQUEST['category5'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	else if(isset($_REQUEST['category6'])){
-		mysql_query("UPDATE category_table SET category6 = '".$_REQUEST['category6']."' WHERE tl_ID = '".$_REQUEST['id']."'");
+		mysql_query("UPDATE category_table SET category6 = '".htmlentities($_REQUEST['category6'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 ?>

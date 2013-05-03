@@ -1,5 +1,6 @@
 <?php
 include('connect.inc');
+header ('content-type:text/html;charset=utf-8');
 
 //function som skriver ut alle tidslinjer på index.php. Hver tidslinje får en onclick som er satt til tl_ID. Onclick kaller på js script i index.php, som igjen setter urlen til edit.php?id= tl_ID.
 //På denne måten kan alt innhold i de forskjellige tidslinjene skrives ut på edit.php siden.
@@ -80,7 +81,7 @@ function fillEditInputs() {
 	
 /* 		$sql = "SELECT content_table.*, media_table.* FROM content_table, media_table WHERE (content_table.content_ID = '".$_REQUEST['article']."' AND media_table.content_ID = '".$_REQUEST['article']."')"; */
 		
-		$result = mysql_query("SELECT content_table.*, media_table.* FROM content_table, media_table WHERE (content_table.content_ID = '".$_REQUEST['article']."' AND media_table.content_ID = '".$_REQUEST['article']."')");
+		$result = mysql_query("SELECT * FROM content_table WHERE content_table.content_ID = '".$_REQUEST['article']."'");
 		
 		$result2 = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
 		
@@ -114,7 +115,7 @@ function fillEditInputs() {
 				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' placeholder='HH:MM:SS' value='".$print['content_time']."' required pattern='^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$'></input></td>
 				<td><div id='nu-timeline-cms-timeCoin' data-toggle='tooltip' data-placement='top' title='Velg tidspunkt for hendelsen. Format: HH:MM:SS'></div></td>
 				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
-				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Dato må fortsatt settes for å få riktig posisjon på tidslinjen.'></div></td>
+				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Ca dato må fortsatt settes for å få riktig posisjon på tidslinjen.'></div></td>
 			</tr>
 			</table>
 			

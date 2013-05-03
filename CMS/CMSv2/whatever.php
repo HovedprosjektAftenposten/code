@@ -1,5 +1,5 @@
 <?php
-
+header ('content-type:text/html;charset=utf-8');
 /// IN PROGRESS!!!!
 
 
@@ -10,6 +10,7 @@
 	}
 //	echo '<p style="color: green;">Connected</p>'; //hvis tilkoblingen er OK, skrives Connected ut på skjermen
 	mysql_select_db("aftenposten", $connect); //velger database/schema
+	mysql_query ('SET NAMES utf8');
 
 	/* $get = $_GET['id']; */
 	
@@ -41,12 +42,12 @@
 			
 			if($row['content_status'] == 0) {
 				
-				echo "<div style='border-left: 3px solid blue' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")' >";
+				echo "<div style='border-left: 5px solid blue' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")' >";
 				echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 				echo "</div>";
 			}
 			else {
-				echo "<div style='border-left: 3px solid green' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+				echo "<div style='border-left: 5px solid green' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
 				echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 				echo "</div>";
 			}

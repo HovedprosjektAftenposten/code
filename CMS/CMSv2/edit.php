@@ -3,7 +3,6 @@
    // if no valid session is found then the user is not logged in and will
    // receive a access denied message and will be redirected to the login page.
    session_start();
-/*
    if (!isset($_SESSION['user_name'])) {
 	
 	  header("Refresh: 3; url=login/index.php");
@@ -11,7 +10,6 @@
 	  echo '<p>You will be redirected in 3 seconds</p>';
 	  exit(); // Quit the script.
    }  
-*/
 ?>
 <?php
 header ('content-type:text/html;charset=utf-8');

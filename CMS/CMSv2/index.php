@@ -3,7 +3,6 @@
    // if no valid session is found then the user is not logged in and will
    // receive a access denied message and will be redirected to the login page.
    session_start();
-/*
    if (!isset($_SESSION['user_name'])) {
 	
 	  header("Refresh: 3; url=login/index.php");
@@ -11,7 +10,6 @@
 	  echo '<p>Du vil bli sendt til innlogging om 3 sekunder.</p>';
 	  exit(); // Quit the script.
    }  
-*/
 ?>
 <?php
 header ('content-type:text/html;charset=utf-8');
@@ -82,7 +80,7 @@ header ('content-type:text/html;charset=utf-8');
 				<td>
 					<div id="nu-timeline-cms-search">
 						<form action="index.php" method="get">
-							<input type="text" size="30" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
+							<input type="text" size="27" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
 							<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K" /> 
 							
 							<?php
