@@ -1,5 +1,6 @@
 <?php
 	ob_start();
+	session_start();
 	include('connect.inc');
 	
 	$maxTLID = mysql_query("SELECT * FROM timeline_table ORDER BY tl_ID DESC LIMIT 1");
@@ -30,7 +31,7 @@
 	
 	$newCategoryID = ++$categoryID['category_ID'];
 	
-	mysql_query("INSERT INTO timeline_table (tl_ID) VALUES ('$newTLID')");
+	mysql_query("INSERT INTO timeline_table (tl_ID, tl_createdBy) VALUES ('$newTLID', '".$_SESSION['user_name']."')");
 	mysql_query("INSERT INTO content_table (content_ID, tl_ID) VALUES ('$newContentID', '$newTLID')");
 	mysql_query("INSERT INTO category_table (category_ID, tl_ID) VALUES ('$newCategoryID', '$newTLID')");
 	

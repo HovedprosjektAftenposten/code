@@ -26,27 +26,15 @@ body{
 
 /* END LOGIN */
 #nu-timeline-cms-saveVideoBtn{
-	height: 20px;
-	width: 40px;
-	margin-left: 30px;
-	background-color: yellow;
-	cursor: pointer;
+	padding: 1px 8px;
 }
 
 #nu-timeline-cms-deleteVideoBtn{
-	height: 20px;
-	width: 40px;
-	margin-left: 30px;
-	background-color: yellow;
-	cursor: pointer;
+	padding: 1px 8px;
 }
 
 #nu-timeline-cms-savePictureBtn{
-	height: 20px;
-	width: 40px;
-	margin-left: 30px;
-	background-color: yellow;
-	cursor: pointer;
+	padding: 1px 8px;
 }
 
 #nu-timeline-cms-picturePreview{
@@ -166,14 +154,23 @@ input:required:invalid, textarea:required:invalid {
 	float: left;
 }
 
-#nu-timeline-cms-saveMapButton{
-	height: 20px;
-	width: 50px;
-	background-color: yellow;
-	float: right;
-	cursor: pointer;
+#nu-timeline-cms-mapSearchTextField{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+	float: left;
 }
 
+#nu-timeline-cms-saveMapButton{
+	padding: 1px 8px;
+}
+
+#nu-timeline-cms-hiddenCoords{
+	display: none;
+}
+
+#nu-timeline-cms-address{
+	clear: both;
+}
 
 body{
 	overflow-y: scroll;
@@ -334,17 +331,8 @@ label{
 }
 
 #nu-timeline-cms-searchButton{
-	height: 24px;
-	width: 46px;
-	margin-top: 6px;
-	background-color: black;
-	border: 0px;
-	color: white;
-}
-
-#nu-timeline-cms-searchButton:hover{
-	background-color: #666;
-	cursor: pointer;
+	padding: 1px 8px;
+	margin-top: -1px;
 }
 
 #nu-timeline-cms-newTimeline{
@@ -357,7 +345,8 @@ label{
 }
 
 #nu-timeline-cms-newTimeline a{
-	text-decoration: none;	
+	text-decoration: none;
+	color: black;	
 }
 
 .nu-timeline-cms-addTimelineBtn{
@@ -393,7 +382,9 @@ label{
 	width: 50px;
 }
 
-
+#nu-timeline-cms-headerTableFifth{
+	width: 50px;
+}
 /* END CONTENT HEADER, INDEX AND EDIT */
 
 /* INNHOLD MAIN, INDEX */
@@ -666,16 +657,45 @@ th:hover{
 	margin-top: 4px;
 }
 
+#nu-timeline-cms-indexTable th.thFirst{
+	
+}
+
 #nu-timeline-cms-indexTable td.first{
 	width: 100px;
 }
 
+#nu-timeline-cms-indexTable th.thSecond{
+	
+}
+
 #nu-timeline-cms-indexTable td.second{
-	width: 600px;
+	width: 300px;
+}
+
+#nu-timeline-cms-indexTable th.thThird{
+	
 }
 
 #nu-timeline-cms-indexTable td.third{
 	width: 220px;
+}
+
+#nu-timeline-cms-indexTable th.thFourth{
+	
+}
+
+#nu-timeline-cms-indexTable td.fourth{
+	width: 100px;
+}
+
+#nu-timeline-cms-indexTable th.thLast{
+	text-align: right;
+}
+
+#nu-timeline-cms-indexTable td.last{
+	width: 300px;
+	text-align: right;
 }
 
 h2{
@@ -931,6 +951,11 @@ h2{
 	display: none;
 }
 
+#nu-timeline-cms-picEscenicID{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+}
+
 #nu-timeline-cms-slideContentPicture label{
 	padding: 5px;
 }
@@ -954,7 +979,7 @@ h2{
 }
 
 #nu-timeline-cms-contentMediaPictureOpenClose .contentMediaPictureDroppedDown{
-	background-position: 0px 0px;
+	background-position: -1px 0px;
 }
 
 #nu-timeline-cms-slideContentVideo{
@@ -966,6 +991,15 @@ h2{
 	border: 1px solid #e4e4e4;
 	float: left;
 	display: none;
+}
+
+#nu-timeline-cms-vidEscenicID{
+	padding: 5px;
+	border: 1px solid #e4e4e4;
+}
+
+#nu-timeline-cms-slideContentVideo label{
+	padding: 5px;
 }
 
 #nu-timeline-cms-contentMediaVideoOpenClose .nu-timeline-cms-contentMediaVideoOpenCloseArrow{
@@ -987,11 +1021,11 @@ h2{
 }
 
 #nu-timeline-cms-contentMediaVideoOpenClose .contentMediaVideoDroppedDown{
-	background-position: 0px 0px;
+	background-position: -1px 0px;
 }
 
 #nu-timeline-cms-slideContentMap{
-	height: 300px;
+	height: 380px;
 	width: 618px;
 	margin-left: 20px;
 	overflow: hidden;
@@ -999,6 +1033,20 @@ h2{
 	border: 1px solid #e4e4e4;
 	float: left;
 	display: none;
+}
+
+#nu-timeline-cms-googleMapAPI{
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 608px;
+}
+
+#nu-timeline-cms-slideContentMap label, input{
+	padding: 5px;
+}
+
+#nu-timeline-cms-address{
+	padding: 5px;
 }
 
 #nu-timeline-cms-contentMediaMapOpenClose .nu-timeline-cms-contentMediaMapOpenCloseArrow{
@@ -1020,7 +1068,7 @@ h2{
 }
 
 #nu-timeline-cms-contentMediaMapOpenClose .contentMediaMapDroppedDown{
-	background-position: 0px 0px;
+	background-position: -1px 0px;
 }
 
 /* STATUS BUTTON */

@@ -56,6 +56,7 @@ header ('content-type:text/html;charset=utf-8');
 	?>
 
 
+									
 </head>
 
 <body>
@@ -76,13 +77,18 @@ header ('content-type:text/html;charset=utf-8');
 						</div>
 					</div>
 				</td>
+				
 				<td id='nu-timeline-cms-headerTableSecond'>
+					<div id='nu-timeline-cms-publishTimelineBtn' class='btn btn-inverse'>Publiser</div>
+				</td>
+				
+				<td id='nu-timeline-cms-headerTableThird'>
 					<div id="nu-timeline-cms-tlCodeBtn" data-toggle='tooltip' data-placement='bottom' title='Last ned Escenic kode'></div>
 				</td>
-				<td id='nu-timeline-cms-headerTableThird'>
+				<td id='nu-timeline-cms-headerTableFourth'>
 					<div id="nu-timeline-cms-home" onclick="window.location.href='index.php'" data-toggle='tooltip' data-placement='bottom' title='Hjem'></div>
 				</td>
-				<td id='nu-timeline-cms-headerTableFourth'>	
+				<td id='nu-timeline-cms-headerTableFifth'>	
 					<div class="nu-timeline-cms-loggUt" data-toggle='tooltip' data-placement='bottom' title='Logg ut' onclick="window.location.href='login/index.php?logout'"></div>
 				</td>
 			</tr>
@@ -120,7 +126,7 @@ header ('content-type:text/html;charset=utf-8');
 					<div id='nu-timeline-cms-searchContent'>
 						<form id='nu-timeline-cms-articleSearchForm' method='post' action='edit.php?id=<?php getTLID(); ?>'>
 						<input id='nu-timeline-cms-contentSearchField' type='text' name='sok' placeholder='S&oslash;k i hendelser...'>
-						<input id='nu-timeline-cms-searchButton' type='submit' value='S&Oslash;K'>
+						<input id='nu-timeline-cms-searchButton'  class='btn btn-inverse' type='submit' value='S&oslash;k'>
 					</form>
 					</div>
 					<div id="nu-timeline-cms-articles">

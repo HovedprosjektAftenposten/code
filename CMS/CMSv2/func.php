@@ -12,7 +12,7 @@ function getTimeline() {
 	
 	while($row = mysql_fetch_array($result)) {
 		echo "<tr class='timelineLine' id='".$row['tl_ID']."' onclick='hentTidslinje(".$row['tl_ID'].")'>";
-		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_lastEdit']."</td>"."<td class='last'></td>";
+		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_createdBy']."</td>"."<td class='fourth'></td>"."<td class='last'>".$row['tl_lastEdit']."</td>";
 		echo "</tr>";
 	}
 	
@@ -225,7 +225,7 @@ function fillEditInputs() {
 							</select>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-savePictureBtn'>Lagre</div>
+							<div id='nu-timeline-cms-savePictureBtn' class='btn btn-inverse'>Lagre</div>
 						</td>
 					</tr>
 				</table>
@@ -250,10 +250,10 @@ function fillEditInputs() {
 							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-saveVideoBtn'>Lagre</div>
+							<div id='nu-timeline-cms-saveVideoBtn' class='btn btn-inverse'>Lagre</div>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-deleteVideoBtn'>Slett</div>
+							<div id='nu-timeline-cms-deleteVideoBtn' class='btn btn-inverse'>Slett</div>
 						</td>
 					</tr>
 				</table>
@@ -266,15 +266,33 @@ function fillEditInputs() {
 			</div>
 			<div id='nu-timeline-cms-slideContentMap'>
 				<div id='nu-timeline-cms-mapsSearchPanel' style='margin-left: 0px'>
-					<input id='nu-timeline-cms-mapSearchTextField' type='text' size='50'>
-					
-	
-				</div>
-				<div id='nu-timeline-cms-googleMapAPI'></div>
-				<div id='nu-timeline-cms-saveMapButton'>Save</div>
+					<table>
+						<tr>
+							<td>
+								<input id='nu-timeline-cms-mapSearchTextField' type='text' size='50'>
+								<div id='nu-timeline-cms-saveMapButton' class='btn btn-inverse'>Lagre</div>
+								
+								
+								</div>
+							</td>
+						</tr>
+					</div>
+							<td>
+								
+								<div id='nu-timeline-cms-googleMapAPI'></div>
+							</td>
 				
+					<tr>
+						<td>
+							<label>Nærmeste adresse:</label><div id='nu-timeline-cms-address'></div>
+						</td>
+					</tr>	
+				
+				</table>
+				<div id='nu-timeline-cms-hiddenCoords'></div>
 			</div>
-			
+			</div>
+
 			
 			
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			

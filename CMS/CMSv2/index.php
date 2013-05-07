@@ -81,7 +81,7 @@ header ('content-type:text/html;charset=utf-8');
 					<div id="nu-timeline-cms-search">
 						<form action="index.php" method="get">
 							<input type="text" size="27" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
-							<input id="nu-timeline-cms-searchButton" type="submit" value="S&Oslash;K" /> 
+							<input id="nu-timeline-cms-searchButton" class='btn btn-inverse' type="submit" value="S&oslash;k" /> 
 							
 							<?php
 							
@@ -103,9 +103,11 @@ header ('content-type:text/html;charset=utf-8');
 		<div id="nu-timeline-cms-result">
 			<table id="nu-timeline-cms-indexTable">
 				<tr>
-					<th>ID</th>
-					<th>Tidslinjenavn</th>
-					<th>Sist endret</th>
+					<th class='thFirst'>ID</th>
+					<th class='thSecond'>Tidslinjenavn</th>
+					<th class='thThird'>Opprettet av</th>
+					<th class='thFourth'>Status</th>
+					<th class='thLast'>Sist endret</th>
 				</tr>
 				
 				
@@ -150,8 +152,8 @@ header ('content-type:text/html;charset=utf-8');
 				            // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
 				                
 				                echo "<tr class='timelineLine' id='".$results['tl_ID']."' onclick='hentTidslinje(".$results['tl_ID'].")'>";
-				                echo "<td class='first'>".$results['tl_ID']."</td>"."<td class='second'>".$results['tl_name']."</td>"."<td class='third'>".$results['tl_date']."</td>"."<td class='last'></td>";
-				                echo "</tr>";
+		echo "<td class='first'>".$results['tl_ID']."</td>"."<td class='second'>".$results['tl_name']."</td>"."<td class='third'>".$results['tl_createdBy']."</td>"."<td class='fourth'></td>"."<td class='last'>".$results['tl_lastEdit']."</td>";
+		echo "</tr>";
 				                // posts results gotten from database
 				                }
 				             
