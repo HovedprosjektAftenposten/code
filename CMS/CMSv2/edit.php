@@ -2,6 +2,7 @@
 
    // if no valid session is found then the user is not logged in and will
    // receive a access denied message and will be redirected to the login page.
+/*
    session_start();
    if (!isset($_SESSION['user_name'])) {
 	
@@ -9,7 +10,8 @@
 	  echo '<h3>Access deined - you do not have access to this page</h3>';
 	  echo '<p>You will be redirected in 3 seconds</p>';
 	  exit(); // Quit the script.
-   }  
+   } 
+*/ 
 ?>
 <?php
 header ('content-type:text/html;charset=utf-8');

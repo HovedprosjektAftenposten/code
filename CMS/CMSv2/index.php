@@ -2,6 +2,7 @@
 
    // if no valid session is found then the user is not logged in and will
    // receive a access denied message and will be redirected to the login page.
+/*
    session_start();
    if (!isset($_SESSION['user_name'])) {
 	
@@ -10,6 +11,7 @@
 	  echo '<p>Du vil bli sendt til innlogging om 3 sekunder.</p>';
 	  exit(); // Quit the script.
    }  
+*/
 ?>
 <?php
 header ('content-type:text/html;charset=utf-8');

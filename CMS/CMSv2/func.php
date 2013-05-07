@@ -176,53 +176,56 @@ function fillEditInputs() {
 							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
-							<select id='nu-timeline-cms-cropVersion'>
-								<option disabled selected>Velg størrelse</option>
-								<option>w80c169</option>
-								<option>w80c23</option>
-								<option>w80c34</option>
-								<option>w80c43</option>
-								<option>w80cFree</option>
-								<option>w180c169</option>
-								<option>w180c23</option>
-								<option>w180c34</option>
-								<option>w180c43</option>
-								<option>w180cFree</option>
-								<option>w280c169</option>
-								<option>w280c23</option>
-								<option>w280c34</option>
-								<option>w280c43</option>
-								<option>w280cFree</option>
-								<option>w380c169</option>
-								<option>w380c23</option>
-								<option>w380c34</option>
-								<option>w380c43</option>
-								<option>w380cFree</option>
-								<option>w480c169</option>
-								<option>w480c23</option>
-								<option>w480c34</option>
-								<option>w480c43</option>
-								<option>w480cFree</option>
-								<option>w580c169</option>
-								<option>w580c23</option>
-								<option>w580c34</option>
-								<option>w580c43</option>
-								<option>w580cFree</option>
-								<option>w680c169</option>
-								<option>w680c23</option>
-								<option>w680c34</option>
-								<option>w680c43</option>
-								<option>w680cFree</option>
-								<option>w780c169</option>
-								<option>w780c43</option>
-								<option>w780cFree</option>
-								<option>w880c169</option>
-								<option>w880c43</option>
-								<option>w880cFree</option>
-								<option>w980c169</option>
-								<option>w980c43</option>
-								<option>w980cFree</option>
-							</select>
+							<div class='dropdown'>
+							<div class='btn' data-toggle='dropdown'>Velg størrelse</div>
+							<!-- Link or button to toggle dropdown -->
+								<ul class='dropdown-menu pull-right' role='menu' aria-labelledby='dLabel'>
+									<li><a tabindex='-1' href='#'>w80c169</a></li>
+									<li><a tabindex='-1' href='#'>w80c23</a></li>
+									<li><a tabindex='-1' href='#'>w80c34</a></li>
+									<li><a tabindex='-1' href='#'>w80c43</a></li>
+									<li><a tabindex='-1' href='#'>w80cFree</a></li>
+									<li><a tabindex='-1' href='#'>w180c169</a></li>
+									<li><a tabindex='-1' href='#'>w180c23</a></li>
+									<li><a tabindex='-1' href='#'>w180c34</a></li>
+									<li><a tabindex='-1' href='#'>w180c43</a></li>
+									<li><a tabindex='-1' href='#'>w180cFree</a></li>
+									<li><a tabindex='-1' href='#'>w280c169</a></li>
+									<li><a tabindex='-1' href='#'>w280c23</a></li>
+									<li><a tabindex='-1' href='#'>w280c34</a></li>
+									<li><a tabindex='-1' href='#'>w280c43</a></li>
+									<li><a tabindex='-1' href='#'>w280cFree</a></li>
+									<li><a tabindex='-1' href='#'>w380c169</a></li>
+									<li><a tabindex='-1' href='#'>w380c23</a></li>
+									<li><a tabindex='-1' href='#'>w380c34</a></li>
+									<li><a tabindex='-1' href='#'>w380c43</a></li>
+									<li><a tabindex='-1' href='#'>w380cFree</a></li>
+									<li><a tabindex='-1' href='#'>w480c169</a></li>
+									<li><a tabindex='-1' href='#'>w480c23</a></li>
+									<li><a tabindex='-1' href='#'>w480c34</a></li>
+									<li><a tabindex='-1' href='#'>w480c43</a></li>
+									<li><a tabindex='-1' href='#'>w480cFree</a></li>
+									<li><a tabindex='-1' href='#'>w580c169</a></li>
+									<li><a tabindex='-1' href='#'>w580c23</a></li>
+									<li><a tabindex='-1' href='#'>w580c34</a></li>
+									<li><a tabindex='-1' href='#'>w580c43</a></li>
+									<li><a tabindex='-1' href='#'>w580cFree</a></li>
+									<li><a tabindex='-1' href='#'>w680c169</a></li>
+									<li><a tabindex='-1' href='#'>w680c23</a></li>
+									<li><a tabindex='-1' href='#'>w680c34</a></li>
+									<li><a tabindex='-1' href='#'>w680c43</a></li>
+									<li><a tabindex='-1' href='#'>w680cFree</a></li>
+									<li><a tabindex='-1' href='#'>w780c169</a></li>
+									<li><a tabindex='-1' href='#'>w780c43</a></li>
+									<li><a tabindex='-1' href='#'>w780cFree</a></li>
+									<li><a tabindex='-1' href='#'>w880c169</a></li>
+									<li><a tabindex='-1' href='#'>w880c43</a></li>
+									<li><a tabindex='-1' href='#'>w880cFree</a></li>
+									<li><a tabindex='-1' href='#'>w980c169</a></li>
+									<li><a tabindex='-1' href='#'>w980c43</a></li>
+									<li><a tabindex='-1' href='#'>w980cFree</a></li>
+								</ul>
+							</div>
 						</td>
 						<td>
 							<div id='nu-timeline-cms-savePictureBtn' class='btn btn-inverse'>Lagre</div>

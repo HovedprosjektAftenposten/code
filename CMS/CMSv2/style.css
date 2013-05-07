@@ -27,14 +27,17 @@ body{
 /* END LOGIN */
 #nu-timeline-cms-saveVideoBtn{
 	padding: 1px 8px;
+	margin-left: 5px;
 }
 
 #nu-timeline-cms-deleteVideoBtn{
 	padding: 1px 8px;
+	margin-left: 5px;
 }
 
 #nu-timeline-cms-savePictureBtn{
 	padding: 1px 8px;
+	margin-left: 5px;
 }
 
 #nu-timeline-cms-picturePreview{
@@ -162,6 +165,8 @@ input:required:invalid, textarea:required:invalid {
 
 #nu-timeline-cms-saveMapButton{
 	padding: 1px 8px;
+	margin-left: 5px;
+	margin-top: 3px;
 }
 
 #nu-timeline-cms-hiddenCoords{
