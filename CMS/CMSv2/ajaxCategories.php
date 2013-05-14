@@ -36,4 +36,13 @@
 		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory6' value='".$print['category6']."'></input><input type='text' class='nu-timeline-cms-colorPicker color6'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn6'></div><input type='hidden' id='hiddenColor6' value='".$print['color6']."'></input></li>";
 	}
 	echo "</ul>";
+	
+	if(isset($_REQUEST['hiddenCategory'])){
+		if($print['category6'] > 0){
+			echo "full";
+		}else{
+			echo "";
+		}
+	
+	}
 ?>

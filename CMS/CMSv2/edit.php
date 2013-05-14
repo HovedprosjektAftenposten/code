@@ -2,7 +2,6 @@
 
    // if no valid session is found then the user is not logged in and will
    // receive a access denied message and will be redirected to the login page.
-/*
    session_start();
    if (!isset($_SESSION['user_name'])) {
 	
@@ -10,8 +9,7 @@
 	  echo '<h3>Access deined - you do not have access to this page</h3>';
 	  echo '<p>You will be redirected in 3 seconds</p>';
 	  exit(); // Quit the script.
-   } 
-*/ 
+   }  
 ?>
 <?php
 header ('content-type:text/html;charset=utf-8');
@@ -57,7 +55,19 @@ header ('content-type:text/html;charset=utf-8');
 	
 	?>
 
-
+	<div id="nu-timeline-cms-errorGreen">
+		<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<div id="nu-timeline-cms-statusMessageGreen"></div>
+		</div>
+	</div>
+	
+	<div id="nu-timeline-cms-errorYellow">
+		<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<div id="nu-timeline-cms-statusMessageYellow"></div>
+		</div>
+	</div>
 									
 </head>
 
@@ -81,7 +91,7 @@ header ('content-type:text/html;charset=utf-8');
 				</td>
 				
 				<td id='nu-timeline-cms-headerTableSecond'>
-					<div id='nu-timeline-cms-publishTimelineBtn' class='btn btn-inverse'>Publiser</div>
+					
 				</td>
 				
 				<td id='nu-timeline-cms-headerTableThird'>
@@ -238,9 +248,6 @@ header ('content-type:text/html;charset=utf-8');
 			</div>
 			</div>
 		</div>
-
-	
-	<div id='nu-timeline-cms-statusMessage' style='background-color: white; border: 1px solid #e4e4e4; padding: 5px; position: fixed; bottom: 0px; right: 5px;'></div>
 	
 </body>
 

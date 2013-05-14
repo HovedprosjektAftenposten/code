@@ -225,11 +225,13 @@ function fillEditInputs() {
 							</select>
 						</td>
 						<td>
+							<div id='nu-timeline-cms-findPicSize' class='btn btn-inverse'>Finn bilde</div>
 							<div id='nu-timeline-cms-savePictureBtn' class='btn btn-inverse'>Lagre</div>
 						</td>
 					</tr>
 				</table>
 				
+				<div id='nu-timeline-cms-pictureSizePreview'></div>
 				<div id='nu-timeline-cms-picturePreview'></div>
 						
 				
@@ -250,10 +252,10 @@ function fillEditInputs() {
 							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-saveVideoBtn' class='btn btn-inverse'>Lagre</div>
+							<div id='nu-timeline-cms-saveVideoBtn' class='btn btn-inverse'>Lagre video</div>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-deleteVideoBtn' class='btn btn-inverse'>Slett</div>
+							<div id='nu-timeline-cms-deleteVideoBtn' class='btn btn-inverse'>Slett video</div>
 						</td>
 					</tr>
 				</table>
@@ -264,13 +266,14 @@ function fillEditInputs() {
 				<label id='nu-timeline-cms-lblContentMediaMap'>Legg til kart:</label>
 				<a id='nu-timeline-cms-contentMediaMapOpenClose'><span class='nu-timeline-cms-contentMediaMapOpenCloseArrow'></span></a>
 			</div>
+			
 			<div id='nu-timeline-cms-slideContentMap'>
 				<div id='nu-timeline-cms-mapsSearchPanel' style='margin-left: 0px'>
 					<table>
 						<tr>
 							<td>
 								<input id='nu-timeline-cms-mapSearchTextField' type='text' size='50'>
-								<div id='nu-timeline-cms-saveMapButton' class='btn btn-inverse'>Lagre</div>
+								<div id='nu-timeline-cms-saveMapButton' class='btn btn-inverse'>Lagre kart</div>
 								
 								
 								</div>
@@ -298,19 +301,21 @@ function fillEditInputs() {
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
 			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
 			
-
+			
+			<div id='nu-timeline-cms-statusBtnTxt'>Velg status for hendelse: </div>
 			<div class='nu-timeline-cms-status-buttons-wrapper'>
 				<ul>
 					<li>
 						<a id='ddStatus' class='btn'>Endre status<span class='arrow'></span></a>
 						<ul>
-							<li><input type='submit' class='btn btn-success' value='Publiser' name='savePublish' ></li>
-							<li><input type='submit' class='btn btn-primary' value='Kladd' name='saveDraft' ></li>
-							<li><input type='button' class='btn btn-danger' value='Slett' name='delete' ></li>
+							<li><div id='nu-timeline-cms-publishButton' class='btn btn-success' value='Publiser' name='savePublish' >Publiser</div></li>
+							<li><div id='nu-timeline-cms-draftButton' class='btn btn-primary' value='Kladd' name='saveDraft'>Kladd</div></li>
+							<li><div id='nu-timeline-cms-deleteButton' class='btn btn-danger' value='Slett' name='delete'>Slett</div></li>
 						</ul>
 					</li>
 				</ul>
 			</div>
+			
 
 			</form>
 			";
@@ -355,7 +360,7 @@ function fillTlInfoInputs() {
 				<td></td>
 			</tr>
 			<tr>
-				<td><textarea cols='67' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>".$print['tl_ingress']."</textarea></td>
+				<td><textarea cols='80' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>".$print['tl_ingress']."</textarea></td>
 				<td><div id='nu-timeline-cms-showCategories'></div></td>
 				<td></td>
 				 

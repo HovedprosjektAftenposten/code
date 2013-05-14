@@ -3,10 +3,8 @@ header ('content-type:text/html;charset=utf-8');
 include('connect.inc');
 
 
-$result = mysql_query("SELECT * FROM timeline_table WHERE tl_ID = '".$_REQUEST['tlID']."'");
-$result2 = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['tlID']."'");
+$result = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['tlID']."'");
 $print = mysql_fetch_array($result);
-$print2 = mysql_fetch_array($result2);
 
 
 	if(isset($_REQUEST['title'])){
@@ -16,22 +14,22 @@ $print2 = mysql_fetch_array($result2);
 		mysql_query("UPDATE timeline_table SET tl_ingress='".$_REQUEST['text']."' WHERE tl_ID = '".$_REQUEST['tlID']."'");
 	}
 	if(isset($_REQUEST['category'])){
-		if(empty($print2['category1'])){
+		if(empty($print['category1'])){
 			mysql_query("UPDATE category_table SET category1='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");
 		}
-		else if(empty($print2['category2'])){
+		else if(empty($print['category2'])){
 			mysql_query("UPDATE category_table SET category2='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	
 		}
-		else if(empty($print2['category3'])){
+		else if(empty($print['category3'])){
 			mysql_query("UPDATE category_table SET category3='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");			
 		}
-		else if(empty($print2['category4'])){
+		else if(empty($print['category4'])){
 			mysql_query("UPDATE category_table SET category4='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");			
 		}
-		else if(empty($print2['category5'])){
+		else if(empty($print['category5'])){
 			mysql_query("UPDATE category_table SET category5='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");		
 		}
-		else if(empty($print2['category6'])){
+		else if(empty($print['category6'])){
 			mysql_query("UPDATE category_table SET category6='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	
 		}
 	}
