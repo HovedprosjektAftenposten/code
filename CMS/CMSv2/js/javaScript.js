@@ -1,11 +1,5 @@
 $(document).ready(function(){
 	
-	$('#nu-timeline-cms-publishButton').click(function(){
-		var field = "test";
-		var farge = "green";
-		statusMessage(field, farge);
-	});
-	
 	$('.nu-timeline-cms-loggUt').hover(function(){
 		$('.nu-timeline-cms-loggUt').tooltip('toggle');	
 	});
@@ -44,8 +38,6 @@ $(document).ready(function(){
 		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
 		$('.nu-timeline-cms-contentMediaMapOpenCloseArrow').toggleClass('contentMediaMapDroppedDown');
 			initializeMap();
-
-
 /*
 		google.maps.event.trigger(map, "resize");
 		map.setCenter(marker.getPosition());
@@ -85,14 +77,14 @@ $(document).ready(function(){
 	
 	
 	
-	
+	getTimelineCode();
 	showCategories();
 	deleteCategory();
 	tlInfoPostOnBlurInput();
 	tlInfoPostOnBlurText();
-	setColorPicker();
 	categoryUpdateOnBlur();
-		 
+	setColorPicker();	 
+	
 	addCategories();
 	addImportant();
 		 
@@ -106,8 +98,9 @@ $(document).ready(function(){
 	saveArticleCategory();
 	
 	findPictureSize();
+	savePictureSize();
 	getEscenicPictureID();
-	postEscenicPictureID();
+	
 	deletePicture();
 	
 	getEscenicVideoID();
@@ -115,8 +108,27 @@ $(document).ready(function(){
 	deleteVideo();
 	
 	getStatus();
+
+	
 	
 });
+
+/*
+function updatePublish(){
+	$('#nu-timeline-cms-publishButton').click(function(){
+		var id = window.location.search;
+		var savePublish = 1;
+		$.post('updateContent.php', {savePublish: savePublish , id: id});
+	});
+}
+
+function updateDraft(){
+	$('#nu-timeline-cms-draftButton').click(function(){
+		var saveDraft = 1;
+		$.post('updateContent.php', {saveDraft: saveDraft});
+	});
+}
+*/
 
 function getStatus(){
 	if($('.nu-timeline-cms-textInactive').length > 0){
@@ -155,7 +167,7 @@ function tlInfoPostOnBlurInput(){
 		var title = $('#nu-timeline-cms-tlInfoFormTitle').val();
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 
-		$.post('ajaxPOSTtlInfo.php', {title: title, tlID: tlID});
+		$.post('ajaxPostTLInfo.php', {title: title, tlID: tlID});
 		var field = "Tittel";
 		var farge = "green";
 		
@@ -170,7 +182,7 @@ function tlInfoPostOnBlurText(){
 		var text = $('#nu-timeline-cms-tlInfoFormText').val();
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
-		$.post('ajaxPOSTtlInfo.php', {text: text, tlID: tlID});
+		$.post('ajaxPostTLInfo.php', {text: text, tlID: tlID});
 		var field = "Tekstfelt";
 		var farge= "green";
 		
@@ -184,7 +196,7 @@ function addCategories(){
 		var category = $('#nu-timeline-cms-tlInfoFormCategoryInput').val();
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
-		$.post('ajaxPOSTtlInfo.php', {category: category, tlID: tlID});
+		$.post('ajaxPostTLInfo.php', {category: category, tlID: tlID});
 		var field = "Kategori";
 		var farge = "green";
 		
@@ -203,6 +215,7 @@ function addCategories(){
 		}
 		fetchTimeDate();
 		showCategories();
+		setColorPicker();	
 		
 	});
 }
@@ -257,7 +270,7 @@ function editorPostOnBlur(){
 		var contentID = $('input#editFormHiddenContentID').val();
 			
 		editor.updateElement();
-		$.post('test.php', {text: text, contentid: contentID});
+		$.post('ajaxEditFormInput.php', {text: text, contentid: contentID});
 		var field = "Tekstfelt";
 		var farge = "green";
 		
@@ -273,7 +286,7 @@ function inputPostOnBlur(){
 	
 	$('#nu-timeline-cms-editFormContentTitle').blur(function(){
 		var title = $('#nu-timeline-cms-editFormContentTitle').val();
-		$.post('test.php', {overskrift: title, tlid: tlID, contentid: contentID});
+		$.post('ajaxEditFormInput.php', {overskrift: title, tlid: tlID, contentid: contentID});
 		var field = "Tittel";
 		var farge = "green";
 		
@@ -283,7 +296,7 @@ function inputPostOnBlur(){
 		});
 	$('#nu-timeline-cms-editFormContentTime').blur(function(){
 		var time = $('#nu-timeline-cms-editFormContentTime').val();
-		$.post('test.php', {tid: time, tlid: tlID, contentid: contentID});
+		$.post('ajaxEditFormInput.php', {tid: time, tlid: tlID, contentid: contentID});
 		var field = "Tid";
 		var farge = "green";
 		
@@ -293,7 +306,7 @@ function inputPostOnBlur(){
 		});
 	$('#nu-timeline-cms-editFormCustomTimeDate').blur(function(){
 		var custom = $('#nu-timeline-cms-editFormCustomTimeDate').val();
-		$.post('test.php', {custom: custom, tlid: tlID, contentid: contentID});
+		$.post('ajaxEditFormInput.php', {custom: custom, tlid: tlID, contentid: contentID});
 		var field = "Egendefinert";
 		var farge = "green";
 		
@@ -311,7 +324,7 @@ function updateDate(){
 			datepickerDate = $(this).val();
 			var contentID = $('input#editFormHiddenContentID').val();
 			
-			$.post('test.php', {dato: datepickerDate, contentid: contentID});
+			$.post('ajaxEditFormInput.php', {dato: datepickerDate, contentid: contentID});
 			var field = "Dato";
 			var farge = "green";
 			
@@ -324,7 +337,7 @@ function updateDate(){
 
 function updateArticles(){
 	var id = window.location.search;
-	$.get('whatever.php'+id, function(data){
+	$.get('ajaxGetArticles.php'+id, function(data){
 		$('#nu-timeline-cms-articles').html(data);
 	});
 	fixSelectedBackground();
@@ -662,7 +675,7 @@ function initializeMap(){
         var infowindow = new google.maps.InfoWindow();
         
         google.maps.event.addListener(marker, 'click', function() {
-        	infowindow.setContent(testAdresse);
+        	infowindow.setContent(infoWindowAdress);
 	        infowindow.open(map, marker);
 	    });
         
@@ -712,7 +725,7 @@ function geocodePosition(pos){
 		latLng: pos
 	}, function(responses){	
 		if(responses && responses.length > 0) {
-			window.testAdresse = responses[0].formatted_address;
+			window.infoWindowAdress = responses[0].formatted_address;
 			updateMarkerAddress(responses[0].formatted_address);
 		}else{
 			updateMarkerAddress('Can not determine address');
@@ -775,6 +788,7 @@ function getMapData() {
 	
 }
 
+/*
 function postEscenicPictureID() {
 	$('#nu-timeline-cms-savePictureBtn').click(function() {
 	
@@ -794,11 +808,13 @@ function postEscenicPictureID() {
 	});
 		
 }
+*/
 
 function getEscenicPictureID() {
 	var id = window.location.search;
 	$.get('ajaxGetEscenicPicture.php'+id, function(data){
 		$('#nu-timeline-cms-picturePreview').html(data);
+		savePictureText();
 	});
 }
 
@@ -886,6 +902,61 @@ function showPictureSize(picture) {
 	});
 }
 
+function savePictureSize() {
+	$(document).on("click",'.nu-timeline-cms-picSizeTest', function() {
+		
+		$('#nu-timeline-cms-picturePreview').show();
+		$('#nu-timeline-cms-pictureSizePreview').hide();
+		
+	
+		var cropVersion = $(this).children("label").attr("value");
+		var picEscenicID = $('#nu-timeline-cms-picEscenicID').val();
+		var hiddenURL = $('#nu-timeline-cms-hiddenEscenicLink').val();
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post('ajaxGetEscenicPicture.php', {cropVersion: cropVersion, picEscenicID: picEscenicID, hiddenURL: hiddenURL, article: article});
+		getEscenicPictureID();
+		
+		var field = "Bilde";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+	});
+}
+
+function getPictureSize() {
+	var id = window.location.search;
+	$.get('ajaxSavePictureSize.php', function(data){
+		$('#nu-timeline-cms-picturePreview').html(data);
+	});
+}
+
+function savePictureText() {
+	$('.nu-timeline-cms-pictureTextArea').blur(function() {
+		var mediaID = $(this).attr("mediaid");
+		var pictureText = $('.nu-timeline-cms-pictureTextArea[mediaid='+mediaID+']').val();
+		var article = $('#editFormHiddenContentID').val();
+		
+		
+		$.post('ajaxPostPictureText.php', {pictureText: pictureText, article: article, mediaID: mediaID});
+		
+		var field = "Bildetekst";
+		var farge = "green";
+		
+		statusMessage(field, farge);
+		
+	})
+}
+
+function getTimelineCode() {
+	$('#nu-timeline-cms-tlCodeBtn').click(function(){
+			var tlID = window.location.search.substring(4);
+			var split = tlID.split('&');
+			var newtlID = split[0];
+		
+		var popup = prompt("Kopier denne koden inn i Escenic:","<div class='nu-timeline-wrapper'></div><script type='text/javascript'>getTimeline("+newtlID+")</script>");
+	});
+}
 
 
 

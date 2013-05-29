@@ -19,7 +19,7 @@ if ($login->messages) {
 }
 
 ?>
-<link rel="stylesheet" type="text/css" href="../style.css" />
+<link rel="stylesheet" type="text/css" href="../style/style.css" />
 
 <!-- login form box -->
 <div id="login_form">

@@ -21,13 +21,13 @@ $print = mysql_fetch_array($result);
 			mysql_query("UPDATE category_table SET category2='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	
 		}
 		else if(empty($print['category3'])){
-			mysql_query("UPDATE category_table SET category3='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");			
+			mysql_query("UPDATE category_table SET category3='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	
 		}
 		else if(empty($print['category4'])){
-			mysql_query("UPDATE category_table SET category4='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");			
+			mysql_query("UPDATE category_table SET category4='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	
 		}
 		else if(empty($print['category5'])){
-			mysql_query("UPDATE category_table SET category5='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");		
+			mysql_query("UPDATE category_table SET category5='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	
 		}
 		else if(empty($print['category6'])){
 			mysql_query("UPDATE category_table SET category6='".htmlentities($_REQUEST['category'])."' WHERE tl_ID = '".$_REQUEST['tlID']."'");	

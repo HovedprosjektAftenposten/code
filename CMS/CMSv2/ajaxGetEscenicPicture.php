@@ -41,7 +41,10 @@
 	
 	
 	while($print = mysql_fetch_array($query)) {
-		echo "<img src='".$print['media_data']."' id='".$print['media_ID']."'></img>";
+		echo "<div class='nu-timeline-cms-showPictures' mediaid='".$print['media_ID']."'><img src='".$print['media_data']."' id='".$print['media_ID']."' />
+				
+				<div class='nu-timeline-cms-pictureText'><label>Bilde tekst:</label><textarea class='nu-timeline-cms-pictureTextArea' rows='7' cols='26' mediaid='".$print['media_ID']."'>".$print['media_text']."</textarea></div>
+				</div>";
 		
 	}
 	

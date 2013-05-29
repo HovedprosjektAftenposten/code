@@ -20,10 +20,10 @@ header ('content-type:text/html;charset=utf-8');
 
 <head>
 	<title>Tidslinje CMS</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
-	<script src="jquery-1.9.0.js" type="text/javascript"></script>
-	<script src="javaScript.js" type="text/javascript"></script>
+	<script src="js/jquery-1.9.0.js" type="text/javascript"></script>
+	<script src="js/javaScript.js" type="text/javascript"></script>
 	<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script>
 		function hentTidslinje(id) {

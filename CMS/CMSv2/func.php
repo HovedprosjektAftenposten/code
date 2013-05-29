@@ -45,28 +45,15 @@ function getArticle() {
 	$result = mysql_query("SELECT * FROM content_table WHERE tl_ID = '".$_REQUEST['id']."' ORDER BY content_date DESC");
 	
 	while($row = mysql_fetch_array($result)) {
-	
-			if(strlen($row['content_content']) > 30){
-				$trimContent = substr($row['content_content'], 0, 30).'...';
-				
-			}else{
-				$trimContent = $row['content_content'];
-				
-			}
-			if(strlen($row['content_title']) > 30){
-				$trimTitle = substr($row['content_title'], 0, 30).'...';
-			}else{
-				$trimTitle = $row['content_title'];
-			}
 		
 		if($row['content_status'] == 0) {
 			echo "<div style='border-left: 5px solid blue' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$row['content_content']."</div>";
 			echo "</div>";
 		}
 		else {
 			echo "<div style='border-left: 5px solid green' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
-			echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
+			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$row['content_content']."</div>";
 			echo "</div>";
 		}
 
@@ -176,57 +163,10 @@ function fillEditInputs() {
 							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
-							<select id='nu-timeline-cms-cropVersion'>
-								<option disabled selected>Velg størrelse</option>
-								<option>w80c169</option>
-								<option>w80c23</option>
-								<option>w80c34</option>
-								<option>w80c43</option>
-								<option>w80cFree</option>
-								<option>w180c169</option>
-								<option>w180c23</option>
-								<option>w180c34</option>
-								<option>w180c43</option>
-								<option>w180cFree</option>
-								<option>w280c169</option>
-								<option>w280c23</option>
-								<option>w280c34</option>
-								<option>w280c43</option>
-								<option>w280cFree</option>
-								<option>w380c169</option>
-								<option>w380c23</option>
-								<option>w380c34</option>
-								<option>w380c43</option>
-								<option>w380cFree</option>
-								<option>w480c169</option>
-								<option>w480c23</option>
-								<option>w480c34</option>
-								<option>w480c43</option>
-								<option>w480cFree</option>
-								<option>w580c169</option>
-								<option>w580c23</option>
-								<option>w580c34</option>
-								<option>w580c43</option>
-								<option>w580cFree</option>
-								<option>w680c169</option>
-								<option>w680c23</option>
-								<option>w680c34</option>
-								<option>w680c43</option>
-								<option>w680cFree</option>
-								<option>w780c169</option>
-								<option>w780c43</option>
-								<option>w780cFree</option>
-								<option>w880c169</option>
-								<option>w880c43</option>
-								<option>w880cFree</option>
-								<option>w980c169</option>
-								<option>w980c43</option>
-								<option>w980cFree</option>
-							</select>
 						</td>
 						<td>
 							<div id='nu-timeline-cms-findPicSize' class='btn btn-inverse'>Finn bilde</div>
-							<div id='nu-timeline-cms-savePictureBtn' class='btn btn-inverse'>Lagre</div>
+							
 						</td>
 					</tr>
 				</table>
@@ -308,9 +248,9 @@ function fillEditInputs() {
 					<li>
 						<a id='ddStatus' class='btn'>Endre status<span class='arrow'></span></a>
 						<ul>
-							<li><div id='nu-timeline-cms-publishButton' class='btn btn-success' value='Publiser' name='savePublish' >Publiser</div></li>
-							<li><div id='nu-timeline-cms-draftButton' class='btn btn-primary' value='Kladd' name='saveDraft'>Kladd</div></li>
-							<li><div id='nu-timeline-cms-deleteButton' class='btn btn-danger' value='Slett' name='delete'>Slett</div></li>
+							<li><input type='submit' id='nu-timeline-cms-publishButton' class='btn btn-success' value='Publiser' name='savePublish' ></input></li>
+							<li><input type='submit' id='nu-timeline-cms-draftButton' class='btn btn-primary' value='Kladd' name='saveDraft'></input></li>
+							<li><input type='submit' id='nu-timeline-cms-deleteButton' class='btn btn-danger' value='Slett' name='delete'></input></li>
 						</ul>
 					</li>
 				</ul>

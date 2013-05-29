@@ -33,9 +33,37 @@ border:1px solid #cdcdcd;
 
 /* END LOGIN */
 
+#nu-timeline-cms-publishButton{
+	width: 151px;
+}
+
+#nu-timeline-cms-draftButton{
+	width: 151px;
+}
+
+#nu-timeline-cms-deleteButton{
+	width: 151px;
+}
+
+.nu-timeline-cms-showPictures{
+	height: 100px;
+	width: 610px;
+	padding: 5px;
+}
+
+.nu-timeline-cms-pictureText{
+	float: right;
+
+}
+
+.nu-timeline-cms-pictureText textarea{
+	vertical-align: middle;
+	margin-top: -1px;
+}
+
 .nu-timeline-cms-picSizeTest{
 	height: 100px;
-	width: 300px;
+	width: 614px;
 	padding: 3px;	
 	
 	-webkit-transition: all 300ms ease;
@@ -47,7 +75,7 @@ border:1px solid #cdcdcd;
 }
 
 .nu-timeline-cms-picSizeTest:hover{
-	background-color: blue;
+	background-color: gray;
 }
 
 .nu-timeline-cms-picSizeTest label{
@@ -125,8 +153,6 @@ border:1px solid #cdcdcd;
 
 
 #nu-timeline-cms-picturePreview img{
-	margin-top: 10px;
-	margin-left: 10px;
 	height: 100px;
 	width: auto;
 	float: left;
@@ -138,7 +164,7 @@ border:1px solid #cdcdcd;
 }
 
 #nu-timeline-cms-dateCoin{
-	background-image: url(img/qCoin.png);
+	background-image: url(../img/qCoin.png);
 	background-repeat: no-repeat;
 	height: 15px;
 	width: 15px;
@@ -150,7 +176,7 @@ border:1px solid #cdcdcd;
 }
 
 #nu-timeline-cms-timeCoin{
-	background-image: url(img/qCoin.png);
+	background-image: url(../img/qCoin.png);
 	background-repeat: no-repeat;
 	height: 15px;
 	width: 15px;
@@ -162,7 +188,7 @@ border:1px solid #cdcdcd;
 }
 
 #nu-timeline-cms-customCoin{
-	background-image: url(img/qCoin.png);
+	background-image: url(../img/qCoin.png);
 	background-repeat: no-repeat;
 	position: absolute;
 	height: 15px;
@@ -172,7 +198,7 @@ border:1px solid #cdcdcd;
 }
 
 #nu-timeline-cms-categoryCoin{
-	background-image: url(img/qCoin.png);
+	background-image: url(../img/qCoin.png);
 	background-repeat: no-repeat;
 	height: 15px;
 	width: 15px;
@@ -180,7 +206,7 @@ border:1px solid #cdcdcd;
 }
 
 #nu-timeline-cms-importantCoin{
-	background-image: url(img/qCoin.png);
+	background-image: url(../img/qCoin.png);
 	background-repeat: no-repeat;
 	height: 15px;
 	width: 15px;
@@ -188,7 +214,7 @@ border:1px solid #cdcdcd;
 }
 
 #nu-timeline-cms-tlCategoryCoin{
-	background-image: url(img/qCoin.png);
+	background-image: url(../img/qCoin.png);
 	background-repeat: no-repeat;
 	height: 15px;
 	width: 15px;
@@ -325,7 +351,7 @@ label{
 
 #nu-timeline-cms-userLoggedIn{
 	position: absolute;
-	margin-left: 810px;
+	margin-left: 822px;
 	margin-top: -5px;
 }
 
@@ -342,7 +368,7 @@ label{
 }
 
 #nu-timeline-cms-tlCodeBtn{
-	background-image: url(img/download.png);
+	background-image: url(../img/download.png);
 	background-repeat: no-repeat;
 	height: 20px;
 	width: 20px;
@@ -356,7 +382,7 @@ label{
 }
 
 #nu-timeline-cms-home{
-	background-image: url(img/homeButton.png);
+	background-image: url(../img/homeButton.png);
 	background-repeat: no-repeat;
 	height: 20px;
 	width: 20px;
@@ -370,7 +396,7 @@ label{
 }
 
 .nu-timeline-cms-loggUt{
-	background-image: url(img/logout.png);
+	background-image: url(../img/logout.png);
 	background-repeat: no-repeat;
 	height: 20px;
 	width: 20px;
@@ -432,7 +458,7 @@ label{
 .nu-timeline-cms-addTimelineBtn{
 	height: 25px;
 	width: 25px;
-	background-image: url(img/plus.png);
+	background-image: url(../img/plus.png);
 	text-decoration: none;
 	margin-left: 5px;
 	margin-top: -3px;
@@ -546,7 +572,7 @@ label{
 	margin-top: -25px;
 	margin-right: 2px;
 	
-	background-image: url(img/timelineOpenClose.png);
+	background-image: url(../img/timelineOpenClose.png);
 	background-repeat: no-repeat;
 	background-position: -25px 0px;
 	opacity: 1;
@@ -600,7 +626,7 @@ label{
 	margin-top: 5px;
 	padding: 5px;
 	border: 1px solid #e4e4e4;
-	width: 524px;
+	width: 576px;
 }
 
 #nu-timeline-cms-addCategoryBtn{
@@ -622,7 +648,7 @@ label{
 }
 
 .nu-timeline-cms-tlFormDeleteCategoryBtn{
-	background-image: url(img/trash.png);
+	background-image: url(../img/trash.png);
 	background-repeat: no-repeat;
 	margin-top: 3px;
 	height: 20px;
@@ -633,7 +659,7 @@ label{
 }
 
 .nu-timeline-cms-tlFormDeleteCategoryBtn:hover{
-	background-image: url(img/trashHover.png);
+	background-image: url(../img/trashHover.png);
 	background-repeat: no-repeat;
 	margin-top: 3px;
 	height: 20px;
@@ -808,7 +834,10 @@ h2{
 
 .nu-timeline-cms-articleTitle{
 	font-weight: bold;
-	padding-top: 0px;
+	height: 16px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	
 }
 
@@ -825,7 +854,10 @@ h2{
 }
 
 .nu-timeline-cms-articleContent{
-	padding-bottom: 0px;
+	height: 16px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .nu-timeline-cms-articleContent strong{
@@ -965,7 +997,7 @@ h2{
 .nu-timeline-cms-plusBtn{
 	height: 25px;
 	width: 25px;
-	background-image: url(img/plus.png);
+	background-image: url(../img/plus.png);
 	text-decoration: none;
 	margin-left: 10px;
 	opacity: 1;
@@ -1049,7 +1081,7 @@ h2{
 	margin-top: -4px;
 	margin-right: -2px;
 	
-	background-image: url(img/timelineOpenClose.png);
+	background-image: url(../img/timelineOpenClose.png);
 	background-repeat: no-repeat;
 	background-position: -25px 0px;
 	opacity: 1;
@@ -1091,7 +1123,7 @@ h2{
 	margin-top: -4px;
 	margin-right: -2px;
 	
-	background-image: url(img/timelineOpenClose.png);
+	background-image: url(../img/timelineOpenClose.png);
 	background-repeat: no-repeat;
 	background-position: -25px 0px;
 	opacity: 1;
@@ -1138,7 +1170,7 @@ h2{
 	margin-top: -4px;
 	margin-right: -2px;
 	
-	background-image: url(img/timelineOpenClose.png);
+	background-image: url(../img/timelineOpenClose.png);
 	background-repeat: no-repeat;
 	background-position: -25px 0px;
 	opacity: 1;
@@ -1156,9 +1188,9 @@ h2{
 /* STATUS BUTTON */
 
 #nu-timeline-cms-statusBtnTxt{
-	position: relative;
-	top: 40px;
-	margin-left: 333px;
+	position: absolute;
+	bottom: 15px;
+	right: 180px;
 	
 }
 
@@ -1209,7 +1241,7 @@ h2{
 	margin-right:-5px;
 
 	border-left:1px solid #cdcdcd;
-	background-image:url(arrows.png);
+	background-image:url(../img/arrows.png);
 	background-repeat:no-repeat;
 	background-position:3px 3px;	
 }

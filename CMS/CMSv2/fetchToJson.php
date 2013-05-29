@@ -19,7 +19,7 @@ function fetchData(){
 	
 	SELECT t.tl_ID, t.tl_name, t.tl_date, t.tl_ingress, t.tl_lastEdit, cat.category1, cat.category2, cat.category3, cat.category4, cat.category5, cat.category6, cat.color1, cat.color2, cat.color3, cat.color4, cat.color5, cat.color6, c.content_ID, c.content_time, c.content_date, c.content_title, c.content_content, c.content_category, c.content_status, c.content_custom, c.content_media, c.content_important, m.media_ID, m.media_type, m.media_title, m.media_data, m.media_text
 	FROM timeline_table t
-		LEFT JOIN category_table cat on t.tl_ID = cat.tl_ID
+		LEFT JOIN category_table cat on t.tl_ID = cat.category_ID
 		LEFT JOIN content_table c ON t.tl_ID = c.tl_ID
 		LEFT JOIN media_table m ON c.content_ID = m.content_ID
 	WHERE t.tl_ID = $get
