@@ -14,7 +14,7 @@ function fetchData(){
 	// Pseudo-callback
 	$get = $_GET['id'];
 
-	// Query with LEFT JOIN to show content without belonging pictures etc, WHERE for pseudo-callback. WHERE content_status = 1 later, to 
+	// Query with LEFT JOIN to show content without belonging media.
 	$result = mysql_query("
 	
 	SELECT t.tl_ID, t.tl_name, t.tl_date, t.tl_ingress, t.tl_lastEdit, cat.category1, cat.category2, cat.category3, cat.category4, cat.category5, cat.category6, cat.color1, cat.color2, cat.color3, cat.color4, cat.color5, cat.color6, c.content_ID, c.content_time, c.content_date, c.content_title, c.content_content, c.content_category, c.content_status, c.content_custom, c.content_media, c.content_important, m.media_ID, m.media_type, m.media_title, m.media_data, m.media_text
@@ -52,8 +52,6 @@ function fetchData(){
 			$jsonData['timeline'][$timelineIndex]['tl_ingress'] = $row['tl_ingress'];
 			$jsonData['timeline'][$timelineIndex]['tl_lastEdit'] = $row['tl_lastEdit'];
 			
-			// Oppdateres as we speak av Vegard, kategorier og farger flyttes i egen tabell
-			
 			$jsonData['timeline'][$timelineIndex]['categories'][] = array(
 				'category1' => $row['category1'],
 				'category2' => $row['category2'],
@@ -66,21 +64,14 @@ function fetchData(){
 				'color3' => $row['color3'],
 				'color4' => $row['color4'],
 				'color5' => $row['color5'],
-				'color6' => $row['color6'],
+				'color6' => $row['color6']
 			);
 			
-/*
-			$jsonData['timeline'][$timelineIndex]['tl_category1'] = $row['tl_category1'];
-			$jsonData['timeline'][$timelineIndex]['tl_category2'] = $row['tl_category2'];
-			$jsonData['timeline'][$timelineIndex]['tl_category3'] = $row['tl_category3'];
-			$jsonData['timeline'][$timelineIndex]['tl_category4'] = $row['tl_category4'];
-			$jsonData['timeline'][$timelineIndex]['tl_category5'] = $row['tl_category5'];
-			$jsonData['timeline'][$timelineIndex]['tl_category6'] = $row['tl_category6'];
-*/
-			
-			// Declare array for content
-			$jsonData['timeline'][$timelineIndex]['content'] = array();
+		// Declare array for content
+		$jsonData['timeline'][$timelineIndex]['content'] = array();
+		
 		}
+		
 		// Check if the declared $content_ID is not equal to content_ID from db
 		if($content_ID != $row['content_ID']){
 			$contentIndex++;
@@ -112,8 +103,8 @@ function fetchData(){
 		);
 		
 	}
-	// Encodes JSON with, and strips links for slashes
-	echo stripslashes(json_encode($jsonData));
+	// Encodes JSON
+	echo json_encode($jsonData);
 }
 fetchData();
 ?>

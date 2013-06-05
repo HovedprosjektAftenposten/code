@@ -116,7 +116,7 @@ function fillEditInputs() {
 			<tr>
 				<td>
 					<select id='nu-timeline-cms-editFormChooseCategory'>
-						"; editFormFillCategories(); echo "
+						
 					</select>
 				</td>
 				<td><div id='nu-timeline-cms-categoryCoin' data-toggle='tooltip' data-placement='top' title='Velg kategori for hendelsen. En hendelse MÅ ikke ha en kategori.'></div></td>
@@ -342,6 +342,7 @@ function getContentID() {
 	echo $_REQUEST['article'];
 }
 // function that fills the dropdown menu with the correct categories, and sets one as selected.
+/*
 function editFormFillCategories(){
 
 	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
@@ -395,6 +396,7 @@ function editFormFillCategories(){
 		}
 	}
 }
+*/
 
 function editFormFillImportant(){
 	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");

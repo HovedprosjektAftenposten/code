@@ -38,12 +38,6 @@ $(document).ready(function(){
 		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
 		$('.nu-timeline-cms-contentMediaMapOpenCloseArrow').toggleClass('contentMediaMapDroppedDown');
 			initializeMap();
-/*
-		google.maps.event.trigger(map, "resize");
-		map.setCenter(marker.getPosition());
-		map.setZoom(map.getZoom());	
-*/
-		
 	}); 	
 	
 	var hidden = $('#nu-timeline-cms-hiddenInput').val();
@@ -108,8 +102,8 @@ $(document).ready(function(){
 	deleteVideo();
 	
 	getStatus();
-
 	
+	fillCategories();
 	
 });
 
@@ -183,7 +177,7 @@ function tlInfoPostOnBlurText(){
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
 		$.post('ajaxPostTLInfo.php', {text: text, tlID: tlID});
-		var field = "Tekstfelt";
+		var field = "Ingress";
 		var farge= "green";
 		
 		statusMessage(field, farge);
@@ -197,6 +191,8 @@ function addCategories(){
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
 		$.post('ajaxPostTLInfo.php', {category: category, tlID: tlID});
+		
+/*
 		var field = "Kategori";
 		var farge = "green";
 		
@@ -213,10 +209,12 @@ function addCategories(){
 			$('#nu-timeline-cms-statusMessageYellow').html('<p style="text-align: center">Kan ikke overstige 6 kategorier</p>');
 			$('#nu-timeline-cms-errorYellow').delay(1500).fadeOut();
 		}
+*/
+		
 		fetchTimeDate();
 		showCategories();
 		setColorPicker();	
-		
+		fillCategories();
 	});
 }
 
@@ -243,7 +241,7 @@ function showCategories(){
 	$('.nu-timeline-cms-colorPicker').spectrum({
 		showPaletteOnly: true,
 		showPalette: true,
-		color: '',
+		color: '#00aeef',
 		palette: [
         ['#00aeef', '#8dc63f', '#5b57a6'],
         ['#f7941d', '#ed1c24', '#0072bc']
@@ -400,11 +398,11 @@ function saveArticleCategory() {
 function statusMessage(field, farge){
 	if(farge == "red"){
 		$('#nu-timeline-cms-errorYellow').fadeIn();
-		$('#nu-timeline-cms-statusMessageYellow').html('<p text-align: center">'+field+' er slettet</p>');
+		$('#nu-timeline-cms-statusMessageYellow').html('<p text-align: center">'+field+' er slettet!</p>');
 		$('#nu-timeline-cms-errorYellow').delay(1500).fadeOut();
 	}else if(farge == "green"){
 		$('#nu-timeline-cms-errorGreen').fadeIn();
-		$('#nu-timeline-cms-statusMessageGreen').html('<p text-align: center">'+field+' er oppdatert</p>');
+		$('#nu-timeline-cms-statusMessageGreen').html('<p text-align: center">'+field+' er oppdatert!</p>');
 		$('#nu-timeline-cms-errorGreen').delay(1500).fadeOut();
 	}
 }
@@ -452,6 +450,7 @@ function deleteCategory() {
 		
 		statusMessage(field, farge);
 		showCategories();
+		fillCategories();
 	});
 	$('#categoryBtn2').click(function() {
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -463,6 +462,7 @@ function deleteCategory() {
 		
 		statusMessage(field, farge);
 		showCategories();
+		fillCategories();
 	});
 	$('#categoryBtn3').click(function() {
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -474,6 +474,7 @@ function deleteCategory() {
 		
 		statusMessage(field, farge);
 		showCategories();
+		fillCategories();
 	});
 	$('#categoryBtn4').click(function() {
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -485,6 +486,7 @@ function deleteCategory() {
 		
 		statusMessage(field, farge);
 		showCategories();
+		fillCategories();
 	});
 	$('#categoryBtn5').click(function() {
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -496,6 +498,7 @@ function deleteCategory() {
 		
 		statusMessage(field, farge);
 		showCategories();
+		fillCategories();
 	});
 	$('#categoryBtn6').click(function() {
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -507,11 +510,12 @@ function deleteCategory() {
 		
 		statusMessage(field, farge);
 		showCategories();
+		fillCategories();
 	});
 }
 
 function setColorPicker() {
-	$('.color1').change(function(){
+	$(document).on('change', '.color1', function(){
 		var color = $('.color1').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		var catnr = "cat1";
@@ -521,9 +525,9 @@ function setColorPicker() {
 		var field = "Farge 1";
 		var farge = "green";
 		
-		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('.color2').change(function(){
+	$(document).on('change', '.color2', function(){
 		var color = $('.color2').val();
 		
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -534,9 +538,9 @@ function setColorPicker() {
 		var field = "Farge 2";
 		var farge = "green";
 		
-		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('.color3').change(function(){
+	$(document).on('change', '.color3', function(){
 		var color = $('.color3').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		var catnr = "cat3";
@@ -545,9 +549,9 @@ function setColorPicker() {
 		var field = "Farge 3";
 		var farge = "green";
 		
-		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('.color4').change(function(){
+	$(document).on('change', '.color4', function(){
 		var color = $('.color4').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		var catnr = "cat4";
@@ -556,9 +560,9 @@ function setColorPicker() {
 		var field = "Farge 4";
 		var farge = "green";
 		
-		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('.color5').change(function(){
+	$(document).on('change', '.color5', function(){
 		var color = $('.color5').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		var catnr = "cat5";
@@ -567,9 +571,9 @@ function setColorPicker() {
 		var field = "Farge 5";
 		var farge = "green";
 		
-		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('.color6').change(function(){
+	$(document).on('change', '.color6', function(){
 		var color = $('.color6').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		var catnr = "cat6";
@@ -578,13 +582,14 @@ function setColorPicker() {
 		var field = "Farge 6";
 		var farge = "green";
 		
-		statusMessage(field, farge);
+		fillCategories();
 	});
 	
 }
+	
 
 function categoryUpdateOnBlur() {
-	$('#nu-timeline-cms-tlInfoCategory1').blur(function(){
+	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory1', function(){
 		var category1 = $('#nu-timeline-cms-tlInfoCategory1').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
@@ -593,8 +598,9 @@ function categoryUpdateOnBlur() {
 		var farge = "green";
 		
 		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('#nu-timeline-cms-tlInfoCategory2').blur(function(){
+	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory2', function(){
 		var category2 = $('#nu-timeline-cms-tlInfoCategory2').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
@@ -603,8 +609,9 @@ function categoryUpdateOnBlur() {
 		var farge = "green";
 		
 		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('#nu-timeline-cms-tlInfoCategory3').blur(function(){
+	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory3', function(){
 		var category3 = $('#nu-timeline-cms-tlInfoCategory3').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
@@ -613,8 +620,9 @@ function categoryUpdateOnBlur() {
 		var farge = "green";
 		
 		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('#nu-timeline-cms-tlInfoCategory4').blur(function(){
+	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory4', function(){
 		var category4 = $('#nu-timeline-cms-tlInfoCategory4').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
@@ -623,8 +631,9 @@ function categoryUpdateOnBlur() {
 		var farge = "green";
 		
 		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('#nu-timeline-cms-tlInfoCategory5').blur(function(){
+	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory5', function(){
 		var category5 = $('#nu-timeline-cms-tlInfoCategory5').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
@@ -633,8 +642,9 @@ function categoryUpdateOnBlur() {
 		var farge = "green";
 		
 		statusMessage(field, farge);
+		fillCategories();
 	});
-	$('#nu-timeline-cms-tlInfoCategory6').blur(function(){
+	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory6', function(){
 		var category6 = $('#nu-timeline-cms-tlInfoCategory6').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 		
@@ -643,8 +653,17 @@ function categoryUpdateOnBlur() {
 		var farge = "green";
 		
 		statusMessage(field, farge);
+		fillCategories();
 	});
-	
+}
+
+function fillCategories(){
+	var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
+	var article = $('#editFormHiddenContentID').val();
+	$.get('ajaxFillCategories.php', {article: article, id: id})
+	.done(function(data){
+		$('#nu-timeline-cms-editFormChooseCategory').html(data);
+	});
 }
 
 function initializeMap(){
