@@ -1,4 +1,9 @@
 <?php
+	// Script that sets the date and time for the last edit of an article. 
+	
+	// This is used for sorting of the timelines on index.php
+	
+	//
 
 	include('connect.inc');
 	

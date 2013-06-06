@@ -1,4 +1,7 @@
 <?php
+	// Script that updates picturetext in media_table for a specific picture
+	//
+	//
 	
 	header ('content-type:text/html;charset=utf-8');
 	include('connect.inc');

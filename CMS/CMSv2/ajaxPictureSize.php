@@ -1,15 +1,21 @@
 <?php
+	// Script that lets the user choose picture cropversion
+	// 
+	// 
 	
-	$connect = mysql_connect("localhost", "root", "root"); //kobler til server (server, brukernavn, passord)
+	// connectionstring start
+	$connect = mysql_connect("localhost", "root", "root");
 		if (!$connect) {
-			die('Could not connect: ' . mysql_error()); //hvis tilkoblingen ikke blir gjennomført blir det feilmelding
+			die('Could not connect: ' . mysql_error());
 		}
-	mysql_select_db("aftenposten", $connect); //velger database/schema
+	mysql_select_db("aftenposten", $connect);
+	// connectionstring end
 	
+		// defines an array with picture cropversions. w580 is just an randomly selected value
 		$array = array('w580cFree','w580c169','w580c43','w580c34','w580c23');
 	
 		
-			
+			// loop that replaces parts of URL and prints to edit.php
 			for($i = 0; $i < count($array); $i++){
 			
 				$picture = $_REQUEST['picture'];

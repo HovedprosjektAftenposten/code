@@ -1,13 +1,22 @@
 <?php
-	header ('content-type:text/html;charset=utf-8');
-	$connect = mysql_connect("localhost", "root", "root"); //kobler til server (server, brukernavn, passord)
-		if (!$connect) {
-			die('Could not connect: ' . mysql_error()); //hvis tilkoblingen ikke blir gjennomført blir det feilmelding
-		}
-	mysql_select_db("aftenposten", $connect); //velger database/schema
-	mysql_query ('SET NAMES utf8');
-
+	// Script for selecting category for an article + printing of the categories to edit.php
 	
+	// 
+	
+	//
+	
+	header ('content-type:text/html;charset=utf-8');
+	
+	// connectionstring for connection to the database
+	$connect = mysql_connect("localhost", "root", "root");
+		if (!$connect) {
+			die('Could not connect: ' . mysql_error()); 
+		}
+	mysql_select_db("aftenposten", $connect); 
+	mysql_query ('SET NAMES utf8');
+	// end connectionstring
+	
+	// selecting a category for an article
 	if(isset($_REQUEST['category'])){
 		mysql_query("UPDATE content_table SET content_category = '".htmlentities($_REQUEST['category'])."' WHERE content_ID = '".$_REQUEST['article']."'");
 	}
@@ -15,8 +24,9 @@
 	$result = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['id']."'");
 	$print = mysql_fetch_array($result);
 	
-	echo "<ul id='nu-timeline-cms-tlInfoListCategories'>";
+	echo "<ul id='nu-timeline-cms-tlInfoListCategories'>"; 
 	
+	// printing of categories to edit.php
 	if(!empty($print['category1'])){
 		echo "<li><input type='text' id='nu-timeline-cms-tlInfoCategory1' value='".$print['category1']."'></input><input type='text' class='nu-timeline-cms-colorPicker color1'/><div class='nu-timeline-cms-tlFormDeleteCategoryBtn' id='categoryBtn1'></div><input type='hidden' id='hiddenColor1' value='".$print['color1']."'></input></li>";
 	}
@@ -37,6 +47,7 @@
 	}
 	echo "</ul>";
 	
+	// checks if the maximum number of categories are reached
 	if(isset($_REQUEST['hiddenCategory'])){
 		if($print['category6'] > 0){
 			echo "full";

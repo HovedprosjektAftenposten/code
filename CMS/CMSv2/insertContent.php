@@ -4,12 +4,6 @@
 	ob_start();
 	include('connect.inc');
 	
-	/*
-$sql = "SELECT * FROM content_table ORDER BY content_ID DESC LIMIT 1";
-	
-	$sql2 = "SELECT * FROM media_table ORDER BY media_ID DESC LIMIT 1";
-*/
-	
 	$maxContentID = mysql_query("SELECT * FROM content_table ORDER BY content_ID DESC LIMIT 1");
 	$maxMediaID = mysql_query("SELECT * FROM media_table ORDER BY media_ID DESC LIMIT 1");
 	

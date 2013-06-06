@@ -1,26 +1,35 @@
 <?php
-		$connect = mysql_connect("localhost", "root", "root"); //kobler til server (server, brukernavn, passord)
+	// Script that saves mapdata to media_table
+	// &&
+	// Prints mapdata to edit.php
+	//
+	//
+		// connectionstring start
+		$connect = mysql_connect("localhost", "root", "root");
 			if (!$connect) {
-				die('Could not connect: ' . mysql_error()); //hvis tilkoblingen ikke blir gjennomført blir det feilmelding
+				die('Could not connect: ' . mysql_error());
 			}
-		mysql_select_db("aftenposten", $connect); //velger database/schema
+		mysql_select_db("aftenposten", $connect);
+		// connectionstring end
 	
 		$query = mysql_query("SELECT * FROM media_table WHERE content_ID = '".$_REQUEST['article']."' AND media_type = 'map'");
 		
 		$print = mysql_fetch_array($query);
 		
+		// increment media ID by 1
 		$mediaID = mysql_query("SELECT * FROM media_table ORDER BY media_ID DESC LIMIT 1");
 	
 		$array = mysql_fetch_array($mediaID);
 	
 		$newMediaID = ++$array['media_ID'];
 		
+		// print mapdata to edit.php 
 		if(!empty($print['media_data'])){
 			echo $print['media_data'];
 		}else{
 			echo "59.9138688,10.752245399999993,9";
 		}
-		
+		// add mapdata to database
 		if(!empty($_REQUEST['coords'])){
 			if($print['media_type'] == "map"){
 				mysql_query("UPDATE media_table SET media_data='".$_REQUEST['coords']."' WHERE content_ID = '".$_REQUEST['article']."' AND media_type = 'map'");
