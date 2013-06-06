@@ -1,16 +1,22 @@
 <?php
+	// Script that trims the length of the timelines name, so that it does not float over other content.
+	// 
+	// 
+
 	header ('content-type:text/html;charset=utf-8');
-	$connect = mysql_connect("localhost", "root", "root"); //kobler til server (server, brukernavn, passord)
+	// connectionstring start
+	$connect = mysql_connect("localhost", "root", "root");
 	if (!$connect) {
-		die('Could not connect: ' . mysql_error()); //hvis tilkoblingen ikke blir gjennomført blir det feilmelding
+		die('Could not connect: ' . mysql_error());
 	}
-//	echo '<p style="color: green;">Connected</p>'; //hvis tilkoblingen er OK, skrives Connected ut på skjermen
-	mysql_select_db("aftenposten", $connect); //velger database/schema
+	mysql_select_db("aftenposten", $connect);
 	mysql_query ('SET NAMES utf8');
+	// connectionstring end
 
 	$query = mysql_query("SELECT tl_name FROM timeline_table WHERE tl_ID = '".$_REQUEST['id']."'");
 	$result = mysql_fetch_array($query);
 	
+	// trims if string is longer than 20 characters
 	if(strlen($result['tl_name']) > 20){
 				$trimName = substr($result['tl_name'], 0, 20).'...';
 				echo "<a href='index.php'>Tidslinjer</a> > ".$trimName;

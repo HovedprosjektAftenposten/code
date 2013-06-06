@@ -1,11 +1,17 @@
 <?php
-
+	// Script that adds names for categories
+	// &&
+	// Sets color from the colorpicker
+	// &&
+	// Deletes categories
+	
 	include("connect.inc");
 	
 	$result = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['id']."'");
 	
 	$print = mysql_fetch_array($result);
 	
+	// Delete categories
 	if($_REQUEST['slett'] == "category1"){
 		mysql_query("UPDATE category_table SET category1 = '' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
@@ -25,7 +31,7 @@
 		mysql_query("UPDATE category_table SET category6 = '' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	
-	
+	// Set category color
 	else if($_REQUEST['catnr'] == "cat1"){
 		mysql_query("UPDATE category_table SET color1 = '".$_REQUEST['color']."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
@@ -45,7 +51,7 @@
 		mysql_query("UPDATE category_table SET color6 = '".$_REQUEST['color']."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}
 	
-	
+	// Set category name
 	else if(isset($_REQUEST['category1'])){
 		mysql_query("UPDATE category_table SET category1 = '".htmlentities($_REQUEST['category1'])."' WHERE tl_ID = '".$_REQUEST['id']."'");
 	}

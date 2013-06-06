@@ -1,4 +1,7 @@
 <?php
+	// Script that updates the database if an article is set to important
+	//
+	//
 
 	include('connect.inc');
 	

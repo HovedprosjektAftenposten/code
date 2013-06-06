@@ -1,5 +1,10 @@
 <?php
-
+	// Script that fills the category selector in article-view
+	
+	// 
+	
+	//
+	
 	header ('content-type:text/html;charset=utf-8');
 	$connect = mysql_connect("localhost", "root", "root"); //kobler til server (server, brukernavn, passord)
 		if (!$connect) {
@@ -14,8 +19,10 @@
 	$print = mysql_fetch_array($result);
 	$print2 = mysql_fetch_array($result2);
 	
+	// adds a selected option to the select-tag. Helps to indicate that a selection have to be made
 	echo "<option disabled selected>Velg kategori..</option>";
 
+	// Checks all the entries in the category_table for one specific timeline. Adds all the saved categories to the select-tag.
 	if (!empty($print2['category1'])){
 		if($print['content_category'] == $print2['category1']) {
 			echo "<option selected='selected'>".$print2['category1']."</option>";
