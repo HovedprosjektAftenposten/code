@@ -10,8 +10,6 @@ $(document).ready(function(){
 		$('#nu-timeline-cms-tlCodeBtn').tooltip('toggle');	
 	});
 	
-	fixSelectedBackground();
-	
 	$.ajaxSetup({
 		async: false,
 	});
@@ -28,7 +26,6 @@ $(document).ready(function(){
 	$('#nu-timeline-cms-contentMediaPicture').click(function(){	
 		$('#nu-timeline-cms-slideContentPicture').slideToggle(100);
 		$('.nu-timeline-cms-contentMediaPictureOpenCloseArrow').toggleClass('contentMediaPictureDroppedDown');
-		
 	});
 	$('#nu-timeline-cms-contentMediaVideo').click(function(){	
 		$('#nu-timeline-cms-slideContentVideo').slideToggle(100);
@@ -85,7 +82,11 @@ $(document).ready(function(){
 	editorPostOnBlur();
 	inputPostOnBlur();
 	updateDate();
-	deleteArticles();
+	
+	publishArticle();
+	draftArticle();
+	deleteArticle();
+	
 	saveMapCoords();
 	getMapData();
 	
@@ -163,9 +164,9 @@ function tlInfoPostOnBlurInput(){
 
 		$.post('ajaxPostTLInfo.php', {title: title, tlID: tlID});
 		var field = "Tittel";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fetchTimeDate();
 		updateTimelineName();
 	});
@@ -178,9 +179,9 @@ function tlInfoPostOnBlurText(){
 		
 		$.post('ajaxPostTLInfo.php', {text: text, tlID: tlID});
 		var field = "Ingress";
-		var farge= "green";
+		var statusColor= "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fetchTimeDate();
 	});
 }
@@ -192,24 +193,17 @@ function addCategories(){
 		
 		$.post('ajaxPostTLInfo.php', {category: category, tlID: tlID});
 		
-/*
-		var field = "Kategori";
-		var farge = "green";
-		
-		var full = $('#editFormHiddenCategory').val();
-		fetchTimeDate();
-		showCategories();
-		
-		
-		if(!full){
-			var farge = "green";
-			statusMessage(field, farge);
+		// Counts categories. If less than 6, print statusmessage that category have been added, else print that categories are full
+		var categoryCount = $('#nu-timeline-cms-tlInfoListCategories').children().length;
+		if(categoryCount < 6){
+			var field = "Kategorier";
+			var statusColor = "green";
+			statusMessage(field, statusColor);
 		}else{
 			$('#nu-timeline-cms-errorYellow').fadeIn();
 			$('#nu-timeline-cms-statusMessageYellow').html('<p style="text-align: center">Kan ikke overstige 6 kategorier</p>');
 			$('#nu-timeline-cms-errorYellow').delay(1500).fadeOut();
 		}
-*/
 		
 		fetchTimeDate();
 		showCategories();
@@ -225,9 +219,9 @@ function addImportant() {
 		
 		$.post('ajaxImportantArticle.php'+id, {important: important});
 		var field = "Viktig hendelse";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fetchTimeDate();
 	});
 }  
@@ -270,9 +264,9 @@ function editorPostOnBlur(){
 		editor.updateElement();
 		$.post('ajaxEditFormInput.php', {text: text, contentid: contentID});
 		var field = "Tekstfelt";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fetchTimeDate();
 		updateArticles();
 	});
@@ -286,30 +280,30 @@ function inputPostOnBlur(){
 		var title = $('#nu-timeline-cms-editFormContentTitle').val();
 		$.post('ajaxEditFormInput.php', {overskrift: title, tlid: tlID, contentid: contentID});
 		var field = "Tittel";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fetchTimeDate();
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		updateArticles();
 		});
 	$('#nu-timeline-cms-editFormContentTime').blur(function(){
 		var time = $('#nu-timeline-cms-editFormContentTime').val();
 		$.post('ajaxEditFormInput.php', {tid: time, tlid: tlID, contentid: contentID});
 		var field = "Tid";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fetchTimeDate();
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		updateArticles();
 		});
 	$('#nu-timeline-cms-editFormCustomTimeDate').blur(function(){
 		var custom = $('#nu-timeline-cms-editFormCustomTimeDate').val();
 		$.post('ajaxEditFormInput.php', {custom: custom, tlid: tlID, contentid: contentID});
 		var field = "Egendefinert";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fetchTimeDate();
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		updateArticles();
 		});
 }
@@ -324,10 +318,10 @@ function updateDate(){
 			
 			$.post('ajaxEditFormInput.php', {dato: datepickerDate, contentid: contentID});
 			var field = "Dato";
-			var farge = "green";
+			var statusColor = "green";
 			
 			fetchTimeDate();
-			statusMessage(field, farge);
+			statusMessage(field, statusColor);
 			updateArticles();
 		}
 	});
@@ -340,26 +334,84 @@ function updateArticles(){
 	});
 	fixSelectedBackground();
 }	
+
+function publishArticle(){
+	$('.btn-success').click(function(){
+		var id = window.location.search;
+		var savePublish = 'ja';
+		
+		$.post('updateContent.php'+id, {savePublish: savePublish});
+		var field = "Hendelse";
+		var statusColor = "green";
 	
-function deleteArticles(){
+		$('ul li > ul').hide();		
+		$('.arrow').removeClass('droppedDown');	
+				
+		
+		
+		if($('#ddStatus').hasClass('btn-success')){
+			$('#ddStatus').html('Publisert');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+		}else if($('#ddStatus').hasClass('btn-primary')){
+			$('#ddStatus').removeClass('btn-primary');			
+			$('#ddStatus').html('Publisert');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+			$('#ddStatus').toggleClass('btn-success');
+		}
+		
+		fetchTimeDate();
+		updateArticles();
+		statusMessage(field, statusColor);
+	});
+}
+
+function draftArticle(){
+	$('.btn-primary').click(function(){
+		var id = window.location.search;
+		var saveDraft = 'ja';
+		
+		$.post('updateContent.php'+id, {saveDraft: saveDraft});
+		var field = "Hendelse";
+		var statusColor = "green";
+			
+		$('ul li > ul').hide();		
+		$('.arrow').removeClass('droppedDown');	
+		
+		if($('#ddStatus').hasClass('btn-primary')){
+			$('#ddStatus').html('Kladd');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+		}else if($('#ddStatus').hasClass('btn-success')){
+			$('#ddStatus').removeClass('btn-success');		
+			$('#ddStatus').html('Kladd');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+			$('#ddStatus').toggleClass('btn-primary');
+		}
+		
+		fetchTimeDate();
+		updateArticles();
+		statusMessage(field, statusColor);
+	});
+}
+	
+function deleteArticle(){
 	$('.btn-danger').click(function(){
 		var deleteArticle = confirm('Vil du slette hendelsen?');
 		var id = window.location.search;
 		
 		if(deleteArticle == true){
-			var slett = 'ja';
-			$.post('deleteContent.php'+id, {deleteContent: slett});
+			var deleteContent = 'ja';
+			$.post('updateContent.php'+id, {deleteContent: deleteContent});
 			var field = "Hendelse";
-			var farge = "red";
+			var statusColor = "red";
 			
-			statusMessage(field, farge);
+			statusMessage(field, statusColor);
 			
 			$('ul li > ul').hide();		
 			$('.arrow').removeClass('droppedDown');	
 			
 		}else{
 			var angre = 'nei';
-			$.post('deleteContent.php'+id, {goBack: angre});
+			$.post('updateContent.php'+id, {goBack: angre});
 		}
 		fetchTimeDate();
 		updateArticles();
@@ -388,19 +440,19 @@ function saveArticleCategory() {
 		
 		$.post('ajaxCategories.php'+id, {category: category});
 		var field = "Kategori";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fetchTimeDate();
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 	});
 }
 
-function statusMessage(field, farge){
-	if(farge == "red"){
+function statusMessage(field, statusColor){
+	if(statusColor == "red"){
 		$('#nu-timeline-cms-errorYellow').fadeIn();
 		$('#nu-timeline-cms-statusMessageYellow').html('<p text-align: center">'+field+' er slettet!</p>');
 		$('#nu-timeline-cms-errorYellow').delay(1500).fadeOut();
-	}else if(farge == "green"){
+	}else if(statusColor == "green"){
 		$('#nu-timeline-cms-errorGreen').fadeIn();
 		$('#nu-timeline-cms-statusMessageGreen').html('<p text-align: center">'+field+' er oppdatert!</p>');
 		$('#nu-timeline-cms-errorGreen').delay(1500).fadeOut();
@@ -446,9 +498,9 @@ function deleteCategory() {
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
 		var field = "Kategori 1";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		showCategories();
 		fillCategories();
 	});
@@ -458,9 +510,9 @@ function deleteCategory() {
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
 		var field = "Kategori 2";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		showCategories();
 		fillCategories();
 	});
@@ -470,9 +522,9 @@ function deleteCategory() {
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
 		var field = "Kategori 3";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		showCategories();
 		fillCategories();
 	});
@@ -482,9 +534,9 @@ function deleteCategory() {
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
 		var field = "Kategori 4";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		showCategories();
 		fillCategories();
 	});
@@ -494,9 +546,9 @@ function deleteCategory() {
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
 		var field = "Kategori 5";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		showCategories();
 		fillCategories();
 	});
@@ -506,9 +558,9 @@ function deleteCategory() {
 		
 		$.post('ajaxUpdateCategory.php', {id: id, slett: slett});
 		var field = "Kategori 6";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		showCategories();
 		fillCategories();
 	});
@@ -523,7 +575,7 @@ function setColorPicker() {
 		
 		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
 		var field = "Farge 1";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fillCategories();
 	});
@@ -536,7 +588,7 @@ function setColorPicker() {
 		
 		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
 		var field = "Farge 2";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fillCategories();
 	});
@@ -547,7 +599,7 @@ function setColorPicker() {
 		
 		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
 		var field = "Farge 3";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fillCategories();
 	});
@@ -558,7 +610,7 @@ function setColorPicker() {
 		
 		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
 		var field = "Farge 4";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fillCategories();
 	});
@@ -569,7 +621,7 @@ function setColorPicker() {
 		
 		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
 		var field = "Farge 5";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fillCategories();
 	});
@@ -580,7 +632,7 @@ function setColorPicker() {
 		
 		$.post('ajaxUpdateCategory.php', {catnr: catnr, color: color, id: id});
 		var field = "Farge 6";
-		var farge = "green";
+		var statusColor = "green";
 		
 		fillCategories();
 	});
@@ -595,9 +647,9 @@ function categoryUpdateOnBlur() {
 		
 		$.post('ajaxUpdateCategory.php', {category1: category1, id: id});
 		var field = "Kategori 1";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fillCategories();
 	});
 	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory2', function(){
@@ -606,9 +658,9 @@ function categoryUpdateOnBlur() {
 		
 		$.post('ajaxUpdateCategory.php', {category2: category2, id: id});
 		var field = "Kategori 2";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fillCategories();
 	});
 	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory3', function(){
@@ -617,9 +669,9 @@ function categoryUpdateOnBlur() {
 		
 		$.post('ajaxUpdateCategory.php', {category3: category3, id: id});
 		var field = "Kategori 3";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fillCategories();
 	});
 	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory4', function(){
@@ -628,9 +680,9 @@ function categoryUpdateOnBlur() {
 		
 		$.post('ajaxUpdateCategory.php', {category4: category4, id: id});
 		var field = "Kategori 4";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fillCategories();
 	});
 	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory5', function(){
@@ -639,9 +691,9 @@ function categoryUpdateOnBlur() {
 		
 		$.post('ajaxUpdateCategory.php', {category5: category5, id: id});
 		var field = "Kategori 5";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fillCategories();
 	});
 	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory6', function(){
@@ -650,9 +702,9 @@ function categoryUpdateOnBlur() {
 		
 		$.post('ajaxUpdateCategory.php', {category6: category6, id: id});
 		var field = "Kategori 6";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		fillCategories();
 	});
 }
@@ -769,8 +821,8 @@ function saveMapCoords() {
 	$('#nu-timeline-cms-saveMapButton').click(function(){
 		
 		var article = $('#editFormHiddenContentID').val();
-		var test = $('#nu-timeline-cms-hiddenCoords').html();
-		var array = test.split(", ");
+		var hiddenCoords = $('#nu-timeline-cms-hiddenCoords').html();
+		var array = hiddenCoords.split(", ");
 		window.lats = array[0];
 		window.longs = array[1];
 		var zooms = map.getZoom();
@@ -780,7 +832,7 @@ function saveMapCoords() {
 		var coords = lats + "," + longs + "," + zooms; 
 		
 		/*
-var test = $('#info').val();
+var hiddenCoords = $('#info').val();
 		var coords = latLng.lat()+","+latLng.lng()+","+map.getZoom();
 		var article = $('#editFormHiddenContentID').val();
 */
@@ -788,9 +840,9 @@ var test = $('#info').val();
 		$.post('ajaxGoogleMaps.php', {coords: coords, article: article});
 		
 		var field = "Kartposisjon";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 	});
 }
 
@@ -821,9 +873,9 @@ function postEscenicPictureID() {
 		getEscenicPictureID();
 		
 		var field = "Bilde";
-		var farge = "green";
+		var statusColor = "green";
 			
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 	});
 		
 }
@@ -844,24 +896,24 @@ function getEscenicPictureURL(picEscenicID) {
 		url: "http://api.snd.no/news/publication/ap/searchContents/instance?contentId="+picEscenicID+"&contentType=image&callback=myFunc",
 		dataType: "xml",
 		success: function(xmlBildeAPI){
-			var test = $(xmlBildeAPI).find('link');
-			var url = test.attr('href');
+			var escenicPicUrl = $(xmlBildeAPI).find('link');
+			var url = escenicPicUrl.attr('href');
 			$('#nu-timeline-cms-hiddenEscenicLink').val(url);
 		}
 	});	
 }
 
 function deletePicture() {
-	$(document).on("click", "#nu-timeline-cms-picturePreview img", function() {
+	$(document).on("click", ".nu-timeline-cms-deletePicture", function() {
 		var selectedID = $(this).attr("id");
 		
 		$.post("ajaxGetEscenicPicture.php", {selectedID: selectedID});
 		getEscenicPictureID();
 		
 		var field = "Bilde";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 	});
 }
 
@@ -875,9 +927,9 @@ function postEscenicVideoID() {
 		getEscenicVideoID();
 		
 		var field = "Video";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 	});
 }
 
@@ -897,9 +949,9 @@ function deleteVideo() {
 		getEscenicVideoID();
 		
 		var field = "Video";
-		var farge = "red";
+		var statusColor = "red";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 	});
 }
 
@@ -922,7 +974,7 @@ function showPictureSize(picture) {
 }
 
 function savePictureSize() {
-	$(document).on("click",'.nu-timeline-cms-picSizeTest', function() {
+	$(document).on("click",'.nu-timeline-cms-picSizePreview', function() {
 		
 		$('#nu-timeline-cms-picturePreview').show();
 		$('#nu-timeline-cms-pictureSizePreview').hide();
@@ -937,16 +989,9 @@ function savePictureSize() {
 		getEscenicPictureID();
 		
 		var field = "Bilde";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
-	});
-}
-
-function getPictureSize() {
-	var id = window.location.search;
-	$.get('ajaxSavePictureSize.php', function(data){
-		$('#nu-timeline-cms-picturePreview').html(data);
+		statusMessage(field, statusColor);
 	});
 }
 
@@ -960,9 +1005,9 @@ function savePictureText() {
 		$.post('ajaxPostPictureText.php', {pictureText: pictureText, article: article, mediaID: mediaID});
 		
 		var field = "Bildetekst";
-		var farge = "green";
+		var statusColor = "green";
 		
-		statusMessage(field, farge);
+		statusMessage(field, statusColor);
 		
 	})
 }

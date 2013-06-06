@@ -23,7 +23,7 @@
 				
 				$pictureLink = str_replace($existingCropVersion, $newCropVersion, $pictureNew);
 				
-				echo "<div class='nu-timeline-cms-picSizeTest'><img src='".$pictureLink."'></img>";
+				echo "<div class='nu-timeline-cms-picSizePreview'><img src='".$pictureLink."'></img>";
 				echo "<label value='".$array[$i]."'>".$array[$i]."</label></div>";
 			}
 

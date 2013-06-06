@@ -12,7 +12,7 @@ function getTimeline() {
 	
 	while($row = mysql_fetch_array($result)) {
 		echo "<tr class='timelineLine' id='".$row['tl_ID']."' onclick='hentTidslinje(".$row['tl_ID'].")'>";
-		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_createdBy']."</td>"."<td class='fourth'></td>"."<td class='last'>".$row['tl_lastEdit']."</td>";
+		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_createdBy']."</td>"."<td class='last'>".$row['tl_lastEdit']."</td>";
 		echo "</tr>";
 	}
 	
@@ -47,12 +47,12 @@ function getArticle() {
 	while($row = mysql_fetch_array($result)) {
 		
 		if($row['content_status'] == 0) {
-			echo "<div style='border-left: 5px solid blue' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+			echo "<div style='border-left: 5px solid blue' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='fetchArticleContent(".$row['tl_ID'].",".$row['content_ID'].")'>";
 			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$row['content_content']."</div>";
 			echo "</div>";
 		}
 		else {
-			echo "<div style='border-left: 5px solid green' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='hentArtikkelInnhold(".$row['tl_ID'].",".$row['content_ID'].")'>";
+			echo "<div style='border-left: 5px solid green' class='nu-timeline-cms-article article". $row['content_ID']."' onclick='fetchArticleContent(".$row['tl_ID'].",".$row['content_ID'].")'>";
 			echo "<div class='nu-timeline-cms-articleTitle'>".$row['content_title']."</div>"."<div class='nu-timeline-cms-articleDate'>".$row['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$row['content_content']."</div>";
 			echo "</div>";
 		}
@@ -102,7 +102,7 @@ function fillEditInputs() {
 				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' placeholder='HH:MM:SS' value='".$print['content_time']."' required pattern='^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$'></input></td>
 				<td><div id='nu-timeline-cms-timeCoin' data-toggle='tooltip' data-placement='top' title='Velg tidspunkt for hendelsen. Format: HH:MM:SS'></div></td>
 				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
-				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Ca dato må fortsatt settes for å få riktig posisjon på tidslinjen.'></div></td>
+				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Ca. dato må fortsatt settes for å få riktig posisjon på tidslinjen.'></div></td>
 			</tr>
 			</table>
 			
@@ -236,7 +236,7 @@ function fillEditInputs() {
 			</div>
 			</div>
 
-			
+			</form>
 			
 			<input type='hidden' id='editFormHiddenTlID' value='".$_REQUEST['id']."' />			
 			<input type='hidden' id='editFormHiddenContentID' value='".$_REQUEST['article']."' />
@@ -257,7 +257,6 @@ function fillEditInputs() {
 			</div>
 			
 
-			</form>
 			";
 
 			
@@ -341,62 +340,6 @@ function getContentID() {
 
 	echo $_REQUEST['article'];
 }
-// function that fills the dropdown menu with the correct categories, and sets one as selected.
-/*
-function editFormFillCategories(){
-
-	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");
-	$result2 = mysql_query("SELECT * FROM category_table WHERE tl_ID = '".$_REQUEST['id']."'");
-	$print = mysql_fetch_array($result);
-	$print2 = mysql_fetch_array($result2);
-	
-	
-	echo "<option disabled selected>Velg kategori..</option>";
-
-	if (!empty($print2['category1'])){
-		if($print['content_category'] == $print2['category1']) {
-			echo "<option selected='selected'>".$print2['category1']."</option>";
-		}else{
-			echo "<option>".$print2['category1']."</option>";
-		}
-	}
-	if (!empty($print2['category2'])){
-		if($print['content_category'] == $print2['category2']) {
-			echo "<option selected='selected'>".$print2['category2']."</option>";
-		}else{
-			echo "<option>".$print2['category2']."</option>";
-		}
-	}
-	if (!empty($print2['category3'])){
-		if($print['content_category'] == $print2['category3']) {
-			echo "<option selected='selected'>".$print2['category3']."</option>";
-		}else{
-			echo "<option>".$print2['category3']."</option>";
-		}
-	}
-	if (!empty($print2['category4'])){
-		if($print['content_category'] == $print2['category4']) {
-			echo "<option selected='selected'>".$print2['category4']."</option>";
-		}else{
-			echo "<option>".$print2['category4']."</option>";
-		}
-	}
-	if (!empty($print2['category5'])){
-		if($print['content_category'] == $print2['category5']) {
-			echo "<option selected='selected'>".$print2['category5']."</option>";
-		}else{
-			echo "<option>".$print2['category5']."</option>";
-		}
-	}
-	if (!empty($print2['category6'])){
-		if($print['content_category'] == $print2['category6']) {
-			echo "<option selected='selected'>".$print2['category6']."</option>";
-		}else{
-			echo "<option>".$print2['category6']."</option>";
-		}
-	}
-}
-*/
 
 function editFormFillImportant(){
 	$result = mysql_query("SELECT * FROM content_table WHERE content_ID = '".$_REQUEST['article']."'");

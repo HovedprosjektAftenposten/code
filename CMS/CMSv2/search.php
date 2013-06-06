@@ -24,10 +24,9 @@ function getSearchResults() {
         $query = mysql_real_escape_string($query);
         // makes sure nobody uses SQL injection
          
-        $raw_results = mysql_query("SELECT * FROM timeline_table WHERE (`tl_ID` LIKE '%".$query."%') OR (`tl_name` LIKE '%".$query."%')") or die(mysql_error());
+        $raw_results = mysql_query("SELECT * FROM timeline_table WHERE ('tl_ID' LIKE '%".$query."%') OR ('tl_name' LIKE '%".$query."%')") or die(mysql_error());
              
         // * means that it selects all fields, you can also write: `id`, `title`, `text`
-        // articles is the name of our table
          
         // '%$query%' is what we're looking for, % means anything, for example if $query is Hello
         // it will match "hello", "Hello man", "gogohello", if you want exact match use `title`='$query'

@@ -79,8 +79,8 @@ header ('content-type:text/html;charset=utf-8');
 			
 				<td>
 					<div id="nu-timeline-cms-search">
-						<form action="index.php" method="get">
-							<input type="text" size="27" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
+						<form id="nu-timeline-cms-searchForm" action="index.php" method="get">
+							<input type="text" name="sok" id="nu-timeline-cms-searchField" placeholder="s&oslash;k etter tidslinje..."/> 
 							<input id="nu-timeline-cms-searchButton" class='btn btn-inverse' type="submit" value="S&oslash;k" /> 
 							
 							<?php
@@ -106,7 +106,6 @@ header ('content-type:text/html;charset=utf-8');
 					<th class='thFirst'>ID</th>
 					<th class='thSecond'>Tidslinjenavn</th>
 					<th class='thThird'>Opprettet av</th>
-					<th class='thFourth'>Status</th>
 					<th class='thLast'>Sist endret</th>
 				</tr>
 				

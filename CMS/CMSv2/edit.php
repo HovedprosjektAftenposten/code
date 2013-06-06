@@ -35,24 +35,17 @@ header ('content-type:text/html;charset=utf-8');
 
 	// FUNCTION THAT GETS tl_ID AND content_ID FROM getArticle() IN func.php. ADDS THE VALUES TO THE URL. 
 
-		function hentArtikkelInnhold(id,article) {
+		function fetchArticleContent(id,article) {
 			window.location = "?id="+id+"&article="+article;
 		}
 	   
 	</script>
 	
-	
-	
-	
-<!-- 	DROPDOWN BUTTON IN edit.php -->
-	
 	<?php
 		include('func.php');
 	?>
-	<?php
-		
+	<?php		
 		checkTlName();
-	
 	?>
 
 	<div id="nu-timeline-cms-errorGreen">
@@ -170,7 +163,7 @@ header ('content-type:text/html;charset=utf-8');
 					        // makes sure nobody uses SQL injection
 					         
 					        $raw_results = mysql_query("
-					        SELECT * FROM content_table WHERE (content_ID LIKE '%".$query."%' OR content_title LIKE '%".$query."%' OR content_content LIKE '%".$query."%') AND tl_ID = $get") or die(mysql_error());
+					        SELECT * FROM content_table WHERE (content_ID LIKE '%".$query."%' OR content_title LIKE '%".$query."%' OR content_content LIKE '%".$query."%' OR content_date LIKE '%".$query."%') AND tl_ID = $get") or die(mysql_error());
 					             
 					        // * means that it selects all fields, you can also write: `id`, `title`, `text`
 					        // articles is the name of our table
@@ -200,13 +193,13 @@ header ('content-type:text/html;charset=utf-8');
 			
 					                if($results['content_status'] == 0) {
 					                	
-										echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='hentArtikkelInnhold(".$results['tl_ID'].",".$results['content_ID'].")'>";
+										echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='fetchArticleContent(".$results['tl_ID'].",".$results['content_ID'].")'>";
 										echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textInactive'>Draft</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 										echo "</div>";
 										
 									}
 									else {
-										echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='hentArtikkelInnhold(".$results['tl_ID'].",".$results['content_ID'].")'>";
+										echo "<div class='nu-timeline-cms-article article". $results['content_ID']."' onclick='fetchArticleContent(".$results['tl_ID'].",".$results['content_ID'].")'>";
 										echo "<div class='nu-timeline-cms-articleTitle'>".$trimTitle."</div>"."<div class='nu-timeline-cms-contentLiveStatus nu-timeline-cms-textActive'>Published</div>"."<div class='nu-timeline-cms-articleDate'>".$results['content_date']."</div>"."<div class='nu-timeline-cms-articleContent'>".$trimContent."</div>";
 										echo "</div>";
 									}
