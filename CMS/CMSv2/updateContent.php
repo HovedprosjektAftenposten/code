@@ -1,10 +1,9 @@
 <?php
-	// Kode som henter data fra et form og oppdaterer den aktuelle artikkelen i databasen.
-		
+	// Fetches data from a form if it is published, drafted or deleted, and updates the article in the database
 	ob_start();
 	include('connect.inc');
-
-	$live = 0;
+	
+	$live = 0; //variable for content status
 	
 	if(isset($_REQUEST['saveDraft'])) {
 		$live = 0;

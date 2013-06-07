@@ -7,8 +7,6 @@
 	
 function getSearchResults() {
 	
-	/* $knapp = $_POST['testBtn']; */
-	
 	
 	$query = $_POST['query']; 
     // gets value sent over search form
@@ -37,7 +35,7 @@ function getSearchResults() {
             while($results = mysql_fetch_array($raw_results)){
             // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
              
-                /* echo "<p><h3>".$results['tl_ID']."</h3>".$results['tl_name']."</p>"; */
+               
                 
                 echo "<tr class='timelineLine' id='".$results['tl_ID']."' onclick='hentTidslinje(".$results['tl_ID'].")'>";
                 echo "<td class='first'>".$results['tl_ID']."</td>"."<td class='second'>".$results['tl_name']."</td>"."<td class='third'>".$results['tl_date']."</td>"."<td class='last'></td>";
@@ -45,13 +43,7 @@ function getSearchResults() {
                 // posts results gotten from database(title and text) you can also show id ($results['id'])
             }
             
-            /*
-while($results = mysql_fetch_array($raw_result)) {
-		echo "<tr class='timelineLine' id='".$row['tl_ID']."' onclick='hentTidslinje(".$row['tl_ID'].")'>";
-		echo "<td class='first'>".$row['tl_ID']."</td>"."<td class='second'>".$row['tl_name']."</td>"."<td class='third'>".$row['tl_date']."</td>"."<td class='last'></td>";
-		echo "</tr>";
-	}
-*/
+           
 	
 	
              

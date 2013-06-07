@@ -1,72 +1,21 @@
+// Document ready
 $(document).ready(function(){
-	
-	$('.nu-timeline-cms-loggUt').hover(function(){
-		$('.nu-timeline-cms-loggUt').tooltip('toggle');	
-	});
-	$('#nu-timeline-cms-home').hover(function(){
-		$('#nu-timeline-cms-home').tooltip('toggle');	
-	});
-	$('#nu-timeline-cms-tlCodeBtn').hover(function(){
-		$('#nu-timeline-cms-tlCodeBtn').tooltip('toggle');	
-	});
-	
+	// Sets up ajax
 	$.ajaxSetup({
 		async: false,
 	});
 	//IE8 fix
 	$.support.cors = true;
 	
-	fixSelectedBackground(); //DEPRECIATED BY TORSTEIN ;/
-	
-	$('#nu-timeline-cms-tlInfo').click(function(){		
-		$('.nu-timeline-cms-slide').slideToggle(100);
-		$('.nu-timeline-cms-tlOpenCloseArrow').toggleClass('tlDroppedDown');
-	});
-	
-	$('#nu-timeline-cms-contentMediaPicture').click(function(){	
-		$('#nu-timeline-cms-slideContentPicture').slideToggle(100);
-		$('.nu-timeline-cms-contentMediaPictureOpenCloseArrow').toggleClass('contentMediaPictureDroppedDown');
-	});
-	$('#nu-timeline-cms-contentMediaVideo').click(function(){	
-		$('#nu-timeline-cms-slideContentVideo').slideToggle(100);
-		$('.nu-timeline-cms-contentMediaVideoOpenCloseArrow').toggleClass('contentMediaVideoDroppedDown');
-	}); 
-	$('#nu-timeline-cms-contentMediaMap').click(function(){	
-		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
-		$('.nu-timeline-cms-contentMediaMapOpenCloseArrow').toggleClass('contentMediaMapDroppedDown');
-			initializeMap();
-	}); 	
-	
+	// Checks if the timeline has information, and toggles the information slide if not
 	var hidden = $('#nu-timeline-cms-hiddenInput').val();
 	if(hidden == "OK") {
 		$('.nu-timeline-cms-slide').show();
 	}
 	
-	$('#ddStatus').click(function(){
-		$('ul li > ul').slideToggle(100);		
-		$('.arrow').toggleClass('droppedDown');	
-	});
-	
-	$('#nu-timeline-cms-dateCoin').hover(function(){
-		$('#nu-timeline-cms-dateCoin').tooltip('toggle');
-	});
-	$('#nu-timeline-cms-timeCoin').hover(function(){
-		$('#nu-timeline-cms-timeCoin').tooltip('toggle');
-	});
-	$('#nu-timeline-cms-customCoin').hover(function(){
-		$('#nu-timeline-cms-customCoin').tooltip('toggle');
-	});
-	$('#nu-timeline-cms-categoryCoin').hover(function(){
-		$('#nu-timeline-cms-categoryCoin').tooltip('toggle');
-	});
-	$('#nu-timeline-cms-importantCoin').hover(function(){
-		$('#nu-timeline-cms-importantCoin').tooltip('toggle');	
-	});
-	$('#nu-timeline-cms-tlCategoryCoin').hover(function(){
-		$('#nu-timeline-cms-tlCategoryCoin').tooltip('toggle');	
-	});
-	
-	
+	hoverEvents();
+	fixSelectedBackground(); 
+	sliderHandler();
 	
 	getTimelineCode();
 	showCategories();
@@ -108,56 +57,67 @@ $(document).ready(function(){
 	
 });
 
-/*
-function updatePublish(){
-	$('#nu-timeline-cms-publishButton').click(function(){
-		var id = window.location.search;
-		var savePublish = 1;
-		$.post('updateContent.php', {savePublish: savePublish , id: id});
+// Function for tooltips on hover
+function hoverEvents(){
+	$('.nu-timeline-cms-loggUt').hover(function(){
+		$('.nu-timeline-cms-loggUt').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-home').hover(function(){
+		$('#nu-timeline-cms-home').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-tlCodeBtn').hover(function(){
+		$('#nu-timeline-cms-tlCodeBtn').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-dateCoin').hover(function(){
+		$('#nu-timeline-cms-dateCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-timeCoin').hover(function(){
+		$('#nu-timeline-cms-timeCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-customCoin').hover(function(){
+		$('#nu-timeline-cms-customCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-categoryCoin').hover(function(){
+		$('#nu-timeline-cms-categoryCoin').tooltip('toggle');
+	});
+	$('#nu-timeline-cms-importantCoin').hover(function(){
+		$('#nu-timeline-cms-importantCoin').tooltip('toggle');	
+	});
+	$('#nu-timeline-cms-tlCategoryCoin').hover(function(){
+		$('#nu-timeline-cms-tlCategoryCoin').tooltip('toggle');	
 	});
 }
 
-function updateDraft(){
-	$('#nu-timeline-cms-draftButton').click(function(){
-		var saveDraft = 1;
-		$.post('updateContent.php', {saveDraft: saveDraft});
+// Sliderfunctions START //
+function sliderHandler(){
+	$('#nu-timeline-cms-tlInfo').click(function(){		
+		$('.nu-timeline-cms-slide').slideToggle(100);
+		$('.nu-timeline-cms-tlOpenCloseArrow').toggleClass('tlDroppedDown');
 	});
-}
-*/
-
-function getStatus(){
-	if($('.nu-timeline-cms-textInactive').length > 0){
-		$('#ddStatus').toggleClass('btn-primary');
-		$('#ddStatus').html('Kladd');
-		$('<span class="arrow"></span>').appendTo('#ddStatus');
-	}else if($('.nu-timeline-cms-textActive').length > 0){
-		$('#ddStatus').toggleClass('btn-success');
-		$('#ddStatus').html('Publisert');
-		$('<span class="arrow"></span>').appendTo('#ddStatus');
-	}else{
-		alert('Noe gikk galt! Prøv igjen.');
-	}	
-}
-
-function updateSearch(){
-	var id = window.location.search;
-	$.get('getSearchResults.php'+id, function(data){
-		$('#nu-timeline-cms-vNav').html(data);
-	});		
-}
-
-function postSearch(){
-	var id = window.location.search;
-	$('#nu-timeline-cms-searchField').blur(function(){
-		var query = $('#nu-timeline-cms-searchField').val();
 	
-		$.post('getSearchResults.php', {query: query, id: id});
-		
-		
+	$('#nu-timeline-cms-contentMediaPicture').click(function(){	
+		$('#nu-timeline-cms-slideContentPicture').slideToggle(100);
+		$('.nu-timeline-cms-contentMediaPictureOpenCloseArrow').toggleClass('contentMediaPictureDroppedDown');
 	});
+	$('#nu-timeline-cms-contentMediaVideo').click(function(){	
+		$('#nu-timeline-cms-slideContentVideo').slideToggle(100);
+		$('.nu-timeline-cms-contentMediaVideoOpenCloseArrow').toggleClass('contentMediaVideoDroppedDown');
+	}); 
+	$('#nu-timeline-cms-contentMediaMap').click(function(){	
+		$('#nu-timeline-cms-slideContentMap').slideToggle(100);
+		$('.nu-timeline-cms-contentMediaMapOpenCloseArrow').toggleClass('contentMediaMapDroppedDown');
+			initializeMap();
+	});
+	$('#ddStatus').click(function(){
+		$('ul li > ul').slideToggle(100);		
+		$('.arrow').toggleClass('droppedDown');	
+	});	
 }
+// Sliderfunctions END //
 
-function tlInfoPostOnBlurInput(){
+// Timeline information START //
+// Blur events for timeline info START //
+function tlInfoPostOnBlurInput(){ // Updates title of the timeline when user leaves the inputfield
 	$('#nu-timeline-cms-tlInfoFormTitle').blur(function(){
 		var title = $('#nu-timeline-cms-tlInfoFormTitle').val();
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -172,7 +132,7 @@ function tlInfoPostOnBlurInput(){
 	});
 }
 
-function tlInfoPostOnBlurText(){
+function tlInfoPostOnBlurText(){ // Updates ingress when user leaves the textarea
 	$('#nu-timeline-cms-tlInfoForm textarea').blur(function(){
 		var text = $('#nu-timeline-cms-tlInfoFormText').val();
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -185,8 +145,10 @@ function tlInfoPostOnBlurText(){
 		fetchTimeDate();
 	});
 }
+// Blur events for timeline info END //
 
-function addCategories(){
+
+function addCategories(){ // Adds categories
 	$('#nu-timeline-cms-addCategoryBtn').click(function(){
 		var category = $('#nu-timeline-cms-tlInfoFormCategoryInput').val();
 		var tlID = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -212,21 +174,7 @@ function addCategories(){
 	});
 }
 
-function addImportant() {
-	$('#nu-timeline-cms-editFormImportantArticle').change(function(){
-		var id = window.location.search;
-		var important = $(this).val();
-		
-		$.post('ajaxImportantArticle.php'+id, {important: important});
-		var field = "Viktig hendelse";
-		var statusColor = "green";
-		
-		statusMessage(field, statusColor);
-		fetchTimeDate();
-	});
-}  
-
-function showCategories(){
+function showCategories(){ // fetches the categories from db and adds them
 	var id = window.location.search;
 	$.get('ajaxCategories.php'+id, function(data){
 		$('#nu-timeline-cms-showCategories').html(data);
@@ -250,245 +198,6 @@ function showCategories(){
 	$('.color6').spectrum("set", $('#hiddenColor6').val());
 	
 	deleteCategory();
-}
-	   
-function editorPostOnBlur(){
-	CKEDITOR.replace( 'articleText' );
-	var editor = CKEDITOR.instances['text'];
-   
-	
-	editor.on('blur', function() {
-		var text = editor.getData();
-		var contentID = $('input#editFormHiddenContentID').val();
-			
-		editor.updateElement();
-		$.post('ajaxEditFormInput.php', {text: text, contentid: contentID});
-		var field = "Tekstfelt";
-		var statusColor = "green";
-		
-		statusMessage(field, statusColor);
-		fetchTimeDate();
-		updateArticles();
-	});
-}
-
-function inputPostOnBlur(){
-	var tlID = $('#editFormHiddenTlID').val();
-	var contentID = $('#editFormHiddenContentID').val();
-	
-	$('#nu-timeline-cms-editFormContentTitle').blur(function(){
-		var title = $('#nu-timeline-cms-editFormContentTitle').val();
-		$.post('ajaxEditFormInput.php', {overskrift: title, tlid: tlID, contentid: contentID});
-		var field = "Tittel";
-		var statusColor = "green";
-		
-		fetchTimeDate();
-		statusMessage(field, statusColor);
-		updateArticles();
-		});
-	$('#nu-timeline-cms-editFormContentTime').blur(function(){
-		var time = $('#nu-timeline-cms-editFormContentTime').val();
-		$.post('ajaxEditFormInput.php', {tid: time, tlid: tlID, contentid: contentID});
-		var field = "Tid";
-		var statusColor = "green";
-		
-		fetchTimeDate();
-		statusMessage(field, statusColor);
-		updateArticles();
-		});
-	$('#nu-timeline-cms-editFormCustomTimeDate').blur(function(){
-		var custom = $('#nu-timeline-cms-editFormCustomTimeDate').val();
-		$.post('ajaxEditFormInput.php', {custom: custom, tlid: tlID, contentid: contentID});
-		var field = "Egendefinert";
-		var statusColor = "green";
-		
-		fetchTimeDate();
-		statusMessage(field, statusColor);
-		updateArticles();
-		});
-}
-
-function updateDate(){
-	$( ".datepicker" ).datepicker({
-		changeMonth: true,
-		changeYear: true,
-		onSelect: function(){
-			datepickerDate = $(this).val();
-			var contentID = $('input#editFormHiddenContentID').val();
-			
-			$.post('ajaxEditFormInput.php', {dato: datepickerDate, contentid: contentID});
-			var field = "Dato";
-			var statusColor = "green";
-			
-			fetchTimeDate();
-			statusMessage(field, statusColor);
-			updateArticles();
-		}
-	});
-}
-
-function updateArticles(){
-	var id = window.location.search;
-	$.get('ajaxGetArticles.php'+id, function(data){
-		$('#nu-timeline-cms-articles').html(data);
-	});
-	fixSelectedBackground();
-}	
-
-function publishArticle(){
-	$('.btn-success').click(function(){
-		var id = window.location.search;
-		var savePublish = 'ja';
-		
-		$.post('updateContent.php'+id, {savePublish: savePublish});
-		var field = "Hendelse";
-		var statusColor = "green";
-	
-		$('ul li > ul').hide();		
-		$('.arrow').removeClass('droppedDown');	
-				
-		
-		
-		if($('#ddStatus').hasClass('btn-success')){
-			$('#ddStatus').html('Publisert');
-			$('<span class="arrow"></span>').appendTo('#ddStatus');
-		}else if($('#ddStatus').hasClass('btn-primary')){
-			$('#ddStatus').removeClass('btn-primary');			
-			$('#ddStatus').html('Publisert');
-			$('<span class="arrow"></span>').appendTo('#ddStatus');
-			$('#ddStatus').toggleClass('btn-success');
-		}
-		
-		fetchTimeDate();
-		updateArticles();
-		statusMessage(field, statusColor);
-	});
-}
-
-function draftArticle(){
-	$('.btn-primary').click(function(){
-		var id = window.location.search;
-		var saveDraft = 'ja';
-		
-		$.post('updateContent.php'+id, {saveDraft: saveDraft});
-		var field = "Hendelse";
-		var statusColor = "green";
-			
-		$('ul li > ul').hide();		
-		$('.arrow').removeClass('droppedDown');	
-		
-		if($('#ddStatus').hasClass('btn-primary')){
-			$('#ddStatus').html('Kladd');
-			$('<span class="arrow"></span>').appendTo('#ddStatus');
-		}else if($('#ddStatus').hasClass('btn-success')){
-			$('#ddStatus').removeClass('btn-success');		
-			$('#ddStatus').html('Kladd');
-			$('<span class="arrow"></span>').appendTo('#ddStatus');
-			$('#ddStatus').toggleClass('btn-primary');
-		}
-		
-		fetchTimeDate();
-		updateArticles();
-		statusMessage(field, statusColor);
-	});
-}
-	
-function deleteArticle(){
-	$('.btn-danger').click(function(){
-		var deleteArticle = confirm('Vil du slette hendelsen?');
-		var id = window.location.search;
-		
-		if(deleteArticle == true){
-			var deleteContent = 'ja';
-			$.post('updateContent.php'+id, {deleteContent: deleteContent});
-			var field = "Hendelse";
-			var statusColor = "red";
-			
-			statusMessage(field, statusColor);
-			
-			$('ul li > ul').hide();		
-			$('.arrow').removeClass('droppedDown');	
-			
-		}else{
-			var angre = 'nei';
-			$.post('updateContent.php'+id, {goBack: angre});
-		}
-		fetchTimeDate();
-		updateArticles();
-	});
-}
-
-function updateTimelineName() {
-	var id = window.location.search;
-	$.get('ajaxTimelineName.php'+id, function(data){
-		$('#nu-timeline-cms-menuText').html(data);
-	});
-	}
-
-function fixSelectedBackground() {
-    var url = document.URL;
-	var urlsplitted = url.split("article");
-	var supersplitted = urlsplitted[urlsplitted.length -1].split("=");
-	var superid = supersplitted[supersplitted.length - 1];	    	
-	$(".article" + superid).css({"background-color":"gray","color":"white"});
-}
-
-function saveArticleCategory() {
-	$('#nu-timeline-cms-editFormChooseCategory').change(function(){
-		var id = window.location.search;
-		var category = $(this).val();
-		
-		$.post('ajaxCategories.php'+id, {category: category});
-		var field = "Kategori";
-		var statusColor = "green";
-		
-		fetchTimeDate();
-		statusMessage(field, statusColor);
-	});
-}
-
-function statusMessage(field, statusColor){
-	if(statusColor == "red"){
-		$('#nu-timeline-cms-errorYellow').fadeIn();
-		$('#nu-timeline-cms-statusMessageYellow').html('<p text-align: center">'+field+' er slettet!</p>');
-		$('#nu-timeline-cms-errorYellow').delay(1500).fadeOut();
-	}else if(statusColor == "green"){
-		$('#nu-timeline-cms-errorGreen').fadeIn();
-		$('#nu-timeline-cms-statusMessageGreen').html('<p text-align: center">'+field+' er oppdatert!</p>');
-		$('#nu-timeline-cms-errorGreen').delay(1500).fadeOut();
-	}
-}
-
-function fetchTimeDate() {
-	var ids = window.location.search;
-	var date = new Date();
-	var day = date.getDate();
-	if(day < 10){
-		day = '0' + day;
-	}
-	var month = date.getMonth();
-	month++;
-	if(month < 10){
-		month = '0' + month;
-	}
-	var year = date.getFullYear();
-	
-	var hour = date.getHours();
-	if(hour < 10){
-		hour = '0' + hour;
-	}
-	var minutes = date.getMinutes();
-	if(minutes < 10){
-		minutes = '0' + minutes;
-	}
-	var seconds = date.getSeconds();
-	if(seconds < 10){
-		seconds = '0' + seconds;
-	}
-	
-	var dbDateTime = year + "-" + month + "-" + day + " " + hour+":"+minutes+":"+seconds;
-	
-	$.post('ajaxDate.php'+ids, {dateTime: dbDateTime, ids: ids});
 }
 
 function deleteCategory() {
@@ -566,7 +275,7 @@ function deleteCategory() {
 	});
 }
 
-function setColorPicker() {
+function setColorPicker() { // Sets the color on the colorpicker for categories
 	$(document).on('change', '.color1', function(){
 		var color = $('.color1').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -638,9 +347,8 @@ function setColorPicker() {
 	});
 	
 }
-	
 
-function categoryUpdateOnBlur() {
+function categoryUpdateOnBlur() { // Updates  category to db when user leaves the category field
 	$(document).on('blur', '#nu-timeline-cms-tlInfoCategory1', function(){
 		var category1 = $('#nu-timeline-cms-tlInfoCategory1').val();
 		var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
@@ -709,7 +417,7 @@ function categoryUpdateOnBlur() {
 	});
 }
 
-function fillCategories(){
+function fillCategories(){ // Fetches categories from db and adds them to the html
 	var id = $('#nu-timeline-cms-tlInfoFormHiddenID').val();
 	var article = $('#editFormHiddenContentID').val();
 	$.get('ajaxFillCategories.php', {article: article, id: id})
@@ -718,7 +426,413 @@ function fillCategories(){
 	});
 }
 
-function initializeMap(){
+function addImportant() { // Sets the article to important not when selected
+	$('#nu-timeline-cms-editFormImportantArticle').change(function(){
+		var id = window.location.search;
+		var important = $(this).val();
+		
+		$.post('ajaxImportantArticle.php'+id, {important: important});
+		var field = "Viktig hendelse";
+		var statusColor = "green";
+		
+		statusMessage(field, statusColor);
+		fetchTimeDate();
+	});
+} 
+// Timeline information END //
+
+  
+// Content form START //
+function getStatus(){ // Checks if the article is published, and sets css for the statusbutton
+	if($('.nu-timeline-cms-textInactive').length > 0){
+		$('#ddStatus').toggleClass('btn-primary');
+		$('#ddStatus').html('Kladd');
+		$('<span class="arrow"></span>').appendTo('#ddStatus');
+	}else if($('.nu-timeline-cms-textActive').length > 0){
+		$('#ddStatus').toggleClass('btn-success');
+		$('#ddStatus').html('Publisert');
+		$('<span class="arrow"></span>').appendTo('#ddStatus');
+	}else{
+		alert('Noe gikk galt! Prøv igjen.');
+	}	
+}
+
+// Blur events for content edit form START // 
+function editorPostOnBlur(){ // Updates database with contents from the texteditor
+	CKEDITOR.replace( 'articleText' );
+	var editor = CKEDITOR.instances['text'];
+   
+	
+	editor.on('blur', function() {
+		var text = editor.getData();
+		var contentID = $('input#editFormHiddenContentID').val();
+			
+		editor.updateElement();
+		$.post('ajaxEditFormInput.php', {text: text, contentid: contentID});
+		var field = "Tekstfelt";
+		var statusColor = "green";
+		
+		statusMessage(field, statusColor);
+		fetchTimeDate();
+		updateArticles();
+	});
+}
+
+function inputPostOnBlur(){ 
+	var tlID = $('#editFormHiddenTlID').val();
+	var contentID = $('#editFormHiddenContentID').val();
+	
+	$('#nu-timeline-cms-editFormContentTitle').blur(function(){
+		var title = $('#nu-timeline-cms-editFormContentTitle').val();
+		$.post('ajaxEditFormInput.php', {overskrift: title, tlid: tlID, contentid: contentID});
+		var field = "Tittel";
+		var statusColor = "green";
+		
+		fetchTimeDate();
+		statusMessage(field, statusColor);
+		updateArticles();
+		});
+	$('#nu-timeline-cms-editFormContentTime').blur(function(){
+		var time = $('#nu-timeline-cms-editFormContentTime').val();
+		$.post('ajaxEditFormInput.php', {tid: time, tlid: tlID, contentid: contentID});
+		var field = "Tid";
+		var statusColor = "green";
+		
+		fetchTimeDate();
+		statusMessage(field, statusColor);
+		updateArticles();
+		});
+	$('#nu-timeline-cms-editFormCustomTimeDate').blur(function(){
+		var custom = $('#nu-timeline-cms-editFormCustomTimeDate').val();
+		$.post('ajaxEditFormInput.php', {custom: custom, tlid: tlID, contentid: contentID});
+		var field = "Egendefinert";
+		var statusColor = "green";
+		
+		fetchTimeDate();
+		statusMessage(field, statusColor);
+		updateArticles();
+		});
+}
+// Blur events for content edit form END // 
+
+function updateDate(){ // Updates database with date when selected
+	$( ".datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true,
+		onSelect: function(){
+			datepickerDate = $(this).val();
+			var contentID = $('input#editFormHiddenContentID').val();
+			
+			$.post('ajaxEditFormInput.php', {dato: datepickerDate, contentid: contentID});
+			var field = "Dato";
+			var statusColor = "green";
+			
+			fetchTimeDate();
+			statusMessage(field, statusColor);
+			updateArticles();
+		}
+	});
+}
+
+function updateArticles(){ // Fetches updated articles from the database and displays them
+	var id = window.location.search;
+	$.get('ajaxGetArticles.php'+id, function(data){
+		$('#nu-timeline-cms-articles').html(data);
+	});
+	fixSelectedBackground();
+}	
+
+function publishArticle(){ // Sets an article to published when the user clicks the button for publish
+	$('.btn-success').click(function(){
+		var id = window.location.search;
+		var savePublish = 'ja';
+		
+		$.post('updateContent.php'+id, {savePublish: savePublish});
+		var field = "Hendelse";
+		var statusColor = "green";
+	
+		$('ul li > ul').hide();		
+		$('.arrow').removeClass('droppedDown');	
+				
+		if($('#ddStatus').hasClass('btn-success')){
+			$('#ddStatus').html('Publisert');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+		}else if($('#ddStatus').hasClass('btn-primary')){
+			$('#ddStatus').removeClass('btn-primary');			
+			$('#ddStatus').html('Publisert');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+			$('#ddStatus').toggleClass('btn-success');
+		}
+		
+		fetchTimeDate();
+		updateArticles();
+		statusMessage(field, statusColor);
+	});
+}
+
+function draftArticle(){ // Sets an article to draft when the user clicks the button for draft
+	$('.btn-primary').click(function(){
+		var id = window.location.search;
+		var saveDraft = 'ja';
+		
+		$.post('updateContent.php'+id, {saveDraft: saveDraft});
+		var field = "Hendelse";
+		var statusColor = "green";
+			
+		$('ul li > ul').hide();		
+		$('.arrow').removeClass('droppedDown');	
+		
+		if($('#ddStatus').hasClass('btn-primary')){
+			$('#ddStatus').html('Kladd');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+		}else if($('#ddStatus').hasClass('btn-success')){
+			$('#ddStatus').removeClass('btn-success');		
+			$('#ddStatus').html('Kladd');
+			$('<span class="arrow"></span>').appendTo('#ddStatus');
+			$('#ddStatus').toggleClass('btn-primary');
+		}
+		
+		fetchTimeDate();
+		updateArticles();
+		statusMessage(field, statusColor);
+	});
+}
+	
+function deleteArticle(){ // Deletes an article when the user clicks the button for delete
+	$('.btn-danger').click(function(){
+		var deleteArticle = confirm('Vil du slette hendelsen?');
+		var id = window.location.search;
+		
+		if(deleteArticle == true){
+			var deleteContent = 'ja';
+			$.post('updateContent.php'+id, {deleteContent: deleteContent});
+			var field = "Hendelse";
+			var statusColor = "red";
+			
+			statusMessage(field, statusColor);
+			
+			$('ul li > ul').hide();		
+			$('.arrow').removeClass('droppedDown');	
+			
+		}else{
+			var angre = 'nei';
+			$.post('updateContent.php'+id, {goBack: angre});
+		}
+		fetchTimeDate();
+		updateArticles();
+	});
+}
+
+function updateTimelineName() { // Updates html for title of the timeline
+	var id = window.location.search;
+	$.get('ajaxTimelineName.php'+id, function(data){
+		$('#nu-timeline-cms-menuText').html(data);
+	});
+	}
+
+function fixSelectedBackground() { // Sets the background-color of the selected article
+    var url = document.URL;
+	var urlsplitted = url.split("article");
+	var supersplitted = urlsplitted[urlsplitted.length -1].split("=");
+	var superid = supersplitted[supersplitted.length - 1];	    	
+	$(".article" + superid).css({"background-color":"gray","color":"white"});
+}
+
+function saveArticleCategory() { // Saves the articles selected category
+	$('#nu-timeline-cms-editFormChooseCategory').change(function(){
+		var id = window.location.search;
+		var category = $(this).val();
+		
+		$.post('ajaxCategories.php'+id, {category: category});
+		var field = "Kategori";
+		var statusColor = "green";
+		
+		fetchTimeDate();
+		statusMessage(field, statusColor);
+	});
+}
+// Content form END //
+
+function statusMessage(field, statusColor){ // Function for displaying statusmessage
+	if(statusColor == "red"){
+		$('#nu-timeline-cms-errorYellow').fadeIn();
+		$('#nu-timeline-cms-statusMessageYellow').html('<p text-align: center">'+field+' er slettet!</p>');
+		$('#nu-timeline-cms-errorYellow').delay(1500).fadeOut();
+	}else if(statusColor == "green"){
+		$('#nu-timeline-cms-errorGreen').fadeIn();
+		$('#nu-timeline-cms-statusMessageGreen').html('<p text-align: center">'+field+' er oppdatert!</p>');
+		$('#nu-timeline-cms-errorGreen').delay(1500).fadeOut();
+	}
+}
+
+function fetchTimeDate() { // Function to format date
+	var ids = window.location.search;
+	var date = new Date();
+	var day = date.getDate();
+	if(day < 10){
+		day = '0' + day;
+	}
+	var month = date.getMonth();
+	month++;
+	if(month < 10){
+		month = '0' + month;
+	}
+	var year = date.getFullYear();
+	
+	var hour = date.getHours();
+	if(hour < 10){
+		hour = '0' + hour;
+	}
+	var minutes = date.getMinutes();
+	if(minutes < 10){
+		minutes = '0' + minutes;
+	}
+	var seconds = date.getSeconds();
+	if(seconds < 10){
+		seconds = '0' + seconds;
+	}
+	
+	var dbDateTime = year + "-" + month + "-" + day + " " + hour+":"+minutes+":"+seconds;
+	
+	$.post('ajaxDate.php'+ids, {dateTime: dbDateTime, ids: ids});
+}
+
+
+
+// Media functions START //
+function getEscenicPictureID() { 
+	var id = window.location.search;
+	$.get('ajaxGetEscenicPicture.php'+id, function(data){
+		$('#nu-timeline-cms-picturePreview').html(data);
+		savePictureText();
+	});
+}
+
+
+function getEscenicPictureURL(picEscenicID) { // Fetches picture from Escenic-API with Escenic picture ID
+	$.ajax({
+		type: "GET",
+		url: "http://api.snd.no/news/publication/ap/searchContents/instance?contentId="+picEscenicID+"&contentType=image&callback=myFunc",
+		dataType: "xml",
+		success: function(xmlBildeAPI){
+			var escenicPicUrl = $(xmlBildeAPI).find('link');
+			var url = escenicPicUrl.attr('href');
+			$('#nu-timeline-cms-hiddenEscenicLink').val(url);
+		}
+	});	
+}
+
+function deletePicture() { // Deletes selected image
+	$(document).on("click", ".nu-timeline-cms-deletePicture", function() {
+		var selectedID = $(this).attr("id");
+		
+		$.post("ajaxGetEscenicPicture.php", {selectedID: selectedID});
+		getEscenicPictureID();
+		
+		var field = "Bilde";
+		var statusColor = "red";
+		
+		statusMessage(field, statusColor);
+	});
+}
+
+function findPictureSize() { // Gets sizes and cropversions of selected image, and displays a preview for the user to select
+	$('#nu-timeline-cms-findPicSize').click(function(){
+		$('#nu-timeline-cms-pictureSizePreview').show();
+		$('#nu-timeline-cms-picturePreview').hide();
+		var picID = $('#nu-timeline-cms-picEscenicID').val();
+		getEscenicPictureURL(picID);
+		var picture = $('#nu-timeline-cms-hiddenEscenicLink').val();
+		
+		showPictureSize(picture);
+	});
+}
+
+function showPictureSize(picture) { // Displays selected images
+	$.get('ajaxPictureSize.php?picture='+picture, function(data){
+		$('#nu-timeline-cms-pictureSizePreview').html(data);
+	});
+}
+
+function savePictureSize() { // Saves selected size and cropversion of image on click
+	$(document).on("click",'.nu-timeline-cms-picSizePreview', function() {
+		
+		$('#nu-timeline-cms-picturePreview').show();
+		$('#nu-timeline-cms-pictureSizePreview').hide();
+		
+	
+		var cropVersion = $(this).children("label").attr("value");
+		var picEscenicID = $('#nu-timeline-cms-picEscenicID').val();
+		var hiddenURL = $('#nu-timeline-cms-hiddenEscenicLink').val();
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post('ajaxGetEscenicPicture.php', {cropVersion: cropVersion, picEscenicID: picEscenicID, hiddenURL: hiddenURL, article: article});
+		getEscenicPictureID();
+		
+		var field = "Bilde";
+		var statusColor = "green";
+		
+		statusMessage(field, statusColor);
+	});
+}
+
+function savePictureText() { // Saves picture-text when user leaves the textarea
+	$('.nu-timeline-cms-pictureTextArea').blur(function() {
+		var mediaID = $(this).attr("mediaid");
+		var pictureText = $('.nu-timeline-cms-pictureTextArea[mediaid='+mediaID+']').val();
+		var article = $('#editFormHiddenContentID').val();
+		
+		
+		$.post('ajaxPostPictureText.php', {pictureText: pictureText, article: article, mediaID: mediaID});
+		
+		var field = "Bildetekst";
+		var statusColor = "green";
+		
+		statusMessage(field, statusColor);
+		
+	})
+}
+
+function postEscenicVideoID() { // Saves selected video
+	$('#nu-timeline-cms-saveVideoBtn').click(function() {
+	
+		window.vidEscenicID = $('#nu-timeline-cms-vidEscenicID').val();
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post('ajaxGetEscenicVideo.php', {vidEscenicID: vidEscenicID, article: article});
+		getEscenicVideoID();
+		
+		var field = "Video";
+		var statusColor = "green";
+		
+		statusMessage(field, statusColor);
+	});
+}
+
+function getEscenicVideoID() { // Gets video from DB and embeds it
+	var id = window.location.search;
+	$.get('ajaxGetEscenicVideo.php'+id, function(data){
+		$('#nu-timeline-cms-videoPreview').html(data);
+	});
+}
+
+function deleteVideo() { // Deletes selected video
+	$('#nu-timeline-cms-deleteVideoBtn').click(function() {
+		var delVideo = "delete";
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post("ajaxGetEscenicVideo.php", {delVideo: delVideo, article: article});
+		getEscenicVideoID();
+		
+		var field = "Video";
+		var statusColor = "red";
+		
+		statusMessage(field, statusColor);
+	});
+}
+
+// Google map functions START //
+function initializeMap(){ // Initializes the map 
 
 	var latLng = new google.maps.LatLng(getLat, getLong);
         var mapOptions = {
@@ -764,7 +878,7 @@ function initializeMap(){
 		    	map.fitBounds(place.geometry.viewport);
 		    } else {
 				map.setCenter(place.geometry.location);
-			    map.setZoom(17);  // Why 17? Because it looks good.
+			    map.setZoom(17);  
 			}			       
 			    marker.setPosition(place.geometry.location);
 			    marker.setVisible(true);
@@ -789,7 +903,7 @@ function initializeMap(){
                 
 }
 
-function geocodePosition(pos){
+function geocodePosition(pos){ // Geocodes the position and returns formatted adress
 	var geocoder = new google.maps.Geocoder();
 
 	geocoder.geocode({
@@ -804,20 +918,20 @@ function geocodePosition(pos){
 	});
 }
 	
-function updateMarkerPosition(latLng) {
+function updateMarkerPosition(latLng) { // Returns coordinates
     document.getElementById('nu-timeline-cms-hiddenCoords').innerHTML = [
         latLng.lat(),
         latLng.lng()
     ].join(', ');
 }
 
-function updateMarkerAddress(str) {
+function updateMarkerAddress(str) { // Updates the field for closest adress
     document.getElementById('nu-timeline-cms-address').innerHTML = str;
 }
 
 
  
-function saveMapCoords() {
+function saveMapCoords() { // Saves the selected map and coordinates to db
 	$('#nu-timeline-cms-saveMapButton').click(function(){
 		
 		var article = $('#editFormHiddenContentID').val();
@@ -827,15 +941,7 @@ function saveMapCoords() {
 		window.longs = array[1];
 		var zooms = map.getZoom();
 		
-		
-		
 		var coords = lats + "," + longs + "," + zooms; 
-		
-		/*
-var hiddenCoords = $('#info').val();
-		var coords = latLng.lat()+","+latLng.lng()+","+map.getZoom();
-		var article = $('#editFormHiddenContentID').val();
-*/
 		
 		$.post('ajaxGoogleMaps.php', {coords: coords, article: article});
 		
@@ -846,7 +952,7 @@ var hiddenCoords = $('#info').val();
 	});
 }
 
-function getMapData() {
+function getMapData() { // Gets mapdata from db
 	var id = window.location.search;
 	$.get('ajaxGoogleMaps.php'+id, function(data){
 		window.mapDataFromDb = data;
@@ -858,167 +964,17 @@ function getMapData() {
 	});
 	
 }
-
-/*
-function postEscenicPictureID() {
-	$('#nu-timeline-cms-savePictureBtn').click(function() {
-	
-		window.picEscenicID = $('#nu-timeline-cms-picEscenicID').val();
-		getEscenicPictureURL(picEscenicID);
-		var hiddenURL = $('#nu-timeline-cms-hiddenEscenicLink').val();
-		var cropVersion = $('#nu-timeline-cms-cropVersion').val();
-		var article = $('#editFormHiddenContentID').val();
-		
-		$.post('ajaxGetEscenicPicture.php', {picEscenicID: picEscenicID, hiddenURL: hiddenURL, article: article, cropVersion: cropVersion});
-		getEscenicPictureID();
-		
-		var field = "Bilde";
-		var statusColor = "green";
-			
-		statusMessage(field, statusColor);
-	});
-		
-}
-*/
-
-function getEscenicPictureID() {
-	var id = window.location.search;
-	$.get('ajaxGetEscenicPicture.php'+id, function(data){
-		$('#nu-timeline-cms-picturePreview').html(data);
-		savePictureText();
-	});
-}
+// Google map functions END //
+// Media functions END //
 
 
-function getEscenicPictureURL(picEscenicID) {
-	$.ajax({
-		type: "GET",
-		url: "http://api.snd.no/news/publication/ap/searchContents/instance?contentId="+picEscenicID+"&contentType=image&callback=myFunc",
-		dataType: "xml",
-		success: function(xmlBildeAPI){
-			var escenicPicUrl = $(xmlBildeAPI).find('link');
-			var url = escenicPicUrl.attr('href');
-			$('#nu-timeline-cms-hiddenEscenicLink').val(url);
-		}
-	});	
-}
-
-function deletePicture() {
-	$(document).on("click", ".nu-timeline-cms-deletePicture", function() {
-		var selectedID = $(this).attr("id");
-		
-		$.post("ajaxGetEscenicPicture.php", {selectedID: selectedID});
-		getEscenicPictureID();
-		
-		var field = "Bilde";
-		var statusColor = "red";
-		
-		statusMessage(field, statusColor);
-	});
-}
-
-function postEscenicVideoID() {
-	$('#nu-timeline-cms-saveVideoBtn').click(function() {
-	
-		window.vidEscenicID = $('#nu-timeline-cms-vidEscenicID').val();
-		var article = $('#editFormHiddenContentID').val();
-		
-		$.post('ajaxGetEscenicVideo.php', {vidEscenicID: vidEscenicID, article: article});
-		getEscenicVideoID();
-		
-		var field = "Video";
-		var statusColor = "green";
-		
-		statusMessage(field, statusColor);
-	});
-}
-
-function getEscenicVideoID() {
-	var id = window.location.search;
-	$.get('ajaxGetEscenicVideo.php'+id, function(data){
-		$('#nu-timeline-cms-videoPreview').html(data);
-	});
-}
-
-function deleteVideo() {
-	$('#nu-timeline-cms-deleteVideoBtn').click(function() {
-		var delVideo = "delete";
-		var article = $('#editFormHiddenContentID').val();
-		
-		$.post("ajaxGetEscenicVideo.php", {delVideo: delVideo, article: article});
-		getEscenicVideoID();
-		
-		var field = "Video";
-		var statusColor = "red";
-		
-		statusMessage(field, statusColor);
-	});
-}
-
-function findPictureSize() {
-	$('#nu-timeline-cms-findPicSize').click(function(){
-		$('#nu-timeline-cms-pictureSizePreview').show();
-		$('#nu-timeline-cms-picturePreview').hide();
-		var picID = $('#nu-timeline-cms-picEscenicID').val();
-		getEscenicPictureURL(picID);
-		var picture = $('#nu-timeline-cms-hiddenEscenicLink').val();
-		
-		showPictureSize(picture);
-	});
-}
-
-function showPictureSize(picture) {
-	$.get('ajaxPictureSize.php?picture='+picture, function(data){
-		$('#nu-timeline-cms-pictureSizePreview').html(data);
-	});
-}
-
-function savePictureSize() {
-	$(document).on("click",'.nu-timeline-cms-picSizePreview', function() {
-		
-		$('#nu-timeline-cms-picturePreview').show();
-		$('#nu-timeline-cms-pictureSizePreview').hide();
-		
-	
-		var cropVersion = $(this).children("label").attr("value");
-		var picEscenicID = $('#nu-timeline-cms-picEscenicID').val();
-		var hiddenURL = $('#nu-timeline-cms-hiddenEscenicLink').val();
-		var article = $('#editFormHiddenContentID').val();
-		
-		$.post('ajaxGetEscenicPicture.php', {cropVersion: cropVersion, picEscenicID: picEscenicID, hiddenURL: hiddenURL, article: article});
-		getEscenicPictureID();
-		
-		var field = "Bilde";
-		var statusColor = "green";
-		
-		statusMessage(field, statusColor);
-	});
-}
-
-function savePictureText() {
-	$('.nu-timeline-cms-pictureTextArea').blur(function() {
-		var mediaID = $(this).attr("mediaid");
-		var pictureText = $('.nu-timeline-cms-pictureTextArea[mediaid='+mediaID+']').val();
-		var article = $('#editFormHiddenContentID').val();
-		
-		
-		$.post('ajaxPostPictureText.php', {pictureText: pictureText, article: article, mediaID: mediaID});
-		
-		var field = "Bildetekst";
-		var statusColor = "green";
-		
-		statusMessage(field, statusColor);
-		
-	})
-}
-
-function getTimelineCode() {
+function getTimelineCode() { // Gives the user a link to publish in Escenic
 	$('#nu-timeline-cms-tlCodeBtn').click(function(){
 			var tlID = window.location.search.substring(4);
 			var split = tlID.split('&');
 			var newtlID = split[0];
 		
-		var popup = prompt("Kopier denne koden inn i Escenic:","<div class='nu-timeline-wrapper'></div><script type='text/javascript'>getTimeline("+newtlID+")</script>");
+			var popup = prompt("Kopier denne koden inn i Escenic:","<div class='nu-timeline-wrapper'></div><script type='text/javascript'>getTimeline("+newtlID+")</script>");
 	});
 }
 
