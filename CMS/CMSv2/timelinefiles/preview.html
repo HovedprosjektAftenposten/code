@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="content-type" charset="utf-8" content="text/html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Aftenposten tidslinje</title>
+
+<link rel="stylesheet" type="text/css" href="styles/css_timeline.css" />
+<link rel="stylesheet" type="text/css" href="styles/fonts/fonts.css" />
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="styles/tabs.css" />
+<link rel="stylesheet" type="text/css" href="styles/jquery.fancybox.css" />
+
+
+
+
+<script src="scripts/jquery1.9.js"></script><!-- Tres importante -->
+
+
+
+
+
+<script src='scripts/swipe.js'></script> 
+<script src="scripts/jquery.scrollTo-1.4.3.1-min.js"></script> <!-- Kan kanskje droppes, å bruke html,body animate for scroll isteden-->
+<script src="scripts/waypoints.min.js"></script>  
+<script src="scripts/easing.js.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+<script src="scripts/jsonPrototype.js"></script> <!-- JSON-fil brukt for testing -->
+<script src="scripts/jsTidslinje.js"></script>  
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/jquery.fancybox.pack.js"></script>
+<script src="scripts/isotope.min.js"></script>    
+<script src="scripts/jsTidslinje_mobile.js"></script>      
+
+<script type="text/javascript">
+var url = document.URL;
+var url_splitted = url.split("id=");
+var id = url_splitted[1];
+getTimeline(id);
+/*
+//$('<script type="text/javascript">getTimeline(' + id + ');alert("k")</' + 'script>').appendTo(document.body);
+
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.innerHTML = "alert('k');getTimeline(" + id + ")";
+$('body').append(s);*/
+
+
+</script>
+</head>
+
+<body>
+<div id="smallHeader"></div><!-- replica of the sticky header ap.no has -->
+	<div class="aftenpostenDummy">
+	  
+      
+<div class='nu-timeline-wrapper'></div>
+<div class='footer'>
+	</div>
+</div>
+</body>
+</html>

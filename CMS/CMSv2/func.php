@@ -99,10 +99,10 @@ function fillEditInputs() {
 			<tr>
 				<td><input type='text' name='dato'  id='nu-timeline-cms-editFormContentDate' class='nu-timeline-cms-fields datepicker' value='".$print['content_date']."' required pattern='^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$'></input></td>
 				<td><div id='nu-timeline-cms-dateCoin' data-toggle='tooltip' data-placement='top' title='Velg dato for hendelsen. Dette gir hendelsen riktig plassering på tidslinjen.'></div></td>
-				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' placeholder='HH:MM:SS' value='".$print['content_time']."' required pattern='^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$'></input></td>
-				<td><div id='nu-timeline-cms-timeCoin' data-toggle='tooltip' data-placement='top' title='Velg tidspunkt for hendelsen. Format: HH:MM:SS'></div></td>
+				<td><input type='text' name='tid' id='nu-timeline-cms-editFormContentTime' placeholder='HH:MM:SS' value='".$print['content_time']."' pattern='^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$'></input></td>
+				<td><div id='nu-timeline-cms-timeCoin' data-toggle='tooltip' data-placement='top' title='Velg tidspunkt for hendelsen. Format: HH:MM:SS. Valgfritt'></div></td>
 				<td><input type='text' name='custom' id='nu-timeline-cms-editFormCustomTimeDate' value='".$print['content_custom']."'></input></td>
-				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Ca. dato må fortsatt settes for å få riktig posisjon på tidslinjen.'></div></td>
+				<td><div id='nu-timeline-cms-customCoin' data-toggle='tooltip' data-placement='top' title='Fylles ut hvis dato ikke er eksakt. Ca. dato må fortsatt settes for å få riktig posisjon på tidslinjen. Valgfritt'></div></td>
 			</tr>
 			</table>
 			
@@ -165,7 +165,7 @@ function fillEditInputs() {
 						<td>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-findPicSize' class='btn btn-inverse'>Finn bilde</div>
+							<div id='nu-timeline-cms-findPicSize' class='btn btn-small btn-inverse'>Finn bilde</div>
 							
 						</td>
 					</tr>
@@ -192,10 +192,10 @@ function fillEditInputs() {
 							<input type='hidden' id='nu-timeline-cms-hiddenEscenicLink'></input>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-saveVideoBtn' class='btn btn-inverse'>Lagre video</div>
+							<div id='nu-timeline-cms-saveVideoBtn' class='btn btn-small btn-inverse'>Hent video</div>
 						</td>
 						<td>
-							<div id='nu-timeline-cms-deleteVideoBtn' class='btn btn-inverse'>Slett video</div>
+							<div id='nu-timeline-cms-deleteVideoBtn' class='btn btn-small btn-inverse'>Slett video</div>
 						</td>
 					</tr>
 				</table>
@@ -213,8 +213,8 @@ function fillEditInputs() {
 						<tr>
 							<td>
 								<input id='nu-timeline-cms-mapSearchTextField' type='text' size='50'>
-								<div id='nu-timeline-cms-saveMapButton' class='btn btn-inverse'>Lagre kart</div>
-								
+								<div id='nu-timeline-cms-saveMapButton' class='btn btn-small btn-inverse'>Lagre kart</div>
+								<div id='nu-timeline-cms-deleteMapButton' class='btn btn-small btn-inverse'>Slett kart</div>
 								
 								</div>
 							</td>
@@ -299,7 +299,7 @@ function fillTlInfoInputs() {
 				<td></td>
 			</tr>
 			<tr>
-				<td><textarea cols='80' rows='10' name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>".$print['tl_ingress']."</textarea></td>
+				<td><textarea name='nu-timeline-cms-tlIngress' id='nu-timeline-cms-tlInfoFormText'>".$print['tl_ingress']."</textarea></td>
 				<td><div id='nu-timeline-cms-showCategories'></div></td>
 				<td></td>
 				 

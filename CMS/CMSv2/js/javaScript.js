@@ -54,11 +54,14 @@ $(document).ready(function(){
 	getStatus();
 	
 	fillCategories();
-	
+	deleteMap();
 });
 
 // Function for tooltips on hover
 function hoverEvents(){
+	$('#nu-timeline-cms-previewBtn').hover(function(){
+		$('#nu-timeline-cms-previewBtn').tooltip('toggle');
+	});
 	$('.nu-timeline-cms-loggUt').hover(function(){
 		$('.nu-timeline-cms-loggUt').tooltip('toggle');	
 	});
@@ -725,14 +728,16 @@ function getEscenicPictureURL(picEscenicID) { // Fetches picture from Escenic-AP
 function deletePicture() { // Deletes selected image
 	$(document).on("click", ".nu-timeline-cms-deletePicture", function() {
 		var selectedID = $(this).attr("id");
+		var contentID = $('input#editFormHiddenContentID').val();	
 		
-		$.post("ajaxGetEscenicPicture.php", {selectedID: selectedID});
+		$.post("ajaxGetEscenicPicture.php", {selectedID: selectedID, article: contentID});
 		getEscenicPictureID();
 		
 		var field = "Bilde";
 		var statusColor = "red";
 		
 		statusMessage(field, statusColor);
+		updateMediaStatus();
 	});
 }
 
@@ -795,11 +800,11 @@ function savePictureText() { // Saves picture-text when user leaves the textarea
 
 function postEscenicVideoID() { // Saves selected video
 	$('#nu-timeline-cms-saveVideoBtn').click(function() {
-	
 		window.vidEscenicID = $('#nu-timeline-cms-vidEscenicID').val();
 		var article = $('#editFormHiddenContentID').val();
 		
 		$.post('ajaxGetEscenicVideo.php', {vidEscenicID: vidEscenicID, article: article});
+		
 		getEscenicVideoID();
 		
 		var field = "Video";
@@ -808,6 +813,12 @@ function postEscenicVideoID() { // Saves selected video
 		statusMessage(field, statusColor);
 	});
 }
+
+function updateMediaStatus() { // Updates content_media status in db
+	var article = $('#editFormHiddenContentID').val();
+	$.post('ajaxUpdateMediaStatus.php', {article: article});
+}
+
 
 function getEscenicVideoID() { // Gets video from DB and embeds it
 	var id = window.location.search;
@@ -828,7 +839,11 @@ function deleteVideo() { // Deletes selected video
 		var statusColor = "red";
 		
 		statusMessage(field, statusColor);
+		
+		updateMediaStatus();
 	});
+	
+	
 }
 
 // Google map functions START //
@@ -950,6 +965,23 @@ function saveMapCoords() { // Saves the selected map and coordinates to db
 		
 		statusMessage(field, statusColor);
 	});
+}
+
+function deleteMap() { // Deletes selected map
+	$(document).on('click', '#nu-timeline-cms-deleteMapButton', function(){
+		var delMap = "delete";
+		var article = $('#editFormHiddenContentID').val();
+		
+		$.post("ajaxGoogleMaps.php", {delMap: delMap, article: article});
+		
+		var field = "Kart";
+		var statusColor = "red";
+		
+		statusMessage(field, statusColor);
+		updateMediaStatus();
+		initializeMap();
+	})
+	
 }
 
 function getMapData() { // Gets mapdata from db

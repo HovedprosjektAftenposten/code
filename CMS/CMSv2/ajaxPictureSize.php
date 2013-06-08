@@ -11,7 +11,7 @@
 	mysql_select_db("aftenposten", $connect);
 	// connectionstring end
 	
-		// defines an array with picture cropversions. w580 is just an randomly selected value
+		// defines an array with picture cropversions. w580 is just a randomly selected value
 		$array = array('w580cFree','w580c169','w580c43','w580c34','w580c23');
 	
 		

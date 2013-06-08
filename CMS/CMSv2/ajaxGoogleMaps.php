@@ -33,8 +33,14 @@
 		if(!empty($_REQUEST['coords'])){
 			if($print['media_type'] == "map"){
 				mysql_query("UPDATE media_table SET media_data='".$_REQUEST['coords']."' WHERE content_ID = '".$_REQUEST['article']."' AND media_type = 'map'");
+				mysql_query("UPDATE content_table SET content_media= '1' WHERE content_ID = '".$_REQUEST['article']."'");
 			}else {
 				mysql_query("INSERT INTO media_table (media_ID, content_ID, media_type, media_title, media_data, media_text) VALUES ('".$newMediaID."', '".$_REQUEST['article']."', 'map', '', '".$_REQUEST['coords']."', '')");
+				mysql_query("UPDATE content_table SET content_media= '1' WHERE content_ID = '".$_REQUEST['article']."'");
 			}
+		}
+		
+		if(!empty($_REQUEST['delMap'])) {
+			mysql_query("DELETE FROM media_table WHERE content_ID = '".$_REQUEST['article']."' AND media_type = 'map'");
 		}
 ?>
