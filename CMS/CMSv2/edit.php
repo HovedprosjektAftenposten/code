@@ -84,7 +84,7 @@ header ('content-type:text/html;charset=utf-8');
 				</td>
 				
 				<td id='nu-timeline-cms-headerTableSecond'>
-					
+					<a id="nu-timeline-cms-previewBtn" data-toggle='tooltip' data-placement='bottom' title='Forhåndsvis tidslinje' target="_blank" href="timelinefiles/preview.html#?id=<?php getTLID(); ?>"></a>
 				</td>
 				
 				<td id='nu-timeline-cms-headerTableThird'>
@@ -131,13 +131,11 @@ header ('content-type:text/html;charset=utf-8');
 					<div id='nu-timeline-cms-searchContent'>
 						<form id='nu-timeline-cms-articleSearchForm' method='post' action='edit.php?id=<?php getTLID(); ?>'>
 						<input id='nu-timeline-cms-contentSearchField' type='text' name='sok' placeholder='S&oslash;k i hendelser...'>
-						<input id='nu-timeline-cms-searchButton'  class='btn btn-inverse' type='submit' value='S&oslash;k'>
+						<input id='nu-timeline-cms-searchButton'  class='btn btn-small btn-inverse' type='submit' value='S&oslash;k'>
 					</form>
 					</div>
 					<div id="nu-timeline-cms-articles">
 					<?php
-				
-				/* SHOW RESULTS FROM SEARCH. SEARCHES FOR TL_ID AND TL_NAME IN TIMELINE_TABLE AND PRINTS RESULTS TO index.php */
 				
 						function getSearchResults() {
 						

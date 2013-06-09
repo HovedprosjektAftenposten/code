@@ -1,0 +1,4 @@
+
+if($(window).width() < 480){
+         	 window.location = "http://mobile.yoursite.com&quot;
+	 }

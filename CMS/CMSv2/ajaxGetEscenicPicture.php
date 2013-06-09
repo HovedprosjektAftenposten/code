@@ -38,7 +38,7 @@
 		
 		
 		mysql_query("INSERT INTO media_table (media_ID, content_ID, media_type, media_title, media_data, media_text)VALUES ('".$newMediaID."','".$_REQUEST['article']."','picture','','".$pictureLink."','')");
-	
+		mysql_query("UPDATE content_table SET content_media= '1' WHERE content_ID = '".$_REQUEST['article']."'");
 	/* mysql_query("UPDATE media_table SET media_type = 'picture' , media_data = '".$pictureLink."' WHERE content_ID = '".$_REQUEST['article']."' ORDER BY media_ID DESC LIMIT 1"); */
 	}
 	
@@ -52,12 +52,13 @@
 	
 	// print picture and picture text
 	while($print = mysql_fetch_array($query)) {
-		echo "<div class='nu-timeline-cms-showPictures' mediaid='".$print['media_ID']."'><img src='".$print['media_data']."' id='".$print['media_ID']."' />
+		echo "<div class='pictureDivider'></div>
+				<div class='nu-timeline-cms-showPictures' mediaid='".$print['media_ID']."'><img src='".$print['media_data']."' id='".$print['media_ID']."' />
 				<div class='nu-timeline-cms-deletePicture' id='".$print['media_ID']."'></div>
 				<div class='nu-timeline-cms-pictureText'><textarea class='nu-timeline-cms-pictureTextArea' placeholder='Bildetekst' rows='7' cols='26' mediaid='".$print['media_ID']."'>".$print['media_text']."</textarea></div>
 				
-			</div>
-			<div class='pictureDivider'></div>";
+			</div>";
+		
 	}
 	
 ?>
